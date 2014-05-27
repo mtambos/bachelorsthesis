@@ -1,0 +1,6 @@
+/*.lyx~
+*.pyc
+/src/.settings
+/src/*.project
+/src/*.pydevproject
+/*.lyx#
