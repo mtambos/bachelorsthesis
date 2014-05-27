@@ -283,7 +283,7 @@ thepage
 \end_layout
 
 \begin_layout Chapter
-Title of the first appendix chapter
+Title of first chapter
 \end_layout
 
 \begin_layout Section
@@ -291,47 +291,62 @@ Overview
 \end_layout
 
 \begin_layout Standard
-bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla roughness parameter 
-\begin_inset Formula $R_{a}$
-\end_inset
-
-
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "$R_a$"
-description "arithmetic average roughness"
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-For nomenclature entries with indices one need to enclose the expression
- with $-signs.
- (This creates a formula.)
-\end_layout
-
-\end_inset
-
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla, see 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ISO10780"
+bla bla bla bla bla bla bla bla bla bla bla, see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:The-next-section"
 
 \end_inset
 
 .
+ Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+ bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+ bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+ bla bla bla bla bla bla bla bla bla bla bla DLC-coatings
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "DLC"
+description "diamond-like carbon"
+
+\end_inset
+
+ bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+ bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla,
+ see 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowl1928"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Integral-sine"
+
+\end_inset
+
+ is the definition of the integral sine function.
+\begin_inset Formula 
+\begin{equation}
+\int\frac{\sin(x)}{x}\,\mathrm{d}x=\mathrm{Si}(x)\label{eq:Integral-sine}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 The next section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:The-next-section"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -341,8 +356,8 @@ status collapsed
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "biblio/Plasma"
-options "biblio/alpha"
+bibfiles "thesisExample"
+options "alpha"
 
 \end_inset
 
