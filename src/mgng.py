@@ -77,13 +77,7 @@ class MGNG:
             c_n := c_n + \epsilon_n*(C_t - c_i)
     """
     def _update_neighbors(self, r, xt):
-        c_t = self.c_t
-        e_w = self.e_w
-        e_n = self.e_n
-        self.model.update_weight_and_context(r['id'], xt, c_t, e_w)
-        [self.model.update_weight_and_context(n, xt, c_t, e_n)
-            for n in r['neighbors']]
-
+        self.model.update_weight_and_context(r['id'], xt, self.c_t, self.e_w, self.e_n)
 
     def _add_node(self, weight, context, error=0):
         n = self.model.add_node(self.next_n, weight, context, error)
@@ -111,7 +105,9 @@ class MGNG:
         q = self.model.get_node_by_matrix(ind[0])
 
         if q['neighbors']:
-            f = max((self.model.get_node(nId) for nId in q['neighbors']), key=lambda x: self.model.get_error(x['id']))
+            nIds = np.array(list(q['neighbors']), ndmin=1, dtype=np.uint)
+            f = np.argmax(self.model.get_errors(nIds))
+            f = self.model.get_node(nIds[f])
             q_weight = self.model.get_weight(q['id'])
             f_weight = self.model.get_weight(f['id'])
             q_context = self.model.get_context(q['id'])
@@ -147,7 +143,12 @@ class MGNG:
             self.model.update_error(r['id'], incr=1)
 
             # 11. update neuron r and its direct topological neighbors:
-            self._update_neighbors(r, xt)
+            #   w_r := w_r + \epsilon_w * (x_t - w_r)
+            #   c_r := c_r + \epsilon_w*(C_t - c_r)
+            #   (\forall n \in N_r)
+            #       w_n := w_n + \epsilon_n * (x_t - w_i)
+            #       c_n := c_n + \epsilon_n*(C_t - c_i)
+            self.model.update_weight_and_context(r['id'], xt, self.c_t, self.e_w, self.e_n)
 
             # 12. increment the age of all edges connected with r
             #     age_{(r,n)} := age_{(r,n)} + 1 (\forall n \in N_r )
@@ -166,8 +167,7 @@ class MGNG:
 
             # 16. decrease counter of all neurons by the factor \eta:
             #    e_n := \eta * e_n (\forall n \in K)
-            for k in self.model.nodes():
-                self.model.update_error(k['id'], eta=self.eta)
+            self.model.update_errors(self.eta)
 
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
         self.c_t = c_t1

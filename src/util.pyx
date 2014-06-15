@@ -40,10 +40,10 @@ cdef class Graph(object):
     cpdef list nodes(self):
         return self._nodes.values()
 
-    cpdef np.ndarray weights(self):
+    cpdef np.ndarray[DTYPE_t, ndim=2] weights(self):
         return self._weights
 
-    cpdef np.ndarray get_weight(self, unsigned int id):
+    cpdef np.ndarray[DTYPE_t, ndim=1] get_weight(self, unsigned int id):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         return self._weights[index]
 
@@ -53,10 +53,10 @@ cdef class Graph(object):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         self._weights[index] += e * (xt - self._weights[index])
 
-    cpdef np.ndarray contexts(self):
+    cpdef np.ndarray[DTYPE_t, ndim=2] contexts(self):
         return self._contexts
 
-    cpdef np.ndarray get_context(self, unsigned int id):
+    cpdef np.ndarray[DTYPE_t, ndim=1] get_context(self, unsigned int id):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         return self._contexts[index]
 
@@ -69,13 +69,21 @@ cdef class Graph(object):
     cpdef update_weight_and_context(self, unsigned int id,
                                     np.ndarray[DTYPE_t, ndim=1] xt,
                                     np.ndarray[DTYPE_t, ndim=1] c_t,
-                                    DTYPE_t e):
+                                    DTYPE_t e_w, DTYPE_t e_n):
         cdef unsigned int index = self._nodes[id]['matrix_index']
-        self._weights[index] += e * (xt - self._weights[index])
-        self._contexts[index] += e * (c_t - self._contexts[index])
+        self._weights[index] += e_w * (xt - self._weights[index])
+        self._contexts[index] += e_w * (c_t - self._contexts[index])
+        cdef list n_indices = [self._nodes[n]['matrix_index'] for n in self._nodes[id]['neighbors']]
+        self._weights[n_indices] += e_w * (xt - self._weights[n_indices])
+        self._contexts[n_indices] += e_w * (c_t - self._contexts[n_indices])
 
-    cpdef np.ndarray errors(self):
+
+    cpdef np.ndarray[DTYPE_t, ndim=1] errors(self):
         return self._errors
+
+    cpdef np.ndarray[DTYPE_t, ndim=1] get_errors(self, np.ndarray[unsigned int, ndim=1] ids):
+        cdef list indices = [self._nodes[id]['matrix_index'] for id in ids]
+        return self._errors[indices]
 
     cpdef DTYPE_t get_error(self, unsigned int id):
         cdef unsigned int index = self._nodes[id]['matrix_index']
@@ -85,6 +93,9 @@ cdef class Graph(object):
                        DTYPE_t delta=1, DTYPE_t eta=1):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         self._errors[index] = self._errors[index] * delta * eta + incr
+
+    cpdef update_errors(self, DTYPE_t eta):
+        self._errors *= eta
 
     cpdef dict add_node(self, unsigned int id,
                         np.ndarray[DTYPE_t, ndim=1] weight,
@@ -111,12 +122,7 @@ cdef class Graph(object):
         return self._nodes[id]
 
     cpdef dict get_node_by_matrix(self, unsigned int index):
-        try:
-            return self._nodes[self._matrix_to_nodeId[index]]
-        except KeyError:
-            print(index)
-            print(self._matrix_to_nodeId[index])
-            raise
+        return self._nodes[self._matrix_to_nodeId[index]]
 
     cpdef remove_node(self, unsigned int id):
         cdef unsigned int matrix_index
@@ -152,9 +158,7 @@ cdef class Graph(object):
     cpdef update_node_edges_age(self, unsigned int nodeId, int age_delta):
         cdef unsigned int matrix_index_1 = self._nodes[nodeId]['matrix_index']
         [self.update_edge_age(nodeId, nId, age_delta)
-            for nId in self._nodes
-                if self._adj_matrix[matrix_index_1,
-                                    self._nodes[nId]['matrix_index']] > 0]
+            for nId in self._nodes[nodeId]['neighbors']]
 
     cpdef add_edge(self, unsigned int nodeId1, unsigned int nodeId2,
                    unsigned int age_limit):
