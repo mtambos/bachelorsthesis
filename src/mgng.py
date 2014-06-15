@@ -8,16 +8,21 @@ Based on:
 
 from __future__ import print_function, division
 
-from collections import defaultdict
-from functools import partial
-import heapq
-
 from numpy.random import random_sample
+import numexpr as ne
 
 import networkx as nx
 import numpy as np
 import numpy.linalg as lnp
 
+from util import distances
+
+"""
+d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+"""
+def distances(alpha, c_t, xt, ws, cs):
+    return ((1 - alpha) * lnp.norm(xt - ws, axis=1) ** 2
+            + alpha * lnp.norm(c_t - cs, axis=1) ** 2)
 
 class MGNG:
 
@@ -35,7 +40,7 @@ class MGNG:
         self.e_w = e_w
         self.e_n = e_n
         # 4. initialize global temporal context C1 := 0
-        self.c_t = 0
+        self.c_t = np.zeros(dimensions)
         self.next_n = 0
         # 1. time variable t := 0
         self.t = 0
@@ -46,21 +51,33 @@ class MGNG:
         self._add_node()
 
     """
-    d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-    """
-    def distance(self, xt, n):
-        d_n = (1 - self.alpha) * lnp.norm(xt - n['w']) ** 2
-        d_n += self.alpha * lnp.norm(self.c_t - n['c']) ** 2
-        return d_n
-
-    """
     find winner r := arg min_{n \in K} d_n(t)
     and second winner s := arg min_{n \in K\{r}} d_n(t)
     where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
     """
     def find_winner_neurons(self, xt):
-        dist = partial(self.distance, xt)
-        r, s = heapq.nsmallest(2, self.model.node.values(), dist)
+        nodes = self.model.node.values()
+        ws = np.array([n['w'] for n in nodes])
+        cs = np.array([n['c'] for n in nodes])
+        try:
+            dists = distances(self.alpha, self.c_t, xt, ws, cs)
+        except ValueError:
+            print(self.alpha.__repr__(), self.c_t.__repr__(), xt.__repr__(), ws.__repr__(), cs.__repr__())
+            raise
+        #r_dist, r = np.finfo(np.double).max, None
+        #s_dist, s = np.finfo(np.double).max, None
+
+        ind = np.argpartition(dists, -2)[:2]
+        ind = ind[np.argsort(dists[ind])]
+        r = nodes[ind[0]]
+        s = nodes[ind[1]]
+        # for i, d in enumerate(dists):
+            # if d < r_dist:
+                # s_dist, s = r_dist, r
+                # r_dist, r_id = dist, nodes[i]
+            # elif r_dist < d < s_dist:
+                # s_dist, s = dist, nodes[i]
+
         return r, s
 
     """
@@ -162,86 +179,115 @@ class MGNG:
 
     """
     """
-    def time_step(self, xt):
+    def time_step(self, xt, modify_network=True):
         # 6. find winner r and second winner s
         r, s = self.find_winner_neurons(xt)
+        # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
+        c_t1 = (1 - self.beta) * r['w'] + self.beta * r['c']
 
-        # 8. connect r with s: E := E \cup {(r, s)}
-        # 9. age(r;s) := 0
-        self._add_edge(r, s)
+        if modify_network:
+            # 8. connect r with s: E := E \cup {(r, s)}
+            # 9. age(r;s) := 0
+            self._add_edge(r, s)
 
-        # 10. increment counter of r: e_r := e_r + 1
-        r['e'] += 1
+            # 10. increment counter of r: e_r := e_r + 1
+            r['e'] += 1
 
-        # 11. update neuron r and its direct topological neighbors:
-        self._update_neighbors(r, xt)
+            # 11. update neuron r and its direct topological neighbors:
+            self._update_neighbors(r, xt)
 
-        # 12. increment the age of all edges connected with r
-        self._increment_edges_age(r)
+            # 12. increment the age of all edges connected with r
+            self._increment_edges_age(r)
 
-        # 13. remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
-        self._remove_old_edges()
+            # 13. remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
+            self._remove_old_edges()
 
-        # 14. delete all nodes with no connections.
-        self._remove_unconnected_neurons()
+            # 14. delete all nodes with no connections.
+            self._remove_unconnected_neurons()
 
-        # 15. create new neuron if t mod \lambda = 0 and |K| < \theta
-        if self.t % self.lmbda == 0 and len(self.model.nodes()) < self.theta:
-            self._create_new_neuron()
+            # 15. create new neuron if t mod \lambda = 0 and |K| < \theta
+            if self.t % self.lmbda == 0 and len(self.model.nodes()) < self.theta:
+                self._create_new_neuron()
+
+            # 16. decrease counter of all neurons by the factor \eta:
+            #    e_n := \eta * e_n (\forall n \in K)
+            for k in self.model.nodes():
+                self.model.node[k]['e'] *= self.eta
 
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
-        self.c_t = (1 - self.beta) * r['w'] + self.beta * r['c']
-
-        # 16. decrease counter of all neurons by the factor \eta:
-        #    e_n := \eta * e_n (\forall n \in K)
-        for k in self.model.nodes():
-            self.model.node[k]['e'] *= self.eta
+        self.c_t = c_t1
 
         # 17. t := t + 1
         self.t += 1
 
+        return r
 
-def main():
+
+def main(sample_len=None):
     import Oger as og
     import pylab
-    signal = og.datasets.mackey_glass(sample_len=1500,
+    from collections import deque
+    if sample_len is None:
+        sample_len = 150
+    signal = og.datasets.mackey_glass(sample_len=sample_len * 10,
                                       n_samples=1,
                                       seed=50)[0][0].flatten()
-    print(signal)
     signal = signal + np.abs(signal.min())
-    print(signal)
+    # pylab.subplot(3, 1, 1)
+    # pylab.plot(range(sample_len * 10), signal)
     # 2. initialize neuron set K with 2 neurons with counter e := 0 and random weight and context vectors
     # 3. initialize connections set E \in K * K := \empty;
     # 4. initialize global temporal context C1 := 0
-    mgng = MGNG(lmbda=6)
+    mgng = MGNG()
     # 1. time variable t := 1
     # 5. read / draw input signal xt
     # 18. if more input signals available goto step 5 else terminate
-    for t, xt in enumerate(signal, 1):
-        mgng.time_step(xt)
-        if t % 1500 == 0:
-            print("training: %i%%" % (t / 1500))
+    for t, xt in enumerate(signal):
+        mgng.time_step(np.array([xt]))
+        if t % sample_len == 0:
+            print("training: %i%%" % (10 * t / sample_len))
 
-    errors = [[] for _ in range(30)]
-    for t, xt in enumerate(signal, 1):
-        if t % 150 == 0:
-            print("calculating errors: %i%%" % (t / 150))
-        n, _ = mgng.find_winner_neurons(xt)
-        for i in range(min(30, t)):
-            errors[i].append((n['w'] - signal[t - i - 1]) ** 2)
+    errors = {}
+    input_sequence = list()
+    mgng.c_t = np.zeros(1)
+    for t, xt in enumerate(signal):
+        r = mgng.time_step(np.array([xt]), modify_network=False)
+        input_sequence.append(xt)
+        if t >= 30:
+            input_sequence.pop(0)
+        if t % sample_len == 0:
+            print("error: %i%%" % (10 * t / sample_len))
+        
+        if r['i'] not in errors:
+            errors[r['i']] = [[] for _ in range(30)]
+        for i in range(1, min(t+2, 31)):
+            errors[r['i']][i-1].extend(input_sequence[-i:])
+            
 
-    summary = [0] * 30
+    summary = [[0, np.zeros(i+1)] for i in range(30)]
     for i in range(30):
-        summary[i] = np.sum(errors[i]) / len(errors[i])
+        for v in errors.values():
+            summary[i][0] += 1
+            summary[i][1] += np.std(v[i], 0)
+    for i in range(30):
+        summary[i][1] /= summary[i][0]
 
+    summary = [np.sum(e)/i for i,e in summary]
+    print(summary)
     pylab.subplot(2, 1, 1)
     pylab.plot(range(30), summary)
 
     pylab.subplot(2, 1, 2)
+    nodes = mgng.model.node.values()
     pylab.plot(range(len(mgng.model.nodes())),
-               [n[1]['w'] for n in mgng.model.nodes(data=True)])
+               [n['w'] for n in nodes],
+               'g',
+               range(len(mgng.model.nodes())),
+               [n['c'] for n in nodes],
+               'r')
     pylab.show()
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main(int(sys.argv[1]))
