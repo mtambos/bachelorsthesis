@@ -19,9 +19,34 @@ from util import Graph
 d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
 """
 def distances(alpha, c_t, xt, ws, cs):
-    return ((1 - alpha) * lnp.norm(xt - ws, axis=1) ** 2
-            + alpha * lnp.norm(c_t - cs, axis=1) ** 2)
+    x_w = xt - ws
+    c_c = c_t - cs
+    # x_w = lnp.norm(x_w, axis=1) ** 2
+    # BEGIN calculate euclidean norm
+    x_w = (x_w.conj() * x_w).real
+    x_w = np.add.reduce(x_w, axis=1)
+    # c_c = lnp.norm(c_c, axis=1) ** 2
+    c_c = (c_c.conj() * c_c).real
+    c_c = np.add.reduce(c_c, axis=1)
+    # END calculate euclidean norm
+    total = (1 - alpha) * x_w + alpha * c_c
+    return total
 
+
+"""
+find winner r := arg min_{n \in K} d_n(t)
+and second winner s := arg min_{n \in K\{r}} d_n(t)
+where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+"""
+def find_winner_neurons(model, alpha, xt, c_t):
+    dists = distances(alpha, c_t, xt, model.weights(), model.contexts())
+    ind = np.argpartition(dists, 2)[:2]
+    ind = ind[np.argsort(dists[ind])]
+    
+    r = model.get_node_by_matrix(ind[0])
+    s = model.get_node_by_matrix(ind[1])
+
+    return r, s
 
 class MGNG:
 
@@ -53,31 +78,6 @@ class MGNG:
         context = random_sample(self.dimensions)
         self._add_node(weight, context)
 
-    """
-    find winner r := arg min_{n \in K} d_n(t)
-    and second winner s := arg min_{n \in K\{r}} d_n(t)
-    where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-    """
-    def find_winner_neurons(self, xt):
-        dists = distances(self.alpha, self.c_t, xt, self.model.weights(), self.model.contexts())
-        ind = np.argpartition(dists, 2)[:2]
-        ind = ind[np.argsort(dists[ind])]
-        
-        r = self.model.get_node_by_matrix(ind[0])
-        s = self.model.get_node_by_matrix(ind[1])
-
-        return r, s
-
-    """
-    update neuron r and its direct topological neighbors N_r:
-        w_r := w_r + \epsilon_w * (x_t - w_r)
-        c_r := c_r + \epsilon_w*(C_t - c_r)
-        (\forall n \in N_r)
-            w_n := w_n + \epsilon_n * (x_t - w_i)
-            c_n := c_n + \epsilon_n*(C_t - c_i)
-    """
-    def _update_neighbors(self, r, xt):
-        self.model.update_weight_and_context(r['id'], xt, self.c_t, self.e_w, self.e_n)
 
     def _add_node(self, weight, context, error=0):
         n = self.model.add_node(self.next_n, weight, context, error)
@@ -129,7 +129,7 @@ class MGNG:
     """
     def time_step(self, xt, modify_network=True):
         # 6. find winner r and second winner s
-        r, s = self.find_winner_neurons(xt)
+        r, s = find_winner_neurons(self.model, self.alpha, xt, self.c_t)
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
         r_weight = self.model.get_weight(r['id'])
         r_context = self.model.get_context(r['id'])
@@ -148,7 +148,7 @@ class MGNG:
             #   (\forall n \in N_r)
             #       w_n := w_n + \epsilon_n * (x_t - w_i)
             #       c_n := c_n + \epsilon_n*(C_t - c_i)
-            self.model.update_weight_and_context(r['id'], xt, self.c_t, self.e_w, self.e_n)
+            self.model.update_node_and_neighbors_weight_and_context(r['id'], xt, self.c_t, self.e_w, self.e_n)
 
             # 12. increment the age of all edges connected with r
             #     age_{(r,n)} := age_{(r,n)} + 1 (\forall n \in N_r )
@@ -196,7 +196,7 @@ def main(sample_len=None):
     # 1. time variable t := 1
     # 5. read / draw input signal xt
     # 18. if more input signals available goto step 5 else terminate
-    for t, xt in enumerate(signal):
+    for t, xt in enumerate(signal, 1):
         mgng.time_step(np.array([xt]))
         if t % sample_len == 0:
             print("training: %i%%" % (10 * t / sample_len))
@@ -204,18 +204,18 @@ def main(sample_len=None):
     errors = {}
     input_sequence = list()
     mgng.c_t = np.zeros(1)
-    for t, xt in enumerate(signal):
+    for t, xt in enumerate(signal, 1):
         r = mgng.time_step(np.array([xt]), modify_network=False)
         input_sequence.append(xt)
-        if t >= 30:
+        if t > 30:
             input_sequence.pop(0)
         if t % sample_len == 0:
-            print("error: %i%%" % (10 * t / sample_len))
+            print("calculating error: %i%%" % (10 * t / sample_len))
         
         if r['id'] not in errors:
             errors[r['id']] = [[] for _ in range(30)]
-        for i in range(1, min(t+2, 31)):
-            errors[r['id']][i-1].extend(input_sequence[-i:])
+        for i in range(1, min(t+1, 31)):
+            errors[r['id']][i-1].append(input_sequence[-i:])
             
 
     summary = [[0, np.zeros(i+1)] for i in range(30)]
@@ -240,6 +240,7 @@ def main(sample_len=None):
                [mgng.model.get_context(n['id']) for n in nodes],
                'r')
     pylab.show()
+    return errors, mgng.model.nodes()
 
 
 if __name__ == '__main__':
