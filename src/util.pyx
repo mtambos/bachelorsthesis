@@ -1,6 +1,8 @@
 #!python
-#cython: embedsignature=True
-#cython: boundscheck=False
+# cython: embedsignature=True
+# cython: boundscheck=False
+# cython: wraparound=False
+
 from __future__ import print_function, division
 
 from cpython cimport bool
@@ -10,6 +12,7 @@ import numpy as np
 DTYPE = np.double
 DMIN = np.finfo(np.double).min
 ctypedef np.double_t DTYPE_t
+
 
 cdef class Graph(object):
     cdef np.ndarray _adj_matrix
@@ -47,6 +50,10 @@ cdef class Graph(object):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         return self._weights[index]
 
+    cpdef np.ndarray[DTYPE_t, ndim=1] get_weights(self, np.ndarray[unsigned int, ndim=1] ids):
+        cdef list indices = [self._nodes[id]['matrix_index'] for id in ids]
+        return self._weights[indices]
+
     cpdef update_weight(self, unsigned int id,
                         np.ndarray[DTYPE_t, ndim=1] xt,
                         DTYPE_t e):
@@ -60,22 +67,26 @@ cdef class Graph(object):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         return self._contexts[index]
 
+    cpdef np.ndarray[DTYPE_t, ndim=1] get_contexts(self, np.ndarray[unsigned int, ndim=1] ids):
+        cdef list indices = [self._nodes[id]['matrix_index'] for id in ids]
+        return self._contexts[indices]
+
     cpdef update_context(self, unsigned int id,
                          np.ndarray[DTYPE_t, ndim=1] c_t,
                          DTYPE_t e):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         self._contexts[index] += e * (c_t - self._contexts[index])
 
-    cpdef update_weight_and_context(self, unsigned int id,
-                                    np.ndarray[DTYPE_t, ndim=1] xt,
-                                    np.ndarray[DTYPE_t, ndim=1] c_t,
-                                    DTYPE_t e_w, DTYPE_t e_n):
+    cpdef update_node_and_neighbors_weight_and_context(self, unsigned int id,
+                                                       np.ndarray[DTYPE_t, ndim=1] xt,
+                                                       np.ndarray[DTYPE_t, ndim=1] c_t,
+                                                       DTYPE_t e_w, DTYPE_t e_n):
         cdef unsigned int index = self._nodes[id]['matrix_index']
         self._weights[index] += e_w * (xt - self._weights[index])
         self._contexts[index] += e_w * (c_t - self._contexts[index])
         cdef list n_indices = [self._nodes[n]['matrix_index'] for n in self._nodes[id]['neighbors']]
-        self._weights[n_indices] += e_w * (xt - self._weights[n_indices])
-        self._contexts[n_indices] += e_w * (c_t - self._contexts[n_indices])
+        self._weights[n_indices] += e_n * (xt - self._weights[n_indices])
+        self._contexts[n_indices] += e_n * (c_t - self._contexts[n_indices])
 
 
     cpdef np.ndarray[DTYPE_t, ndim=1] errors(self):

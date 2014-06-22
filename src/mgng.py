@@ -21,8 +21,8 @@ d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
 def distances(alpha, c_t, xt, ws, cs):
     x_w = xt - ws
     c_c = c_t - cs
-    # x_w = lnp.norm(x_w, axis=1) ** 2
     # BEGIN calculate euclidean norm
+    # x_w = lnp.norm(x_w, axis=1) ** 2
     x_w = (x_w.conj() * x_w).real
     x_w = np.add.reduce(x_w, axis=1)
     # c_c = lnp.norm(c_c, axis=1) ** 2
@@ -187,8 +187,8 @@ def main(sample_len=None):
                                       n_samples=1,
                                       seed=50)[0][0].flatten()
     signal = signal + np.abs(signal.min())
-    # pylab.subplot(3, 1, 1)
-    # pylab.plot(range(sample_len * 10), signal)
+    pylab.subplot(3, 1, 1)
+    pylab.plot(range(900), signal[:900])
     # 2. initialize neuron set K with 2 neurons with counter e := 0 and random weight and context vectors
     # 3. initialize connections set E \in K * K := \empty;
     # 4. initialize global temporal context C1 := 0
@@ -227,12 +227,12 @@ def main(sample_len=None):
         summary[i][1] /= summary[i][0]
 
     summary = [np.sum(e)/i for i,e in summary]
-    print(summary)
-    pylab.subplot(2, 1, 1)
+    # print(summary)
+    pylab.subplot(3, 1, 2)
     pylab.plot(range(30), summary)
 
-    pylab.subplot(2, 1, 2)
-    nodes = mgng.model.nodes()
+    pylab.subplot(3, 1, 3)
+    nodes = sorted(mgng.model.nodes(), key=lambda x: mgng.model.get_weight(x['id']))
     pylab.plot(range(len(mgng.model.nodes())),
                [mgng.model.get_weight(n['id']) for n in nodes],
                'g',
@@ -240,7 +240,10 @@ def main(sample_len=None):
                [mgng.model.get_context(n['id']) for n in nodes],
                'r')
     pylab.show()
-    return errors, mgng.model.nodes()
+    for n in nodes:
+        n['weight'] = mgng.model.get_weight(n['id'])
+        n['context'] = mgng.model.get_context(n['id'])
+    return errors, nodes, [mgng.model.get_node_by_matrix(i) for i in range(100)]
 
 
 if __name__ == '__main__':

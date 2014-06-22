@@ -28,15 +28,17 @@ class AMGNG:
 
     def _compare_models(self):
         tot = 0.
+        alpha = 0
         for pr_x in self.present.model.nodes():
-            pr_x_w = self.present.get_node(pr_x)['w']
-            pr_x_c = self.present.get_node(pr_x)['c']
-            dist = lambda x: lnp.norm(pr_x_c - x[1]['c'])
-            ps_x = min(self.past.model.nodes(data=True), key=dist)
-            ps_x_w = ps_x[1]['w']
-            ps_x_c = ps_x[1]['c']
+            pr_x_w = self.present.model.get_weight(pr_x['id'])
+            pr_x_c = self.present.model.get_context(pr_x['id'])
+            ps_x, _ = mgng.find_winner_neurons(self.past.model, alpha, pr_x_w, pr_x_c)
+            ps_x_w =  self.past.model.get_weight(ps_x['id'])
+            ps_x_c =  self.past.model.get_context(ps_x['id'])
             # tot += lnp.norm(pr_x_w - ps_x_w)
-            tot += lnp.norm(pr_x_c - ps_x_c)
+            # tot += lnp.norm(pr_x_c - ps_x_c)
+            tot += alpha * lnp.norm(pr_x_w - ps_x_w) ** 2 + (1-alpha) * lnp.norm(pr_x_c - ps_x_c) ** 2
+            
         return tot / (self.prest_size)
 
     def time_step(self, xt):
@@ -45,13 +47,12 @@ class AMGNG:
         if self.t >= self.prest_size:
             pst_xt = self.buffer.popleft()
             self.past.time_step(pst_xt)
-            if self.t >= self.prest_size + self.pst_size:
-                return self._compare_models()
+            return self._compare_models()
         self.t += 1
         return 0.
 
 
-def main():
+def main(sample_str=None):
     # import Oger as og
     # signal = og.datasets.mackey_glass(sample_len=1500, n_samples=1, seed=50)[0][0].flatten()
     # X = np.linspace(0, 1500, 1500)
@@ -60,12 +61,15 @@ def main():
     # signal = np.array([np.exp(-(x - mu) ** 2 / (2 * sigma ** 2)) / (np.sqrt(2 * np.pi) * sigma) for x in X])
     import pandas as pd
     signal = pd.read_csv("samples.csv", index_col="elapsed_time", parse_dates=True)
-    signal = signal.resample('1S')
+    if sample_str is not None:
+        signal = signal.resample(sample_str)
 
-    amgng = AMGNG()
+    amgng = AMGNG(prest_size=150, pst_size=150)
     scores = [0.] * len(signal)
     for t, xt in enumerate(signal.values):
         scores[t] = amgng.time_step(xt)
+        if (t + 1) % len(signal) == 0:
+            print("training: %i%%" % (10 * (t + 1) / len(signal)))
 
     pylab.subplot(2, 1, 1)
     pylab.plot(range(len(signal)), signal)
@@ -75,4 +79,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main(sys.argv[1])
