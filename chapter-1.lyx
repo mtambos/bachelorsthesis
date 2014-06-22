@@ -283,66 +283,21 @@ thepage
 \end_layout
 
 \begin_layout Chapter
-Title of first chapter
-\end_layout
-
-\begin_layout Section
-Overview
-\end_layout
-
-\begin_layout Standard
-bla bla bla bla bla bla bla bla bla bla bla, see 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:The-next-section"
-
-\end_inset
-
-.
- Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla DLC-coatings
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "DLC"
-description "diamond-like carbon"
-
-\end_inset
-
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla,
- see 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Fowl1928"
-
-\end_inset
-
-.
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:Integral-sine"
-
-\end_inset
-
- is the definition of the integral sine function.
-\begin_inset Formula 
-\begin{equation}
-\int\frac{\sin(x)}{x}\,\mathrm{d}x=\mathrm{Si}(x)\label{eq:Integral-sine}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-The next section
+Introduction
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:The-next-section"
+name "chap:1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Outline
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:1.1"
 
 \end_inset
 
@@ -350,14 +305,93 @@ name "sec:The-next-section"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Branch NoChildDocument
-status collapsed
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:2"
+
+\end_inset
+
+ the Merge Growing Neural Gas for Anomaly Detection (MGNG-AD, for short)
+ method is presented; in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:2.1"
+
+\end_inset
+
+ an intuition will be given, followed by, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:2.2"
+
+\end_inset
+
+, a brief explanation of how the underlying method (MGNG) works.
+ Finally 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:2.3"
+
+\end_inset
+
+ will be dedicated to an in-depth explanation of MGNG-AD.
+\end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "thesisExample"
-options "alpha"
+In 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:3"
+
+\end_inset
+
+ a series of experiments are performed, that pitch MGNG-AD against other
+ methods of similar characteristics.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:3.1"
+
+\end_inset
+
+ covers our baseline case: on-line uni-dimensional anomaly detection on
+ ECG data.
+ 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:3.2"
+
+\end_inset
+
+ covers experiments also over ECG data, but this time in the multi-dimensional
+ case.
+ Finally, in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:3.3"
+
+\end_inset
+
+ experiments on other kinds of data streams are performed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "chap:4"
+
+\end_inset
+
+ summarizes the results obtained from the experiments, presents MGNG-AD's
+ advantages and disadvantages, and suggests directions for future work.
+\end_layout
+
+\begin_layout Section
+Related Work
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:1.2"
 
 \end_inset
 
@@ -365,14 +399,125 @@ options "alpha"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset nomencl_print
-LatexCommand printnomenclature
-set_width "custom"
-width "2.5cm"
+Here I should explain briefly the methods treated in each work.This work
+ is based mainly on [Andreakis2009].
+ However several other works were used in order to gain knowledge and extract
+ ideas about anomaly detection in general ([Chandola2009]), and online anomaly
+ detection in time series in particular ([Chuah2007, Keogh2005, Keogh2005a,
+ Lin2005, Lin2007, Sledge2008, Strickert2003]).
+ Worth of a special mention is the work of [Wei2005], from which the author
+ took the idea of comparing two sliding windows.
+\end_layout
+
+\begin_layout Section
+Motivation
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:1.3"
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Time series permeate our daily lives; from audio and video streams, to bank
+ transactions lists, passing through a seemingly endless list of sensor
+ data: CPU temperature, wind speed, heart rate readings, and so on.
+ Accordingly, as put in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chandola2009"
+
+\end_inset
+
+, the analysis of anomalies in time series has received considerable attention;
+ there are, however, two important areas that are not very well explored
+ -- contextual and collective anomalies.
+
+\emph on
+ Contextual anomalies
+\emph default
+ refer to instances of data that are only anomalous with respect to their
+ vicinity (their 
+\emph on
+context
+\emph default
+).
+ For instance, a temperature of 20 degrees may be normal in spring, but
+ not in winter.
+
+\emph on
+ Collective anomalies
+\emph default
+, on the other hand, refer to instances of data that are only anomalous
+ when occurring together.
+ For instance a peak of blood pressure of 180 mm-Hg that lasts a couple
+ seconds may be normal (e.g.
+ due to exercise), but if the same lasts for prolonged periods of time,
+ then it could be caused by a medical condition.
+ For instance, 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "Fig:I-1"
+
+\end_inset
+
+ shows a contextual anomaly on a electrocardiogram.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/sample-arrhythmia.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Example of ECG signal.
+ The point in time marked with a V indicates an abnormal contraction.
+ (Source: PhysioNet - incartdb/I01 (V5))
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "Fig:I-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The author's goal with this work is to develop an approach to detecting
+ 
+\emph on
+contextual anomalies
+\emph default
+, which also can be used to detect collective ones, by providing a context.
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Here I should also say something about the ability to analyze multi-dimensional
+ time series.
 \end_layout
 
 \end_inset

@@ -283,40 +283,47 @@ thepage
 \end_layout
 
 \begin_layout Chapter
-Title of the first appendix chapter
-\end_layout
-
-\begin_layout Section
-Overview
-\end_layout
-
-\begin_layout Standard
-bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla roughness parameter 
-\begin_inset Formula $R_{a}$
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-For nomenclature entries with indices one need to enclose the expression
- with $-signs.
- (This creates a formula.)
-\end_layout
+Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:4"
 
 \end_inset
 
- bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
- bla bla bla bla bla bla bla bla bla bla bla bla, see .
+
 \end_layout
 
 \begin_layout Section
-The next section
+Summary of Experiment's Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:4.1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Advantages and Disadvantages of MGNG-AD
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:4.2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Future Work
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:4.3"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
