@@ -12,6 +12,7 @@
 }
 \def\refnamechanges{%
  \renewcommand*{\equationautorefname}[1]{}
+ \renewcommand{\chapterautorefname}{Chap.\negthinspace}
  \renewcommand{\sectionautorefname}{Sec.\negthinspace}
  \renewcommand{\subsectionautorefname}{Sec.\negthinspace}
  \renewcommand{\subsubsectionautorefname}{Sec.\negthinspace}
@@ -136,7 +137,7 @@ theorems-sec-bytype
 \color #ffff00
 \end_branch
 \branch Appendix
-\selected 1
+\selected 0
 \filename_suffix 0
 \color #faf0e6
 \end_branch
@@ -722,7 +723,7 @@ filename "Appendix.lyx"
 
 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Appendix is of course optional

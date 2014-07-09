@@ -59,7 +59,7 @@
 \end_preamble
 \options intoc,bibliography=totoc,index=totoc,BCOR10mm,captions=tableheading,titlepage,fleqn
 \use_default_options true
-\master Online Anomaly Detection over Time Series using Merge Growing Neural Gas.lyx
+\master Online Anomaly Detection in Time Series using Merge Growing Neural Gas.lyx
 \begin_modules
 customHeadersFooters
 \end_modules
@@ -307,7 +307,7 @@ name "sec:1.1"
 \begin_layout Standard
 In 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "chap:2"
 
 \end_inset
@@ -315,14 +315,14 @@ reference "chap:2"
  the Merge Growing Neural Gas for Anomaly Detection (MGNG-AD, for short)
  method is presented; in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "sec:2.1"
 
 \end_inset
 
- an intuition will be given, followed by, 
+ an intuition will be given, followed by, in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "sec:2.2"
 
 \end_inset
@@ -330,7 +330,7 @@ reference "sec:2.2"
 , a brief explanation of how the underlying method (MGNG) works.
  Finally 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "sec:2.3"
 
 \end_inset
@@ -341,7 +341,7 @@ reference "sec:2.3"
 \begin_layout Standard
 In 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "chap:3"
 
 \end_inset
@@ -350,7 +350,7 @@ reference "chap:3"
  methods of similar characteristics.
  
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "sec:3.1"
 
 \end_inset
@@ -359,7 +359,7 @@ reference "sec:3.1"
  ECG data.
  
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "sec:3.2"
 
 \end_inset
@@ -368,7 +368,7 @@ reference "sec:3.2"
  case.
  Finally, in 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "sec:3.3"
 
 \end_inset
@@ -378,7 +378,7 @@ reference "sec:3.3"
 
 \begin_layout Standard
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "chap:4"
 
 \end_inset
@@ -399,14 +399,47 @@ name "sec:1.2"
 \end_layout
 
 \begin_layout Standard
-Here I should explain briefly the methods treated in each work.This work
- is based mainly on [Andreakis2009].
+\begin_inset Marginal
+status collapsed
+
+\begin_layout Plain Layout
+Note: Here I should explain briefly the methods treated in each work.
+\end_layout
+
+\end_inset
+
+This work is based mainly on 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Andreakis2009"
+
+\end_inset
+
+.
  However several other works were used in order to gain knowledge and extract
- ideas about anomaly detection in general ([Chandola2009]), and online anomaly
- detection in time series in particular ([Chuah2007, Keogh2005, Keogh2005a,
- Lin2005, Lin2007, Sledge2008, Strickert2003]).
- Worth of a special mention is the work of [Wei2005], from which the author
- took the idea of comparing two sliding windows.
+ ideas about anomaly detection in general (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chandola2009"
+
+\end_inset
+
+), and online anomaly detection in time series in particular (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chuah2007,Keogh2005,Keogh2005a,Lin2005,Lin2007,Sledge2008,Strickert2003,Voegtlin2002"
+
+\end_inset
+
+).
+ Worth of a special mention is the work of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wei2005"
+
+\end_inset
+
+, from which the author took the idea of comparing two sliding windows.
 \end_layout
 
 \begin_layout Section
@@ -516,8 +549,8 @@ contextual anomalies
 status open
 
 \begin_layout Plain Layout
-Here I should also say something about the ability to analyze multi-dimensional
- time series.
+Note: Here I should also say something about the ability to analyze multi-dimens
+ional time series.
 \end_layout
 
 \end_inset

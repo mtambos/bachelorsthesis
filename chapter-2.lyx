@@ -59,7 +59,7 @@
 \end_preamble
 \options intoc,bibliography=totoc,index=totoc,BCOR10mm,captions=tableheading,titlepage,fleqn
 \use_default_options true
-\master Online Anomaly Detection over Time Series using Merge Growing Neural Gas.lyx
+\master Online Anomaly Detection in Time Series using Merge Growing Neural Gas.lyx
 \begin_modules
 customHeadersFooters
 theorems-ams-bytype
@@ -569,7 +569,7 @@ In this context
 \begin_inset Formula $\mathbf{w}_{n}$
 \end_inset
 
- approximates the data point at the current time step and
+ approximates the data point at the current time step and 
 \begin_inset Formula $\mathbf{c}_{n}$
 \end_inset
 
@@ -814,11 +814,11 @@ e_{f}\coloneqq & (1-\delta)\cdot e_{f}
 \end_deeper
 \begin_layout Standard
 \begin_inset Marginal
-status collapsed
+status open
 
 \begin_layout Plain Layout
-Add a graphic showing how a network with 3 or 4 nodes, and how it behaves
- when it's fed 5-10 data points in 
+Note: Add a graphic showing how a network with 3 or 4 nodes, and how it
+ behaves when it's fed 5-10 data points in 
 \begin_inset Formula $\mathbb{R}^{1}$
 \end_inset
 
@@ -871,8 +871,8 @@ name "alg:2.3.1"
 status open
 
 \begin_layout Plain Layout
-Maybe I should also add an example of how it works step-by-step over a small
- series in 
+Note: Maybe I should also add an example of how it works step-by-step over
+ a small series in 
 \begin_inset Formula $\mathbb{R}^{1}$
 \end_inset
 
