@@ -1,0 +1,133 @@
+% header.tex
+
+\usepackage[a4paper,left=3.5cm,right=2.5cm,bottom=3.5cm,top=3cm]{geometry}
+% \usepackage[german,english]{babel}
+\usepackage[pdftex]{color}
+\usepackage{amsmath,mathtools,amssymb}
+%\usepackage{subfigure}
+
+% Theorem-Umgebungen
+\usepackage[amsmath,thmmarks]{ntheorem}
+
+% Korrekte Darstellung der Umlaute
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+
+% Algorithmen
+\usepackage[plain,chapter]{algorithm}
+\usepackage{algorithmic}
+\usepackage{enumerate}
+
+% refstyle
+% \usepackage{refstyle}
+% \newref{chapter}{name=chapter~,Name=Chapter~,names=chapters~,Names=Chapters~}
+% \newref{section}{name=section~,Name=Section~,names=sections~,Names=Sections~}
+% \newref{subsection}{name=subsection~,Name=Subsection~,names=subsections~,Names=Subsections~}
+
+% Bibtex deutsch
+\usepackage{bibgerm}
+
+% URLs
+\usepackage{url}
+
+% Caption Packet
+\usepackage[margin=0pt,font=small,labelfont=bf]{caption}
+% Gliederung einstellen
+%\setcounter{secnumdepth}{5}
+%\setcounter{tocdepth}{5}
+
+\usepackage[explicit]{titlesec}
+\usepackage{lmodern}
+\usepackage{lipsum}
+\usepackage{listings}
+
+
+% Abstand swischen zwei Absätzen
+%\parskip=0.5em
+
+\newlength\chapnumb
+\setlength\chapnumb{2.5cm}
+
+\titleformat{\chapter}[block]
+{\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\chapnumb}{%
+   \fontsize{80}{70}\selectfont\thechapter}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
+\titleformat{name=\chapter,numberless}[block]
+{\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\dimexpr\textwidth\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth\relax}{0.4pt}}}
+
+% Theorem-Optionen %
+\theoremseparator{.}
+\theoremstyle{change}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+% Ohne Numerierung
+\theoremstyle{nonumberplain}
+\renewtheorem{theorem*}{Theorem}
+\renewtheorem{lemma*}{Lemma}
+\renewtheorem{corollary*}{Corollary}
+\renewtheorem{proposition*}{Proposition}
+% Definitionen mit \upshape
+\theorembodyfont{\upshape}
+\theoremstyle{change}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{nonumberplain}
+\renewtheorem{definition*}{Definition}
+% Kursive Schrift
+\theoremheaderfont{\itshape}
+\newtheorem{notation}{Notation}
+\newtheorem{convention}{Convention}
+\newtheorem{designation}{Designation}
+\theoremsymbol{\ensuremath{\Box}}
+\newtheorem{proof}{Proof}
+\theoremsymbol{}
+\theoremstyle{change}
+\theoremheaderfont{\bfseries}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}{Problem}
+\theoremstyle{nonumberplain}
+\renewtheorem{observation*}{Observation}
+\renewtheorem{example*}{Example}
+\renewtheorem{problem*}{Problem}
+
+% Algorithmen anpassen %
+\renewcommand{\algorithmicrequire}{\textit{Input:}}
+\renewcommand{\algorithmicensure}{\textit{Output:}}
+\floatname{algorithm}{Algorithm}
+\renewcommand{\listalgorithmname}{Algorithm List}
+\renewcommand{\algorithmiccomment}[1]{\color{grey}{// #1}}
+
+% Zeilenabstand einstellen %
+\renewcommand{\baselinestretch}{1.25}
+
+% Floating-Umgebungen anpassen %
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+
+% Abkuerzungen richtig formatieren %
+\usepackage{xspace}
+
+% Leere Seite ohne Seitennummer, naechste Seite rechts
+\newcommand{\blankpage}{
+ \clearpage{\pagestyle{empty}\cleardoublepage}
+}
+
+% Keine einzelnen Zeilen beim Anfang eines Abschnitts (Schusterjungen)
+\clubpenalty = 10000
+
+% Keine einzelnen Zeilen am Ende eines Abschnitts (Hurenkinder)
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+
+% EOF

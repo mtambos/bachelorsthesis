@@ -1,0 +1,238 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\mathcal{K}=\left\{ n_{1},\dots,n_{k}\right\} $
+\end_inset
+
+ be a MGNG network, 
+\begin_inset Formula $n_{i}\in\mathcal{K}$
+\end_inset
+
+ a neuron and 
+\begin_inset Formula $\mathcal{X}=\left(x_{1},\dots,x_{m}\right)$
+\end_inset
+
+ a time series.
+ Then the receptive field 
+\begin_inset Formula $R_{\mathcal{K}}$
+\end_inset
+
+ of 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ is defined by:
+\begin_inset Formula 
+\begin{gather*}
+R_{\mathcal{K}}=\begin{pmatrix}r_{(1,1)} & r_{(1,2)} & \cdots & r_{(1,w)}\\
+r_{(2,1)} & r_{(2,2)} & \cdots & r_{(2,w)}\\
+\vdots & \vdots & \vdots & \vdots\\
+r_{(k,1)} & r_{(k,2)} & \cdots & r_{(k,w)}
+\end{pmatrix}
+\end{gather*}
+
+\end_inset
+
+where 
+\begin_inset Formula $w$
+\end_inset
+
+ is the maximum window length considered and each 
+\begin_inset Formula $r_{(i,s)}$
+\end_inset
+
+ is the receptive field of neuron 
+\begin_inset Formula $i$
+\end_inset
+
+ with length 
+\begin_inset Formula $s$
+\end_inset
+
+, defined by:
+\begin_inset Formula 
+\begin{gather*}
+r_{(i,s)}=\begin{pmatrix}x_{i_{1}-s} & x_{i_{1}-s+1} & \cdots & x_{i_{1}}\\
+x_{i_{2}-s} & x_{i_{2}-s+1} & \cdots & x_{i_{2}}\\
+\vdots & \vdots & \vdots & \vdots\\
+x_{i_{l}-s} & x_{i_{l}-s+1} & \cdots & x_{i_{l}}
+\end{pmatrix}
+\end{gather*}
+
+\end_inset
+
+with 
+\begin_inset Formula $x_{i_{j}}$
+\end_inset
+
+ being the data point that led to the selection of neuron 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ as BMU at time step 
+\begin_inset Formula $i_{j}(1\le i_{j}\le m)$
+\end_inset
+
+, and therefore 
+\begin_inset Formula $r_{(i,s),j}=\left(x_{i_{j}-s},x_{i_{j}-s+1},\dots,x_{i_{j}}\right)$
+\end_inset
+
+ being the sequence of length 
+\begin_inset Formula $s$
+\end_inset
+
+ that led to the selection of neuron 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ BMU at time step 
+\begin_inset Formula $i_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The temporal quantization error 
+\begin_inset Formula $e_{i}\left(s\right)$
+\end_inset
+
+ of neuron 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ considering a window of length 
+\begin_inset Formula $s$
+\end_inset
+
+ is defined by:
+\begin_inset Formula 
+\begin{gather*}
+e_{i}\left(s\right)=\dfrac{\sum_{j\in r(i,s)}\sum_{\begin{array}{c}
+o\in r(i,s)\\
+o\neq j
+\end{array}}\left\Vert r_{(i,s),j}-r_{(i,s),o}\right\Vert _{2}}{\left|r(i,s)\right|^{2}}
+\end{gather*}
+
+\end_inset
+
+that is, the average euclidean distance between all the receptive fields
+ of length 
+\begin_inset Formula $s$
+\end_inset
+
+ of neuron 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+.
+ Then the temporal quantization error 
+\begin_inset Formula $QE_{\mathcal{X},\mathcal{K}}\left(s\right)$
+\end_inset
+
+ of 
+\begin_inset Formula $\mathcal{X}$
+\end_inset
+
+ using 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ , considering a window of length 
+\begin_inset Formula $s$
+\end_inset
+
+ is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{gather*}
+QE_{\mathcal{X},\mathcal{K}}\left(s\right)=\frac{1}{\left|B^{(s)}\right|}\cdot\sum_{i\in B^{(s)}}e_{i}\left(s\right)
+\end{gather*}
+
+\end_inset
+
+where
+\begin_inset Formula 
+\begin{gather*}
+B^{(s)}=\left\{ i\vert n_{i}\text{ was BMU after a sequence of length }s\right\} 
+\end{gather*}
+
+\end_inset
+
+in other words, 
+\begin_inset Formula $QE_{\mathcal{X},\mathcal{K}}\left(s\right)$
+\end_inset
+
+ is the mean quantization error of the neurons that where activated after
+ a sequence of length 
+\begin_inset Formula $s$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_body
+\end_document
