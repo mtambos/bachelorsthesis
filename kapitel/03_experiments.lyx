@@ -83,6 +83,92 @@ name "sec:3.1"
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+In this work we choose to initialize both models with exactly the same parameter
+s 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+, 
+\begin_inset Formula $\delta$
+\end_inset
+
+, 
+\begin_inset Formula $\theta$
+\end_inset
+
+, 
+\begin_inset Formula $\eta$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, 
+\begin_inset Formula $\epsilon_{w}$
+\end_inset
+
+ and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\epsilon_{wn}$
+\end_inset
+
+.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ As design decision, 
+\begin_inset Formula $M_{P}$
+\end_inset
+
+ and 
+\begin_inset Formula $M_{Q}$
+\end_inset
+
+ are initialized the same way.
+ An initialization with different arguments for each model is also possible,
+ but given the amount of parameters, doing so in the current would, since
+ the time and effort 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 1-dimensional ECG
 \begin_inset CommandInset label

@@ -115,7 +115,7 @@ The objective of this work is to propose a novel method of detecting anomalies
  in a time series in an online fashion.
  The presented method is based on an approach to time series analysis called
  Merge Growing Neural Gas (MGNG).
- As we will show, we use MGNG in such a way that it allows us to detect
+ As it will be shown, MGNG is used in such a way that it allows us to detect
  anomalies in (almost) real time, on multidimensional spaces, making no
  assumptions about the data, and with time performance dependent only on
  the parameters and input dimensionality, but 
