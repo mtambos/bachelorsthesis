@@ -94,7 +94,7 @@ name "sec:1.1"
 \end_layout
 
 \begin_layout Standard
-Time series permeate everyone's daily lives; from audio and video streams,
+Time series permeate everyone's daily lives: from audio and video streams,
  to bank transactions lists, passing through a seemingly endless list of
  sensor data: CPU temperature, wind speed, heart rate readings, and so on.
  Accordingly, as put in Chandola et al.
@@ -149,7 +149,7 @@ cluster
  due to exercise), but if the same lasts for prolonged periods of time,
  then it could be caused by a medical condition.
  Collective anomalies can be detected with contextual anomaly detection
- methods, by providing said method with a concept of context that reflects
+ methods, by providing said methods with a concept of context that reflects
  the properties of a normal and/or an anomalous cluster.
 \begin_inset Float figure
 wide false
@@ -213,13 +213,10 @@ contextual anomalies
 \emph on
 anomaly level
 \emph default
- of sequence of data points is to be interpreted as the sequence's 
-\emph on
-dissimilarity
-\emph default
+ of sequence of data points is to be interpreted as the sequence's dissimilarity
  with respect to previous sequences.
  Moreover, it is desired to take into account interactions between different
- series events that occur simultaneously.
+ events that occur simultaneously.
  For instance, an experiment's goal is to know whether patients are having
  a tachycardia episode by observing their heart rate and their level of
  physical activity (e.g.
@@ -254,8 +251,8 @@ key "Chandola2009"
 \end_inset
 
  give an overview of the state of the field; although some years have passed
- since their publication, their work is still the most up to date survey
- on anomaly detection.
+ since its publication, their work is still the most up to date survey on
+ anomaly detection.
  In it a detailed discussion on point, contextual and collective anomalies
  is conducted, and several methods to detect these anomalies are presented.
 \end_layout
@@ -271,14 +268,14 @@ key "Lin2007"
 
  present a method called SAX that builds a symbolic representation of a
  time series.
- This method is used in a later work 
+ SAX is used in a later work 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Keogh2005"
 
 \end_inset
 
- to perform off-line finding time series discords, i.e.
+ to perform offline finding time series discords, i.e.
  sub-sequences of a longer time series that are maximally different to all
  the rest of the time series sub-sequences.
  Wei et al.
@@ -292,11 +289,11 @@ key "Wei2005"
  build on this by presenting an algorithm for online anomaly detection;
  a key idea of the present work -- the comparison of two sliding windows
  -- was inspired by their work.
- The SAX-based anomaly detectors do not preserve the input space's dimensionalit
-y, while the anomaly detector presented in this work does.
+ SAX-based anomaly detectors do not preserve the input space's dimensionality,
+ while the anomaly detector presented in this work does.
  Other difference with the present work is that SAX-based anomaly detectors
- have to either process the entire time series at each time step, or used
- a fixed size sliding window, thus 
+ have to either process the entire time series at each time step, or use
+ one or several fixed size sliding windows, thus 
 \begin_inset Quotes eld
 \end_inset
 
@@ -304,10 +301,9 @@ forgetting
 \begin_inset Quotes erd
 \end_inset
 
- old parts of the time series; the method presented in this work manages
- to build a compact representation of the entire time series, therefore
- avoiding the need to forget parts of the input for computational speed
- reasons.
+ parts of the time series; the method presented in this work manages to
+ build a compact representation of the entire time series, therefore avoiding
+ the need to forget parts of the input for computational speed reasons.
 \end_layout
 
 \begin_layout Standard
@@ -319,10 +315,10 @@ key "Kohonen1990"
 \end_inset
 
  presents the self-organizing map (SOM), a type of artificial neural network
- that is trained using unsupervised learning to produce a low-dimensional,
- discretized representation of the input space; the self-organizing maps
- use a neighborhood function to preserve the topological properties of the
- input space.
+ that is trained using unsupervised learning to produce a representation
+ of the input space, typically of lower cardinality than the input; the
+ self-organizing maps use a neighborhood function to preserve the topological
+ properties of the input space.
  Martinetz et al.
  
 \begin_inset CommandInset citation
