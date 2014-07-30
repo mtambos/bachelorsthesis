@@ -3,7 +3,6 @@
 \begin_document
 \begin_header
 \textclass book
-\options fleqn,leqno
 \use_default_options false
 \master ../arbeit.lyx
 \maintain_unincluded_children false

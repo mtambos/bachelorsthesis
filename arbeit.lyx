@@ -14,7 +14,6 @@
 
 % Das Hauptdokument
 \end_preamble
-\options fleqn,leqno
 \use_default_options false
 \maintain_unincluded_children false
 \language english
