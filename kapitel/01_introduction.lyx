@@ -328,8 +328,9 @@ key "Martinetz1991"
 
  take inspiration from Kohonen's work to build a neural network algorithm
  for vector quantization of an topologically arbitrarily structured input
- space called Neural Gas (NG); whereas SOM preserves the input space's topology,
- NG learns it by adding connections between neurons to the neural network.
+ space called Neural Gas (NG); whereas SOM uses a fixed network topology
+ to represent the input space, NG learns the network topology by adding
+ and deleting connections between neurons.
  Finally Fritzke 
 \begin_inset CommandInset citation
 LatexCommand cite
