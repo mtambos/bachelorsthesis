@@ -8,45 +8,17 @@ Based on:
 
 from __future__ import print_function, division
 
-import numpy as np
-import numpy.linalg as lnp
+from collections import defaultdict
+from functools import partial
+import heapq
+
 from numpy.random import random_sample
 
-from util import Graph
+import networkx as nx
+import numpy as np
+import numpy.linalg as lnp
+import numexpr as ne
 
-
-"""
-d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-"""
-def distances(alpha, c_t, xt, ws, cs):
-    x_w = xt - ws
-    c_c = c_t - cs
-    # BEGIN calculate euclidean norm
-    # x_w = lnp.norm(x_w, axis=1) ** 2
-    x_w = (x_w.conj() * x_w).real
-    x_w = np.add.reduce(x_w, axis=1)
-    # c_c = lnp.norm(c_c, axis=1) ** 2
-    c_c = (c_c.conj() * c_c).real
-    c_c = np.add.reduce(c_c, axis=1)
-    # END calculate euclidean norm
-    total = (1 - alpha) * x_w + alpha * c_c
-    return total
-
-
-"""
-find winner r := arg min_{n \in K} d_n(t)
-and second winner s := arg min_{n \in K\{r}} d_n(t)
-where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-"""
-def find_winner_neurons(model, alpha, xt, c_t):
-    dists = distances(alpha, c_t, xt, model.weights(), model.contexts())
-    ind = np.argpartition(dists, 2)[:2]
-    ind = ind[np.argsort(dists[ind])]
-    
-    r = model.get_node_by_matrix(ind[0])
-    s = model.get_node_by_matrix(ind[1])
-
-    return r, s
 
 class MGNG:
 
@@ -69,20 +41,95 @@ class MGNG:
         # 1. time variable t := 0
         self.t = 0
         # 3. initialize connections set E \in K * K := \empty;
-        self.model = Graph(nodes_num=theta, dim=dimensions)
-        # 2. initialize neuron set K with 2 neurons with counter e := 0 and random weight and context vectors
-        weight = random_sample(self.dimensions)
-        context = random_sample(self.dimensions)
-        self._add_node(weight, context)
-        weight = random_sample(self.dimensions)
-        context = random_sample(self.dimensions)
-        self._add_node(weight, context)
+        self.model = nx.Graph()
+        # 2. initialize neuron set K with 2 neurons with counter e := 0
+        # and random weight and context vectors
+        self._add_node()
+        self._add_node()
 
+    """
+    d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+    """
+    def distance(self, xt, n):
+        total = ((1 - self.alpha) * (xt - n['w'])**2 +
+                 self.alpha * (self.c_t - n['c'])**2)
+        return total
 
-    def _add_node(self, weight, context, error=0):
-        n = self.model.add_node(self.next_n, weight, context, error)
+    """
+    find winner r := arg min_{n \in K} d_n(t)
+    and second winner s := arg min_{n \in K\{r}} d_n(t)
+    where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+    """
+    def find_winner_neurons(self, xt):
+        dist = partial(self.distance, xt)
+        r, s = heapq.nsmallest(2, self.model.node.values(), dist)
+        return r, s
+
+    """
+    update neuron r and its direct topological neighbors N_r:
+        w_r := w_r + \epsilon_w * (x_t - w_r)
+        c_r := c_r + \epsilon_w*(C_t - c_r)
+        (\forall n \in N_r)
+            w_n := w_n + \epsilon_n * (x_t - w_i)
+            c_n := c_n + \epsilon_n*(C_t - c_i)
+    """
+    def _update_neighbors(self, r, xt):
+        r['w'] += self.e_w * (xt - r['w'])
+        r['c'] += self.e_w * (self.c_t - r['c'])
+        for n in self.model.neighbors(r['i']):
+            n = self.model.node[n]
+            n['w'] += self.e_n * (xt - n['w'])
+            n['c'] += self.e_n * (self.c_t - n['c'])
+
+    """
+    increment the age of all edges connected with r
+        age_{(r,n)} := age_{(r,n)} + 1 (\forall n \in N_r )
+    """
+    def _increment_edges_age(self, r):
+        for (u, v) in self.model.edges(r['i']):
+            self.model[u][v]['age'] += 1
+
+    def _add_node(self, e=0, w=None, c=None):
+        if w is None:
+            w = random_sample(self.dimensions)
+        if c is None:
+            c = random_sample(self.dimensions)
+        n = {'i': self.next_n, 'e': e, 'w': w, 'c': c}
+        self.model.add_node(self.next_n, n)
         self.next_n += 1
         return n
+
+    def get_node(self, i):
+        return self.model.node[i]
+
+    def _add_edge(self, r, s):
+        if r == s:
+            raise Exception("cannot connect edge to itself")
+        if s['i'] in self.model.neighbors(r['i']):
+            self.model[r['i']][s['i']]['age'] = 0
+        else:
+            self.model.add_edge(r['i'], s['i'], age=0)
+
+    def get_edge(self, u, v=None):
+        if v is None:
+            return self.model[u]
+        else:
+            return self.model[u][v]
+
+    """
+    remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
+    """
+    def _remove_old_edges(self):
+        for (u, v) in self.model.edges():
+            if self.model.edge[u][v]['age'] > self.gamma:
+                self.model.remove_edge(u, v)
+
+    """
+    """
+    def _remove_unconnected_neurons(self):
+        for n in self.model.nodes():
+            if not self.model.degree(n):
+                self.model.remove_node(n)
 
     """
     create new neuron if t mod \lambda = 0 and |K| < \theta
@@ -99,153 +146,112 @@ class MGNG:
             e_f := (1 - \deta) * e_f
     """
     def _create_new_neuron(self):
-        errors = self.model.errors()
-        ind = np.argpartition(errors, 2)[:2]
-        ind = ind[np.argsort(errors[ind])]
-        q = self.model.get_node_by_matrix(ind[0])
-
-        if q['neighbors']:
-            nIds = np.array(list(q['neighbors']), ndmin=1, dtype=np.uint)
-            f = np.argmax(self.model.get_errors(nIds))
-            f = self.model.get_node(nIds[f])
-            q_weight = self.model.get_weight(q['id'])
-            f_weight = self.model.get_weight(f['id'])
-            q_context = self.model.get_context(q['id'])
-            f_context = self.model.get_context(f['id'])
-            q_error = self.model.get_error(q['id'])
-            f_error = self.model.get_error(f['id'])
-            l = self._add_node(weight=(q_weight + f_weight) / 2,
-                               context=(q_context + f_context) / 2,
-                               error=self.delta * (q_error + f_error))
-            self.model.remove_edge(q['id'], f['id'])
-            self.model.add_edge(q['id'], l['id'], self.gamma)
-            self.model.add_edge(f['id'], l['id'], self.gamma)
-            self.model.update_error(q['id'], delta=(1 - self.delta))
-            self.model.update_error(f['id'], delta=(1 - self.delta))
+        q = max(self.model.nodes(data=True), key=lambda n: n[1]['e'])[1]
+        f = max(self.model.neighbors(q['i']),
+                key=lambda n: self.model.node[n]['e'])
+        if f is not None:
+            f = self.model.node[f]
+            l = self._add_node(e=self.delta * (q['e'] + f['e']),
+                               w=(q['w'] + f['w']) / 2,
+                               c=(q['c'] + f['c']) / 2)
+            self.model.remove_edge(q['i'], f['i'])
+            self._add_edge(q, l)
+            self._add_edge(f, l)
+            q['e'] *= (1 - self.delta)
+            f['e'] *= (1 - self.delta)
 
             return l
 
     """
     """
-    def time_step(self, xt, modify_network=True):
+    def time_step(self, xt):
         # 6. find winner r and second winner s
-        r, s = find_winner_neurons(self.model, self.alpha, xt, self.c_t)
+        r, s = self.find_winner_neurons(xt)
+
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
-        r_weight = self.model.get_weight(r['id'])
-        r_context = self.model.get_context(r['id'])
-        c_t1 = (1 - self.beta) * r_weight + self.beta * r_context
-        if modify_network:
-            # 8. connect r with s: E := E \cup {(r, s)}
-            # 9. age(r;s) := 0
-            self.model.add_edge(r['id'], s['id'], self.gamma)
+        c_t1 = (1 - self.beta) * r['w'] + self.beta * r['c']
 
-            # 10. increment counter of r: e_r := e_r + 1
-            self.model.update_error(r['id'], incr=1)
+        # 8. connect r with s: E := E \cup {(r, s)}
+        # 9. age(r;s) := 0
+        self._add_edge(r, s)
 
-            # 11. update neuron r and its direct topological neighbors:
-            #   w_r := w_r + \epsilon_w * (x_t - w_r)
-            #   c_r := c_r + \epsilon_w*(C_t - c_r)
-            #   (\forall n \in N_r)
-            #       w_n := w_n + \epsilon_n * (x_t - w_i)
-            #       c_n := c_n + \epsilon_n*(C_t - c_i)
-            self.model.update_node_and_neighbors_weight_and_context(r['id'], xt, self.c_t, self.e_w, self.e_n)
+        # 10. increment counter of r: e_r := e_r + 1
+        r['e'] += 1
 
-            # 12. increment the age of all edges connected with r
-            #     age_{(r,n)} := age_{(r,n)} + 1 (\forall n \in N_r )
-            self.model.update_node_edges_age(r['id'], 1)
+        # 11. update neuron r and its direct topological neighbors:
+        self._update_neighbors(r, xt)
 
-            # 13. remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
-            #---> it's automatically done when an edge's age counter reaches 0
+        # 12. increment the age of all edges connected with r
+        self._increment_edges_age(r)
 
-            # 14. delete all nodes with no connections.
-            self.model.remove_unconnected_nodes()
+        # 13. remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
+        self._remove_old_edges()
 
-            # 15. create new neuron if t mod \lambda = 0 and |K| < \theta
-            if self.t % self.lmbda == 0 and len(self.model.nodes()) < self.theta:
-                self._create_new_neuron()
+        # 14. delete all nodes with no connections.
+        self._remove_unconnected_neurons()
 
+        # 15. create new neuron if t mod \lambda = 0 and |K| < \theta
+        if self.t % self.lmbda == 0 and len(self.model.nodes()) < self.theta:
+            self._create_new_neuron()
 
-            # 16. decrease counter of all neurons by the factor \eta:
-            #    e_n := \eta * e_n (\forall n \in K)
-            self.model.update_errors(self.eta)
+        # 16. decrease counter of all neurons by the factor \eta:
+        #    e_n := \eta * e_n (\forall n \in K)
+        for k in self.model.nodes():
+            self.model.node[k]['e'] *= self.eta
 
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
         self.c_t = c_t1
+
         # 17. t := t + 1
         self.t += 1
 
-        return r
 
-
-def main(sample_len=None):
+def main():
     import Oger as og
     import pylab
-    from collections import deque
-    if sample_len is None:
-        sample_len = 150
-    signal = og.datasets.mackey_glass(sample_len=sample_len * 10,
+    signal = og.datasets.mackey_glass(sample_len=1500,
                                       n_samples=1,
                                       seed=50)[0][0].flatten()
+    print(signal)
     signal = signal + np.abs(signal.min())
-    pylab.subplot(3, 1, 1)
-    pylab.plot(range(900), signal[:900])
+    print(signal)
     # 2. initialize neuron set K with 2 neurons with counter e := 0 and random weight and context vectors
     # 3. initialize connections set E \in K * K := \empty;
     # 4. initialize global temporal context C1 := 0
-    mgng = MGNG()
+    mgng = MGNG(lmbda=6)
     # 1. time variable t := 1
     # 5. read / draw input signal xt
     # 18. if more input signals available goto step 5 else terminate
     for t, xt in enumerate(signal, 1):
-        mgng.time_step(np.array([xt]))
-        if t % sample_len == 0:
-            print("training: %i%%" % (10 * t / sample_len))
+        mgng.time_step(xt)
+        if t % 1500 == 0:
+            print("training: %i%%" % (t / 1500))
 
-    errors = {}
-    input_sequence = list()
-    mgng.c_t = np.zeros(1)
+    errors = [[] for _ in range(30)]
     for t, xt in enumerate(signal, 1):
-        r = mgng.time_step(np.array([xt]), modify_network=False)
-        input_sequence.append(xt)
-        if t > 30:
-            input_sequence.pop(0)
-        if t % sample_len == 0:
-            print("calculating error: %i%%" % (10 * t / sample_len))
-        
-        if r['id'] not in errors:
-            errors[r['id']] = [[] for _ in range(30)]
-        for i in range(1, min(t+1, 31)):
-            errors[r['id']][i-1].append(input_sequence[-i:])
-            
+        if t % 150 == 0:
+            print("calculating errors: %i%%" % (t / 150))
+        n, _ = mgng.find_winner_neurons(xt)
+        for i in range(min(30, t)):
+            errors[i].append((n['w'] - signal[t - i - 1]) ** 2)
 
-    summary = [[0, np.zeros(i+1)] for i in range(30)]
+    summary = [0] * 30
     for i in range(30):
-        for v in errors.values():
-            summary[i][0] += 1
-            summary[i][1] += np.std(v[i], 0)
-    for i in range(30):
-        summary[i][1] /= summary[i][0]
+        summary[i] = np.sum(errors[i]) / len(errors[i])
 
-    summary = [np.sum(e)/i for i,e in summary]
-    # print(summary)
-    pylab.subplot(3, 1, 2)
+    pylab.subplot(2, 1, 1)
     pylab.plot(range(30), summary)
 
-    pylab.subplot(3, 1, 3)
-    nodes = sorted(mgng.model.nodes(), key=lambda x: mgng.model.get_weight(x['id']))
+    pylab.subplot(2, 1, 2)
     pylab.plot(range(len(mgng.model.nodes())),
-               [mgng.model.get_weight(n['id']) for n in nodes],
-               'g',
-               range(len(mgng.model.nodes())),
-               [mgng.model.get_context(n['id']) for n in nodes],
-               'r')
+               [n[1]['w'] for n in mgng.model.nodes(data=True)])
     pylab.show()
-    for n in nodes:
-        n['weight'] = mgng.model.get_weight(n['id'])
-        n['context'] = mgng.model.get_context(n['id'])
-    return errors, nodes, [mgng.model.get_node_by_matrix(i) for i in range(100)]
 
 
 if __name__ == '__main__':
     import sys
-    main(int(sys.argv[1]))
+    
+    if len(sys.argv) > 1:
+        main(sys.argv[1])
+    else:
+        main()
