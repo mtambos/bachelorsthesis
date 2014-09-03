@@ -1,10 +1,10 @@
-"""
+'''
 @author: Mario Tambos
 Based on:
     Andreakis, A.; Hoyningen-Huene, N. v. & Beetz, M.
     Incremental unsupervised time series analysis using merge growing neural gas
     Advances in Self-Organizing Maps, Springer, 2009, 10-18
-"""
+'''
 
 from __future__ import print_function, division
 
@@ -47,33 +47,33 @@ class MGNG:
         self._add_node()
         self._add_node()
 
-    """
-    d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-    """
     def distance(self, xt, n):
+        '''
+        d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+        '''
         total = ((1 - self.alpha) * (xt - n['w'])**2 +
                  self.alpha * (self.c_t - n['c'])**2)
         return total
 
-    """
-    find winner r := arg min_{n \in K} d_n(t)
-    and second winner s := arg min_{n \in K\{r}} d_n(t)
-    where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-    """
     def find_winner_neurons(self, xt):
+        '''
+        find winner r := arg min_{n \in K} d_n(t)
+        and second winner s := arg min_{n \in K\{r}} d_n(t)
+        where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+        '''
         dist = partial(self.distance, xt)
         r, s = heapq.nsmallest(2, self.model.node.values(), dist)
         return r, s
 
-    """
-    update neuron r and its direct topological neighbors N_r:
-        w_r := w_r + \epsilon_w * (x_t - w_r)
-        c_r := c_r + \epsilon_w*(C_t - c_r)
-        (\forall n \in N_r)
-            w_n := w_n + \epsilon_n * (x_t - w_i)
-            c_n := c_n + \epsilon_n*(C_t - c_i)
-    """
     def _update_neighbors(self, r, xt):
+        '''
+        update neuron r and its direct topological neighbors N_r:
+            w_r := w_r + \epsilon_w * (x_t - w_r)
+            c_r := c_r + \epsilon_w*(C_t - c_r)
+            (\forall n \in N_r)
+                w_n := w_n + \epsilon_n * (x_t - w_i)
+                c_n := c_n + \epsilon_n*(C_t - c_i)
+        '''
         r['w'] += self.e_w * (xt - r['w'])
         r['c'] += self.e_w * (self.c_t - r['c'])
         for n in self.model.neighbors(r['i']):
@@ -81,11 +81,11 @@ class MGNG:
             n['w'] += self.e_n * (xt - n['w'])
             n['c'] += self.e_n * (self.c_t - n['c'])
 
-    """
-    increment the age of all edges connected with r
-        age_{(r,n)} := age_{(r,n)} + 1 (\forall n \in N_r )
-    """
     def _increment_edges_age(self, r):
+        '''
+        increment the age of all edges connected with r
+            age_{(r,n)} := age_{(r,n)} + 1 (\forall n \in N_r )
+        '''
         for (u, v) in self.model.edges(r['i']):
             self.model[u][v]['age'] += 1
 
@@ -104,7 +104,7 @@ class MGNG:
 
     def _add_edge(self, r, s):
         if r == s:
-            raise Exception("cannot connect edge to itself")
+            raise Exception('cannot connect edge to itself')
         if s['i'] in self.model.neighbors(r['i']):
             self.model[r['i']][s['i']]['age'] = 0
         else:
@@ -116,36 +116,36 @@ class MGNG:
         else:
             return self.model[u][v]
 
-    """
-    remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
-    """
     def _remove_old_edges(self):
+        '''
+        remove old connections E := E \ {(a, b)| age_(a, b) > \gamma}
+        '''
         for (u, v) in self.model.edges():
             if self.model.edge[u][v]['age'] > self.gamma:
                 self.model.remove_edge(u, v)
 
-    """
-    """
     def _remove_unconnected_neurons(self):
+        '''
+        '''
         for n in self.model.nodes():
             if not self.model.degree(n):
                 self.model.remove_node(n)
 
-    """
-    create new neuron if t mod \lambda = 0 and |K| < \theta
-        a. find neuron q with the greatest counter: q := arg max_{n \in K} e_n
-        b. find neighbor f of q with f := arg max_{n \in N_q} e_n
-        c. initialize new neuron l
-            K := K \cup l
-            w_l := 1/2 * (w_q + w_f)
-            c_l := 1/2 * (c_q + c_f)
-            e_l := \delta * (e_f + e_q)
-        d. adapt connections: E := (E \ {(q, f)}) \cup {(q, n), (n, f)}
-        e. decrease counter of q and f by the factor \delta
-            e_q := (1 - \deta) * e_q
-            e_f := (1 - \deta) * e_f
-    """
     def _create_new_neuron(self):
+        '''
+        create new neuron if t mod \lambda = 0 and |K| < \theta
+            a. find neuron q with the greatest counter: q := arg max_{n \in K} e_n
+            b. find neighbor f of q with f := arg max_{n \in N_q} e_n
+            c. initialize new neuron l
+                K := K \cup l
+                w_l := 1/2 * (w_q + w_f)
+                c_l := 1/2 * (c_q + c_f)
+                e_l := \delta * (e_f + e_q)
+            d. adapt connections: E := (E \ {(q, f)}) \cup {(q, n), (n, f)}
+            e. decrease counter of q and f by the factor \delta
+                e_q := (1 - \deta) * e_q
+                e_f := (1 - \deta) * e_f
+        '''
         q = max(self.model.nodes(data=True), key=lambda n: n[1]['e'])[1]
         f = max(self.model.neighbors(q['i']),
                 key=lambda n: self.model.node[n]['e'])
@@ -162,9 +162,9 @@ class MGNG:
 
             return l
 
-    """
-    """
     def time_step(self, xt):
+        '''
+        '''
         # 6. find winner r and second winner s
         r, s = self.find_winner_neurons(xt)
 
@@ -225,12 +225,12 @@ def main():
     for t, xt in enumerate(signal, 1):
         mgng.time_step(xt)
         if t % 1500 == 0:
-            print("training: %i%%" % (t / 1500))
+            print('training: %i%%' % (t / 1500))
 
     errors = [[] for _ in range(30)]
     for t, xt in enumerate(signal, 1):
         if t % 150 == 0:
-            print("calculating errors: %i%%" % (t / 150))
+            print('calculating errors: %i%%' % (t / 150))
         n, _ = mgng.find_winner_neurons(xt)
         for i in range(min(30, t)):
             errors[i].append((n['w'] - signal[t - i - 1]) ** 2)

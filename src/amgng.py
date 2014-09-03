@@ -6,7 +6,7 @@ from collections import deque
 
 import pylab
 
-import mgng0 as mgng
+import mgng
 import numpy as np
 import numpy.linalg as lnp
 
@@ -31,13 +31,13 @@ class AMGNG:
         for pr_x in self.present.model.nodes():
             pr_x_w = self.present.get_node(pr_x)['w']
             pr_x_c = self.present.get_node(pr_x)['c']
-            dist = lambda x: (pr_x_c - x[1]['c'])**2
+            dist = lambda x: np.abs(pr_x_c - x[1]['c'])
             ps_x = min(self.past.model.nodes(data=True), key=dist)
             ps_x_w = ps_x[1]['w']
             ps_x_c = ps_x[1]['c']
             # tot += lnp.norm(pr_x_w - ps_x_w)
             tot += (pr_x_c - ps_x_c)**2
-        return tot / (self.prest_size)
+        return tot / len(self.present.model.nodes())
 
     def time_step(self, xt):
         self.buffer.append(xt)
