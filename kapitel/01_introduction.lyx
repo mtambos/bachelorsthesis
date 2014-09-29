@@ -93,9 +93,10 @@ name "sec:1.1"
 \end_layout
 
 \begin_layout Standard
-Time series permeate everyone's daily lives: from audio and video streams,
- to bank transactions lists, passing through a seemingly endless list of
- sensor data: CPU temperature, wind speed, heart rate readings, and so on.
+Time series permeate everyone's daily lives; from audio and video streams,
+ to bank transaction's logs, passing through a seemingly endless list of
+ sensor data -- CPU temperature, wind speed, heart rate readings, and so
+ on.
  Accordingly, as put in Chandola et al.
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -104,12 +105,12 @@ key "Chandola2009"
 \end_inset
 
 , the analysis of anomalies in time series has received considerable attention;
- there are, however, two important areas that are not very well explored
- -- 
+ there are, however, two important areas that are not very well explored:
+ 
 \emph on
 contextual
 \emph default
- and 
+ anomalies and 
 \emph on
 collective
 \emph default
@@ -212,11 +213,11 @@ contextual anomalies
 \emph on
 anomaly level
 \emph default
- of sequence of data points is to be interpreted as the sequence's dissimilarity
- with respect to previous sequences.
+ of a sequence of data points is to be interpreted as the sequence's dissimilari
+ty with respect to previous sequences.
  Moreover, it is desired to take into account interactions between different
  events that occur simultaneously.
- For instance, an experiment's goal is to know whether patients are having
+ For instance, if an experiment's goal is to know whether patients are having
  a tachycardia episode by observing their heart rate and their level of
  physical activity (e.g.
  measured by a 3-axis accelerometer): a high heart rate when resting should
@@ -241,7 +242,9 @@ name "sec:1.3"
 \end_layout
 
 \begin_layout Standard
-Chandola et al.
+Although some years have passed since its publication, the most up to date
+ survey on anomaly detection and an overview of the current state of the
+ field are provided by Chandola et al.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -249,11 +252,9 @@ key "Chandola2009"
 
 \end_inset
 
- give an overview of the state of the field; although some years have passed
- since its publication, their work is still the most up to date survey on
- anomaly detection.
- In it a detailed discussion on point, contextual and collective anomalies
- is conducted, and several methods to detect these anomalies are presented.
+.
+ In it, a detailed discussion on three types of anomalies -- point, contextual
+ and collective -- is conducted and several methods to detect them are presented.
 \end_layout
 
 \begin_layout Standard
@@ -339,7 +340,7 @@ key "Fritzke1995"
 \end_inset
 
  proposes an expansion to NG called Growing Neural Gas (GNG); the difference
- between the both is that, while NG uses a neural network with a fixed number
+ between both is that, while NG uses a neural network with a fixed number
  of neurons, GNG is able to add neurons as well as connections between neurons
  to the neural network.
  Holmström 
