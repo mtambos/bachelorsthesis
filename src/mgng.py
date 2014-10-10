@@ -10,7 +10,6 @@ from __future__ import print_function, division
 
 from collections import defaultdict
 from functools import partial
-import heapq
 
 from numpy.random import random_sample
 
@@ -24,7 +23,7 @@ class MGNG:
 
     def __init__(self, dimensions=1, alpha=0.5, beta=0.75, gamma=88,
                  delta=0.5, theta=100, eta=0.9995, lmbda=600,
-                 e_w=0.05, e_n=0.0006, *args, **kwargs):
+                 e_w=0.05, e_n=0.0006):
         self.dimensions = dimensions
         self.alpha = alpha
         self.beta = beta
@@ -53,7 +52,7 @@ class MGNG:
         '''
         total = ((1 - self.alpha) * (xt - n['w'])**2 +
                  self.alpha * (self.c_t - n['c'])**2)
-        return total
+        return total[0]
 
     def find_winner_neurons(self, xt):
         '''
@@ -61,9 +60,9 @@ class MGNG:
         and second winner s := arg min_{n \in K\{r}} d_n(t)
         where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
         '''
-        dist = partial(self.distance, xt)
-        r, s = heapq.nsmallest(2, self.model.node.values(), dist)
-        return r, s
+        dists = [(self.distance(xt, n), n) for n in self.model.node.values()]
+        dists.sort()
+        return dists[:2]
 
     def _update_neighbors(self, r, xt):
         '''
@@ -167,6 +166,8 @@ class MGNG:
         '''
         # 6. find winner r and second winner s
         r, s = self.find_winner_neurons(xt)
+        r_dist, r = r
+        s_dist, s = s
 
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
         c_t1 = (1 - self.beta) * r['w'] + self.beta * r['c']
@@ -204,6 +205,8 @@ class MGNG:
 
         # 17. t := t + 1
         self.t += 1
+        
+        return r_dist
 
 
 def main():
@@ -232,6 +235,7 @@ def main():
         if t % 150 == 0:
             print('calculating errors: %i%%' % (t / 150))
         n, _ = mgng.find_winner_neurons(xt)
+        n = n[1] 
         for i in range(min(30, t)):
             errors[i].append((n['w'] - signal[t - i - 1]) ** 2)
 
