@@ -6,7 +6,7 @@ from collections import deque
 
 from ring_buffer import RingBuffer
 
-import mgng
+import mgng2 as mgng
 import numpy as np
 import numpy.linalg as lnp
 from scipy.stats import norm
@@ -18,7 +18,7 @@ class AMGNG:
     def __init__(self, comparison_function, buffer_len, dimensions,
                  prest_gamma, prest_lmbda, prest_theta,
                  pst_gamma, pst_lmbda, pst_theta,
-                 prest_alpha=0.5, prest_beta=0.75, prest_delta=0.5,
+                 prest_alpha=0.5, prest_beta=0.5, prest_delta=0.5,
                  prest_eta=0.9995, prest_e_w=0.05, prest_e_n=0.0006,
                  pst_alpha=0.5, pst_beta=0.75, pst_delta=0.5,
                  pst_eta=0.9995, pst_e_w=0.05, pst_e_n=0.0006,
@@ -85,20 +85,16 @@ class AMGNG:
 
 def compare_models(present_model, past_model, alpha):
     tot = [0.]
-    for pr_x in present_model.model.nodes():
-        pr_x_w = present_model.get_node(pr_x)['w']
-        pr_x_c = present_model.get_node(pr_x)['c']
+    for pr_x in present_model.model.node:
+        pr_x_w = present_model.weights[pr_x]
+        pr_x_c = present_model.contexts[pr_x]
         # dist = lambda x: ((1-alpha)*(pr_x_w - x[1]['w'])**2 +
         #                   alpha*(pr_x_c - x[1]['c'])**2)
-        def dist(x):
-            ret_val = np.sum((1-alpha)*(pr_x_w - x[1]['w'])**2 +
-                             alpha*(pr_x_c - x[1]['c'])**2)
-            # print(ret_val)
-            return ret_val
-        ps_x = min(past_model.model.nodes(data=True), key=dist)
-        ps_x_w = ps_x[1]['w']
-        ps_x_c = ps_x[1]['c']
-        tot += (1-alpha)*(pr_x_w - ps_x_w)**2 + alpha*(pr_x_c - ps_x_c)**2
+        dists = ((1-alpha)*np.add.reduce((pr_x_w-past_model.weights)**2, axis=1) +
+                 alpha*np.add.reduce((pr_x_c-past_model.contexts)**2, axis=1))
+        # print(dists)
+        ps_x = np.nanargmin(dists)
+        tot += dists[ps_x]
     return tot[0] / len(present_model.model.nodes())
 
 
