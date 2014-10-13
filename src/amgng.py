@@ -93,7 +93,7 @@ def compare_models(present_model, past_model, alpha):
         def dist(x):
             ret_val = np.sum((1-alpha)*(pr_x_w - x[1]['w'])**2 +
                              alpha*(pr_x_c - x[1]['c'])**2)
-            print(ret_val)
+            # print(ret_val)
             return ret_val
         ps_x = min(past_model.model.nodes(data=True), key=dist)
         ps_x_w = ps_x[1]['w']
@@ -126,17 +126,21 @@ def compare_models_c(present_model, past_model):
     return tot_c[0] / len(self.present.model.nodes())
 
 
-def main(input_file, output_file, buffer_len=None, sampling_rate=None,
-         index_col=None, skip_rows=None, ma_window=None):
+def main(input_file, output_file, input_frame=None,
+         buffer_len=None, sampling_rate=None, index_col=None,
+         skip_rows=None, ma_window=None):
     import pandas as pd
     if buffer_len is None:
         buffer_len = 2000
-    signal = pd.read_csv(input_file, index_col=index_col, parse_dates=True,
-                         skiprows=skip_rows)
+    if input_frame is None:
+        signal = pd.read_csv(input_file, index_col=index_col, parse_dates=True,
+                             skiprows=skip_rows)
+        if sampling_rate is not None:
+            signal = signal.resample(sampling_rate)
+    else:
+        signal = input_frame
     if ma_window is None:
         ma_window = len(signal)
-    if sampling_rate is not None:
-        signal = signal.resample(sampling_rate)
     print(signal.head())
     print(signal.tail())
     print(input_file, buffer_len, sampling_rate, index_col, skip_rows)
