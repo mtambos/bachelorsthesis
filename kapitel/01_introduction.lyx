@@ -74,7 +74,7 @@
 Introduction
 \begin_inset CommandInset label
 LatexCommand label
-name "chap:1"
+name "chap:Introduction"
 
 \end_inset
 
@@ -85,7 +85,7 @@ name "chap:1"
 Motivation
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:1.1"
+name "sec:Motivation"
 
 \end_inset
 
@@ -95,8 +95,15 @@ name "sec:1.1"
 \begin_layout Standard
 Time series permeate everyone's daily lives; from audio and video streams,
  to bank transaction's logs, passing through a seemingly endless list of
- sensor data -- CPU temperature, wind speed, heart rate readings, and so
- on.
+ sensor data -- 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CPU"
+description "Central Processing Unit"
+
+\end_inset
+
+ temperature, wind speed, heart rate readings, and so on.
  Accordingly, as put in Chandola et al.
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -193,10 +200,10 @@ name "fig:1-1"
 \end_layout
 
 \begin_layout Section
-Objective statement
+Objective Statement
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:1.2"
+name "sec:Objective_statement"
 
 \end_inset
 
@@ -234,7 +241,7 @@ The approach used will be experimental: instead of attempting to prove formally
 Related Work
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:1.3"
+name "sec:Related_work"
 
 \end_inset
 
@@ -258,6 +265,127 @@ key "Chandola2009"
 \end_layout
 
 \begin_layout Standard
+In their survey, Gupta et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gupta2014"
+
+\end_inset
+
+ present a range of methods specifically developed to deal with time series
+ data.
+ Their work covers offline and online methods, static and evolving models
+ as well as supervised, semi-supervised and unsupervised approaches.
+ One of the two most similar methods to the one presented in this work found
+ so far, Sequentially Discounting Auto Regression (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SDAR"
+description "Sequentially Discounting Auto Regression"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Yamanishi2002"
+
+\end_inset
+
+) is introduced in their publication.
+\end_layout
+
+\begin_layout Standard
+A method that generalizes SDAR to cover multidimensional inputs, called
+ Sequentially Discounting Vector Auto Regression (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SDVAR"
+description "Sequentially Discounting Vector Auto Regression"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Saaid2012"
+
+\end_inset
+
+) was developed by Saaid et al..
+ SDVAR is an online, unsupervised anomaly detection method for multidimensional
+ time series, capable of evolving its internal model to accommodate for
+ changes in its input stream.
+ Sadly, Saaid et al.
+ have left some details unspecified, making the correctness of an implementation
+ of SDVAR following their publication unverifiable.
+\end_layout
+
+\begin_layout Standard
+Hierarchical Temporal Memory (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "HTM"
+description "Hierarchical Temporal Memory"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hawkins2006"
+
+\end_inset
+
+) is an online machine learning model that tries to mimic the structure
+ and algorithms used by the mammalian neocortex.
+ The Cortical Learning Algorithms (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "CLA"
+description "Cortical Learning Algorithms"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hawkins2011"
+
+\end_inset
+
+) are proposed as one of said algorithms, and it is implemented in the Numenta
+ Platform for Intelligent Computing (NuPIC, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NuPIC2014"
+
+\end_inset
+
+).
+ Part of NuPIC is a so called Online Prediction Framework (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "OPF"
+description "Online Prediction Framework"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OPF2014"
+
+\end_inset
+
+), that can be used together with the CLA to perform anomaly detection on
+ time series.
+ This is the other method found that shares most characteristics with the
+ one presented in this work, and it is the one that shall be used for comparison.
+\end_layout
+
+\begin_layout Standard
 Lin et al.
  
 \begin_inset CommandInset citation
@@ -266,8 +394,15 @@ key "Lin2007"
 
 \end_inset
 
- present a method called SAX that builds a symbolic representation of a
- time series.
+ present a method called Symbolic Aggregate Approximation (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SAX"
+description "Symbolic Aggregate Approximation"
+
+\end_inset
+
+) that builds a symbolic representation of a time series.
  SAX is used in a later work 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -287,8 +422,8 @@ key "Wei2005"
 \end_inset
 
  build on this by presenting an algorithm for online anomaly detection;
- a key idea of the present work -- the comparison of two sliding windows
- -- was inspired by their work.
+ a key idea of the present work -- the comparison of two models of the input
+ data -- was inspired by their work.
  SAX-based anomaly detectors do not preserve the input space's dimensionality,
  while the anomaly detector presented in this work does.
  Other difference with the present work is that SAX-based anomaly detectors
@@ -314,11 +449,18 @@ key "Kohonen1990"
 
 \end_inset
 
- presents the self-organizing map (SOM), a type of artificial neural network
- that is trained using unsupervised learning to produce a representation
- of the input space, typically of lower cardinality than the input; the
- self-organizing maps use a neighborhood function to preserve the topological
- properties of the input space.
+ presents the self-organizing map (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "SOM"
+description "self-organizing map"
+
+\end_inset
+
+), a type of artificial neural network that is trained using unsupervised
+ learning to produce a representation of the input space, typically of lower
+ cardinality than the input; the self-organizing maps use a neighborhood
+ function to preserve the topological properties of the input space.
  Martinetz et al.
  
 \begin_inset CommandInset citation
@@ -329,9 +471,17 @@ key "Martinetz1991"
 
  take inspiration from Kohonen's work to build a neural network algorithm
  for vector quantization of an topologically arbitrarily structured input
- space called Neural Gas (NG); whereas SOM uses a fixed network topology
- to represent the input space, NG learns the network topology by adding
- and deleting connections between neurons.
+ space called Neural Gas (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "NG"
+description "Neural Gas"
+
+\end_inset
+
+); whereas SOM uses a fixed network topology to represent the input space,
+ NG learns the network topology by adding and deleting connections between
+ neurons.
  Finally Fritzke 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -339,10 +489,17 @@ key "Fritzke1995"
 
 \end_inset
 
- proposes an expansion to NG called Growing Neural Gas (GNG); the difference
- between both is that, while NG uses a neural network with a fixed number
- of neurons, GNG is able to add neurons as well as connections between neurons
- to the neural network.
+ proposes an expansion to NG called Growing Neural Gas (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "GNG"
+description "Growing Neural Gas"
+
+\end_inset
+
+); the difference between both is that, while NG uses a neural network with
+ a fixed number of neurons, GNG is able to add neurons as well as connections
+ between neurons to the neural network.
  Holmström 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -407,8 +564,15 @@ key "Andreakis2009"
 
 \end_inset
 
- combine GNG with MNG to obtain the Merge Growing Neural Gas algorithm (MGNG),
- which is the underlying mechanism used by the method presented in this
+ combine GNG with MNG to obtain the Merge Growing Neural Gas algorithm (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MGNG"
+description "Merge Growing Neural Gas"
+
+\end_inset
+
+), which is the underlying mechanism used by the method presented in this
  work to perform anomaly detection on time series.
 \end_layout
 
@@ -416,7 +580,7 @@ key "Andreakis2009"
 Outline
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:1.4"
+name "sec:Outline"
 
 \end_inset
 
@@ -427,33 +591,40 @@ name "sec:1.4"
 In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:2"
+reference "chap:Fundamentals"
 
 \end_inset
 
- the Merge Growing Neural Gas for Anomaly Detection (MGNG-AD, for short)
- method is presented; firstly in 
+ the Merge Growing Neural Gas for Anomaly Detection (
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MGNG-AD"
+description "Merge Growing Neural Gas for Anomaly Detection"
+
+\end_inset
+
+, for short) method is presented; firstly in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sec:2.1"
+reference "sec:Basic_definitions"
 
 \end_inset
 
  some concepts and terms are defined, then, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sec:2.2"
+reference "sec:Method_intuition"
 
 \end_inset
 
 , an intuition of how MGNG-AD works is given, followed by, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sec:2.3"
+reference "sec:Merge_growing_neural_gas"
 
 \end_inset
 
-, a brief explanation of how the underlying method (MGNG) works.
+, an explanation of how the underlying method (MGNG) works.
  
 \begin_inset ERT
 status open
@@ -462,7 +633,7 @@ status open
 
 
 \backslash
-Secref{2.3}
+Secref{MGNG_for_anomaly_detection}
 \end_layout
 
 \end_inset
@@ -478,13 +649,15 @@ status open
 
 
 \backslash
-Chapref{3}
+Chapref{Experiments_with_MGNG-AD}
 \end_layout
 
 \end_inset
 
- describes a set of experiments in which the MGNG-AD is compared to other
- methods of similar characteristics.
+ describes a set of experiments in which the MGNG-AD analysis results are
+ compared to the OPF's.
+ When available, time series with manually annotated anomalies are presented
+ for reference.
  
 \begin_inset ERT
 status open
@@ -493,7 +666,22 @@ status open
 
 
 \backslash
-Secref{3.1}
+Secref{Overview}
+\end_layout
+
+\end_inset
+
+ provides an overview of the CLA and OPF, together with the common setup
+ decisions for the experiment and the experiment's evaluation methodology.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Secref{1-dimensional_ECG}
 \end_layout
 
 \end_inset
@@ -508,7 +696,7 @@ status open
 
 
 \backslash
-Secref{3.2}
+Secref{Multi-dimensional_ECG}
 \end_layout
 
 \end_inset
@@ -518,7 +706,7 @@ Secref{3.2}
  In 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sec:3.3"
+reference "sec:3.4"
 
 \end_inset
 

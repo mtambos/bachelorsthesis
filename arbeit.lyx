@@ -13,6 +13,7 @@
 \include{includes/shortcuts}
 
 % Das Hauptdokument
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -237,6 +238,24 @@ filename "kapitel/B_appendix.lyx"
 
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset nomencl_print
+LatexCommand printnomenclature
+set_width "auto"
 
 \end_inset
 

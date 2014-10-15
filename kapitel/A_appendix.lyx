@@ -72,15 +72,18 @@
 \begin_layout Chapter
 \start_of_appendix
 Source Code
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Source-Code"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -102,9 +105,9 @@ status collapsed
 
 \end_inset
 
-language=C++, numbers=left, caption=
+language=Python, numbers=left, caption=
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -113,13 +116,26 @@ status collapsed
 
 \end_inset
 
-loop.cpp
+run_ecg1_chfdbchf13.py
 \begin_inset ERT
 status collapsed
 
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+,basicstyle=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+footnotesize
 \end_layout
 
 \end_inset
@@ -142,28 +158,808 @@ status open
 
 \begin_layout Plain Layout
 
-for (i = 2; i < 24; ++i)
+#!/usr/bin/env python
 \end_layout
 
 \begin_layout Plain Layout
 
-{
+'''
 \end_layout
 
 \begin_layout Plain Layout
 
-  printf("Noch %u Minuten
-\backslash
-n", i);
+Experiment on multidimensional ECG using the chfdb/chf13 dataset from PhysioNet
 \end_layout
 
 \begin_layout Plain Layout
 
-} // prefekte Schleife
+'''
 \end_layout
 
-\end_inset
+\begin_layout Plain Layout
 
+from __future__ import division, print_function
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import matplotlib as mpl
+\end_layout
+
+\begin_layout Plain Layout
+
+mpl.use('Agg')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import pylab
+\end_layout
+
+\begin_layout Plain Layout
+
+import seaborn as sns
+\end_layout
+
+\begin_layout Plain Layout
+
+import pandas as pd
+\end_layout
+
+\begin_layout Plain Layout
+
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+
+import inspect
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(do_amgng, amgng_file, ma_window, ma_recalc_delay,
+\end_layout
+
+\begin_layout Plain Layout
+
+         do_cla, cla_file, buffer_len, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    values = inspect.getargvalues(inspect.currentframe())[3]
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('using parameters: {}'.format(values))
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from amgng import main as amgng_main
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training AMGNG model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_dir = os.path.dirname(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_name = os.path.basename(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(out_dir, 'out_amgng_{}'.format(out_name))
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_main(input_file=amgng_file, output_file=out_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   buffer_len=buffer_len, index_col='timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                   skip_rows=[1,2], ma_window=ma_window,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        if plot:
+\end_layout
+
+\begin_layout Plain Layout
+
+            print('Reading results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+            amgng_df = pd.read_csv(out_file, parse_dates=True,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                   index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+            s = slice(0,len(amgng_df))
+\end_layout
+
+\begin_layout Plain Layout
+
+            m = np.max(amgng_df[s].ECG1)
+\end_layout
+
+\begin_layout Plain Layout
+
+            annotations = amgng_df[s].Annotation[(amgng_df.Annotation!='N')
+ &
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                 (amgng_df.Annotation!='')]
+\end_layout
+
+\begin_layout Plain Layout
+
+            with sns.color_palette('Set2') as p:
+\end_layout
+
+\begin_layout Plain Layout
+
+                f = pylab.figure()
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.subplot(2,1,1)
+\end_layout
+
+\begin_layout Plain Layout
+
+                ax = f.gca()
+\end_layout
+
+\begin_layout Plain Layout
+
+                amgng_df[s].ECG1.plot(ax=ax, alpha=0.7, color=p[0])
+\end_layout
+
+\begin_layout Plain Layout
+
+                for r in annotations.iteritems():
+\end_layout
+
+\begin_layout Plain Layout
+
+                    x = ax.convert_xunits(r[0])
+\end_layout
+
+\begin_layout Plain Layout
+
+                    y = ax.convert_yunits(amgng_df.ECG1[r[0]])
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ax.annotate(r[1], xy=(x, y), xytext=(x, m))
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ax.axvline(x, color=p[5])
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.legend()
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.subplot(2,1,2)
+\end_layout
+
+\begin_layout Plain Layout
+
+                ax = f.gca()
+\end_layout
+
+\begin_layout Plain Layout
+
+                amgng_df[s].anomaly_likelihood.plot(color=p[1], alpha=0.7,
+ ax=ax)
+\end_layout
+
+\begin_layout Plain Layout
+
+                for r in annotations.iteritems():
+\end_layout
+
+\begin_layout Plain Layout
+
+                    x = ax.convert_xunits(r[0])
+\end_layout
+
+\begin_layout Plain Layout
+
+                    y = ax.convert_yunits(amgng_df.anomaly_likelihood[r[0]])
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ax.annotate(r[1], xy=(x, y), xytext=(x, 1))
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ax.axvline(x, color=p[5])
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.legend(loc=2)
+\end_layout
+
+\begin_layout Plain Layout
+
+                ax2 = f.gca().twinx()
+\end_layout
+
+\begin_layout Plain Layout
+
+                scores = amgng_df[s].anomaly_score
+\end_layout
+
+\begin_layout Plain Layout
+
+                upper_percentile = np.percentile(scores, 95)
+\end_layout
+
+\begin_layout Plain Layout
+
+                scores[scores > upper_percentile] = upper_percentile
+\end_layout
+
+\begin_layout Plain Layout
+
+                scores.plot(ax=ax2, color=p[2], alpha=0.7)
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.legend(loc=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+                #pylab.show()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from experiments.ecg1_chfdbchf13.swarm import swarm
+\end_layout
+
+\begin_layout Plain Layout
+
+        from experiments.ecg1_chfdbchf13.anomaly_detection import main as
+ cla_main
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_dir = os.path.dirname(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_name = os.path.basename(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(out_dir, 'out_cla_{}'.format(out_name))
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training CLA model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        SWARM_DESCRIPTION = {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'includedFields': [
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'fieldName': 'timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'fieldType': 'datetime',
+\end_layout
+
+\begin_layout Plain Layout
+
+                },
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'fieldName': 'ECG1',
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+                },
+\end_layout
+
+\begin_layout Plain Layout
+
+            ],
+\end_layout
+
+\begin_layout Plain Layout
+
+            'streamDef': {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'info': 'ECG1',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'version': 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+                'streams': [
+\end_layout
+
+\begin_layout Plain Layout
+
+                    {
+\end_layout
+
+\begin_layout Plain Layout
+
+                        'info': 'chfdbchf13',
+\end_layout
+
+\begin_layout Plain Layout
+
+                        'source': cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                        'columns': ['*']
+\end_layout
+
+\begin_layout Plain Layout
+
+                    }
+\end_layout
+
+\begin_layout Plain Layout
+
+                ]
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            'inferenceType': 'TemporalAnomaly',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'inferenceArgs': {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'predictionSteps': [1],
+\end_layout
+
+\begin_layout Plain Layout
+
+                'predictedField': 'ECG1'
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            'iterationCount': buffer_len,
+\end_layout
+
+\begin_layout Plain Layout
+
+            'swarmSize': 'large'
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+        swarm(cwd=out_dir, input_file=cla_file, swarm_description=SWARM_DESCRIPT
+ION)
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_main(input_file=cla_file, output_name=out_file, plot=False)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        if plot:
+\end_layout
+
+\begin_layout Plain Layout
+
+            print('Reading results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_df = pd.read_csv(out_file, parse_dates=True, index_col='timestamp
+')
+\end_layout
+
+\begin_layout Plain Layout
+
+            with sns.color_palette('Set2') as p:
+\end_layout
+
+\begin_layout Plain Layout
+
+                f = pylab.figure()
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.subplot(2,1,1)
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.ECG1.plot(ax=f.gca(), color=p[0], alpha=0.7, lw=0.5)
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.prediction.plot(ax=f.gca(), color=p[3], alpha=0.7, lw=0.5)
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.subplot(2,1,2)
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.anomaly_score.plot(ax=f.gca(), color=p[5], alpha=0.7,
+ lw=0.5)
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.anomaly_likelihood.plot(ax=f.gca(), color=p[1], alpha=0.7,
+ lw=0.5)
+\end_layout
+
+\begin_layout Plain Layout
+
+                pylab.savefig('{}.png'.format(out_file), dpi=1200)
+\end_layout
+
+\begin_layout Plain Layout
+
+                #pylab.show()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    import sys
+\end_layout
+
+\begin_layout Plain Layout
+
+    args = sys.argv
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_amgng' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--amgng_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = args[args.index('--amgng_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = 'experiments/ecg1_chfdbchf13/chfdbchf13_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_cla' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cla_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = args[args.index('--cla_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = 'experiments/ecg1_chfdbchf13/chfdbchf13_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--buffer_len' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = int(args[args.index('--buffer_len') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_window' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = int(args[args.index('--ma_window') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = 4000
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_recalc_delay' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = int(args[args.index('--ma_recalc_delay') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = 40
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--plot' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    main(do_amgng=do_amgng, amgng_file=amgng_file, ma_window=ma_window,
+\end_layout
+
+\begin_layout Plain Layout
+
+         do_cla=do_cla, cla_file=cla_file, buffer_len=buffer_len, plot=plot,
+\end_layout
+
+\begin_layout Plain Layout
+
+         ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
