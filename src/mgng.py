@@ -55,8 +55,14 @@ class MGNG:
         '''
         d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
         '''
-        tot = ((1-self.alpha)*np.add.reduce((xt-self.weights)**2, axis=1) +
-               self.alpha*np.add.reduce((self.c_t-self.contexts)**2, axis=1))
+        w = self.weights
+        c = self.contexts
+        c_t = self.c_t
+        alpha = self.alpha
+        # tot = ne.evaluate('sum((1 - alpha)*(xt - w)**2 +'
+        #                   '    alpha*(c_t-c)**2, axis=1)')
+        tot = np.add.reduce((1-self.alpha)*(xt-self.weights)**2 +
+                            self.alpha*(self.c_t-self.contexts)**2, axis=1)
         return tot
 
     def find_winner_neurons(self, xt):
@@ -114,7 +120,7 @@ class MGNG:
         return id
 
     def _remove_node(self, id):
-        self.matrix_indices[id] = True
+        self.matrix_indices[id] = False
         self.errors[id] = np.nan
         self.weights[id] = self.empty_row
         self.contexts[id] = self.empty_row
