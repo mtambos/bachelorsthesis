@@ -6,12 +6,13 @@ from collections import deque
 
 from ring_buffer import RingBuffer
 
-import mgng2 as mgng
+import mgng
 import numpy as np
+import numexpr as ne
 import numpy.linalg as lnp
 from scipy.stats import norm
+import bottleneck as bn
 
-from anomaly_likelihood import AnomalyLikelihood
 
 class AMGNG:
 
@@ -72,26 +73,28 @@ class AMGNG:
                                                    self.present.alpha)
         self.ma_window.append(ret_val)
         if self.t % self.ma_recalc_delay == 0:
-            self.anomaly_mean = np.nanmean(self.ma_window)
-            self.anomaly_std = np.nanstd(self.ma_window, ddof=1)
+            self.anomaly_mean = bn.nanmean(self.ma_window)
+            self.anomaly_std = bn.nanstd(self.ma_window, ddof=1)
         if self.anomaly_mean is None:
-            anomaly_likelihood = 0.5
+            anomaly_density = 0.5
         else:
-            anomaly_likelihood = norm.cdf(ret_val, loc=self.anomaly_mean,
-                                          scale=self.anomaly_std)
+            anomaly_density = norm.cdf(ret_val, loc=self.anomaly_mean,
+                                       scale=self.anomaly_std)
         self.t += 1
-        return ret_val, anomaly_likelihood
+        return ret_val, anomaly_density
 
 
 def compare_models(present_model, past_model, alpha):
     tot = [0.]
+    ps_w = past_model.weights
+    ps_c = past_model.contexts
     for pr_x in present_model.model.node:
         pr_x_w = present_model.weights[pr_x]
         pr_x_c = present_model.contexts[pr_x]
-        # dist = lambda x: ((1-alpha)*(pr_x_w - x[1]['w'])**2 +
-        #                   alpha*(pr_x_c - x[1]['c'])**2)
-        dists = ((1-alpha)*np.add.reduce((pr_x_w-past_model.weights)**2, axis=1) +
-                 alpha*np.add.reduce((pr_x_c-past_model.contexts)**2, axis=1))
+        # dists = ne.evaluate('sum((1-alpha)*(pr_x_w - ps_w)**2 +'
+        #                     '    alpha*(pr_x_c - ps_c)**2, axis=1)')
+        dists = np.add.reduce((1 - alpha)*(pr_x_w - ps_w)**2 +
+                              alpha*(pr_x_c - ps_c)**2, axis=1)
         # print(dists)
         ps_x = np.nanargmin(dists)
         tot += dists[ps_x]
@@ -100,32 +103,30 @@ def compare_models(present_model, past_model, alpha):
 
 def compare_models_w(present_model, past_model):
     tot_w = [0.]
+    ps_w = past_model.weights
     for pr_x in self.present.model.nodes():
         pr_x_w = self.present.get_node(pr_x)['w']
-        pr_x_c = self.present.get_node(pr_x)['c']
-        dist = lambda x: np.abs(pr_x_w - x[1]['w'])
-        ps_x = min(self.past.model.nodes(data=True), key=dist)
-        ps_x_w = ps_x[1]['w']
-        tot_w += (pr_x_w - ps_x_w)**2
+        dists = ne.evaluate('sum((pr_x_w - ps_w)**2, axis=1)')
+        ps_x = np.nanargmin(dists)
+        tot_w += dists[ps_x]
     return tot_w[0] / len(self.present.model.nodes())
 
 
 def compare_models_c(present_model, past_model):
     tot_c = [0.]
+    ps_c = past_model.contexts
     for pr_x in self.present.model.nodes():
-        pr_x_w = self.present.get_node(pr_x)['w']
         pr_x_c = self.present.get_node(pr_x)['c']
-        dist = lambda x: np.abs(pr_x_c - x[1]['c'])
-        ps_x = min(self.past.model.nodes(data=True), key=dist)
-        ps_x_c = ps_x[1]['c']
-        tot_c += (pr_x_c - ps_x_c)**2
+        dists = ne.evaluate('sum((pr_x_c - ps_c)**2, axis=1)')
+        tot_c += dists[ps_x]
     return tot_c[0] / len(self.present.model.nodes())
 
 
 def main(input_file, output_file, input_frame=None,
          buffer_len=None, sampling_rate=None, index_col=None,
-         skip_rows=None, ma_window=None):
+         skip_rows=None, ma_window=None, ma_recalc_delay=1):
     import pandas as pd
+    from datetime import datetime
     if buffer_len is None:
         buffer_len = 2000
     if input_frame is None:
@@ -139,21 +140,26 @@ def main(input_file, output_file, input_frame=None,
         ma_window = len(signal)
     print(signal.head())
     print(signal.tail())
-    print(input_file, buffer_len, sampling_rate, index_col, skip_rows)
+    print('Seting up model.')
     amgng = AMGNG(comparison_function=compare_models,
                   buffer_len=buffer_len, dimensions=signal.shape[1],
-                  prest_gamma=buffer_len//2, prest_lmbda=buffer_len//10,
+                  prest_gamma=buffer_len//2, prest_lmbda=buffer_len*6,
                   prest_theta=buffer_len, pst_gamma=buffer_len//2,
-                  pst_lmbda=buffer_len//10, pst_theta=buffer_len,
-                  ma_window_len=ma_window)
+                  pst_lmbda=buffer_len*6, pst_theta=buffer_len,
+                  ma_window_len=ma_window, ma_recalc_delay=ma_recalc_delay)
     scores = np.zeros(len(signal))
     pscores = np.zeros(len(signal))
+    print('Processing {} rows'.format(len(signal)))
+    start = datetime.now()
     for t, xt in enumerate(signal.values):
         if t % (len(signal)//100) == 0:
             print('{}% done'.format(t / (len(signal)//100)))
         scores[t], pscores[t] = amgng.time_step(xt)
+    time_taken = (datetime.now() - start).total_seconds()
+    print('It took {} seconds to process the signal'.format(time_taken))
     signal['anomaly_score'] = pd.Series(scores, index=signal.index)
-    signal['anomaly_likelihood'] = pd.Series(pscores, index=signal.index)
+    signal['anomaly_density'] = pd.Series(pscores, index=signal.index)
+    print('Writing results to {}'.format(output_file))
     signal.to_csv(output_file)
 
 
