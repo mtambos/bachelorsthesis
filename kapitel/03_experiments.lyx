@@ -475,31 +475,18 @@ This output file is then processed to extract the precision
  values according to the following formulas:
 \begin_inset Formula 
 \begin{align*}
-p & =\frac{\left|a_{+}^{+}\right|}{\left|a_{+}^{+}\right|+\left|a_{+}^{-}\right|}\\
-r & =\frac{\left|a_{+}^{+}\right|}{\left|a_{+}^{+}\right|+\left|a_{-}^{+}\right|}
+p & =\frac{\left|true\, positive\right|}{\left|true\, positive\right|+\left|false\, positive\right|}\\
+r & =\frac{\left|true\, positive\right|}{\left|true\, positive\right|+\left|false\, negative\right|}
 \end{align*}
 
 \end_inset
 
-where 
-\begin_inset Formula $a_{+}^{+}$
-\end_inset
-
- indicates a true positive, i.e.
- a datapoint annotated as an anomaly and recognized as an anomaly by the
- anomaly detector, 
-\begin_inset Formula $a_{-}^{+}$
-\end_inset
-
- indicates a false negative, i.e.
+where a true positive indicates a datapoint annotated as an anomaly and
+ recognized as an anomaly by the anomaly detector, a false negative indicates
  a datapoint annotated as anomaly that was not recognized as such by the
- anomaly detector, and 
-\begin_inset Formula $a_{+}^{-}$
-\end_inset
-
- indicates a false positive, i.e.
- a datapoint that was not annotated as an anomaly but that was falsely recognize
-d as one by the anomaly detector.
+ anomaly detector, and a false positive indicates a datapoint that was not
+ annotated as an anomaly but that was falsely recognized as one by the anomaly
+ detector.
 \end_layout
 
 \begin_layout Standard
@@ -823,7 +810,7 @@ For both the the HTM and MGNG-AD models three thresholds were set at
 
  for the output files's anomaly_likelihood and anomaly_density columns respectiv
 ely.
- The thresholds correspond to the cummulative probability at 
+ The thresholds correspond to the cumulative probability at 
 \begin_inset Formula $0$
 \end_inset
 
@@ -836,6 +823,9 @@ ely.
 \end_inset
 
  standard deviations from the mean in a standard normal distribution.
+ Given a threshold, a datapoint is flagged as anomalous by a model, if the
+ corresponding datapoint's anomaly_likelihood or anomaly_density is above
+ the threshold.
 \end_layout
 
 \begin_layout Standard
@@ -1121,8 +1111,8 @@ In the images thin red vertical lines indicate the position of the anomaly,
  while a letter indicate its type: an 'r' stands for a R-on-T premature
  ventricular contraction, an 'S' stands for a Supraventricular premature
  or ectopic beat (atrial or nodal), and a 's' stands for a ST segment change.
- Thin blue horizontal lines, on the other hand, mark the selected anomaly_liklih
-ood's and anomaly_density's thresholds; this means that any datapoint over
+ Thin blue horizontal lines, on the other hand, mark the selected anomaly_likeli
+hood's and anomaly_density's thresholds; this means that any datapoint over
  the blue lines are flagged as anomalous.
 \end_layout
 
@@ -1233,7 +1223,7 @@ name "fig:cla_chfdb_chf13_21_03"
 \end_inset
 
  Since is in those complexes were all annotated anomalies occur, this could
- be a reason why the HTM model has a higer true positive rate when using
+ be a reason why the HTM model has a higher true positive rate when using
  the 
 \begin_inset Formula $0.5$
 \end_inset
@@ -1247,9 +1237,15 @@ name "fig:cla_chfdb_chf13_21_03"
 
 \begin_layout Standard
 The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:chfdb_chf13_stats"
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tabref{amgng_chfdb_chf13_stats,cla_chfdb_chf13_stats}
+\end_layout
 
 \end_inset
 
@@ -1263,7 +1259,7 @@ reference "tab:chfdb_chf13_stats"
 \begin_inset Formula $0.97725$
 \end_inset
 
- thresholds, and the AMGNG-AD model provided better performance when using
+ thresholds, and the MGNG-AD model provided better performance when using
  the 
 \begin_inset Formula $0.999968$
 \end_inset
@@ -1272,16 +1268,13 @@ reference "tab:chfdb_chf13_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="7">
+<lyxtabular version="3" rows="11" columns="4">
 <features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
-<column alignment="center" valignment="top" width="50text%">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1318,6 +1311,518 @@ MGNG-AD
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total datapoints 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $450000$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Annotated datapoints
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $78$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threshold
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.97725$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.999968$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flagged datapoints
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $212148$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $36351$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2646$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+true positives
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $54$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $33$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $26$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+false positives
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $212094$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $36318$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2620$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+false negatives
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $24$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $45$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $52$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+precision
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.55\e{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.08\e{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9.83\e{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+recall
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.6923$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.423$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.3333$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F1-Score
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $5.09\e{-4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.81\e{-3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.91\e{-2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+chfdb/chf13 statistics for the MGNG-AD model.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:amgng_chfdb_chf13_stats"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="4">
+<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statistic
 \end_layout
 
 \end_inset
@@ -1381,33 +1886,6 @@ Total datapoints
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
@@ -1435,33 +1913,6 @@ Annotated datapoints
 \begin_inset Formula $78$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1532,42 +1983,6 @@ Threshold
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.5$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.97725$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.999968$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
@@ -1575,46 +1990,6 @@ Threshold
 
 \begin_layout Plain Layout
 Flagged datapoints
-\begin_inset Newline newline
-\end_inset
-
-(anomaly density or likelihood greater than threshold)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $212148$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $36351$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2646$
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -1661,43 +2036,7 @@ Flagged datapoints
 \begin_inset Text
 
 \begin_layout Plain Layout
-True positives
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $54$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $33$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $26$
-\end_inset
-
-
+true positives
 \end_layout
 
 \end_inset
@@ -1744,43 +2083,7 @@ True positives
 \begin_inset Text
 
 \begin_layout Plain Layout
-False positives
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $212094$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $36318$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2620$
-\end_inset
-
-
+false positives
 \end_layout
 
 \end_inset
@@ -1827,43 +2130,7 @@ False positives
 \begin_inset Text
 
 \begin_layout Plain Layout
-False negatives
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $24$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $45$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $52$
-\end_inset
-
-
+false negatives
 \end_layout
 
 \end_inset
@@ -1910,43 +2177,7 @@ False negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
-Precision
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $2.55\e{-4}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $9.08\e{-4}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $9.83\e{-3}$
-\end_inset
-
-
+precision
 \end_layout
 
 \end_inset
@@ -1993,43 +2224,7 @@ Precision
 \begin_inset Text
 
 \begin_layout Plain Layout
-Recall
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.6923$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.423$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $0.3333$
-\end_inset
-
-
+recall
 \end_layout
 
 \end_inset
@@ -2085,42 +2280,6 @@ F1-Score
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $5.09\e{-4}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.81\e{-3}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $1.91\e{-2}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 \begin_inset Formula $8.58\e{-4}$
 \end_inset
 
@@ -2162,7 +2321,7 @@ F1-Score
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-chfdb/chf13 statistics.
+chfdb/chf13 statistics for the HTM model.
 \end_layout
 
 \end_inset
@@ -2170,14 +2329,10 @@ chfdb/chf13 statistics.
 
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:chfdb_chf13_stats"
+name "tab:cla_chfdb_chf13_stats"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -2239,7 +2394,7 @@ status open
 
 \end_inset
 
-utils.py
+1-D chfdb/chf13 Experiment
 \begin_inset ERT
 status collapsed
 
@@ -2312,18 +2467,39 @@ from scipy.stats import norm
 
 \begin_layout Plain Layout
 
-amgng_df, cla_df = run_ecg1_chfdbchf13(plot=False, do_amgng=True, amgng_file='ch
-fdbchf13_final.csv',
+amgng_df, cla_df =
+\backslash
+
 \end_layout
 
 \begin_layout Plain Layout
 
-									   do_cla=True, buffer_len=300, cla_file='chfdbchf13_final.csv',
+	run_ecg1_chfdbchf13(
 \end_layout
 
 \begin_layout Plain Layout
 
-									   ma_window=300, ma_recalc_delay=1, cwd='experiments/ecg1_chfdbchf13')
+			plot=False, do_amgng=True,
+\end_layout
+
+\begin_layout Plain Layout
+
+			amgng_file='chfdbchf13_final.csv',
+\end_layout
+
+\begin_layout Plain Layout
+
+			cla_file='chfdbchf13_final.csv',
+\end_layout
+
+\begin_layout Plain Layout
+
+			do_cla=True, buffer_len=300, ma_window=300,
+\end_layout
+
+\begin_layout Plain Layout
+
+			ma_recalc_delay=1, cwd='experiments/ecg1_chfdbchf13')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2333,20 +2509,32 @@ fdbchf13_final.csv',
 
 \begin_layout Plain Layout
 
-amgng_stats_0std = utils.f1_score(amgng_df, 'anomaly_density', norm.cdf(0),
- '[rSs]')
+amgng_stats_0std = utils.f1_score(amgng_df, 'anomaly_density',
 \end_layout
 
 \begin_layout Plain Layout
 
-amgng_stats_2std = utils.f1_score(amgng_df, 'anomaly_density', norm.cdf(2),
- '[rSs]')
+				norm.cdf(0), '[rSs]')
 \end_layout
 
 \begin_layout Plain Layout
 
-amgng_stats_4std = utils.f1_score(amgng_df, 'anomaly_density', norm.cdf(4),
- '[rSs]')
+amgng_stats_2std = utils.f1_score(amgng_df, 'anomaly_density',
+\end_layout
+
+\begin_layout Plain Layout
+
+				norm.cdf(2), '[rSs]')
+\end_layout
+
+\begin_layout Plain Layout
+
+amgng_stats_4std = utils.f1_score(amgng_df, 'anomaly_density',
+\end_layout
+
+\begin_layout Plain Layout
+
+				norm.cdf(4), '[rSs]')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2356,20 +2544,32 @@ amgng_stats_4std = utils.f1_score(amgng_df, 'anomaly_density', norm.cdf(4),
 
 \begin_layout Plain Layout
 
-cla_stats_0std = utils.f1_score(cla_df, 'anomaly_likelihood', norm.cdf(0),
- '[rSs]')
+cla_stats_0std = utils.f1_score(cla_df, 'anomaly_likelihood',
 \end_layout
 
 \begin_layout Plain Layout
 
-cla_stats_2std = utils.f1_score(cla_df, 'anomaly_likelihood, norm.cdf(2),
- '[rSs]')
+				norm.cdf(0), '[rSs]')
 \end_layout
 
 \begin_layout Plain Layout
 
-cla_stats_4std = utils.f1_score(cla_df, 'anomaly_likelihood, norm.cdf(4),
- '[rSs]')
+cla_stats_2std = utils.f1_score(cla_df, 'anomaly_likelihood,
+\end_layout
+
+\begin_layout Plain Layout
+
+				norm.cdf(2), '[rSs]')
+\end_layout
+
+\begin_layout Plain Layout
+
+cla_stats_4std = utils.f1_score(cla_df, 'anomaly_likelihood,
+\end_layout
+
+\begin_layout Plain Layout
+
+				norm.cdf(4), '[rSs]')
 \end_layout
 
 \begin_layout Plain Layout
@@ -2383,24 +2583,32 @@ cla_stats_4std = utils.f1_score(cla_df, 'anomaly_likelihood, norm.cdf(4),
 
 \begin_layout Plain Layout
 
-utils.plot_results(amgng_df, ['ECG1'], 'anomaly_score', 'anomaly_density',
- '[rsS]',
+utils.plot_results(amgng_df, ['ECG1'], 'anomaly_score',
 \end_layout
 
 \begin_layout Plain Layout
 
-				   slce=slice('2014-10-07 21:02:40', '2014-10-07 21:03:00'))
+		'anomaly_density', '[rsS]',
 \end_layout
 
 \begin_layout Plain Layout
 
-utils.plot_results(cla_df, ['ECG1'], 'anomaly_score', 'anomaly_likelihood',
- '[rsS]',
+		slce=slice('2014-10-07 21:02:40', '2014-10-07 21:03:00'))
 \end_layout
 
 \begin_layout Plain Layout
 
-				   slce=slice('2014-10-07 21:02:40', '2014-10-07 21:03:00'))
+utils.plot_results(cla_df, ['ECG1'], 'anomaly_score',
+\end_layout
+
+\begin_layout Plain Layout
+
+		'anomaly_likelihood', '[rsS]',
+\end_layout
+
+\begin_layout Plain Layout
+
+		slce=slice('2014-10-07 21:02:40', '2014-10-07 21:03:00'))
 \end_layout
 
 \begin_layout Plain Layout
@@ -2410,24 +2618,22 @@ utils.plot_results(cla_df, ['ECG1'], 'anomaly_score', 'anomaly_likelihood',
 
 \begin_layout Plain Layout
 
-utils.plot_results(amgng_df, ['ECG1'], 'anomaly_score', 'anomaly_density',
- '[rsS]',
+utils.plot_results(amgng_df, ['ECG1'], 'anomaly_score',
 \end_layout
 
 \begin_layout Plain Layout
 
-				   slce='2014-10-07 21:03')
+		'anomaly_density', '[rsS]', slce='2014-10-07 21:03')
 \end_layout
 
 \begin_layout Plain Layout
 
-utils.plot_results(cla_df, ['ECG1'], 'anomaly_score', 'anomaly_likelihood',
- '[rsS]',
+utils.plot_results(cla_df, ['ECG1'], 'anomaly_score',
 \end_layout
 
 \begin_layout Plain Layout
 
-				   slce='2014-10-07 21:03')
+		'anomaly_likelihood', '[rsS]', slce='2014-10-07 21:03')
 \end_layout
 
 \end_inset
