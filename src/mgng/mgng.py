@@ -117,6 +117,7 @@ class MGNG:
         self.weights[id] = w
         self.contexts[id] = c
         self.model.add_node(id)
+        print('Node {} added.'.format(id))
         return id
 
     def _remove_node(self, id):
@@ -125,6 +126,7 @@ class MGNG:
         self.weights[id] = self.empty_row
         self.contexts[id] = self.empty_row
         self.model.remove_node(id)
+        print('Node {} removed.'.format(id))
 
     def _add_edge(self, r, s):
         if r == s:

@@ -15,45 +15,89 @@ def create_model(params, predictedField):
     return model
 
 
-def run_model(model, input_file, plot_name, plot, predicted_field):
+def process_row(row, fields, predicted_field, model, shifter,
+                output_handler, counter):
+    '''
+    Updates the model with the row's data. row[0] should have the timestamp,
+    row[1:] should correspond to fields.
+    '''
+    if counter % 100 == 0:
+        print 'read {} lines'.format(counter)
+    timestamp = du_parser.parse(row[0])
+    input_dict = {'timestamp': timestamp}
+    values = [0]*len(fields)
+    for i, field in enumerate(fields, 1):
+        input_dict[field] = float(row[i])
+        values[i-1] = input_dict[field]
+        if field == predicted_field:
+            p_val = input_dict[field]
+    result = model.run(input_dict)
+    result = shifter.shift(result)
+    prediction = result.inferences['multiStepBestPredictions'][1]
+    anomalyScore = result.inferences['anomalyScore']
+    output_handler.write(timestamp, p_val, prediction, anomalyScore, values=values)
+
+
+def open_input_file(input_file):
+    '''
+    Opens input_file and returns a file pointer to it, together with a
+    csv reader and the fields inferred from the file's header
+    (excepting the timestamp field).
+    '''
     input_file = open(input_file, 'rb')
     csv_reader = csv.reader(input_file)
+    # get column names
+    fields = csv_reader.next()
+    fields = [f for f in fields if 'timestamp' not in f]
     # skip header rows
     csv_reader.next()
     csv_reader.next()
-    csv_reader.next()
+    return fields, csv_reader, input_file
 
+
+def prepare_run(fields, predicted_field, plot, output_name):
+    '''
+    Creates an output handler and inference shifter to use when performing
+    model learning.
+    '''
     if plot:
-        output = nupic_output.NuPICPlotOutput(y_label=predicted_field, name=plot_name)
+        output = nupic_output.NuPICPlotOutput(y_label=predicted_field, name=output_name)
     else:
-        output = nupic_output.NuPICFileOutput(columns=[predicted_field, 'prediction'],
-                                              name=plot_name)
+        output = nupic_output.NuPICFileOutput(columns=fields + ['prediction'],
+                                              name=output_name)
     shifter = InferenceShifter()
+    return shifter, output
+
+
+def run_model(model, input_file, output_name, plot, predicted_field):
+    fields, csv_reader, input_file = open_input_file(input_file=input_file)
+    shifter, output = prepare_run(fields, predicted_field,
+                                  plot, output_name)
 
     counter = 0
     for row in csv_reader:
         counter += 1
-        if counter % 100 == 0:
-            print 'read {} lines'.format(counter)
-        timestamp = du_parser.parse(row[0])
-        p_field = float(row[1])
-        result = model.run({'timestamp': timestamp, predicted_field: p_field})
-        result = shifter.shift(result)
-        prediction = result.inferences['multiStepBestPredictions'][1]
-        anomalyScore = result.inferences['anomalyScore']
-        output.write(timestamp, p_field, prediction, anomalyScore)
+        process_row(row, fields, predicted_field, model, shifter, output, counter)
     input_file.close()
     output.close()
 
 
-def main(cwd, input_file, output_name, plot, predicted_field):
-    sep = os.path.sep
-    rel_path = os.path.relpath(cwd).replace(sep, '.')
-    package_name = '{}.model_params.model_params'.format(rel_path)
-    print 'Package name: {}'.format(package_name)
-    model_params = importlib.import_module(package_name)
-    model = create_model(model_params.MODEL_PARAMS, predicted_field)
-    run_model(model, input_file, output_name, plot, predicted_field)
+def main(cwd, input_file, output_name, plot, predicted_field, 
+         model_params=None, model_name=None):
+    if model_params is None:
+        sep = os.path.sep
+        rel_path = os.path.relpath(cwd).replace(sep, '.')
+        if model_name is None:
+            package_name = '{}.model_params.model_params'.format(rel_path)
+        else:
+            package_name = ('{}.{}_model_params.model_params'
+                            .format(rel_path, model_name))
+        print 'Package name: {}'.format(package_name)
+        package = importlib.import_module(package_name)
+        model_params = package.MODEL_PARAMS
+    model = create_model(model_params, predicted_field)
+    run_model(model=model, input_file=input_file, output_name=output_name,
+              plot=plot, predicted_field=predicted_field)
 
 
 if __name__ == '__main__':

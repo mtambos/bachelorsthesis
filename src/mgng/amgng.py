@@ -1,8 +1,9 @@
-"""
+'''
 @author: Mario Tambos
-"""
+'''
 from __future__ import division, print_function
 from collections import deque
+import inspect
 
 from ring_buffer import RingBuffer
 
@@ -24,6 +25,8 @@ class AMGNG:
                  pst_alpha=0.5, pst_beta=0.75, pst_delta=0.5,
                  pst_eta=0.9995, pst_e_w=0.05, pst_e_n=0.0006,
                  ma_window_len=None, ma_recalc_delay=1):
+        values = inspect.getargvalues(inspect.currentframe())[3]
+        print('Init parameters: {}'.format(values))
         self.comparison_function = comparison_function
         self.buffer_len = buffer_len
         self.dimensions = dimensions
@@ -153,7 +156,8 @@ def main(input_file, output_file, input_frame=None,
     start = datetime.now()
     for t, xt in enumerate(signal.values):
         if t % (len(signal)//100) == 0:
-            print('{}% done'.format(t / (len(signal)//100)))
+            print('{}% done. Sample datapoint: {}'
+                  .format(t / (len(signal)//100), xt))
         scores[t], pscores[t] = amgng.time_step(xt)
     time_taken = (datetime.now() - start).total_seconds()
     print('It took {} seconds to process the signal'.format(time_taken))

@@ -84,12 +84,15 @@ class NuPICFileOutput(NuPICOutput):
 
 
 
-  def write(self, timestamp, value, predicted, anomalyScore):
+  def write(self, timestamp, value, predicted, anomalyScore, values=None):
     if timestamp is not None:
       anomalyLikelihood = self.anomalyLikelihoodHelper.anomalyProbability(
         value, anomalyScore, timestamp
       )
-      outputRow = [timestamp, value, predicted, anomalyScore, anomalyLikelihood]
+      if values is None:
+        outputRow = [timestamp, value, predicted, anomalyScore, anomalyLikelihood]
+      else:
+        outputRow = [timestamp] + values + [predicted, anomalyScore, anomalyLikelihood]
       self.outputWriter.writerow(outputRow)
       self.lineCount += 1
 

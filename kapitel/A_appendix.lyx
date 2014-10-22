@@ -1,5 +1,5 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass book
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,24 +29,15 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_package amsmath 1
-\use_package amssymb 1
-\use_package cancel 1
-\use_package esint 1
-\use_package mathdots 0
-\use_package mathtools 1
-\use_package mhchem 0
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
-\cite_engine_type default
-\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -151,6 +142,13 @@ status collapsed
 
 \end_inset
 
+
+\begin_inset CommandInset label
+LatexCommand label
+name "src:utils_py"
+
+\end_inset
+
  
 \begin_inset listings
 inline false
@@ -215,11 +213,471 @@ from datetime import timedelta
 
 \begin_layout Plain Layout
 
+import shutil
 \end_layout
 
 \begin_layout Plain Layout
 
-def read_annotations(file_path, columns, sampling_rate):    
+import csv
+\end_layout
+
+\begin_layout Plain Layout
+
+import re
+\end_layout
+
+\begin_layout Plain Layout
+
+import seaborn as sns
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def fill_annotations(df, field, anomaliy_match):
+\end_layout
+
+\begin_layout Plain Layout
+
+    first_timestamp = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    last_anomaly = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    previous_timestamp = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    for i in df.index:
+\end_layout
+
+\begin_layout Plain Layout
+
+        current_value = str(df.loc[i, field])
+\end_layout
+
+\begin_layout Plain Layout
+
+        is_anomaly_match = re.match(anomaliy_match, current_value)
+\end_layout
+
+\begin_layout Plain Layout
+
+        if is_anomaly_match:
+\end_layout
+
+\begin_layout Plain Layout
+
+            if first_timestamp is not None:
+\end_layout
+
+\begin_layout Plain Layout
+
+                df[first_timestamp:previous_timestamp][field] = last_anomaly
+\end_layout
+
+\begin_layout Plain Layout
+
+            first_timestamp = i
+\end_layout
+
+\begin_layout Plain Layout
+
+            last_anomaly = current_value
+\end_layout
+
+\begin_layout Plain Layout
+
+        previous_timestamp = i
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def prepare_dataset(file_path, sampling_rate_str='20L', out_file_path=None):
+\end_layout
+
+\begin_layout Plain Layout
+
+    file_dir = os.path.dirname(file_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+    tmp_path = os.path.join(file_dir, 'tmp.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Load dataset into a csv reader,
+\end_layout
+
+\begin_layout Plain Layout
+
+    # format column names, format timestamps
+\end_layout
+
+\begin_layout Plain Layout
+
+    # and save it.
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Formatting column names, and timestamps on file {}...'
+\end_layout
+
+\begin_layout Plain Layout
+
+          .format(file_path))
+\end_layout
+
+\begin_layout Plain Layout
+
+    with open(file_path, 'rb') as r:
+\end_layout
+
+\begin_layout Plain Layout
+
+        reader = csv.reader(r, quotechar="'")
+\end_layout
+
+\begin_layout Plain Layout
+
+        with open(tmp_path, 'wb') as w:
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer = csv.writer(w)
+\end_layout
+
+\begin_layout Plain Layout
+
+            header = reader.next()
+\end_layout
+
+\begin_layout Plain Layout
+
+            header[0] = 'timestamp'
+\end_layout
+
+\begin_layout Plain Layout
+
+            header[1:] = [h.strip() for h in header[1:]]
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer.writerow(header)
+\end_layout
+
+\begin_layout Plain Layout
+
+            reader.next()
+\end_layout
+
+\begin_layout Plain Layout
+
+            for row in reader:
+\end_layout
+
+\begin_layout Plain Layout
+
+                row[0] = row[0].strip('[]')
+\end_layout
+
+\begin_layout Plain Layout
+
+                for i, item in enumerate(row[1:], 1):
+\end_layout
+
+\begin_layout Plain Layout
+
+                    try:
+\end_layout
+
+\begin_layout Plain Layout
+
+                        row[i] = float(item)
+\end_layout
+
+\begin_layout Plain Layout
+
+                    except:
+\end_layout
+
+\begin_layout Plain Layout
+
+                        row[i] = np.nan
+\end_layout
+
+\begin_layout Plain Layout
+
+                writer.writerow(row) 
+\end_layout
+
+\begin_layout Plain Layout
+
+    shutil.move(tmp_path, file_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Load dataset into a DataFrame,
+\end_layout
+
+\begin_layout Plain Layout
+
+    # resample at 20 microseconds
+\end_layout
+
+\begin_layout Plain Layout
+
+    # and save it.
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Resampling...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df = pd.read_csv(file_path, parse_dates=True, index_col='timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                     dayfirst=True, low_memory=False)
+\end_layout
+
+\begin_layout Plain Layout
+
+    df = df.resample(sampling_rate_str)
+\end_layout
+
+\begin_layout Plain Layout
+
+    df.fillna(method='ffill', inplace=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    df.fillna(method='bfill', inplace=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    df.to_csv(file_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    # Load dataset into a csv reader,
+\end_layout
+
+\begin_layout Plain Layout
+
+    # add header rows needed for HTM
+\end_layout
+
+\begin_layout Plain Layout
+
+    # and save it.
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Adding rows needed for HTM...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    with open(file_path, 'rb') as r:
+\end_layout
+
+\begin_layout Plain Layout
+
+        reader = csv.reader(r)
+\end_layout
+
+\begin_layout Plain Layout
+
+        with open(tmp_path, 'wb') as w:
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer = csv.writer(w)
+\end_layout
+
+\begin_layout Plain Layout
+
+            header = reader.next()
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer.writerow(header)
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer.writerow(['datetime'] + ['float' for _ in header[1:]])
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer.writerow(['T'] + [None for _ in header[1:]])
+\end_layout
+
+\begin_layout Plain Layout
+
+            writer.writerows(reader) 
+\end_layout
+
+\begin_layout Plain Layout
+
+    shutil.move(tmp_path, file_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if out_file_path is not None:
+\end_layout
+
+\begin_layout Plain Layout
+
+        shutil.copy(file_path, out_file_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def find_segment_with_most_annotations(df, field, match, segment_tdelta):
+\end_layout
+
+\begin_layout Plain Layout
+
+    indexer = df[field].str.match(match, case=True, na=False, as_indexer=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    df = df[indexer]
+\end_layout
+
+\begin_layout Plain Layout
+
+    d = df.index.min()
+\end_layout
+
+\begin_layout Plain Layout
+
+    d -= timedelta(seconds=d.second, microseconds=d.microsecond)
+\end_layout
+
+\begin_layout Plain Layout
+
+    anomalies = []
+\end_layout
+
+\begin_layout Plain Layout
+
+    while d <= df.index.max():
+\end_layout
+
+\begin_layout Plain Layout
+
+        init = max(d - segment_tdelta, df.index.min())
+\end_layout
+
+\begin_layout Plain Layout
+
+        s = slice(init, d)
+\end_layout
+
+\begin_layout Plain Layout
+
+        ddf = df[s]
+\end_layout
+
+\begin_layout Plain Layout
+
+        if len(ddf) > 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+            anomalies.append((s, len(ddf)))
+\end_layout
+
+\begin_layout Plain Layout
+
+        d += timedelta(minutes=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return max(anomalies, key=lambda x: x[1])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def read_annotations(file_path, columns, sampling_rate=None, quotechar='"'):
+    
 \end_layout
 
 \begin_layout Plain Layout
@@ -229,57 +687,67 @@ def read_annotations(file_path, columns, sampling_rate):
 
 \begin_layout Plain Layout
 
-    anndf = pd.read_csv('experiments/ecg1_chfdbchf13/annotations.csv',
+    anndf = pd.read_csv(file_path, parse_dates=True,
 \end_layout
 
 \begin_layout Plain Layout
 
-                        parse_dates=True, index_col='timestamp')
+                        index_col='timestamp', quotechar=quotechar)
 \end_layout
 
 \begin_layout Plain Layout
 
-    tmp = []
+    if sampling_rate is not None:
 \end_layout
 
 \begin_layout Plain Layout
 
-    for r in anndf.iterrows():
+        tmp = []
 \end_layout
 
 \begin_layout Plain Layout
 
-        new_index = r[0]
+        print('Resampling annotations...')
 \end_layout
 
 \begin_layout Plain Layout
 
-        new_index += timedelta(microseconds=sampling_rate -
+        for r in anndf.iterrows():
 \end_layout
 
 \begin_layout Plain Layout
 
-                                            r[0].microsecond%sampling_rate)
+            new_index = r[0]
 \end_layout
 
 \begin_layout Plain Layout
 
-        tmp.append([new_index] + list(r[1]))
+            new_index += timedelta(microseconds=sampling_rate -
 \end_layout
 
 \begin_layout Plain Layout
 
-    anndf = pd.DataFrame(tmp, columns=['timestamp', 'SampleNro', 'Type',
+                                                r[0].microsecond%sampling_rate)
 \end_layout
 
 \begin_layout Plain Layout
 
-                                       'Sub', 'Chan', 'Num', 'Aux'])
+            tmp.append([new_index] + list(r[1]))
 \end_layout
 
 \begin_layout Plain Layout
 
-    anndf = anndf.set_index('timestamp')
+        anndf = pd.DataFrame(tmp, columns=['timestamp', 'SampleNro', 'Type',
+\end_layout
+
+\begin_layout Plain Layout
+
+                                           'Sub', 'Chan', 'Num', 'Aux'])
+\end_layout
+
+\begin_layout Plain Layout
+
+        anndf = anndf.set_index('timestamp')
 \end_layout
 
 \begin_layout Plain Layout
@@ -298,7 +766,16 @@ def read_annotations(file_path, columns, sampling_rate):
 
 \begin_layout Plain Layout
 
-def _plot_annotations(annotations, df, column, ytext, ax):
+\end_layout
+
+\begin_layout Plain Layout
+
+def _plot_annotations(annotations, df, column, ytext, ax,
+\end_layout
+
+\begin_layout Plain Layout
+
+                      spans_column=None, span_match=''):
 \end_layout
 
 \begin_layout Plain Layout
@@ -328,6 +805,70 @@ def _plot_annotations(annotations, df, column, ytext, ax):
 
 \begin_layout Plain Layout
 
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    if spans_column is not None:
+\end_layout
+
+\begin_layout Plain Layout
+
+        df['block'] = (df[spans_column].shift(1) != df[spans_column])
+\end_layout
+
+\begin_layout Plain Layout
+
+        df['block'] = df['block'].astype(int).cumsum()
+\end_layout
+
+\begin_layout Plain Layout
+
+        indexer = df[spans_column].str.match(span_match, na=False,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                            as_indexer=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+        g = df[indexer].reset_index().groupby([spans_column, 'block'])
+\end_layout
+
+\begin_layout Plain Layout
+
+        groups = g.apply(lambda x: np.array(x))
+\end_layout
+
+\begin_layout Plain Layout
+
+        p2 = sns.color_palette('Paired')
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, group in enumerate(groups):
+\end_layout
+
+\begin_layout Plain Layout
+
+            ax.axvspan(group[0][0], group[-1][0], color=p2[i%len(p2)],
+\end_layout
+
+\begin_layout Plain Layout
+
+                        alpha=0.5, label=group[0][5])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -342,7 +883,12 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 
 \begin_layout Plain Layout
 
-                 cut_percentile=75, axhlines=[0.5, 0.97725, 0.999968]):
+                 cut_percentile=75, axhlines=[0.5, 0.97725, 0.999968],
+\end_layout
+
+\begin_layout Plain Layout
+
+                 spans_column=None):
 \end_layout
 
 \begin_layout Plain Layout
@@ -362,11 +908,6 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 \begin_layout Plain Layout
 
     import pylab
-\end_layout
-
-\begin_layout Plain Layout
-
-    import seaborn as sns
 \end_layout
 
 \begin_layout Plain Layout
@@ -401,6 +942,10 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 \begin_layout Plain Layout
 
     annotations = df.Annotation[indexer]
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -445,7 +990,7 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 
 \begin_layout Plain Layout
 
-        pylab.subplot(3,1,2)
+        pylab.subplot(3,1,2, sharex=ax1)
 \end_layout
 
 \begin_layout Plain Layout
@@ -480,7 +1025,12 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 
 \begin_layout Plain Layout
 
-        _plot_annotations(annotations, df, data_columns[0], 1.1, ax2)
+        _plot_annotations(annotations, df, data_columns[0],
+\end_layout
+
+\begin_layout Plain Layout
+
+                          1.1, ax2, spans_column, span_match=match)
 \end_layout
 
 \begin_layout Plain Layout
@@ -490,7 +1040,7 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 
 \begin_layout Plain Layout
 
-        pylab.subplot(3,1,3)
+        pylab.subplot(3,1,3, sharex=ax1)
 \end_layout
 
 \begin_layout Plain Layout
@@ -531,6 +1081,15 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 \begin_layout Plain Layout
 
         pylab.legend()
+\end_layout
+
+\begin_layout Plain Layout
+
+    return f
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -594,7 +1153,22 @@ def f1_score(df, col, thrs, match):
 
 \begin_layout Plain Layout
 
-    score = 2*(precision*recall)/(precision+recall)
+    if true_positives > 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+        score = 2*(precision*recall)/(precision+recall)
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        score = 0
 \end_layout
 
 \begin_layout Plain Layout
@@ -694,6 +1268,13 @@ status collapsed
 
 }
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "src:run_ecg1_chfdbchf13_py"
 
 \end_inset
 
@@ -1287,6 +1868,3213 @@ if __name__ == '__main__':
 \begin_layout Plain Layout
 
         cla_file = 'experiments/ecg1_chfdbchf13/chfdbchf13_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cwd' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cwd = args[args.index('--cwd') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.path.dirname(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            amgng_file = os.path.basename(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        elif do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.path.dirname(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_file = os.path.basename(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        else:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.getcwd()
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--buffer_len' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = int(args[args.index('--buffer_len') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_window' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = int(args[args.index('--ma_window') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_recalc_delay' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = int(args[args.index('--ma_recalc_delay') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = 1
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--plot' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    main(cwd=cwd, do_amgng=do_amgng, amgng_file=amgng_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+         ma_window=ma_window, do_cla=do_cla, cla_file=cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+         buffer_len=buffer_len, plot=plot, ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+language=Python, numbers=left, caption=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+run_slpdb_slp37_1d.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+,basicstyle=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+footnotesize
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "src:run_slpdb_slp37_1d_py"
+
+\end_inset
+
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+Experiment on multidimensional ECG using
+\end_layout
+
+\begin_layout Plain Layout
+
+the chfdb/chf13 dataset from PhysioNet.
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+from __future__ import division, print_function
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import pandas as pd
+\end_layout
+
+\begin_layout Plain Layout
+
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+
+import inspect
+\end_layout
+
+\begin_layout Plain Layout
+
+from datetime import timedelta
+\end_layout
+
+\begin_layout Plain Layout
+
+import shutil
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import utils
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def set_annotations_and_plot(file_name, anndf, likelohood_column, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Reading results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df = pd.read_csv(file_name, parse_dates=True, index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df['Annotation'] = anndf.Aux
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Writing annotated results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df.to_csv(file_name)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if plot:
+\end_layout
+
+\begin_layout Plain Layout
+
+        utils.plot_results(df, 'Resp', 'anomaly_score',
+\end_layout
+
+\begin_layout Plain Layout
+
+                           likelohood_column, '.*[HOXC].*')
+\end_layout
+
+\begin_layout Plain Layout
+
+    return df
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def fill_swarm_description(file_path, buffer_len, predicted_field):
+\end_layout
+
+\begin_layout Plain Layout
+
+    swarm_desc = {
+\end_layout
+
+\begin_layout Plain Layout
+
+        'includedFields': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'datetime',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'Resp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+        ],
+\end_layout
+
+\begin_layout Plain Layout
+
+        'streamDef': {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'info': 'slpdb slp37_1d',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'version': 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+            'streams': [
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'info': 'slpdb slp37_1d',
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'source': file_path,
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'columns': ['*']
+\end_layout
+
+\begin_layout Plain Layout
+
+                }
+\end_layout
+
+\begin_layout Plain Layout
+
+            ]
+\end_layout
+
+\begin_layout Plain Layout
+
+        },
+\end_layout
+
+\begin_layout Plain Layout
+
+        'inferenceType': 'TemporalAnomaly',
+\end_layout
+
+\begin_layout Plain Layout
+
+        'inferenceArgs': {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'predictionSteps': [1],
+\end_layout
+
+\begin_layout Plain Layout
+
+            'predictedField': predicted_field
+\end_layout
+
+\begin_layout Plain Layout
+
+        },
+\end_layout
+
+\begin_layout Plain Layout
+
+        'iterationCount': buffer_len,
+\end_layout
+
+\begin_layout Plain Layout
+
+        'swarmSize': 'large'
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    return swarm_desc
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
+\end_layout
+
+\begin_layout Plain Layout
+
+         do_cla, cla_file, buffer_len, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    values = inspect.getargvalues(inspect.currentframe())[3]
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('using parameters: {}'.format(values))
+\end_layout
+
+\begin_layout Plain Layout
+
+    annotations_path = os.path.join(cwd, 'annotations.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+    anndf = utils.read_annotations(annotations_path, ['Aux'])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    amgng_df = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from mgng.amgng import main as amgng_main
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training AMGNG model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(cwd, 'out_amgng_{}'.format(amgng_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+        full_path = os.path.join(cwd, amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_main(input_file=full_path, output_file=out_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   buffer_len=buffer_len, index_col='timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                   skip_rows=[1,2], ma_window=ma_window,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_df = set_annotations_and_plot(out_file, anndf,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                            'anomaly_density', plot)
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_df['AnnotationSpans'] = amgng_df.Annotation.copy()
+\end_layout
+
+\begin_layout Plain Layout
+
+        utils.fill_annotations(amgng_df, 'AnnotationSpans', '.*[HOXC].*')
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_df.to_csv(out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    cla_df = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.swarm import swarm
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.cla import create_model, open_input_file
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.cla import  prepare_run, process_row
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training CLA model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        full_path = os.path.join(cwd, cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(cwd, 'out_cla_{}'.format(cla_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_model = {}
+\end_layout
+
+\begin_layout Plain Layout
+
+        fields, csv_reader, input_handler = open_input_file(full_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+        for p in fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+            swarm_desc = fill_swarm_description(full_path, buffer_len, p)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model_params = swarm(cwd=cwd, input_file=cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                 swarm_description=swarm_desc)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model = create_model(params=model_params, predictedField=p)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model_out_file = os.path.join(cwd, '{}_{}'.format(p, cla_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+            shifter, output_handler = prepare_run(fields=fields,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  predicted_field=p,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  plot=False,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  output_name=model_out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_model[p] = {'model': model, 'shifter': shifter,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            'output_handler': output_handler,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            'model_out_file': model_out_file}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, row in enumerate(csv_reader):
+\end_layout
+
+\begin_layout Plain Layout
+
+            for p in fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+                process_row(row=row, fields=fields, predicted_field=p,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            model=cla_model[p]['model'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            shifter=cla_model[p]['shifter'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            output_handler=cla_model[p]['output_handler'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            counter=i)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        input_handler.close()
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, p in enumerate(fields):
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_model[p]['output_handler'].close()
+\end_layout
+
+\begin_layout Plain Layout
+
+            df = pd.read_csv(cla_model[p]['model_out_file'], parse_dates=True,
+\end_layout
+
+\begin_layout Plain Layout
+
+                             index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+            if i == 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df = df
+\end_layout
+
+\begin_layout Plain Layout
+
+            else:
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.anomaly_likelihood += df.anomaly_likelihood
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.anomaly_likelihood /= len(fields)
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.to_csv(out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df = set_annotations_and_plot(out_file, anndf,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                          'anomaly_likelihood', plot)
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df['AnnotationSpans'] = cla_df.Annotation.copy()
+\end_layout
+
+\begin_layout Plain Layout
+
+        utils.fill_annotations(cla_df, 'AnnotationSpans', '.*[HOXC].*')
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.to_csv(out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return amgng_df, cla_df
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    import sys
+\end_layout
+
+\begin_layout Plain Layout
+
+    args = sys.argv
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_amgng' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--amgng_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = args[args.index('--amgng_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = 'experiments/slpdb_slp37_1d/slpdb_slp37_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_cla' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cla_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = args[args.index('--cla_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = 'experiments/slpdb_slp37_1d/slpdb_slp37_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cwd' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cwd = args[args.index('--cwd') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.path.dirname(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            amgng_file = os.path.basename(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        elif do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.path.dirname(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_file = os.path.basename(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        else:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.getcwd()
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--buffer_len' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = int(args[args.index('--buffer_len') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_window' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = int(args[args.index('--ma_window') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_recalc_delay' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = int(args[args.index('--ma_recalc_delay') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = 1
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--plot' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    main(cwd=cwd, do_amgng=do_amgng, amgng_file=amgng_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+         ma_window=ma_window, do_cla=do_cla, cla_file=cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+         buffer_len=buffer_len, plot=plot, ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+language=Python, numbers=left, caption=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+run_mimic_212.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+,basicstyle=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+footnotesize
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "src:run_mimic_212_py"
+
+\end_inset
+
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+Experiment on multidimensional ECG using
+\end_layout
+
+\begin_layout Plain Layout
+
+the chfdb/chf13 dataset from PhysioNet.
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+from __future__ import division, print_function
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import pandas as pd
+\end_layout
+
+\begin_layout Plain Layout
+
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+
+import inspect
+\end_layout
+
+\begin_layout Plain Layout
+
+from datetime import timedelta
+\end_layout
+
+\begin_layout Plain Layout
+
+import shutil
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import utils
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def set_annotations_and_plot(file_name, anndf, likelohood_column, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Reading results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df = pd.read_csv(file_name, parse_dates=True, index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df['Annotation'] = anndf.Aux
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Writing annotated results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df.to_csv(file_name)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if plot:
+\end_layout
+
+\begin_layout Plain Layout
+
+        utils.plot_results(df, ['MCL1', 'II', 'V',
+\end_layout
+
+\begin_layout Plain Layout
+
+                                'ABP', 'PAP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                                'PLETH', 'RESP'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                           'anomaly_score', likelohood_column, '^ALARM.*')
+\end_layout
+
+\begin_layout Plain Layout
+
+    return df
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def fill_swarm_description(file_path, buffer_len, predicted_field):
+\end_layout
+
+\begin_layout Plain Layout
+
+    swarm_desc = {
+\end_layout
+
+\begin_layout Plain Layout
+
+        'includedFields': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'datetime',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'MCL1',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'II',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'V',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'ABP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'PAP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'PLETH',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'RESP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+        ],
+\end_layout
+
+\begin_layout Plain Layout
+
+        'streamDef': {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'info': 'mimic 212',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'version': 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+            'streams': [
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'info': 'mimic 212',
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'source': file_path,
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'columns': ['*']
+\end_layout
+
+\begin_layout Plain Layout
+
+                }
+\end_layout
+
+\begin_layout Plain Layout
+
+            ]
+\end_layout
+
+\begin_layout Plain Layout
+
+        },
+\end_layout
+
+\begin_layout Plain Layout
+
+        'inferenceType': 'TemporalAnomaly',
+\end_layout
+
+\begin_layout Plain Layout
+
+        'inferenceArgs': {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'predictionSteps': [1],
+\end_layout
+
+\begin_layout Plain Layout
+
+            'predictedField': predicted_field
+\end_layout
+
+\begin_layout Plain Layout
+
+        },
+\end_layout
+
+\begin_layout Plain Layout
+
+        'iterationCount': buffer_len,
+\end_layout
+
+\begin_layout Plain Layout
+
+        'swarmSize': 'large'
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    return swarm_desc
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
+\end_layout
+
+\begin_layout Plain Layout
+
+         do_cla, cla_file, buffer_len, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    values = inspect.getargvalues(inspect.currentframe())[3]
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('using parameters: {}'.format(values))
+\end_layout
+
+\begin_layout Plain Layout
+
+    annotations_path = os.path.join(cwd, 'annotations.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+    anndf = utils.read_annotations(annotations_path, ['Aux'])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    amgng_df = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from mgng.amgng import main as amgng_main
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training AMGNG model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(cwd, 'out_amgng_{}'.format(amgng_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+        full_path = os.path.join(cwd, amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_main(input_file=full_path, output_file=out_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   buffer_len=buffer_len, index_col='timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                   skip_rows=[1,2], ma_window=ma_window,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\begin_layout Plain Layout
+
+        set_annotations_and_plot(out_file, anndf, 'anomaly_density', plot)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    cla_df = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.swarm import swarm
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.cla import create_model, open_input_file
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.cla import  prepare_run, process_row
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training CLA model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        full_path = os.path.join(cwd, cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(cwd, 'out_cla_{}'.format(cla_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_model = {}
+\end_layout
+
+\begin_layout Plain Layout
+
+        fields, csv_reader, input_handler = open_input_file(full_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+        for p in fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+            swarm_desc = fill_swarm_description(full_path, buffer_len, p)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model_params = swarm(cwd=cwd, input_file=cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                 swarm_description=swarm_desc)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model = create_model(params=model_params, predictedField=p)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model_out_file = os.path.join(cwd, '{}_{}'.format(p, cla_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+            shifter, output_handler = prepare_run(fields=fields,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  predicted_field=p,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  plot=False,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  output_name=model_out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_model[p] = {'model': model, 'shifter': shifter,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            'output_handler': output_handler,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            'model_out_file': model_out_file}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, row in enumerate(csv_reader):
+\end_layout
+
+\begin_layout Plain Layout
+
+            for p in fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+                process_row(row=row, fields=fields, predicted_field=p,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            model=cla_model[p]['model'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            shifter=cla_model[p]['shifter'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            output_handler=cla_model[p]['output_handler'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            counter=i)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        input_handler.close()
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, p in enumerate(fields):
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_model[p]['output_handler'].close()
+\end_layout
+
+\begin_layout Plain Layout
+
+            df = pd.read_csv(cla_model[p]['model_out_file'], parse_dates=True,
+\end_layout
+
+\begin_layout Plain Layout
+
+                             index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+            if i == 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df = df
+\end_layout
+
+\begin_layout Plain Layout
+
+            else:
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.anomaly_likelihood += df.anomaly_likelihood
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.anomaly_likelihood /= len(fields)
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.to_csv(out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        df = set_annotations_and_plot(out_file, anndf, 'anomaly_likelihood',
+ plot)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return amgng_df, cla_df
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    import sys
+\end_layout
+
+\begin_layout Plain Layout
+
+    args = sys.argv
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_amgng' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--amgng_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = args[args.index('--amgng_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = 'experiments/mimic_212/mimic_212_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_cla' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cla_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = args[args.index('--cla_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = 'experiments/mimic_212/mimic_212_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cwd' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cwd = args[args.index('--cwd') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.path.dirname(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            amgng_file = os.path.basename(amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        elif do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.path.dirname(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_file = os.path.basename(cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        else:
+\end_layout
+
+\begin_layout Plain Layout
+
+            cwd = os.getcwd()
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--buffer_len' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = int(args[args.index('--buffer_len') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        buffer_len = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_window' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = int(args[args.index('--ma_window') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_window = 300
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--ma_recalc_delay' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = int(args[args.index('--ma_recalc_delay') + 1])
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ma_recalc_delay = 1
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--plot' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        plot = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    main(cwd=cwd, do_amgng=do_amgng, amgng_file=amgng_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+         ma_window=ma_window, do_cla=do_cla, cla_file=cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+         buffer_len=buffer_len, plot=plot, ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+language=Python, numbers=left, caption=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+run_slpdb_slp37_nd.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+,basicstyle=
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+footnotesize
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "src:run_slpdb_slp37_nd_py"
+
+\end_inset
+
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+Experiment on multidimensional ECG using
+\end_layout
+
+\begin_layout Plain Layout
+
+the chfdb/chf13 dataset from PhysioNet.
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+from __future__ import division, print_function
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import pandas as pd
+\end_layout
+
+\begin_layout Plain Layout
+
+import numpy as np
+\end_layout
+
+\begin_layout Plain Layout
+
+import inspect
+\end_layout
+
+\begin_layout Plain Layout
+
+from datetime import timedelta
+\end_layout
+
+\begin_layout Plain Layout
+
+import shutil
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import utils
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def set_annotations_and_plot(file_name, anndf, likelohood_column, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Reading results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df = pd.read_csv(file_name, parse_dates=True, index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df['Annotation'] = anndf.Aux
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('Writing annotated results...')
+\end_layout
+
+\begin_layout Plain Layout
+
+    df.to_csv(file_name)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if plot:
+\end_layout
+
+\begin_layout Plain Layout
+
+        utils.plot_results(df, ['MCL1', 'II', 'V',
+\end_layout
+
+\begin_layout Plain Layout
+
+                                'ABP', 'PAP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                                'PLETH', 'RESP'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                           'anomaly_score', likelohood_column, '^ALARM.*')
+\end_layout
+
+\begin_layout Plain Layout
+
+    return df
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def fill_swarm_description(file_path, buffer_len, predicted_field):
+\end_layout
+
+\begin_layout Plain Layout
+
+    swarm_desc = {
+\end_layout
+
+\begin_layout Plain Layout
+
+        'includedFields': [
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'datetime',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'MCL1',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'II',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'V',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'ABP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'PAP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'PLETH',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldName': 'RESP',
+\end_layout
+
+\begin_layout Plain Layout
+
+                'fieldType': 'float',
+\end_layout
+
+\begin_layout Plain Layout
+
+            },
+\end_layout
+
+\begin_layout Plain Layout
+
+        ],
+\end_layout
+
+\begin_layout Plain Layout
+
+        'streamDef': {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'info': 'mimic 212',
+\end_layout
+
+\begin_layout Plain Layout
+
+            'version': 1,
+\end_layout
+
+\begin_layout Plain Layout
+
+            'streams': [
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'info': 'mimic 212',
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'source': file_path,
+\end_layout
+
+\begin_layout Plain Layout
+
+                    'columns': ['*']
+\end_layout
+
+\begin_layout Plain Layout
+
+                }
+\end_layout
+
+\begin_layout Plain Layout
+
+            ]
+\end_layout
+
+\begin_layout Plain Layout
+
+        },
+\end_layout
+
+\begin_layout Plain Layout
+
+        'inferenceType': 'TemporalAnomaly',
+\end_layout
+
+\begin_layout Plain Layout
+
+        'inferenceArgs': {
+\end_layout
+
+\begin_layout Plain Layout
+
+            'predictionSteps': [1],
+\end_layout
+
+\begin_layout Plain Layout
+
+            'predictedField': predicted_field
+\end_layout
+
+\begin_layout Plain Layout
+
+        },
+\end_layout
+
+\begin_layout Plain Layout
+
+        'iterationCount': buffer_len,
+\end_layout
+
+\begin_layout Plain Layout
+
+        'swarmSize': 'large'
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    return swarm_desc
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
+\end_layout
+
+\begin_layout Plain Layout
+
+         do_cla, cla_file, buffer_len, plot):
+\end_layout
+
+\begin_layout Plain Layout
+
+    values = inspect.getargvalues(inspect.currentframe())[3]
+\end_layout
+
+\begin_layout Plain Layout
+
+    print('using parameters: {}'.format(values))
+\end_layout
+
+\begin_layout Plain Layout
+
+    annotations_path = os.path.join(cwd, 'annotations.csv')
+\end_layout
+
+\begin_layout Plain Layout
+
+    anndf = utils.read_annotations(annotations_path, ['Aux'])
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    amgng_df = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_amgng:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from mgng.amgng import main as amgng_main
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training AMGNG model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(cwd, 'out_amgng_{}'.format(amgng_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+        full_path = os.path.join(cwd, amgng_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_main(input_file=full_path, output_file=out_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   buffer_len=buffer_len, index_col='timestamp',
+\end_layout
+
+\begin_layout Plain Layout
+
+                   skip_rows=[1,2], ma_window=ma_window,
+\end_layout
+
+\begin_layout Plain Layout
+
+                   ma_recalc_delay=ma_recalc_delay)
+\end_layout
+
+\begin_layout Plain Layout
+
+        set_annotations_and_plot(out_file, anndf, 'anomaly_density', plot)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    cla_df = None
+\end_layout
+
+\begin_layout Plain Layout
+
+    if do_cla:
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.swarm import swarm
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.cla import create_model, open_input_file
+\end_layout
+
+\begin_layout Plain Layout
+
+        from cla.cla import  prepare_run, process_row
+\end_layout
+
+\begin_layout Plain Layout
+
+        print('Training CLA model...')
+\end_layout
+
+\begin_layout Plain Layout
+
+        full_path = os.path.join(cwd, cla_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        out_file = os.path.join(cwd, 'out_cla_{}'.format(cla_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_model = {}
+\end_layout
+
+\begin_layout Plain Layout
+
+        fields, csv_reader, input_handler = open_input_file(full_path)
+\end_layout
+
+\begin_layout Plain Layout
+
+        for p in fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+            swarm_desc = fill_swarm_description(full_path, buffer_len, p)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model_params = swarm(cwd=cwd, input_file=cla_file,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                 swarm_description=swarm_desc)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model = create_model(params=model_params, predictedField=p)
+\end_layout
+
+\begin_layout Plain Layout
+
+            model_out_file = os.path.join(cwd, '{}_{}'.format(p, cla_file))
+\end_layout
+
+\begin_layout Plain Layout
+
+            shifter, output_handler = prepare_run(fields=fields,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  predicted_field=p,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  plot=False,
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                  output_name=model_out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_model[p] = {'model': model, 'shifter': shifter,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            'output_handler': output_handler,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            'model_out_file': model_out_file}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, row in enumerate(csv_reader):
+\end_layout
+
+\begin_layout Plain Layout
+
+            for p in fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+                process_row(row=row, fields=fields, predicted_field=p,
+\end_layout
+
+\begin_layout Plain Layout
+
+                            model=cla_model[p]['model'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            shifter=cla_model[p]['shifter'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            output_handler=cla_model[p]['output_handler'],
+\end_layout
+
+\begin_layout Plain Layout
+
+                            counter=i)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        input_handler.close()
+\end_layout
+
+\begin_layout Plain Layout
+
+        for i, p in enumerate(fields):
+\end_layout
+
+\begin_layout Plain Layout
+
+            cla_model[p]['output_handler'].close()
+\end_layout
+
+\begin_layout Plain Layout
+
+            df = pd.read_csv(cla_model[p]['model_out_file'], parse_dates=True,
+\end_layout
+
+\begin_layout Plain Layout
+
+                             index_col='timestamp')
+\end_layout
+
+\begin_layout Plain Layout
+
+            if i == 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df = df
+\end_layout
+
+\begin_layout Plain Layout
+
+            else:
+\end_layout
+
+\begin_layout Plain Layout
+
+                cla_df.anomaly_likelihood += df.anomaly_likelihood
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.anomaly_likelihood /= len(fields)
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_df.to_csv(out_file)
+\end_layout
+
+\begin_layout Plain Layout
+
+        df = set_annotations_and_plot(out_file, anndf, 'anomaly_likelihood',
+ plot)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    return amgng_df, cla_df
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == '__main__':
+\end_layout
+
+\begin_layout Plain Layout
+
+    import sys
+\end_layout
+
+\begin_layout Plain Layout
+
+    args = sys.argv
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_amgng' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_amgng = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--amgng_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = args[args.index('--amgng_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        amgng_file = 'experiments/mimic_212/mimic_212_final.csv'
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--do_cla' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = True
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        do_cla = False
+\end_layout
+
+\begin_layout Plain Layout
+
+    if '--cla_file' in args:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = args[args.index('--cla_file') + 1]
+\end_layout
+
+\begin_layout Plain Layout
+
+    else:
+\end_layout
+
+\begin_layout Plain Layout
+
+        cla_file = 'experiments/mimic_212/mimic_212_final.csv'
 \end_layout
 
 \begin_layout Plain Layout
