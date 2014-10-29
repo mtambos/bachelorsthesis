@@ -1,5 +1,5 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass book
@@ -13,13 +13,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -30,24 +30,15 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_package amsmath 1
-\use_package amssymb 1
-\use_package cancel 1
-\use_package esint 1
-\use_package mathdots 0
-\use_package mathtools 1
-\use_package mhchem 0
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
-\cite_engine_type default
-\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -105,6 +96,7 @@ description "Central Processing Unit"
 
  temperature, wind speed, heart rate readings, and so on.
  Accordingly, as put in Chandola et al.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chandola2009"
@@ -156,16 +148,16 @@ cluster
  due to exercise), but if the same lasts for prolonged periods of time,
  then it could be caused by a medical condition.
  Collective anomalies can be detected with contextual anomaly detection
- methods, by providing said methods with a concept of context that reflects
- the properties of a normal and/or an anomalous cluster.
+ methods, if said methods can be provided with a concept of context that
+ reflects the properties of a normal and/or an anomalous cluster.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename C:/Users/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/sample-arrhythmia.png
+	filename ../images/sample-arrhythmia.png
 	width 100text%
 
 \end_inset
@@ -174,7 +166,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Example of ECG signal.
@@ -232,6 +224,68 @@ ty with respect to previous sequences.
 \end_layout
 
 \begin_layout Standard
+The approach to be developed is based in Merge Growing Neural Gas (MGNG
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MGNG"
+description "Merge Growing Neural Gas"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Andreakis2009"
+
+\end_inset
+
+), and named consequently Merge Growing Neural Gas for Anomaly Detection
+ (MGNG-AD
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "MGNG-AD"
+description "Merge Growing Neural Gas for Anomaly Detection"
+
+\end_inset
+
+, for short).
+ The characteristics of MGNG-AD are sumarized as follows:
+\end_layout
+
+\begin_layout Itemize
+Detects contextual anomalies in time series.
+\end_layout
+
+\begin_layout Itemize
+Assigns to each point an anomaly score, not a category.
+\end_layout
+
+\begin_layout Itemize
+Able to handle multi-dimensional time series.
+\end_layout
+
+\begin_layout Itemize
+Uses real valued vectors as inputs.
+\end_layout
+
+\begin_layout Itemize
+Uses an unsupervised learning approach.
+\end_layout
+
+\begin_layout Itemize
+Performs anomaly detection on data streams.
+\end_layout
+
+\begin_layout Itemize
+Evolves its internal model constantly.
+\end_layout
+
+\begin_layout Itemize
+Makes two assumptions about its input: that the input can be modeled using
+ MGNG, and that normal cases are more common in the data than abnormal ones.
+\end_layout
+
+\begin_layout Standard
 The approach used will be experimental: instead of attempting to prove formally
  that the developed method works, experiments will be designed and executed
  that compare the method's performance with similar methods and human experts.
@@ -262,6 +316,12 @@ key "Chandola2009"
 .
  In it, a detailed discussion on three types of anomalies -- point, contextual
  and collective -- is conducted and several methods to detect them are presented.
+ Using this nomenclature, MGNG-AD should be classified as an online, unsupervise
+d, score-based detector of contextual anomalies on sequential, multivariate,
+ continuous (meaning the attributes are real valued) data.
+ On problem with this survey is that all time-series-related methods described
+ are either offline, supervised or univariate approaches, and thus not comparabl
+e with MGNG-AD.
 \end_layout
 
 \begin_layout Standard
@@ -277,8 +337,11 @@ key "Gupta2014"
  data.
  Their work covers offline and online methods, static and evolving models
  as well as supervised, semi-supervised and unsupervised approaches.
+ In this categorization, MGNG-AD is close related to the evolving prediction
+ models for stream data -- MGNG-AD does evolve an internal model to account
+ for temporal drift, but is not prediction based.
  One of the two most similar methods to the one presented in this work found
- so far, Sequentially Discounting Auto Regression (
+ so far, Sequentially Discounting Auto Regression (SDAR
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "SDAR"
@@ -293,12 +356,23 @@ key "Yamanishi2002"
 
 \end_inset
 
-) is introduced in their publication.
+) is named in their publication; SDAR covers almost all characteristics
+ mentioned in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Objective_statement"
+
+\end_inset
+
+ but, in contrast to MGNG-AD, is not able to handle multi-dimensional time
+ series.
+ Many other methods are presented, but they are either supervised, handle
+ only categorical data, or do not handle temporal context.
 \end_layout
 
 \begin_layout Standard
 A method that generalizes SDAR to cover multidimensional inputs, called
- Sequentially Discounting Vector Auto Regression (
+ Sequentially Discounting Vector Auto Regression (SDVAR
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "SDVAR"
@@ -323,7 +397,7 @@ key "Saaid2012"
 \end_layout
 
 \begin_layout Standard
-Hierarchical Temporal Memory (
+Hierarchical Temporal Memory (HTM
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "HTM"
@@ -340,7 +414,7 @@ key "Hawkins2006"
 
 ) is an online machine learning model that tries to mimic the structure
  and algorithms used by the mammalian neocortex.
- The Cortical Learning Algorithms (
+ The Cortical Learning Algorithms (CLA
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "CLA"
@@ -356,7 +430,15 @@ key "Hawkins2011"
 \end_inset
 
 ) are proposed as one of said algorithms, and it is implemented in the Numenta
- Platform for Intelligent Computing (NuPIC, 
+ Platform for Intelligent Computing (NuPIC
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "NuPIC"
+description "Numenta Platform for Intelligent Computing"
+
+\end_inset
+
+, 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "NuPIC2014"
@@ -364,7 +446,7 @@ key "NuPIC2014"
 \end_inset
 
 ).
- Part of NuPIC is a so called Online Prediction Framework (
+ Part of NuPIC is a so called Online Prediction Framework (OPF
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "OPF"
@@ -381,8 +463,14 @@ key "OPF2014"
 
 ), that can be used together with the CLA to perform anomaly detection on
  time series.
- This is the other method found that shares most characteristics with the
- one presented in this work, and it is the one that shall be used for comparison.
+ HTM have in fact all charachteristics mentioned in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Objective_statement"
+
+\end_inset
+
+, and it is the one that shall be used for comparison.
 \end_layout
 
 \begin_layout Standard
@@ -390,11 +478,11 @@ Lin et al.
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Lin2007"
+key "Lin2003"
 
 \end_inset
 
- present a method called Symbolic Aggregate Approximation (
+ present a method called Symbolic Aggregate Approximation (SAX
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "SAX"
@@ -421,8 +509,8 @@ key "Wei2005"
 
 \end_inset
 
- build on this by presenting an algorithm for online anomaly detection;
- a key idea of the present work -- the comparison of two models of the input
+ build on SAX by presenting an algorithm for online anomaly detection; a
+ key idea of the present work -- the comparison of two models of the input
  data -- was inspired by their work.
  SAX-based anomaly detectors do not preserve the input space's dimensionality,
  while the anomaly detector presented in this work does.
@@ -449,7 +537,7 @@ key "Kohonen1990"
 
 \end_inset
 
- presents the self-organizing map (
+ presents the self-organizing map (SOM
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "SOM"
@@ -471,7 +559,7 @@ key "Martinetz1991"
 
  take inspiration from Kohonen's work to build a neural network algorithm
  for vector quantization of an topologically arbitrarily structured input
- space called Neural Gas (
+ space called Neural Gas (NG
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "NG"
@@ -489,7 +577,7 @@ key "Fritzke1995"
 
 \end_inset
 
- proposes an expansion to NG called Growing Neural Gas (
+ proposes an expansion to NG called Growing Neural Gas (GNG
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "GNG"
@@ -564,16 +652,9 @@ key "Andreakis2009"
 
 \end_inset
 
- combine GNG with MNG to obtain the Merge Growing Neural Gas algorithm (
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "MGNG"
-description "Merge Growing Neural Gas"
-
-\end_inset
-
-), which is the underlying mechanism used by the method presented in this
- work to perform anomaly detection on time series.
+ combine GNG with MNG to obtain the MGNG algorithm , which is the underlying
+ mechanism used by the method presented in this work to perform anomaly
+ detection on time series.
 \end_layout
 
 \begin_layout Section
@@ -595,15 +676,7 @@ reference "chap:Fundamentals"
 
 \end_inset
 
- the Merge Growing Neural Gas for Anomaly Detection (
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "MGNG-AD"
-description "Merge Growing Neural Gas for Anomaly Detection"
-
-\end_inset
-
-, for short) method is presented; firstly in 
+ the MGNG-AD method is presented; firstly in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Basic_definitions"
@@ -656,8 +729,6 @@ Chapref{Experiments_with_MGNG-AD}
 
  describes a set of experiments in which the MGNG-AD analysis results are
  compared to the OPF's.
- When available, time series with manually annotated anomalies are presented
- for reference.
  
 \begin_inset ERT
 status open
@@ -681,13 +752,12 @@ status open
 
 
 \backslash
-Secref{1-dimensional_ECG}
+Secref{1-dimensional_time_series}
 \end_layout
 
 \end_inset
 
- covers this work's baseline case: online one-dimensional anomaly detection
- on ECG data.
+ covers this work's baseline case: online one-dimensional anomaly detection.
  
 \begin_inset ERT
 status open
@@ -696,21 +766,12 @@ status open
 
 
 \backslash
-Secref{Multi-dimensional_ECG}
+Secref{Multi-dimensional_time_series}
 \end_layout
 
 \end_inset
 
- shows experiments also over ECG data, but this time in the multi-dimensional
- case.
- In 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:3.4"
-
-\end_inset
-
- experiments on other kinds of data streams are performed.
+ expands on the previous section by analyzing multi-dimensional time series.
 \end_layout
 
 \begin_layout Standard

@@ -1,3 +1,6 @@
+'''
+@author: Mario Tambos
+'''
 import numpy as np
 import prettyplotlib as ppl
 

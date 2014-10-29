@@ -1,7 +1,21 @@
 #!/usr/bin/env python
+# ----------------------------------------------------------------------
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses.
+# ----------------------------------------------------------------------
 '''
-Experiment on multidimensional ECG using
-the chfdb/chf13 dataset from PhysioNet.
+Experiment on respiratory data stream using
+the slpdb/slp37 dataset from PhysioNet.
+@author: Mario Tambos
 '''
 from __future__ import division, print_function
 
@@ -10,10 +24,14 @@ import os
 import pandas as pd
 import numpy as np
 import inspect
-from datetime import timedelta
+from datetime import timedelta, datetime
 import shutil
 
 import utils
+
+
+mean_oa = 30.695
+mean_sem = 1.7280555555555557
 
 
 def set_annotations_and_plot(file_name, anndf, likelohood_column, plot):
@@ -64,6 +82,7 @@ def fill_swarm_description(file_path, buffer_len, predicted_field):
 
 def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
          do_cla, cla_file, buffer_len, plot):
+    global mean_oa, mean_sem
     values = inspect.getargvalues(inspect.currentframe())[3]
     print('using parameters: {}'.format(values))
     annotations_path = os.path.join(cwd, 'annotations.csv')
@@ -75,15 +94,20 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
         print('Training AMGNG model...')
         out_file = os.path.join(cwd, 'out_amgng_{}'.format(amgng_file))
         full_path = os.path.join(cwd, amgng_file)
+        start = datetime.now()
         amgng_main(input_file=full_path, output_file=out_file,
                    buffer_len=buffer_len, index_col='timestamp',
                    skip_rows=[1,2], ma_window=ma_window,
                    ma_recalc_delay=ma_recalc_delay)
+        amgng_time = datetime.now() - start
         amgng_df = set_annotations_and_plot(out_file, anndf,
                                             'anomaly_density', plot)
         amgng_df['AnnotationSpans'] = amgng_df.Annotation.copy()
-        utils.fill_annotations(amgng_df, 'AnnotationSpans', '.*[HOXC].*')
+        utils.fill_annotations(amgng_df, 'Annotation', '.*OA.*',
+                               spans_field='AnnotationSpans', method='pad',
+                               mean=mean_oa, std=mean_sem)
         amgng_df.to_csv(out_file)
+        print('Time taken: amgng={}'.format(amgng_time))
 
     cla_df = None
     if do_cla:
@@ -95,6 +119,7 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
         out_file = os.path.join(cwd, 'out_cla_{}'.format(cla_file))
         cla_model = {}
         fields, csv_reader, input_handler = open_input_file(full_path)
+        start = datetime.now()
         for p in fields:
             swarm_desc = fill_swarm_description(full_path, buffer_len, p)
             model_params = swarm(cwd=cwd, input_file=cla_file,
@@ -109,6 +134,8 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
                             'output_handler': output_handler,
                             'model_out_file': model_out_file}
 
+        swarm_time = datetime.now() - start
+        start = datetime.now()
         for i, row in enumerate(csv_reader):
             for p in fields:
                 process_row(row=row, fields=fields, predicted_field=p,
@@ -116,6 +143,7 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
                             shifter=cla_model[p]['shifter'],
                             output_handler=cla_model[p]['output_handler'],
                             counter=i)
+        cla_time = datetime.now() - start
 
         input_handler.close()
         for i, p in enumerate(fields):
@@ -131,8 +159,11 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
         cla_df = set_annotations_and_plot(out_file, anndf,
                                           'anomaly_likelihood', plot)
         cla_df['AnnotationSpans'] = cla_df.Annotation.copy()
-        utils.fill_annotations(cla_df, 'AnnotationSpans', '.*[HOXC].*')
+        utils.fill_annotations(cla_df, 'Annotation', '.*OA.*',
+                               spans_field='AnnotationSpans', method='pad',
+                               mean=mean_oa, std=mean_sem)
         cla_df.to_csv(out_file)
+        print('Time taken: swarm={}, cla={}'.format(swarm_time, cla_time))
 
     return amgng_df, cla_df
 

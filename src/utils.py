@@ -1,5 +1,19 @@
+# ----------------------------------------------------------------------
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses.
+# ----------------------------------------------------------------------
 '''
 utils module.
+@author: Mario Tambos
 '''
 
 from __future__ import division, print_function
@@ -16,19 +30,35 @@ import re
 import seaborn as sns
 
 
-def fill_annotations(df, field, anomaliy_match):
-    first_timestamp = None
-    last_anomaly = None
-    previous_timestamp = None
-    for i in df.index:
-        current_value = str(df.loc[i, field])
-        is_anomaly_match = re.match(anomaliy_match, current_value)
-        if is_anomaly_match:
-            if first_timestamp is not None:
-                df[first_timestamp:previous_timestamp][field] = last_anomaly
-            first_timestamp = i
-            last_anomaly = current_value
-        previous_timestamp = i
+def fill_annotations(df, field, anomaly_match, spans_field=None,
+                     method='fill', mean=None, std=None):
+    if spans_field is None:
+        spans_field = field
+    if method == 'fill':
+        first_timestamp = None
+        last_anomaly = None
+        previous_timestamp = None
+        for i in df.index:
+            current_value = str(df.loc[i, field])
+            is_anomaly_match = re.match(anomaly_match, current_value)
+            if is_anomaly_match:
+                if first_timestamp is not None and last_anomaly == current_value:
+                    df[first_timestamp:previous_timestamp][spans_field] = last_anomaly
+                first_timestamp = i
+                last_anomaly = current_value
+            previous_timestamp = i
+    elif method == 'pad':
+        for i in df.index:
+            current_value = str(df.loc[i, field])
+            is_anomaly_match = re.match(anomaly_match, current_value)
+            if is_anomaly_match:
+                pad = std*np.random.randn() + mean
+                start = i - timedelta(seconds=pad/2)
+                stop = i + timedelta(seconds=pad/2)
+                df[start:i][spans_field] = current_value
+                df[i:stop][spans_field] = current_value
+    else:
+        ValueError('method {} not recognized.'.format(method))
 
 
 
@@ -60,7 +90,7 @@ def prepare_dataset(file_path, sampling_rate_str='20L', out_file_path=None):
     shutil.move(tmp_path, file_path)
 
     # Load dataset into a DataFrame,
-    # resample at 20 microseconds
+    # resample at sampling_rate_str
     # and save it.
     print('Resampling...')
     df = pd.read_csv(file_path, parse_dates=True, index_col='timestamp',
@@ -89,7 +119,7 @@ def prepare_dataset(file_path, sampling_rate_str='20L', out_file_path=None):
 
 
 def find_segment_with_most_annotations(df, field, match, segment_tdelta):
-    indexer = df[field].str.match(match, case=True, na=False, as_indexer=True)
+    indexer = df[field].str.match(match, na=False, as_indexer=True)
     df = df[indexer]
     d = df.index.min()
     d -= timedelta(seconds=d.second, microseconds=d.microsecond)
@@ -125,12 +155,16 @@ def read_annotations(file_path, columns, sampling_rate=None, quotechar='"'):
 
 
 def _plot_annotations(annotations, df, column, ytext, ax,
-                      spans_column=None, span_match=''):
+                      spans_column=None, span_match='',
+                      annotation_index=-2, annotate=True,
+                      draw_vlines=True):
     for r in annotations.iteritems():
         x = ax.convert_xunits(r[0])
-        y = ax.convert_yunits(df[column][r[0]])
-        ax.annotate(r[1], xy=(x, y), xytext=(x, ytext))
-        ax.axvline(x, color='r', linewidth=0.75)
+        if annotate:
+            y = ax.convert_yunits(df[column][r[0]])
+            ax.annotate(r[1], xy=(x, y), xytext=(x, ytext))
+        if draw_vlines:
+            ax.axvline(x, color='r', linewidth=0.75)
     
     if spans_column is not None:
         df['block'] = (df[spans_column].shift(1) != df[spans_column])
@@ -142,13 +176,14 @@ def _plot_annotations(annotations, df, column, ytext, ax,
         p2 = sns.color_palette('Paired')
         for i, group in enumerate(groups):
             ax.axvspan(group[0][0], group[-1][0], color=p2[i%len(p2)],
-                        alpha=0.5, label=group[0][5])
+                        alpha=0.5, label=group[0][annotation_index])
 
 
 def plot_results(df, data_columns, score_column, likelihood_column,
                  match, slce=None, show_plot=True, save_plot=False,
                  cut_percentile=75, axhlines=[0.5, 0.97725, 0.999968],
-                 spans_column=None):
+                 spans_column=None, normalize_columns=False,
+                 second_data_columns=None, annotate=None, draw_vlines=True):
     import matplotlib as mpl
     mpl.use('Agg')
 
@@ -156,42 +191,68 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 
     if slce is not None:
         df = df[slce]
+    df = df.copy()
     m_data = np.max(df[data_columns])[0]
     m_score = np.max(df[score_column])
     indexer = df.Annotation.str.match(match, na=False, as_indexer=True)
     annotations = df.Annotation[indexer]
 
+    if normalize_columns:
+        for c in data_columns:
+            min_c = df[c].min()
+            max_c = df[c].max()
+            df[c] = (df[c] - min_c)/(max_c - min_c)
+
+    annotate = (spans_column is None and annotate is None) or annotate
+    data_colspan = 2
+    if second_data_columns is not None:
+        data_colspan = 1
+        if normalize_columns:
+            for c in second_data_columns:
+                min_c = df[c].min()
+                max_c = df[c].max()
+                df[c] = (df[c] - min_c)/(max_c - min_c)
     with sns.color_palette('Set2') as p:
         f = pylab.figure()
-        pylab.subplot(3,1,1)
-        ax1 = f.gca()
+        ax1 = pylab.subplot2grid((6,1), (0, 0), rowspan=data_colspan)
         df[data_columns].plot(ax=ax1, alpha=0.7)
         ax1.set_ylabel(str(data_columns))
-        _plot_annotations(annotations, df, data_columns[0], m_data, ax1)
+        _plot_annotations(annotations, df, data_columns[0], m_data, ax1,
+                          annotate=annotate, draw_vlines=draw_vlines)
         pylab.legend()
-        pylab.subplot(3,1,2, sharex=ax1)
-        ax2 = f.gca()
+        if second_data_columns is not None:
+            ax11 = pylab.subplot2grid((6,1), (1, 0), sharex=ax1)
+            df[second_data_columns].plot(ax=ax11, alpha=0.7)
+            ax11.set_ylabel(str(second_data_columns))
+            _plot_annotations(annotations, df, second_data_columns[0],
+                              m_data, ax11, annotate=annotate,
+                              draw_vlines=draw_vlines)
+            pylab.legend()
+        ax2 = pylab.subplot2grid((6,1), (2, 0), rowspan=2, sharex=ax1)
         df[likelihood_column].plot(ax=ax2, color=p[1], alpha=0.7,
                                    ylim=(0, 1.2))
         ax2.set_ylabel(likelihood_column)
         for hline in axhlines:
             ax2.axhline(hline, color='b', linewidth=0.75)
         _plot_annotations(annotations, df, data_columns[0],
-                          1.1, ax2, spans_column, span_match=match)
-        pylab.legend(fancybox=True, frameon=True, bbox_to_anchor=(1, 0.5), loc='center left')
-        pylab.subplot(3,1,3, sharex=ax1)
-        ax3 = f.gca()
+                          1.1, ax2, spans_column, span_match=match,
+                          annotate=annotate, draw_vlines=draw_vlines)
+        pylab.legend(fancybox=True, frameon=True,
+                     bbox_to_anchor=(1, 0.5), loc='center left')
+        ax3 = pylab.subplot2grid((6,1), (4, 0), rowspan=2, sharex=ax1)
         scores = df[score_column]
         upper_percentile = np.percentile(scores, cut_percentile)
         scores[scores > upper_percentile] = upper_percentile
         scores.plot(ax=ax3, color=p[2], alpha=0.7)
         ax3.set_ylabel(score_column)
-        _plot_annotations(annotations, df, data_columns[0], m_score, ax3)
+        _plot_annotations(annotations, df, data_columns[0], m_score, ax3,
+                          annotate=annotate, draw_vlines=draw_vlines)
         pylab.legend()
     return f
 
 
-def f1_score(df, col, thrs, match, annotation_column='Annotation'):
+def f1_score(thrs, df, col, match, annotation_column='Annotation',
+             scalar=False, invert_score=False):
     detected = len(df[df[col] >thrs])
     annotation_indexer = df[annotation_column].str.match(match, na=False,
                                                  as_indexer=True)
@@ -200,14 +261,21 @@ def f1_score(df, col, thrs, match, annotation_column='Annotation'):
     true_positives = len(df[col_thrs & annotation_indexer])
     false_positives = len(df[col_thrs & ~annotation_indexer])
     false_negatives = len(df[~col_thrs & annotation_indexer])
-    precision = true_positives/(true_positives + false_positives)
-    recall = true_positives/(true_positives + false_negatives)
     if true_positives > 0:
+        precision = true_positives/(true_positives + false_positives)
+        recall = true_positives/(true_positives + false_negatives)
         score = 2*(precision*recall)/(precision+recall)
     else:
+        precision = 0
+        recall = 0
         score = 0
-    return {'column': col, 'threshold': thrs, 'detected': detected,
-            'real': real, 'true_positives': true_positives,
-            'false_positives': false_positives,
-            'false_negatives': false_negatives,
-            'precision': precision, 'recall': recall, 'F1': score}
+    if invert_score:
+        score = 1 - score
+    if scalar:
+        return score
+    else:
+        return {'column': col, 'threshold': thrs, 'detected': detected,
+                'real': real, 'true_positives': true_positives,
+                'false_positives': false_positives,
+                'false_negatives': false_negatives,
+                'precision': precision, 'recall': recall, 'F1': score}

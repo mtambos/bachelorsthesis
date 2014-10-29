@@ -1,5 +1,5 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass book
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,24 +29,15 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_package amsmath 1
-\use_package amssymb 1
-\use_package cancel 1
-\use_package esint 1
-\use_package mathdots 0
-\use_package mathtools 1
-\use_package mhchem 0
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
-\cite_engine_type default
-\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -84,33 +75,185 @@ name "chap:4"
 Summary of Experiment's Results
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:4.1"
+name "sec:Summary_of_Experiments_Results"
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Section
-Advantages and Disadvantages of MGNG-AD
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:4.2"
+\begin_layout Standard
+In general both MGNG-AD and HTM models performed similarly.
+ There were indeed differences in the F1-Scores of some of the experiments,
+ but given the amount of parameters involved it is not clear whether said
+ differences arose from underlying characteristics of the methods or from
+ the experiment's setup.
+\end_layout
+
+\begin_layout Standard
+The MGNG-AD models seem to behave in general more smoothly than the HTM
+ models, in the sense that the MGNG_AD models' anomaly_densities change
+ less frequently than the HTM models' anomaly_likelihoods.
+ Again, given the amount of parameters involved in the two models there
+ is no clear reason for this.
+\end_layout
+
+\begin_layout Standard
+Worth of attention are the poor results in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:The_chfdb/chf13_dataset"
 
 \end_inset
 
+.
+ These are mainly due to the fact that the anomalies in it were marked as
+ instantaneous events, while the underlying phenomena, represented by the
+ behavior of the data stream, spanned a period of time.
+\end_layout
 
+\begin_layout Standard
+The recommended way of using MGNG-AD is under human supervision.
+ It should not be the sole responsible of raising alarms, but rather it
+ should be used to recognize potentially anomalous regions in a data stream,
+ relying its automated analysis to a human for final classification.
+ Feeding the time series to MGNG-AD after some other online process has
+ cleared it from known anomalies could also prove useful.
+ Such two stages process would leave a cleaner signal, making it easier
+ for MGNG-AD to detect other kinds of anomalies.
+\end_layout
+
+\begin_layout Standard
+Regarding other aspects of the methods, even though the HTM model needs
+ a gargantuan amount of parameters (approx.
+ 50 plus 6-9 more for each input column) the swarm functionality allows
+ the user to set them up quite easily.
+ On the other hand the OPF does not allow the creation of a model for prediction
+ of multiple variables, hence the need in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Multi-dimensional_time_series"
+
+\end_inset
+
+ of training multiple HTM models.
+ Moreover, HTM is a much more complex approach.
+ Its goal is not to merely detect anomalies, but to replicate part of the
+ mammalian's brain functionality.
+ Its hierarchical structure could admittedly allow it to discover certain
+ types of anomalies that are beyond the capabilities of MGNG-AD.
+ That same complexity, however, made HTM many times slower than MGNG-AD.
+ For instance, in the experiment of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:The_slpdb/spl37_dataset-1"
+
+\end_inset
+
+ swarming 300 rows of data took 00:09:52 and processing the whole 300000
+ by the HTM model took 3:44:13; in contrast processing the same amount of
+ data by the MGNG-AD model took only 00:26:55
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+CPU: Intel(R) Core(TM) i7-3630QM @ 2.40GHz; RAM: 16GB.
+\end_layout
+
+\end_inset
+
+.
+ This means that the MGNG-AD method allows the processing in real time of
+ streams with far higher sampling frequency than the HTM method.
 \end_layout
 
 \begin_layout Section
 Future Work
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:4.3"
+name "sec:Future_Work"
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Define the anomaly score as:
+\begin_inset Formula 
+\begin{align*}
+a_{t} & \coloneqq\rho\cdot a_{t-1}+d_{t}\left(0\le\rho<0.5,a_{t-1}\in\mathcal{A}\right)
+\end{align*}
+
+\end_inset
+
+with
+\begin_inset Formula 
+\begin{align*}
+d_{t} & \coloneqq D_{t}^{f,w}\left(\mathcal{K}^{Q},\mathcal{K}^{P}\right)
+\end{align*}
+
+\end_inset
+
+The extra  term 
+\begin_inset Formula $\rho\cdot a_{t-1}$
+\end_inset
+
+ should have, when 
+\begin_inset Formula $\rho>0$
+\end_inset
+
+, the following consequences:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a high anomaly level will last for more time steps than with 
+\begin_inset Formula $\rho=0$
+\end_inset
+
+, and
+\end_layout
+
+\begin_layout Itemize
+the anomaly level will rise more quickly.
+\end_layout
+
+\begin_layout Standard
+Perform experiments to contrast with the normal MGNG-AD.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Use some concepts from the HTM and NuPIC:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+develop a hierarchical model: One MGNG model reads directly from the input,
+ a second MGNG model uses as inputs the neurons from the first, and so on.
+ Maybe more complex or other kinds of anomalies can be detected.
+\end_layout
+
+\begin_layout Itemize
+develop a predictive model: from the neuron's context and weight vectors
+ try to determine the next input.
+\end_layout
+
+\begin_layout Itemize
+use an approach similar to swarming for parameter selection.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Modify MGNG to use GNG-U 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fritzke1997"
+
+\end_inset
+
+ instead of plain GNG.
 \end_layout
 
 \end_body

@@ -1,3 +1,17 @@
+#!/usr/bin/env python
+# ----------------------------------------------------------------------
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses.
+# ----------------------------------------------------------------------
 '''
 @author: Mario Tambos
 '''
@@ -78,8 +92,8 @@ class AMGNG:
         if self.t % self.ma_recalc_delay == 0:
             self.anomaly_mean = bn.nanmean(self.ma_window)
             self.anomaly_std = bn.nanstd(self.ma_window, ddof=1)
-        if self.anomaly_mean is None:
-            anomaly_density = 0.5
+        if self.anomaly_mean is None or self.t < len(self.ma_window):
+            anomaly_density = 0
         else:
             anomaly_density = norm.cdf(ret_val, loc=self.anomaly_mean,
                                        scale=self.anomaly_std)

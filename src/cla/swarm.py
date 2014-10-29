@@ -1,4 +1,23 @@
 #!/usr/bin/env python
+# ----------------------------------------------------------------------
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses.
+# ----------------------------------------------------------------------
+
+'''
+Optimizes an OPF model's parameters based on some data.
+Based on https://github.com/numenta/nupic/tree/master/examples/opf/clients/hotgym/prediction/one_gym
+'''
+
 import os
 import pprint
 
@@ -24,7 +43,7 @@ def write_model_params(cwd, model_params, model_name=None):
 
 
 def swarm(cwd, input_file, swarm_description, model_name=None,
-          write_model=False):
+          write_model=False, max_workers=4):
     swarm_work_dir = os.path.abspath('swarm')
     if not os.path.exists(swarm_work_dir):
         os.mkdir(swarm_work_dir)
@@ -34,7 +53,8 @@ def swarm(cwd, input_file, swarm_description, model_name=None,
     label = swarm_description['streamDef']['info']
     model_params = permutations_runner.runWithConfig(
                                       swarm_description,
-                                      {'maxWorkers': 4, 'overwrite': True},
+                                      {'maxWorkers': max_workers,
+                                       'overwrite': True},
                                       outputLabel=label,
                                       outDir=swarm_work_dir,
                                       permWorkDir=swarm_work_dir

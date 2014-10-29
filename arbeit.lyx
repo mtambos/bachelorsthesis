@@ -7,13 +7,38 @@
 
 
 % Konfiguration laden
-\include{includes/configuration}
+\input{includes/configuration}
 
 % Shortcuts laden
-\include{includes/shortcuts}
+\input{includes/shortcuts}
 
 % Das Hauptdokument
 \providecommand{\e}[1]{\ensuremath{\times E^{#1}}}
+
+\makeatletter
+\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi\lst@visiblespace}}
+\makeatother
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+  language=Python,
+  numbers=left,
+  columns=flexible,
+  keepspaces=true
+}
+% Added by lyx2lyx
+\usepackage{listings}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -36,6 +61,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement h
 \paperfontsize 11
 \spacing single
 \use_hyperref true
@@ -239,6 +265,56 @@ filename "kapitel/B_appendix.lyx"
 \begin_inset CommandInset nomencl_print
 LatexCommand printnomenclature
 set_width "auto"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{
+\backslash
+nomname}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstlistoflistings{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Source code index}
+\end_layout
 
 \end_inset
 

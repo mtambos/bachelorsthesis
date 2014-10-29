@@ -1,7 +1,21 @@
 #!/usr/bin/env python
+# ----------------------------------------------------------------------
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses.
+# ----------------------------------------------------------------------
 '''
 Experiment on multidimensional ECG using
 the chfdb/chf13 dataset from PhysioNet.
+@author: Mario Tambos
 '''
 from __future__ import division, print_function
 
@@ -10,7 +24,7 @@ import os
 import pandas as pd
 import numpy as np
 import inspect
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 import utils
 
@@ -26,10 +40,12 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
         print('Training AMGNG model...')
         out_file = os.path.join(cwd, 'out_amgng_{}'.format(amgng_file))
         full_path = os.path.join(cwd, amgng_file)
+        start = datetime.now()
         amgng_main(input_file=full_path, output_file=out_file,
                    buffer_len=buffer_len, index_col='timestamp',
                    skip_rows=[1,2], ma_window=ma_window,
                    ma_recalc_delay=ma_recalc_delay)
+        amgng_time = datetime.now() - start
 
         print('Reading results...')
         amgng_df = pd.read_csv(out_file, parse_dates=True,
@@ -40,6 +56,7 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
         if plot:
             utils.plot_results(amgng_df, ['ECG1'], 'anomaly_score',
                                'anomaly_density', '[rs]')
+        print('Time taken: amgng={}'.format(amgng_time))
 
     cla_df = None
     if do_cla:
@@ -78,10 +95,14 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
             'iterationCount': buffer_len,
             'swarmSize': 'large'
         }
+        start = datetime.now()
         swarm(cwd=cwd, input_file=cla_file,
               swarm_description=SWARM_DESCRIPTION)
+        swarm_time = datetime.now() - start
+        start = datetime.now()
         cla_main(cwd=cwd, input_file=full_path, output_name=out_file, plot=False,
                  predicted_field='ECG1')
+        cla_time = datetime.now() - start
 
         print('Reading results...')
         cla_df = pd.read_csv(out_file, parse_dates=True, index_col='timestamp')
@@ -91,6 +112,7 @@ def main(cwd, do_amgng, amgng_file, ma_window, ma_recalc_delay,
         if plot:
             utils.plot_results(cla_df, ['ECG1'], 'anomaly_score',
                                'anomaly_likelihood', '[rs]')
+        print('Time taken: swarm={}, cla={}'.format(swarm_time, cla_time))
     return amgng_df, cla_df
 
 if __name__ == '__main__':
