@@ -64,12 +64,12 @@ class NuPICOutput(object):
 class NuPICFileOutput(NuPICOutput):
 
 
-  def __init__(self, columns, *args, **kwargs):
+  def __init__(self, columns, index_name='timestamp', *args, **kwargs):
     super(NuPICFileOutput, self).__init__(*args, **kwargs)
     self.outputFiles = []
     self.outputWriters = []
     self.lineCount = 0
-    headerRow = ['timestamp'] + columns + ['anomaly_score', 'anomaly_likelihood']
+    headerRow = [index_name] + columns + ['anomaly_score', 'anomaly_likelihood']
     outputFileName = "%s" % self.name
     print "Preparing to output %s data to %s" % (self.name, outputFileName)
     self.outputFile = open(outputFileName, "w")

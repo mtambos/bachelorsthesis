@@ -38,7 +38,6 @@
   keepspaces=true
 }
 % Added by lyx2lyx
-\usepackage{listings}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -244,7 +243,7 @@ filename "kapitel/A_appendix.lyx"
 
 
 \begin_inset Note Comment
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset CommandInset include

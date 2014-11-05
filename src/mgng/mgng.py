@@ -32,6 +32,30 @@ import numpy as np
 import numpy.linalg as lnp
 import numexpr as ne
 
+from numbapro import autojit
+
+@autojit(target='cpu')
+def distances(xt, w, c, c_t, alpha):
+    r'''
+    d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+
+    '''
+    tot = np.sum((1 - alpha)*(xt - w)**2 + alpha*(c_t - c)**2, axis=1)
+    return tot
+
+
+@autojit(target='cpu')
+def find_winner_neurons(xt, w, c, c_t, alpha):
+    r'''
+    find winner r := arg min_{n \in K} d_n(t)
+    and second winner s := arg min_{n \in K\{r}} d_n(t)
+    where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
+
+    '''
+    dists = distances(xt, w, c, c_t, alpha)
+    r, q = dists.argpartition(1)[:2]
+    return [dists[r], r, dists[q], q]
+
 
 class MGNG:
 
@@ -64,30 +88,6 @@ class MGNG:
         # and random weight and context vectors
         self._add_node()
         self._add_node()
-
-    def distances(self, xt):
-        '''
-        d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-        '''
-        w = self.weights
-        c = self.contexts
-        c_t = self.c_t
-        alpha = self.alpha
-        # tot = ne.evaluate('sum((1 - alpha)*(xt - w)**2 +'
-        #                   '    alpha*(c_t-c)**2, axis=1)')
-        tot = np.add.reduce((1-self.alpha)*(xt-self.weights)**2 +
-                            self.alpha*(self.c_t-self.contexts)**2, axis=1)
-        return tot
-
-    def find_winner_neurons(self, xt):
-        '''
-        find winner r := arg min_{n \in K} d_n(t)
-        and second winner s := arg min_{n \in K\{r}} d_n(t)
-        where d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
-        '''
-        distances = self.distances(xt)
-        r, q = distances.argpartition(1)[:2]
-        return (distances[r], r), (distances[q], q)
 
     def _update_neighbors(self, r, xt):
         '''
@@ -202,9 +202,12 @@ class MGNG:
         '''
         # 6. find winner r and second winner s
         xt = np.reshape(xt, newshape=self.dimensions)
-        r, s = self.find_winner_neurons(xt)
-        r_dist, r = r
-        s_dist, s = s
+        winners = find_winner_neurons(xt, self.weights, self.contexts,
+                                      self.c_t, self.alpha)
+        r_dist = winners[0]
+        r = int(winners[1])
+        s_dist = winners[2]
+        s = int(winners[3])
 
         # 7. Ct+1 := (1 - \beta)*w_r + \beta*c_r
         c_t1 = (1 - self.beta) * self.weights[r] + self.beta * self.contexts[r]

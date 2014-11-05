@@ -252,7 +252,7 @@ def plot_results(df, data_columns, score_column, likelihood_column,
 
 
 def f1_score(thrs, df, col, match, annotation_column='Annotation',
-             scalar=False, invert_score=False):
+             scalar=None, invert_score=False):
     detected = len(df[df[col] >thrs])
     annotation_indexer = df[annotation_column].str.match(match, na=False,
                                                  as_indexer=True)
@@ -271,8 +271,12 @@ def f1_score(thrs, df, col, match, annotation_column='Annotation',
         score = 0
     if invert_score:
         score = 1 - score
-    if scalar:
+    if scalar == 'F1':
         return score
+    elif scalar == 'precision':
+        return precision
+    elif scalar == 'recall':
+        return recall
     else:
         return {'column': col, 'threshold': thrs, 'detected': detected,
                 'real': real, 'true_positives': true_positives,

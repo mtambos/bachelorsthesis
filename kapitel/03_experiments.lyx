@@ -86,23 +86,21 @@ filename "03_1_Overview.lyx"
 
 \begin_inset CommandInset include
 LatexCommand input
-filename "03_2_1-dimensional_Time_Series.lyx"
+filename "03_2_Mackey-Glass_Time_Series.lyx"
 
 \end_inset
 
 
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand input
-filename "03_3_Multi-dimensional_Time_Series.lyx"
+filename "03_3_Random_Time_Series.lyx"
 
 \end_inset
 
 
-\end_layout
+\begin_inset CommandInset include
+LatexCommand input
+filename "03_4_Time_Series_shift .lyx"
 
 \end_inset
 

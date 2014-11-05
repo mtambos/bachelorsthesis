@@ -171,7 +171,14 @@ status collapsed
 \begin_layout Plain Layout
 Example of ECG signal.
  The point in time marked with a V indicates an abnormal contraction.
- (Source: PhysioNet - incartdb/I01 (V5))
+ (Source: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PhysioNet"
+
+\end_inset
+
+ - incartdb/I01 (V5))
 \end_layout
 
 \end_inset
@@ -219,7 +226,7 @@ ty with respect to previous sequences.
  For instance, if an experiment's goal is to know whether patients are having
  a tachycardia episode by observing their heart rate and their level of
  physical activity (e.g.
- measured by a 3-axis accelerometer): a high heart rate when resting should
+ measured by a 3-axis accelerometer), a high heart rate when resting should
  be anomalous, a high heart rate when exercising should not.
 \end_layout
 
@@ -249,46 +256,92 @@ description "Merge Growing Neural Gas for Anomaly Detection"
 \end_inset
 
 , for short).
- The characteristics of MGNG-AD are sumarized as follows:
+ The characteristics of MGNG-AD are summarized as follows:
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 Detects contextual anomalies in time series.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 Assigns to each point an anomaly score, not a category.
 \end_layout
 
-\begin_layout Itemize
-Able to handle multi-dimensional time series.
+\begin_layout Enumerate
+Is able to handle multi-dimensional time series.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 Uses real valued vectors as inputs.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 Uses an unsupervised learning approach.
 \end_layout
 
-\begin_layout Itemize
-Performs anomaly detection on data streams.
+\begin_layout Enumerate
+Performs anomaly detection on data streams (online anomaly detection).
 \end_layout
 
-\begin_layout Itemize
-Evolves its internal model constantly.
+\begin_layout Enumerate
+Evolves its internal model constantly (online model evolution).
 \end_layout
 
-\begin_layout Itemize
-Makes two assumptions about its input: that the input can be modeled using
- MGNG, and that normal cases are more common in the data than abnormal ones.
+\begin_layout Enumerate
+Makes the assumption that normal cases are more common in the data than
+ abnormal ones.
+\end_layout
+
+\begin_layout Enumerate
+Makes the assumption that the input can be modeled using MGNG.
 \end_layout
 
 \begin_layout Standard
 The approach used will be experimental: instead of attempting to prove formally
  that the developed method works, experiments will be designed and executed
- that compare the method's performance with similar methods and human experts.
+ that compare the method's performance with a similar method.
+\end_layout
+
+\begin_layout Standard
+By similar is meant another method that covers characteristics 1.-8.
+ of the previous list.
+ In particular, offline methods are not deemed suitable for comparison,
+ because such methods can make use information not available to online methods
+ -- the can see both past and future, in a manner of speaking -- to build
+ better models (see 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "p. 225"
+key "Aggarwal2013"
+
+\end_inset
+
+).
+ Moreover, the target use is also different -- offline models can be used
+ only when all the relevant data is available, online models when is important
+ to analyze data as it comes.
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Plain Layout
+In particular, supervised methods are not deemed comparable to MGNG-AD because
+ said methods are specialized in detecting certain types of anomalies, the
+ ones they were trained to detect, while most unsupervised methods, MGNG-AD
+ included, define abnormality only in relation to the normal behavior of
+ the data (see 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "p. 188"
+key "Aggarwal2013"
+
+\end_inset
+
+).
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -319,9 +372,10 @@ key "Chandola2009"
  Using this nomenclature, MGNG-AD should be classified as an online, unsupervise
 d, score-based detector of contextual anomalies on sequential, multivariate,
  continuous (meaning the attributes are real valued) data.
- On problem with this survey is that all time-series-related methods described
+ One problem with this survey is that all time-series-related methods described
  are either offline, supervised or univariate approaches, and thus not comparabl
 e with MGNG-AD.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -463,7 +517,8 @@ key "OPF2014"
 
 ), that can be used together with the CLA to perform anomaly detection on
  time series.
- HTM have in fact all charachteristics mentioned in 
+ HTM covers, in fact, characteristics 1.-8.
+ from 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Objective_statement"
@@ -511,22 +566,10 @@ key "Wei2005"
 
  build on SAX by presenting an algorithm for online anomaly detection; a
  key idea of the present work -- the comparison of two models of the input
- data -- was inspired by their work.
+ data -- was inspired by their work; the method presented by them, however,
+ only handles univariate time series, and hence will not be used for comparison.
  SAX-based anomaly detectors do not preserve the input space's dimensionality,
  while the anomaly detector presented in this work does.
- Other difference with the present work is that SAX-based anomaly detectors
- have to either process the entire time series at each time step, or use
- one or several fixed size sliding windows, thus 
-\begin_inset Quotes eld
-\end_inset
-
-forgetting
-\begin_inset Quotes erd
-\end_inset
-
- parts of the time series; the method presented in this work manages to
- build a compact representation of the entire time series, therefore avoiding
- the need to forget parts of the input for computational speed reasons.
 \end_layout
 
 \begin_layout Standard
@@ -676,14 +719,14 @@ reference "chap:Fundamentals"
 
 \end_inset
 
- the MGNG-AD method is presented; firstly in 
+ the MGNG-AD method is presented; first, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Basic_definitions"
 
 \end_inset
 
- some concepts and terms are defined, then, in 
+, some concepts and terms are defined, then, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Method_intuition"
@@ -728,7 +771,7 @@ Chapref{Experiments_with_MGNG-AD}
 \end_inset
 
  describes a set of experiments in which the MGNG-AD analysis results are
- compared to the OPF's.
+ compared to the HTM's.
  
 \begin_inset ERT
 status open
@@ -742,8 +785,8 @@ Secref{Overview}
 
 \end_inset
 
- provides an overview of the CLA and OPF, together with the common setup
- decisions for the experiment and the experiment's evaluation methodology.
+ provides an overview of the HTM, CLA and OPF, together with the common
+ setup decisions for the experiment and the experiment's evaluation methodology.
  
 \begin_inset ERT
 status open
@@ -752,12 +795,21 @@ status open
 
 
 \backslash
-Secref{1-dimensional_time_series}
+Secref{Mackey-Glass_time_series}
 \end_layout
 
 \end_inset
 
- covers this work's baseline case: online one-dimensional anomaly detection.
+ covers experiments performed on multidimensional Mackey-Glass time series,
+ while 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:random_ts"
+
+\end_inset
+
+ presents experiments using multidimensional, randomly generated time series;
+ in both cases anomalies have been introduced in the time series under scrutiny.
  
 \begin_inset ERT
 status open
@@ -766,12 +818,14 @@ status open
 
 
 \backslash
-Secref{Multi-dimensional_time_series}
+Secref{ts_shift}
 \end_layout
 
 \end_inset
 
- expands on the previous section by analyzing multi-dimensional time series.
+, on the other hand, provides an analysis of how the MGNG-AD and HTM models
+ behave when presented with a particular change of behavior of the time
+ series: the mean shift.
 \end_layout
 
 \begin_layout Standard
@@ -782,8 +836,7 @@ reference "chap:4"
 
 \end_inset
 
- summarizes the results obtained from the experiments, presents MGNG-AD's
- advantages and disadvantages, and suggests directions for future work.
+ presents the conclusions, and suggests directions for future work.
 \end_layout
 
 \end_body

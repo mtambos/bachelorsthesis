@@ -1,14 +1,14 @@
 import Oger as og
 import numpy as np
 import pandas as pd
-from datetime import datetime
+
 
 def _modify_signal(signal, n_samples, sample_len, increases,
                    start_increase, stop_increase,
                    start_decrease, stop_decrease,
                    in_place=False):
     increase_len = stop_increase - start_increase
-    increases = np.asarray(increases)
+    increases = np.asarray(increases, dtype=float)
     range_increase = increases * np.mgrid[:increase_len,:n_samples][0]/increase_len
     if in_place:
         ret_val = signal
@@ -26,13 +26,12 @@ def _modify_signal(signal, n_samples, sample_len, increases,
     for i in range(n_samples):
         columns.append('signal_{}_samples_{}d'.format(sample_len, i))
     ret_val = pd.DataFrame(data=ret_val, columns=columns,
-                           index=pd.date_range(start=datetime.now(), freq='1S',
-                                               periods=1000, name='timestamp'))
+                           index=pd.Index(np.arange(sample_len),
+                                          name='step'))
     annotations = pd.DataFrame(data=np.array(['']*sample_len, dtype=np.str),
                                columns=['Annotation'],
-                               index=pd.date_range(start=datetime.now(),
-                                                   periods=1000, freq='1S',
-                                                   name='timestamp'))
+                               index=pd.Index(np.arange(sample_len),
+                                              name='step'))
     annotations['Annotation'][start_increase:stop_decrease] = 'A'    
 
     return ret_val, annotations

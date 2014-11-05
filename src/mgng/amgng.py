@@ -17,16 +17,18 @@
 '''
 from __future__ import division, print_function
 from collections import deque
+
+import bottleneck as bn
 import inspect
-
-from ring_buffer import RingBuffer
-
-import mgng
-import numpy as np
+from numbapro import autojit
 import numexpr as ne
+import numpy as np
 import numpy.linalg as lnp
 from scipy.stats import norm
-import bottleneck as bn
+
+from cdf_table import CDF_TABLE
+import mgng
+from ring_buffer import RingBuffer
 
 
 class AMGNG:
@@ -38,7 +40,8 @@ class AMGNG:
                  prest_eta=0.9995, prest_e_w=0.05, prest_e_n=0.0006,
                  pst_alpha=0.5, pst_beta=0.75, pst_delta=0.5,
                  pst_eta=0.9995, pst_e_w=0.05, pst_e_n=0.0006,
-                 ma_window_len=None, ma_recalc_delay=1):
+                 ma_window_len=None, ma_recalc_delay=1, ddof=1):
+
         values = inspect.getargvalues(inspect.currentframe())[3]
         print('Init parameters: {}'.format(values))
         self.comparison_function = comparison_function
@@ -73,6 +76,7 @@ class AMGNG:
             # self.ma_window = deque(maxlen=ma_window_len)
             self.ma_window = RingBuffer([np.nan]*ma_window_len)
         self.ma_recalc_delay = ma_recalc_delay
+        self.ddof = ddof
         self.anomaly_mean = None
         self.anomaly_std = None
         self.t = 0
@@ -91,16 +95,22 @@ class AMGNG:
         self.ma_window.append(ret_val)
         if self.t % self.ma_recalc_delay == 0:
             self.anomaly_mean = bn.nanmean(self.ma_window)
-            self.anomaly_std = bn.nanstd(self.ma_window, ddof=1)
-        if self.anomaly_mean is None or self.t < len(self.ma_window):
+            self.anomaly_std = bn.nanstd(self.ma_window, ddof=self.ddof)
+        if self.anomaly_std is None or self.t < len(self.ma_window):
             anomaly_density = 0
         else:
-            anomaly_density = norm.cdf(ret_val, loc=self.anomaly_mean,
-                                       scale=self.anomaly_std)
+            normalized_score = (ret_val - self.anomaly_mean)/self.anomaly_std
+            if -4 <= normalized_score <= 4:
+                anomaly_density = CDF_TABLE[round(normalized_score, 3)]
+            elif normalized_score > 4:
+                anomaly_density = 1.
+            else:
+                anomaly_density = 0.
         self.t += 1
         return ret_val, anomaly_density
 
 
+@autojit(target='cpu')
 def compare_models(present_model, past_model, alpha):
     tot = [0.]
     ps_w = past_model.weights
@@ -110,9 +120,9 @@ def compare_models(present_model, past_model, alpha):
         pr_x_c = present_model.contexts[pr_x]
         # dists = ne.evaluate('sum((1-alpha)*(pr_x_w - ps_w)**2 +'
         #                     '    alpha*(pr_x_c - ps_c)**2, axis=1)')
-        dists = np.add.reduce((1 - alpha)*(pr_x_w - ps_w)**2 +
-                              alpha*(pr_x_c - ps_c)**2, axis=1)
-        # print(dists)
+        # dists = np.add.reduce((1 - alpha)*(pr_x_w - ps_w)**2 +
+        #                       alpha*(pr_x_c - ps_c)**2, axis=1)
+        dists = mgng.distances(pr_x_w, ps_w, ps_c, pr_x_w, alpha)
         ps_x = np.nanargmin(dists)
         tot += dists[ps_x]
     return tot[0] / len(present_model.model.nodes())

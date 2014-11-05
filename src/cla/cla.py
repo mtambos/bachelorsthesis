@@ -34,15 +34,19 @@ def create_model(params, predictedField):
 
 
 def process_row(row, fields, predicted_field, model, shifter,
-                output_handler, counter):
+                output_handler, counter, datetime_index=True):
     '''
     Updates the model with the row's data. row[0] should have the timestamp,
     row[1:] should correspond to fields.
     '''
     if counter % 100 == 0:
         print 'read {} lines'.format(counter)
-    timestamp = du_parser.parse(row[0])
-    input_dict = {'timestamp': timestamp}
+    if datetime_index:
+        index = du_parser.parse(row[0])
+        input_dict = {'timestamp': index}
+    else:
+        index = int(row[0])
+        input_dict = {'step': index}
     values = [0]*len(fields)
     for i, field in enumerate(fields, 1):
         input_dict[field] = float(row[i])
@@ -53,7 +57,7 @@ def process_row(row, fields, predicted_field, model, shifter,
     result = shifter.shift(result)
     prediction = result.inferences['multiStepBestPredictions'][1]
     anomalyScore = result.inferences['anomalyScore']
-    output_handler.write(timestamp, p_val, prediction, anomalyScore, values=values)
+    output_handler.write(index, p_val, prediction, anomalyScore, values=values)
 
 
 def open_input_file(input_file):
@@ -66,14 +70,14 @@ def open_input_file(input_file):
     csv_reader = csv.reader(input_file)
     # get column names
     fields = csv_reader.next()
-    fields = [f for f in fields if 'timestamp' not in f]
+    fields = [f for f in fields if f not in ('timestamp', 'step')]
     # skip header rows
     csv_reader.next()
     csv_reader.next()
     return fields, csv_reader, input_file
 
 
-def prepare_run(fields, predicted_field, plot, output_name):
+def prepare_run(fields, predicted_field, plot, output_name, index_name='timestamp'):
     '''
     Creates an output handler and inference shifter to use when performing
     model learning.
@@ -82,6 +86,7 @@ def prepare_run(fields, predicted_field, plot, output_name):
         output = nupic_output.NuPICPlotOutput(y_label=predicted_field, name=output_name)
     else:
         output = nupic_output.NuPICFileOutput(columns=fields + ['prediction'],
+                                              index_name=index_name,
                                               name=output_name)
     shifter = InferenceShifter()
     return shifter, output
