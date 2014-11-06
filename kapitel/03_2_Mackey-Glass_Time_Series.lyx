@@ -1938,6 +1938,54 @@ For this experiment the sub-sequence
 \end_inset
 
  was modified in its frequency domain as explained previously.
+ A detail of the result, compared to the original, for one of the component
+ time series can be seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:freq_noise_detail"
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_freq_noise/freq_noise_detail.png
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Detail of the clean part of a Mackey-Glass time series (top), and of the
+ part of a Mackey-Glass time series with noise added to its frequency domain
+ (bottom).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:freq_noise_detail"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1960,7 +2008,7 @@ Figref{mackey-glass_mgng-ad_freq_noise, mackey-glass_htm_freq_noise}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Frameless

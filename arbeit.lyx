@@ -38,6 +38,7 @@
   keepspaces=true
 }
 % Added by lyx2lyx
+\usepackage{textgreek}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false

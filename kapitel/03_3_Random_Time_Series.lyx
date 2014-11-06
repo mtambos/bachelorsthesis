@@ -366,8 +366,8 @@ Detail of the previous plot, centered on the anomalous region.
 \begin_inset Caption
 
 \begin_layout Plain Layout
-MGNG-AD model's results for randomly generated time series with added random
- noise in the time domain.
+MGNG-AD model's results for a randomly generated time series with added
+ random noise in the time domain.
 \end_layout
 
 \end_inset
@@ -406,7 +406,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_fix_time_noise/cla_scores_plot.png
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/random_ts_150000_time_noise/cla_scores_plot.png
 	width 100text%
 
 \end_inset
@@ -439,7 +439,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_fix_time_noise/cla_whole_plot.png
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/random_ts_150000_time_noise/cla_whole_plot.png
 	width 100text%
 
 \end_inset
@@ -474,7 +474,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_fix_time_noise/cla_detail_plot.png
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/random_ts_150000_time_noise/cla_detail_plot.png
 	width 100text%
 
 \end_inset
@@ -492,7 +492,7 @@ Detail of the previous plot, centered on the anomalous region.
 \begin_inset Caption
 
 \begin_layout Plain Layout
-HTM model's results for randomly generated time series with added random
+HTM model's results for a randomly generated time series with added random
  noise in the time domain.
 \end_layout
 
@@ -517,7 +517,7 @@ name "fig:random_ts_htm_time_noise"
 The statistics of the experiment are shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:random_ts_time_stats"
+reference "tab:mixed_ts_mackey_glass_time_stats"
 
 \end_inset
 
@@ -653,7 +653,10 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $0.1410$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -685,7 +688,10 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $139218$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -717,7 +723,10 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $1776$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -749,7 +758,10 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $137442$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -781,7 +793,10 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $24$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -813,7 +828,10 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $0.0128$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -845,7 +863,10 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $0.9867$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -877,7 +898,10 @@ F1-Score
 \begin_inset Text
 
 \begin_layout Plain Layout
-TODO
+\begin_inset Formula $0.0252$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -888,11 +912,14 @@ TODO
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a randomly generated time series
- with added added random noise in the time domain.
+ with added random noise in the time domain.
 \end_layout
 
 \end_inset
@@ -968,7 +995,7 @@ Figref{random_ts_mgng-ad_fix_time_noise, random_ts_htm_fix_time_noise}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Frameless
@@ -1015,7 +1042,7 @@ width "100text%"
 special "none"
 height "1in"
 height_special "totalheight"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1114,7 +1141,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_time_noise_wide/cla_scores_plot.png
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/random_ts_150000_fix_time_noise /cla_scores_plot.png
 	width 100text%
 
 \end_inset
@@ -1147,7 +1174,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_time_noise_wide/cla_whole_plot.png
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/random_ts_150000_fix_time_noise /cla_whole_plot.png
 	width 100text%
 
 \end_inset
@@ -1182,7 +1209,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mackey_glass_150000_time_noise_wide/cla_detail_plot.png
+	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/random_ts_150000_fix_time_noise /cla_detail_plot.png
 	width 100text%
 
 \end_inset
@@ -1228,7 +1255,7 @@ name "fig:random_ts_htm_fix_time_noise"
 The statistics of the experiment are shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:random_ts_fix_time_stats"
+reference "tab:mixed_ts_random_time_stats"
 
 \end_inset
 
@@ -1662,7 +1689,37 @@ name "sub:random_ts_summary"
 \end_layout
 
 \begin_layout Standard
-TODO
+In both experiment HTM seems to be completely unable to spot the anomalies,
+ as both its low F1-Scores and the seemingly random behavior of its anomaly_like
+lihood show.
+\end_layout
+
+\begin_layout Standard
+The MGNG-AD mode, on the contrary, reacted strongly to the abnormal subsequences
+ in both experiments, as seen in 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+figref{random_ts_mgng-ad_time_noise, random_ts_mgng-ad_fix_time_noise}
+\end_layout
+
+\end_inset
+
+.
+ It did not, however achieve the same high F1-Scores as in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Mackey-Glass_time_series"
+
+\end_inset
+
+.
+ This can be explained by its high anomaly_scores at the start of the time
+ series, shown in the same figures.
 \end_layout
 
 \end_body

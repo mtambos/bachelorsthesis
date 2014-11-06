@@ -105,6 +105,13 @@ filename "03_4_Time_Series_shift .lyx"
 \end_inset
 
 
+\begin_inset CommandInset include
+LatexCommand input
+filename "03_5_Mixed_Time_Series.lyx"
+
+\end_inset
+
+
 \end_layout
 
 \end_body

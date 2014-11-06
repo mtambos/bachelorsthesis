@@ -112,12 +112,8 @@ Regarding other aspects of the methods, even though the HTM model needs
  Its hierarchical structure could admittedly allow it to discover certain
  types of anomalies that are beyond the capabilities of MGNG-AD.
  That same complexity, however, made HTM many times slower than MGNG-AD.
- In average it took around 600 
-\begin_inset Formula $\mu$
-\end_inset
-
-s for the MGNG-AD model to process a 4-dimensional data-point, whereas the
- HTM needed approximately 10 ms for the same
+ In average it took around 600 μs for the MGNG-AD model to process a 4-dimension
+al data-point, whereas the HTM needed approximately 10 ms for the same
 \begin_inset Foot
 status collapsed
 
