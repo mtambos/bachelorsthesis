@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass book
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,15 +29,24 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 0
-\use_mathdots 0
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -117,11 +126,115 @@ name "src:mgng_py"
  
 \begin_inset listings
 inline false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
-from __future__ import print_function, division
+#!/usr/bin/env python
+\end_layout
+
+\begin_layout Plain Layout
+
+# -----------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+# This program is free software: you can redistribute it and/or modify
+\end_layout
+
+\begin_layout Plain Layout
+
+# it under the terms of the GNU General Public License version 3 as
+\end_layout
+
+\begin_layout Plain Layout
+
+# published by the Free Software Foundation.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# This program is distributed in the hope that it will be useful,
+\end_layout
+
+\begin_layout Plain Layout
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+\end_layout
+
+\begin_layout Plain Layout
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+\end_layout
+
+\begin_layout Plain Layout
+
+# See the GNU General Public License for more details.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# You should have received a copy of the GNU General Public License
+\end_layout
+
+\begin_layout Plain Layout
+
+# along with this program.
+  If not, see http://www.gnu.org/licenses.
+\end_layout
+
+\begin_layout Plain Layout
+
+# -----------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+@author: Mario Tambos
+\end_layout
+
+\begin_layout Plain Layout
+
+Based on:
+\end_layout
+
+\begin_layout Plain Layout
+
+    Andreakis, A.; Hoyningen-Huene, N.
+ v.
+ & Beetz, M.
+\end_layout
+
+\begin_layout Plain Layout
+
+    Incremental unsupervised time series analysis using merge growing neural
+ gas
+\end_layout
+
+\begin_layout Plain Layout
+
+    Advances in Self-Organizing Maps, Springer, 2009, 10-18
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
 \end_layout
 
 \begin_layout Plain Layout
@@ -130,12 +243,7 @@ from __future__ import print_function, division
 
 \begin_layout Plain Layout
 
-from collections import defaultdict
-\end_layout
-
-\begin_layout Plain Layout
-
-from functools import partial
+from __future__ import division
 \end_layout
 
 \begin_layout Plain Layout
@@ -163,12 +271,107 @@ import numpy as np
 
 \begin_layout Plain Layout
 
-import numpy.linalg as lnp
 \end_layout
 
 \begin_layout Plain Layout
 
-import numexpr as ne
+\end_layout
+
+\begin_layout Plain Layout
+
+def distances(xt, w, c, c_t, alpha):
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'''
+\end_layout
+
+\begin_layout Plain Layout
+
+    d_n(t) = (1 - 
+\backslash
+alpha) * ||x_t - w_n||^2 + 
+\backslash
+alpha||C_t - c_n||^2
+\end_layout
+
+\begin_layout Plain Layout
+
+    '''
+\end_layout
+
+\begin_layout Plain Layout
+
+    tot = np.sum((1 - alpha)*(xt - w)**2 + alpha*(c_t - c)**2, axis=1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    return tot
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def find_winner_neurons(xt, w, c, c_t, alpha):
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'''
+\end_layout
+
+\begin_layout Plain Layout
+
+    find winner r := arg min_{n 
+\backslash
+in K} d_n(t)
+\end_layout
+
+\begin_layout Plain Layout
+
+    and second winner s := arg min_{n 
+\backslash
+in K
+\backslash
+{r}} d_n(t)
+\end_layout
+
+\begin_layout Plain Layout
+
+    where d_n(t) = (1 - 
+\backslash
+alpha) * ||x_t - w_n||^2 + 
+\backslash
+alpha||C_t - c_n||^2
+\end_layout
+
+\begin_layout Plain Layout
+
+    '''
+\end_layout
+
+\begin_layout Plain Layout
+
+    dists = distances(xt, w, c, c_t, alpha)
+\end_layout
+
+\begin_layout Plain Layout
+
+    r, q = dists.argpartition(1)[:2]
+\end_layout
+
+\begin_layout Plain Layout
+
+    return [dists[r], r, dists[q], q]
 \end_layout
 
 \begin_layout Plain Layout
@@ -339,138 +542,6 @@ empty;
 \begin_layout Plain Layout
 
         self._add_node()
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    def distances(self, xt):
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
-        d_n(t) = (1 - 
-\backslash
-alpha) * ||x_t - w_n||^2 + 
-\backslash
-alpha||C_t - c_n||^2
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
-        w = self.weights
-\end_layout
-
-\begin_layout Plain Layout
-
-        c = self.contexts
-\end_layout
-
-\begin_layout Plain Layout
-
-        c_t = self.c_t
-\end_layout
-
-\begin_layout Plain Layout
-
-        alpha = self.alpha
-\end_layout
-
-\begin_layout Plain Layout
-
-        # tot = ne.evaluate('sum((1 - alpha)*(xt - w)**2 +'
-\end_layout
-
-\begin_layout Plain Layout
-
-        #                   '    alpha*(c_t-c)**2, axis=1)')
-\end_layout
-
-\begin_layout Plain Layout
-
-        tot = np.add.reduce((1-self.alpha)*(xt-self.weights)**2 +
-\end_layout
-
-\begin_layout Plain Layout
-
-                            self.alpha*(self.c_t-self.contexts)**2, axis=1)
-\end_layout
-
-\begin_layout Plain Layout
-
-        return tot
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    def find_winner_neurons(self, xt):
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
-        find winner r := arg min_{n 
-\backslash
-in K} d_n(t)
-\end_layout
-
-\begin_layout Plain Layout
-
-        and second winner s := arg min_{n 
-\backslash
-in K
-\backslash
-{r}} d_n(t)
-\end_layout
-
-\begin_layout Plain Layout
-
-        where d_n(t) = (1 - 
-\backslash
-alpha) * ||x_t - w_n||^2 + 
-\backslash
-alpha||C_t - c_n||^2
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
-        distances = self.distances(xt)
-\end_layout
-
-\begin_layout Plain Layout
-
-        r, q = distances.argpartition(1)[:2]
-\end_layout
-
-\begin_layout Plain Layout
-
-        return (distances[r], r), (distances[q], q)
 \end_layout
 
 \begin_layout Plain Layout
@@ -703,11 +774,6 @@ in N_r )
 
 \begin_layout Plain Layout
 
-        print('Node {} added.'.format(id))
-\end_layout
-
-\begin_layout Plain Layout
-
         return id
 \end_layout
 
@@ -743,11 +809,6 @@ in N_r )
 \begin_layout Plain Layout
 
         self.model.remove_node(id)
-\end_layout
-
-\begin_layout Plain Layout
-
-        print('Node {} removed.'.format(id))
 \end_layout
 
 \begin_layout Plain Layout
@@ -839,16 +900,6 @@ gamma}
 \begin_layout Plain Layout
 
     def _remove_unconnected_neurons(self):
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
 \end_layout
 
 \begin_layout Plain Layout
@@ -1062,16 +1113,6 @@ deta) * e_f
 
 \begin_layout Plain Layout
 
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
-        '''
-\end_layout
-
-\begin_layout Plain Layout
-
         # 6.
  find winner r and second winner s
 \end_layout
@@ -1083,17 +1124,32 @@ deta) * e_f
 
 \begin_layout Plain Layout
 
-        r, s = self.find_winner_neurons(xt)
+        winners = find_winner_neurons(xt, self.weights, self.contexts,
 \end_layout
 
 \begin_layout Plain Layout
 
-        r_dist, r = r
+                                      self.c_t, self.alpha)
 \end_layout
 
 \begin_layout Plain Layout
 
-        s_dist, s = s
+        r_dist = winners[0]
+\end_layout
+
+\begin_layout Plain Layout
+
+        r = int(winners[1])
+\end_layout
+
+\begin_layout Plain Layout
+
+        s_dist = winners[2]
+\end_layout
+
+\begin_layout Plain Layout
+
+        s = int(winners[3])
 \end_layout
 
 \begin_layout Plain Layout
@@ -1317,265 +1373,6 @@ beta*c_r
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def main():
-\end_layout
-
-\begin_layout Plain Layout
-
-    import Oger as og
-\end_layout
-
-\begin_layout Plain Layout
-
-    import pylab
-\end_layout
-
-\begin_layout Plain Layout
-
-    signal = og.datasets.mackey_glass(sample_len=1500,
-\end_layout
-
-\begin_layout Plain Layout
-
-                                      n_samples=1,
-\end_layout
-
-\begin_layout Plain Layout
-
-                                      seed=50)[0][0].flatten()
-\end_layout
-
-\begin_layout Plain Layout
-
-    print(signal)
-\end_layout
-
-\begin_layout Plain Layout
-
-    signal = signal + np.abs(signal.min())
-\end_layout
-
-\begin_layout Plain Layout
-
-    print(signal)
-\end_layout
-
-\begin_layout Plain Layout
-
-    # 2.
- initialize neuron set K with 2 neurons with counter e := 0 and random weight
- and context vectors
-\end_layout
-
-\begin_layout Plain Layout
-
-    # 3.
- initialize connections set E 
-\backslash
-in K * K := 
-\backslash
-empty;
-\end_layout
-
-\begin_layout Plain Layout
-
-    # 4.
- initialize global temporal context C1 := 0
-\end_layout
-
-\begin_layout Plain Layout
-
-    mgng = MGNG(lmbda=6)
-\end_layout
-
-\begin_layout Plain Layout
-
-    # 1.
- time variable t := 1
-\end_layout
-
-\begin_layout Plain Layout
-
-    # 5.
- read / draw input signal xt
-\end_layout
-
-\begin_layout Plain Layout
-
-    # 18.
- if more input signals available goto step 5 else terminate
-\end_layout
-
-\begin_layout Plain Layout
-
-    for t, xt in enumerate(signal, 1):
-\end_layout
-
-\begin_layout Plain Layout
-
-        mgng.time_step(xt)
-\end_layout
-
-\begin_layout Plain Layout
-
-        if t % 1500 == 0:
-\end_layout
-
-\begin_layout Plain Layout
-
-            print('training: %i%%' % (t / 1500))
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    errors = [[] for _ in range(30)]
-\end_layout
-
-\begin_layout Plain Layout
-
-    for t, xt in enumerate(signal, 1):
-\end_layout
-
-\begin_layout Plain Layout
-
-        if t % 150 == 0:
-\end_layout
-
-\begin_layout Plain Layout
-
-            print('calculating errors: %i%%' % (t / 150))
-\end_layout
-
-\begin_layout Plain Layout
-
-        n, _ = mgng.find_winner_neurons(xt)
-\end_layout
-
-\begin_layout Plain Layout
-
-        n = n[1] 
-\end_layout
-
-\begin_layout Plain Layout
-
-        for i in range(min(30, t)):
-\end_layout
-
-\begin_layout Plain Layout
-
-            errors[i].append((n['w'] - signal[t - i - 1]) ** 2)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    summary = [0] * 30
-\end_layout
-
-\begin_layout Plain Layout
-
-    for i in range(30):
-\end_layout
-
-\begin_layout Plain Layout
-
-        summary[i] = np.sum(errors[i]) / len(errors[i])
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    pylab.subplot(2, 1, 1)
-\end_layout
-
-\begin_layout Plain Layout
-
-    pylab.plot(range(30), summary)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    pylab.subplot(2, 1, 2)
-\end_layout
-
-\begin_layout Plain Layout
-
-    pylab.plot(range(len(mgng.model.nodes())),
-\end_layout
-
-\begin_layout Plain Layout
-
-               [n[1]['w'] for n in mgng.model.nodes(data=True)])
-\end_layout
-
-\begin_layout Plain Layout
-
-    pylab.show()
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-if __name__ == '__main__':
-\end_layout
-
-\begin_layout Plain Layout
-
-    import sys
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-    if len(sys.argv) > 1:
-\end_layout
-
-\begin_layout Plain Layout
-
-        main(sys.argv[1])
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        main()
-\end_layout
-
 \end_inset
 
 
@@ -1626,21 +1423,97 @@ name "src:amgng_py"
  
 \begin_inset listings
 inline false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
-from __future__ import division, print_function
+#!/usr/bin/env python
 \end_layout
 
 \begin_layout Plain Layout
 
-from collections import deque
+# -----------------------------------------------
 \end_layout
 
 \begin_layout Plain Layout
 
-import inspect
+# This program is free software: you can redistribute it and/or modify
+\end_layout
+
+\begin_layout Plain Layout
+
+# it under the terms of the GNU General Public License version 3 as
+\end_layout
+
+\begin_layout Plain Layout
+
+# published by the Free Software Foundation.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# This program is distributed in the hope that it will be useful,
+\end_layout
+
+\begin_layout Plain Layout
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+\end_layout
+
+\begin_layout Plain Layout
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+\end_layout
+
+\begin_layout Plain Layout
+
+# See the GNU General Public License for more details.
+\end_layout
+
+\begin_layout Plain Layout
+
+#
+\end_layout
+
+\begin_layout Plain Layout
+
+# You should have received a copy of the GNU General Public License
+\end_layout
+
+\begin_layout Plain Layout
+
+# along with this program.
+  If not, see http://www.gnu.org/licenses.
+\end_layout
+
+\begin_layout Plain Layout
+
+# -----------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+@author: Mario Tambos
+\end_layout
+
+\begin_layout Plain Layout
+
+'''
+\end_layout
+
+\begin_layout Plain Layout
+
+from __future__ import division
 \end_layout
 
 \begin_layout Plain Layout
@@ -1649,7 +1522,12 @@ import inspect
 
 \begin_layout Plain Layout
 
-from ring_buffer import RingBuffer
+import bottleneck as bn
+\end_layout
+
+\begin_layout Plain Layout
+
+import numpy as np
 \end_layout
 
 \begin_layout Plain Layout
@@ -1663,27 +1541,7 @@ import mgng
 
 \begin_layout Plain Layout
 
-import numpy as np
-\end_layout
-
-\begin_layout Plain Layout
-
-import numexpr as ne
-\end_layout
-
-\begin_layout Plain Layout
-
-import numpy.linalg as lnp
-\end_layout
-
-\begin_layout Plain Layout
-
-from scipy.stats import norm
-\end_layout
-
-\begin_layout Plain Layout
-
-import bottleneck as bn
+from ring_buffer import RingBuffer
 \end_layout
 
 \begin_layout Plain Layout
@@ -1735,22 +1593,11 @@ class AMGNG:
 
 \begin_layout Plain Layout
 
-                 pst_eta=0.9995, pst_e_w=0.05, pst_e_n=0.0006,
+                 pst_eta=0.9995, pst_e_w=0.05, pst_e_n=0.0006):
 \end_layout
 
 \begin_layout Plain Layout
 
-                 ma_window_len=None, ma_recalc_delay=1):
-\end_layout
-
-\begin_layout Plain Layout
-
-        values = inspect.getargvalues(inspect.currentframe())[3]
-\end_layout
-
-\begin_layout Plain Layout
-
-        print('Init parameters: {}'.format(values))
 \end_layout
 
 \begin_layout Plain Layout
@@ -1870,57 +1717,7 @@ class AMGNG:
 
 \begin_layout Plain Layout
 
-        # self.buffer = deque(maxlen=self.buffer_len)
-\end_layout
-
-\begin_layout Plain Layout
-
         self.buffer = RingBuffer([[np.nan]*dimensions]*buffer_len)
-\end_layout
-
-\begin_layout Plain Layout
-
-        if ma_window_len is None:
-\end_layout
-
-\begin_layout Plain Layout
-
-            # self.ma_window = deque(maxlen=self.buffer_len)
-\end_layout
-
-\begin_layout Plain Layout
-
-            self.ma_window = RingBuffer([np.nan]*buffer_len)
-\end_layout
-
-\begin_layout Plain Layout
-
-        else:
-\end_layout
-
-\begin_layout Plain Layout
-
-            # self.ma_window = deque(maxlen=ma_window_len)
-\end_layout
-
-\begin_layout Plain Layout
-
-            self.ma_window = RingBuffer([np.nan]*ma_window_len)
-\end_layout
-
-\begin_layout Plain Layout
-
-        self.ma_recalc_delay = ma_recalc_delay
-\end_layout
-
-\begin_layout Plain Layout
-
-        self.anomaly_mean = None
-\end_layout
-
-\begin_layout Plain Layout
-
-        self.anomaly_std = None
 \end_layout
 
 \begin_layout Plain Layout
@@ -1989,57 +1786,12 @@ class AMGNG:
 
 \begin_layout Plain Layout
 
-        self.ma_window.append(ret_val)
-\end_layout
-
-\begin_layout Plain Layout
-
-        if self.t % self.ma_recalc_delay == 0:
-\end_layout
-
-\begin_layout Plain Layout
-
-            self.anomaly_mean = bn.nanmean(self.ma_window)
-\end_layout
-
-\begin_layout Plain Layout
-
-            self.anomaly_std = bn.nanstd(self.ma_window, ddof=1)
-\end_layout
-
-\begin_layout Plain Layout
-
-        if self.anomaly_mean is None:
-\end_layout
-
-\begin_layout Plain Layout
-
-            anomaly_density = 0.5
-\end_layout
-
-\begin_layout Plain Layout
-
-        else:
-\end_layout
-
-\begin_layout Plain Layout
-
-            anomaly_density = norm.cdf(ret_val, loc=self.anomaly_mean,
-\end_layout
-
-\begin_layout Plain Layout
-
-                                       scale=self.anomaly_std)
-\end_layout
-
-\begin_layout Plain Layout
-
         self.t += 1
 \end_layout
 
 \begin_layout Plain Layout
 
-        return ret_val, anomaly_density
+        return ret_val
 \end_layout
 
 \begin_layout Plain Layout
@@ -2087,27 +1839,7 @@ def compare_models(present_model, past_model, alpha):
 
 \begin_layout Plain Layout
 
-        # dists = ne.evaluate('sum((1-alpha)*(pr_x_w - ps_w)**2 +'
-\end_layout
-
-\begin_layout Plain Layout
-
-        #                     '    alpha*(pr_x_c - ps_c)**2, axis=1)')
-\end_layout
-
-\begin_layout Plain Layout
-
-        dists = np.add.reduce((1 - alpha)*(pr_x_w - ps_w)**2 +
-\end_layout
-
-\begin_layout Plain Layout
-
-                              alpha*(pr_x_c - ps_c)**2, axis=1)
-\end_layout
-
-\begin_layout Plain Layout
-
-        # print(dists)
+        dists = mgng.distances(pr_x_w, ps_w, ps_c, pr_x_w, alpha)
 \end_layout
 
 \begin_layout Plain Layout
@@ -2127,475 +1859,6 @@ def compare_models(present_model, past_model, alpha):
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def compare_models_w(present_model, past_model):
-\end_layout
-
-\begin_layout Plain Layout
-
-    tot_w = [0.]
-\end_layout
-
-\begin_layout Plain Layout
-
-    ps_w = past_model.weights
-\end_layout
-
-\begin_layout Plain Layout
-
-    for pr_x in self.present.model.nodes():
-\end_layout
-
-\begin_layout Plain Layout
-
-        pr_x_w = self.present.get_node(pr_x)['w']
-\end_layout
-
-\begin_layout Plain Layout
-
-        dists = ne.evaluate('sum((pr_x_w - ps_w)**2, axis=1)')
-\end_layout
-
-\begin_layout Plain Layout
-
-        ps_x = np.nanargmin(dists)
-\end_layout
-
-\begin_layout Plain Layout
-
-        tot_w += dists[ps_x]
-\end_layout
-
-\begin_layout Plain Layout
-
-    return tot_w[0] / len(self.present.model.nodes())
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def compare_models_c(present_model, past_model):
-\end_layout
-
-\begin_layout Plain Layout
-
-    tot_c = [0.]
-\end_layout
-
-\begin_layout Plain Layout
-
-    ps_c = past_model.contexts
-\end_layout
-
-\begin_layout Plain Layout
-
-    for pr_x in self.present.model.nodes():
-\end_layout
-
-\begin_layout Plain Layout
-
-        pr_x_c = self.present.get_node(pr_x)['c']
-\end_layout
-
-\begin_layout Plain Layout
-
-        dists = ne.evaluate('sum((pr_x_c - ps_c)**2, axis=1)')
-\end_layout
-
-\begin_layout Plain Layout
-
-        tot_c += dists[ps_x]
-\end_layout
-
-\begin_layout Plain Layout
-
-    return tot_c[0] / len(self.present.model.nodes())
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def main(input_file, output_file, input_frame=None,
-\end_layout
-
-\begin_layout Plain Layout
-
-         buffer_len=None, sampling_rate=None, index_col=None,
-\end_layout
-
-\begin_layout Plain Layout
-
-         skip_rows=None, ma_window=None, ma_recalc_delay=1):
-\end_layout
-
-\begin_layout Plain Layout
-
-    import pandas as pd
-\end_layout
-
-\begin_layout Plain Layout
-
-    from datetime import datetime
-\end_layout
-
-\begin_layout Plain Layout
-
-    if buffer_len is None:
-\end_layout
-
-\begin_layout Plain Layout
-
-        buffer_len = 2000
-\end_layout
-
-\begin_layout Plain Layout
-
-    if input_frame is None:
-\end_layout
-
-\begin_layout Plain Layout
-
-        signal = pd.read_csv(input_file, index_col=index_col, parse_dates=True,
-\end_layout
-
-\begin_layout Plain Layout
-
-                             skiprows=skip_rows)
-\end_layout
-
-\begin_layout Plain Layout
-
-        if sampling_rate is not None:
-\end_layout
-
-\begin_layout Plain Layout
-
-            signal = signal.resample(sampling_rate)
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        signal = input_frame
-\end_layout
-
-\begin_layout Plain Layout
-
-    if ma_window is None:
-\end_layout
-
-\begin_layout Plain Layout
-
-        ma_window = len(signal)
-\end_layout
-
-\begin_layout Plain Layout
-
-    print(signal.head())
-\end_layout
-
-\begin_layout Plain Layout
-
-    print(signal.tail())
-\end_layout
-
-\begin_layout Plain Layout
-
-    print('Seting up model.')
-\end_layout
-
-\begin_layout Plain Layout
-
-    amgng = AMGNG(comparison_function=compare_models,
-\end_layout
-
-\begin_layout Plain Layout
-
-                  buffer_len=buffer_len, dimensions=signal.shape[1],
-\end_layout
-
-\begin_layout Plain Layout
-
-                  prest_gamma=buffer_len//2, prest_lmbda=buffer_len*6,
-\end_layout
-
-\begin_layout Plain Layout
-
-                  prest_theta=buffer_len, pst_gamma=buffer_len//2,
-\end_layout
-
-\begin_layout Plain Layout
-
-                  pst_lmbda=buffer_len*6, pst_theta=buffer_len,
-\end_layout
-
-\begin_layout Plain Layout
-
-                  ma_window_len=ma_window, ma_recalc_delay=ma_recalc_delay)
-\end_layout
-
-\begin_layout Plain Layout
-
-    scores = np.zeros(len(signal))
-\end_layout
-
-\begin_layout Plain Layout
-
-    pscores = np.zeros(len(signal))
-\end_layout
-
-\begin_layout Plain Layout
-
-    print('Processing {} rows'.format(len(signal)))
-\end_layout
-
-\begin_layout Plain Layout
-
-    start = datetime.now()
-\end_layout
-
-\begin_layout Plain Layout
-
-    for t, xt in enumerate(signal.values):
-\end_layout
-
-\begin_layout Plain Layout
-
-        if t % (len(signal)//100) == 0:
-\end_layout
-
-\begin_layout Plain Layout
-
-            print('{}% done.
- Sample datapoint: {}'
-\end_layout
-
-\begin_layout Plain Layout
-
-                  .format(t / (len(signal)//100), xt))
-\end_layout
-
-\begin_layout Plain Layout
-
-        scores[t], pscores[t] = amgng.time_step(xt)
-\end_layout
-
-\begin_layout Plain Layout
-
-    time_taken = (datetime.now() - start).total_seconds()
-\end_layout
-
-\begin_layout Plain Layout
-
-    print('It took {} seconds to process the signal'.format(time_taken))
-\end_layout
-
-\begin_layout Plain Layout
-
-    signal['anomaly_score'] = pd.Series(scores, index=signal.index)
-\end_layout
-
-\begin_layout Plain Layout
-
-    signal['anomaly_density'] = pd.Series(pscores, index=signal.index)
-\end_layout
-
-\begin_layout Plain Layout
-
-    print('Writing results to {}'.format(output_file))
-\end_layout
-
-\begin_layout Plain Layout
-
-    signal.to_csv(output_file)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-if __name__ == '__main__':
-\end_layout
-
-\begin_layout Plain Layout
-
-    import sys
-\end_layout
-
-\begin_layout Plain Layout
-
-    args = sys.argv
-\end_layout
-
-\begin_layout Plain Layout
-
-    if '--input_file' in args:
-\end_layout
-
-\begin_layout Plain Layout
-
-        input_file = args[args.index('--input_file') + 1]
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        input_file = 'samples.csv'
-\end_layout
-
-\begin_layout Plain Layout
-
-    if '--output_file' in args:
-\end_layout
-
-\begin_layout Plain Layout
-
-        output_file = args[args.index('--output_file') + 1]
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        output_file = '{}_out.csv'.format(input_file)
-\end_layout
-
-\begin_layout Plain Layout
-
-    if '--buffer_len' in args:
-\end_layout
-
-\begin_layout Plain Layout
-
-        buffer_len = int(args[args.index('--buffer_len') + 1])
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        buffer_len = None
-\end_layout
-
-\begin_layout Plain Layout
-
-    if '--sampling_rate' in args:
-\end_layout
-
-\begin_layout Plain Layout
-
-        sampling_rate = args[args.index('--sampling_rate') + 1]
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        sampling_rate = None
-\end_layout
-
-\begin_layout Plain Layout
-
-    if '--index_col' in args:
-\end_layout
-
-\begin_layout Plain Layout
-
-        index_col = args[args.index('--index_col') + 1]
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        index_col = None
-\end_layout
-
-\begin_layout Plain Layout
-
-    if '--skip_rows' in args:
-\end_layout
-
-\begin_layout Plain Layout
-
-        skip_rows = args[args.index('--skip_rows') + 1].split(',')
-\end_layout
-
-\begin_layout Plain Layout
-
-        skip_rows = [int(r) for r in skip_rows]
-\end_layout
-
-\begin_layout Plain Layout
-
-    else:
-\end_layout
-
-\begin_layout Plain Layout
-
-        skip_rows = None
-\end_layout
-
-\begin_layout Plain Layout
-
-    print(args)
-\end_layout
-
-\begin_layout Plain Layout
-
-    main(input_file, output_file, buffer_len, sampling_rate,
-\end_layout
-
-\begin_layout Plain Layout
-
-         index_col, skip_rows)
 \end_layout
 
 \end_inset

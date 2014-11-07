@@ -1,12 +1,11 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass book
 \begin_preamble
 % Added by lyx2lyx
 % Added by lyx2lyx
-\usepackage{mathtools}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -17,13 +16,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -34,15 +33,24 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 0
-\use_mathdots 0
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 2
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -209,11 +217,7 @@ name "sub:mixed_ts_mackey_glass_time"
 
 \begin_layout Standard
 For this experiment a sub-sequence 
-\begin_inset Formula $AS_{74601,76400;1}\subsetneq$
-\end_inset
-
-
-\begin_inset Formula $MG1_{1,150000;1}$
+\begin_inset Formula $AS_{74601,76400;1}\subsetneq MG1_{1,150000;1}$
 \end_inset
 
  was modified in its time domain by adding random noise.
@@ -232,13 +236,13 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/detail_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/detail_plot.png
 	width 100text%
 
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Mixed multivariate time series with added random noise in the time domain
@@ -300,7 +304,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/amgng_score_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/amgng_score_plot.png
 	width 100text%
 
 \end_inset
@@ -333,7 +337,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/amgng_whole_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/amgng_whole_plot.png
 	width 100text%
 
 \end_inset
@@ -367,7 +371,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/amgng_detail_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/amgng_detail_plot.png
 	width 100text%
 
 \end_inset
@@ -382,7 +386,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for a mixed multivariate time series with added
@@ -425,7 +429,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/cla_score_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/cla_score_plot.png
 	width 100text%
 
 \end_inset
@@ -458,7 +462,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/cla_whole_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/cla_whole_plot.png
 	width 100text%
 
 \end_inset
@@ -493,7 +497,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_mackey_glass_time_noise/cla_detail_plot.png
+	filename ../images/mixed_ts_mackey_glass_time_noise/cla_detail_plot.png
 	width 100text%
 
 \end_inset
@@ -508,7 +512,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for a mixed multivariate time series with added random
@@ -549,10 +553,10 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -934,7 +938,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a mixed multivariate time series
@@ -971,11 +975,7 @@ name "sub:mixed_ts_random_time"
 
 \begin_layout Standard
 For this experiment a sub-sequence 
-\begin_inset Formula $AS_{74601,76400;1}\subsetneq$
-\end_inset
-
-
-\begin_inset Formula $R1_{1,150000;1}$
+\begin_inset Formula $AS_{74601,76400;1}\subsetneq R1_{1,150000;1}$
 \end_inset
 
  was modified in its time domain by adding random noise.
@@ -994,13 +994,13 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/detail_plot.png
+	filename ../images/mixed_ts_random_time_noise/detail_plot.png
 	width 100text%
 
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Mixed multivariate time series with added random noise in the time domain
@@ -1062,7 +1062,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/amgng_score_plot.png
+	filename ../images/mixed_ts_random_time_noise/amgng_score_plot.png
 	width 100text%
 
 \end_inset
@@ -1095,7 +1095,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/amgng_whole_plot.png
+	filename ../images/mixed_ts_random_time_noise/amgng_whole_plot.png
 	width 100text%
 
 \end_inset
@@ -1129,7 +1129,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/amgng_detail_plot.png
+	filename ../images/mixed_ts_random_time_noise/amgng_detail_plot.png
 	width 100text%
 
 \end_inset
@@ -1147,7 +1147,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for a mixed multivariate time series with added
@@ -1190,7 +1190,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/cla_score_plot.png
+	filename ../images/mixed_ts_random_time_noise/cla_score_plot.png
 	width 100text%
 
 \end_inset
@@ -1223,7 +1223,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/cla_whole_plot.png
+	filename ../images/mixed_ts_random_time_noise/cla_whole_plot.png
 	width 100text%
 
 \end_inset
@@ -1258,7 +1258,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/mixed_ts_random_time_noise/cla_detail_plot.png
+	filename ../images/mixed_ts_random_time_noise/cla_detail_plot.png
 	width 100text%
 
 \end_inset
@@ -1276,7 +1276,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for a mixed multivariate time series with added random
@@ -1317,10 +1317,10 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1702,7 +1702,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a mixed multivariate time series
@@ -1739,7 +1739,65 @@ name "sub:mixed_ts_summary"
 \end_layout
 
 \begin_layout Standard
-TODO
+Although the MGNG-AD model performed worse in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:mixed_ts_mackey_glass_time"
+
+\end_inset
+
+ than in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:mackey-glass_time"
+
+\end_inset
+
+, the situation was reversed in the case of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:mixed_ts_random_time"
+
+\end_inset
+
+ with respect to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:random_ts_time"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The HTM model, in constrast, could neither identify the noise added to 
+\begin_inset Formula $R1$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:mixed_ts_random_time"
+
+\end_inset
+
+, nor come near the same high F1-Score it had achieved in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:mackey-glass_time"
+
+\end_inset
+
+, in the experiment of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:mixed_ts_mackey_glass_time"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_body
