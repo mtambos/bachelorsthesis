@@ -4,42 +4,13 @@
 \begin_header
 \textclass book
 \begin_preamble
-
-
 % Konfiguration laden
-\input{includes/configuration}
+\usepackage{includes/configuration}
 
 % Shortcuts laden
-\input{includes/shortcuts}
+\usepackage{includes/shortcuts}
 
 % Das Hauptdokument
-\providecommand{\e}[1]{\ensuremath{\times E^{#1}}}
-
-\makeatletter
-\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi\lst@visiblespace}}
-\makeatother
-
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-
-\lstset{ %
-  backgroundcolor=\color{white},   % choose the background color
-  basicstyle=\footnotesize,        % size of fonts used for the code
-  breaklines=true,                 % automatic line breaking only at whitespace
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  keywordstyle=\color{blue},       % keyword style
-  stringstyle=\color{mymauve},     % string literal style
-  language=Python,
-  numbers=left,
-  columns=flexible,
-  keepspaces=true,
-  showspaces=false
-}
-% Added by lyx2lyx
-\usepackage{textgreek}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
