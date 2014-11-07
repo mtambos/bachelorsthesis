@@ -239,10 +239,10 @@ Figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -253,12 +253,34 @@ width "100text%"
 special "none"
 height "1in"
 height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/mackey_glass_ts_shift/amgng_whole_plot.png
 	width 100text%
+	height 25theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
+ with the selected threshold marked by the horizontal blue line.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -266,37 +288,21 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/mackey_glass_ts_shift/amgng_detail_plot.png
 	width 100text%
+	height 25theight%
 
 \end_inset
 
 
-\end_layout
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -305,6 +311,19 @@ Detail of the previous plot, centered on the anomalous region.
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -329,10 +348,10 @@ name "fig:mackey-glass_ts_mgng-ad_shift"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -343,12 +362,35 @@ width "100text%"
 special "none"
 height "1in"
 height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/mackey_glass_ts_shift/cla_whole_plot.png
 	width 100text%
+	height 25theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
+ with the selected threshold marked by the horizontal blue line, and anomaly_sco
+re plot.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -356,37 +398,21 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/mackey_glass_ts_shift/cla_detail_plot.png
 	width 100text%
+	height 25theight%
 
 \end_inset
 
 
-\end_layout
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -395,6 +421,19 @@ Detail of the previous plot, centered on the anomalous region.
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1221,10 +1260,10 @@ Figref{random_ts_mgng-ad_shift, random_ts_htm_fix_time_noise}
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -1235,12 +1274,34 @@ width "100text%"
 special "none"
 height "1in"
 height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/random_ts_shift/amgng_whole_plot.png
 	width 100text%
+	height 25theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
+ with the selected threshold marked by the horizontal blue line.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1248,40 +1309,34 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/random_ts_shift/amgng_detail_plot.png
 	width 100text%
+	height 25theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detail of the previous plot, centered on the anomalous region.
+\end_layout
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-Detail of the previous plot, centered on the anomalous region.
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1315,10 +1370,10 @@ name "fig:random_ts_mgng-ad_shift"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -1329,12 +1384,35 @@ width "100text%"
 special "none"
 height "1in"
 height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/random_ts_shift/cla_whole_plot.png
 	width 100text%
+	height 25theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
+ with the selected threshold marked by the horizontal blue line, and anomaly_sco
+re plot.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1342,37 +1420,21 @@ status collapsed
 \end_layout
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
+\begin_inset Float figure
+wide false
+sideways false
 status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/random_ts_shift/cla_detail_plot.png
 	width 100text%
+	height 25theight%
 
 \end_inset
 
 
-\end_layout
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1381,6 +1443,19 @@ Detail of the previous plot, centered on the anomalous region.
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
