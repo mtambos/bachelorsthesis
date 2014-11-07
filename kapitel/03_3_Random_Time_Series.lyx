@@ -1703,8 +1703,8 @@ lihood show.
 \end_layout
 
 \begin_layout Standard
-The MGNG-AD mode, on the contrary, reacted strongly to the abnormal subsequences
- in both experiments, as seen in 
+The MGNG-AD mode, on the contrary, reacted strongly to the abnormal sub-sequence
+s in both experiments, as seen in 
 \begin_inset ERT
 status open
 
@@ -1728,6 +1728,16 @@ reference "sec:Mackey-Glass_time_series"
 .
  This can be explained by its high anomaly_scores at the start of the time
  series, shown in the same figures.
+ This suggest that the scores could be improved by allowing for a 
+\begin_inset Quotes eld
+\end_inset
+
+learning period
+\begin_inset Quotes erd
+\end_inset
+
+ at the start of the time series, during which the anomaly_scores would
+ be 0.
 \end_layout
 
 \end_body

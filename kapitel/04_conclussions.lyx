@@ -92,90 +92,33 @@ name "sec:Summary"
 \end_layout
 
 \begin_layout Standard
-While HTM obtained high F1-Scores in two of the three experiements of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:Mackey-Glass_time_series"
-
-\end_inset
-
-, it failed to successfully recognize the anomalies of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:random_ts"
-
-\end_inset
-
-.
- Moreover, from 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sub:mixed_ts_mackey_glass_time"
-
-\end_inset
-
-, it could be concluded that the mere presence of a randomly generated time
- series makes it difficult for HTM to detect anomalies that were otherwise
- easy for it to detect.
-\end_layout
-
-\begin_layout Standard
-MGNG-AD also performed well in two of the three experiments of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:Mackey-Glass_time_series"
-
-\end_inset
-
-, failing in the case of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sub:mackey-glass_freq"
-
-\end_inset
-
-; this could nonetheless be useful, e.g.
- as a noise filter.
- Moreover, MGNG-AD outperformed HTM in the two experiments from 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:random_ts"
-
-\end_inset
-
-.
- Although it achieved low F1-Scores compared to the former section in both,
- the scores could be improved by allowing for a 
+A novel method for online detection of contextual anomalies in multidimensional
+ time series has been presented.
+ For each data point in the time series, it provides an anomaly score of
+ that data point, which is calculated as the difference between two MGNG
+ models -- a 
 \begin_inset Quotes eld
 \end_inset
 
-learning period
+present
 \begin_inset Quotes erd
 \end_inset
 
- at the start of the time series, during which the anomaly_scores would
- be 0.
- MGNG-AD was also able to accurately detect anomalies in the experiments
- of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:mixed_ts"
-
+ model that is feed the most up-to-date data, and another 
+\begin_inset Quotes eld
 \end_inset
 
-, where two different types of time series were present.
+past
+\begin_inset Quotes erd
+\end_inset
+
+ model, that is feed delayed data.
 \end_layout
 
 \begin_layout Standard
-Finally, both models were able to cope well with a shift in the mean of
- the time series in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:ts_shift"
-
-\end_inset
-
-.
+In experiments performed with synthetic data, it also has been empirically
+ shown that the method developed is able to successfully detect certain
+ kinds of anomalies.
 \end_layout
 
 \begin_layout Standard
@@ -204,8 +147,21 @@ Regarding other aspects of the methods, even though the HTM model needs
  Its hierarchical structure could admittedly allow it to discover certain
  types of anomalies that are beyond the capabilities of MGNG-AD.
  That same complexity, however, made HTM many times slower than MGNG-AD.
- In average it took around 600 μs for the MGNG-AD model to process a 4-dimension
-al data-point, whereas the HTM needed approximately 10 ms for the same
+ In average it took around 600 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textmu s
+\end_layout
+
+\end_inset
+
+ for the MGNG-AD model to process a 4-dimensional data-point, whereas the
+ HTM needed approximately 10 ms for the same
 \begin_inset Foot
 status collapsed
 
@@ -231,50 +187,47 @@ name "sec:Future_Work"
 
 \end_layout
 
-\begin_layout Itemize
-Perform an analysis of the effect different parametrizations have on the
- results.
+\begin_layout Standard
+Any further work with MGNG-AD could take several directions.
+ The more important is an analysis of the impact different parametrizations
+ of MGNG-AD have over the resulting anomaly_scores, followed closely by
+ experiments with real data.
 \end_layout
 
-\begin_layout Itemize
-Perform experiments on real data.
-\end_layout
-
-\begin_layout Itemize
-Use some concepts from the HTM and NuPIC:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-develop a hierarchical model: One MGNG model reads directly from the input,
- a second MGNG model uses as inputs the neurons from the first, and so on.
- Maybe more complex or other kinds of anomalies can be detected.
-\end_layout
-
-\begin_layout Itemize
-develop a predictive model: from the neuron's context and weight vectors
- try to determine the next input.
-\end_layout
-
-\begin_layout Itemize
-use an approach similar to swarming for parameter selection.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Modify MGNG to use GNG-U 
+\begin_layout Standard
+Another possible direction is to modify MGNG to use the key idea behind
+ GNG with Utility Factor(GNG-U, 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Fritzke1997"
 
 \end_inset
 
- instead of plain GNG.
+), namely the use of a utility factor to relocate nodes that contribute
+ little to the reduction of the error.
+ GNG-U has been shown to be able to adapt more quickly to changing distributions
+ than GNG 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Holmstroem2002"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Itemize
-Use 
-\begin_inset Formula $\gamma$
+\begin_layout Standard
+The use of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textgamma
+\end_layout
+
 \end_inset
 
 -GNG 
@@ -284,18 +237,24 @@ key "estevez2011gamma"
 
 \end_inset
 
- instead of MGNG.
-\end_layout
-
-\begin_layout Itemize
-Modify MGNG to use GNG-U 
+, a generalization of MGNG, could also prove useful, since it seems the
+ former provides lower temporal quantization errors than the latter (see
+ also 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Fritzke1997"
+key "cyrcamo2008mapas"
 
 \end_inset
 
- instead of plain GNG.
+).
+\end_layout
+
+\begin_layout Standard
+Finally, some concepts from HTMs could also be used to improve the method.
+ Specially swarming, for parameter selection, could prove very useful in
+ practice.
+ The use of a layered architecture, each layer composed of a MGNG model,
+ or the development of a predictive model for MGNG are also worth exploring.
 \end_layout
 
 \end_body

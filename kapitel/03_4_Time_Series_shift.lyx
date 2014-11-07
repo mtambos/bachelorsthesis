@@ -205,7 +205,7 @@ reference "sec:Mackey-Glass_time_series"
 \end_layout
 
 \begin_layout Standard
-Such a shift ist not considered an anomaly in this work, and therefore no
+Such a shift is not considered an anomaly in this work, and therefore no
  F1-Scores could be established.
  Instead the means and standard deviations for selected segments of the
  time series were calculated.

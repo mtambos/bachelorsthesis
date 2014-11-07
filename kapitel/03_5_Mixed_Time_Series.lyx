@@ -1771,7 +1771,7 @@ reference "sub:random_ts_time"
 \end_layout
 
 \begin_layout Standard
-The HTM model, in constrast, could neither identify the noise added to 
+The HTM model, in contrast, could neither identify the noise added to 
 \begin_inset Formula $R1$
 \end_inset
 
@@ -1797,7 +1797,6 @@ reference "sub:mixed_ts_mackey_glass_time"
 \end_inset
 
 .
- 
 \end_layout
 
 \end_body

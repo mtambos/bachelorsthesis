@@ -2735,7 +2735,9 @@ reference "sub:mackey-glass_freq"
 \end_inset
 
  experiment, the HTM model successfully identified the anomalous sub-sequence,
- while the MGNG-AD model was totally unable to distinguish normal from abnormal.
+ while the MGNG-AD model was totally unable to distinguish normal from abnormal,
+ this could nonetheless be useful, e.g.
+ as a noise filter.
 \end_layout
 
 \end_body
