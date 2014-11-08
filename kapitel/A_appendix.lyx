@@ -126,7 +126,7 @@ name "src:mgng_py"
  
 \begin_inset listings
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1804,7 +1804,7 @@ class AMGNG:
 
 \begin_layout Plain Layout
 
-def compare_models(present_model, past_model, alpha):
+def compare_models(present_model, past_model, omega):
 \end_layout
 
 \begin_layout Plain Layout
@@ -1839,7 +1839,7 @@ def compare_models(present_model, past_model, alpha):
 
 \begin_layout Plain Layout
 
-        dists = mgng.distances(pr_x_w, ps_w, ps_c, pr_x_w, alpha)
+        dists = mgng.distances(pr_x_w, ps_w, ps_c, pr_x_w, omega)
 \end_layout
 
 \begin_layout Plain Layout

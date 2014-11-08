@@ -162,7 +162,7 @@ cluster
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -334,9 +334,9 @@ The approach used will be experimental: instead of attempting to prove formally
 By similar is meant another method that covers characteristics 1.-8.
  of the previous list.
  In particular, offline methods are not deemed suitable for comparison,
- because such methods can make use information not available to online methods
- -- the can see both past and future, in a manner of speaking -- to build
- better models (see 
+ because such methods can make use of information not available to online
+ methods -- they can see both past and future, in a manner of speaking --
+ to build better models (see 
 \begin_inset CommandInset citation
 LatexCommand cite
 after "p. 225"
@@ -346,8 +346,8 @@ key "Aggarwal2013"
 
 ).
  Moreover, the target use is also different -- offline models can be used
- only when all the relevant data is available, online models when is important
- to analyze data as it comes.
+ only when all the relevant data is available, online models when it is
+ important to analyze data as it comes.
 \begin_inset Note Comment
 status collapsed
 
@@ -511,8 +511,8 @@ key "Hawkins2011"
 
 \end_inset
 
-) are proposed as one of said algorithms, and it is implemented in the Numenta
- Platform for Intelligent Computing (NuPIC
+) are proposed as a part of said algorithms, and they are implemented in
+ the Numenta Platform for Intelligent Computing (NuPIC
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "NuPIC"
@@ -588,7 +588,7 @@ key "Keogh2005"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Wei2005"
+key "Wei2005a"
 
 \end_inset
 
@@ -596,8 +596,8 @@ key "Wei2005"
  key idea of the present work -- the comparison of two models of the input
  data -- was inspired by their work; the method presented by them, however,
  only handles univariate time series, and hence will not be used for comparison.
- SAX-based anomaly detectors do not preserve the input space's dimensionality,
- while the anomaly detector presented in this work does.
+ Moreover, SAX-based anomaly detectors do not preserve the input space's
+ dimensionality, while the anomaly detector presented in this work does.
 \end_layout
 
 \begin_layout Standard
@@ -620,8 +620,7 @@ description "self-organizing map"
  learning to produce a representation of the input space, typically of lower
  cardinality than the input; the self-organizing maps use a neighborhood
  function to preserve the topological properties of the input space.
- Martinetz et al.
- 
+ Martinetz & Schulten 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Martinetz1991"
@@ -641,7 +640,7 @@ description "Neural Gas"
 ); whereas SOM uses a fixed network topology to represent the input space,
  NG learns the network topology by adding and deleting connections between
  neurons.
- Finally Fritzke 
+ In his work, Fritzke 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Fritzke1995"
@@ -671,16 +670,14 @@ key "Holmstroem2002"
 \end_layout
 
 \begin_layout Standard
-Strickert et al.
- 
+Strickert & Hammer 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Strickert2003"
 
 \end_inset
 
- expand on the work of Chapel et al.
- (Temporal Kohonen Map, 
+ expand on the work of Chapel & Taylor (Temporal Kohonen Map, 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chappell1993"
@@ -694,19 +691,11 @@ key "Voegtlin2002"
 
 \end_inset
 
-), Hagenbuchner et al.
+) and Hagenbuchner et al.
  (SOM for structured data, 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Hagenbuchner2003"
-
-\end_inset
-
-) and Strickert et al.
- (hierarchical SOM for sequences, 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Strickert2005"
 
 \end_inset
 
@@ -747,7 +736,7 @@ reference "chap:Fundamentals"
 
 \end_inset
 
- the MGNG-AD method is presented; first, in 
+ MGNG-AD is presented; first, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Basic_definitions"
@@ -836,8 +825,7 @@ reference "sec:random_ts"
 
 \end_inset
 
- presents experiments using multidimensional, randomly generated time series;
- in both cases anomalies have been introduced in the time series under scrutiny.
+ presents experiments using multidimensional, randomly generated time series.
  
 \begin_inset ERT
 status open
@@ -846,14 +834,25 @@ status open
 
 
 \backslash
-Secref{ts_shift}
+Secref{mixed_ts}
 \end_layout
 
 \end_inset
 
-, on the other hand, provides an analysis of how the MGNG-AD and HTM models
- behave when presented with a particular change of behavior of the time
- series: the mean shift.
+ shows experiments with mixed time series, i.e.
+ time series with two Mackey-Glass components and two randomly generated
+ components.
+ In the three cases anomalies have been introduced in the time series under
+ scrutiny.
+ The chapter concludes in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:ts_shift"
+
+\end_inset
+
+ with an analysis of how the MGNG-AD and HTM models behave when presented
+ with a particular change of behavior of the time series: the mean shift.
 \end_layout
 
 \begin_layout Standard

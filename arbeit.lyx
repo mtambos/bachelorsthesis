@@ -224,25 +224,6 @@ filename "kapitel/A_appendix.lyx"
 \end_inset
 
 
-\begin_inset Note Comment
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "kapitel/B_appendix.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset nomencl_print
 LatexCommand printnomenclature
 set_width "auto"
@@ -263,31 +244,6 @@ status open
 addcontentsline{toc}{chapter}{
 \backslash
 nomname}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset toc
-LatexCommand lstlistoflistings
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-addcontentsline{toc}{chapter}{Source code index}
 \end_layout
 
 \end_inset

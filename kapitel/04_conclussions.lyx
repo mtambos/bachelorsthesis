@@ -203,7 +203,7 @@ key "Fritzke1997"
 
 \end_inset
 
-), namely the use of a utility factor to relocate nodes that contribute
+), namely the use of a utility factor to relocate neurons that contribute
  little to the reduction of the error.
  GNG-U has been shown to be able to adapt more quickly to changing distributions
  than GNG 
@@ -250,7 +250,7 @@ key "cyrcamo2008mapas"
 \end_layout
 
 \begin_layout Standard
-Finally, some concepts from HTMs could also be used to improve the method.
+Finally, some concepts from HTMs could also be used to improve MGNG-AD.
  Specially swarming, for parameter selection, could prove very useful in
  practice.
  The use of a layered architecture, each layer composed of a MGNG model,

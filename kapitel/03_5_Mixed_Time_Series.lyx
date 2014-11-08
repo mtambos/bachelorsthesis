@@ -88,7 +88,7 @@ name "sec:mixed_ts"
 These experiment's objective is to evaluate the performance of the models
  in the presence of multivariate time series where the behavior of some
  of the components differ from the others.
- In order to test this, two Mackey-Glass one-dimensional time series 
+ In order to test this, two one-dimensional Mackey-Glass time series 
 \begin_inset Formula $MG1_{1,150000;1}$
 \end_inset
 
@@ -145,7 +145,7 @@ In each experiment a sub-sequence
 \begin_inset Formula $MG1$
 \end_inset
 
-, 
+ 
 \family roman
 \series medium
 \shape up
@@ -157,11 +157,7 @@ In each experiment a sub-sequence
 \uwave off
 \noun off
 \color none
-
-\begin_inset Formula $MG2$
-\end_inset
-
-, 
+or 
 \begin_inset Formula $R1$
 \end_inset
 
@@ -177,10 +173,6 @@ In each experiment a sub-sequence
 \uwave default
 \noun default
 \color inherit
- or 
-\begin_inset Formula $R2$
-\end_inset
-
 ) was modified by adding random noise to its time domain, as explained in
  
 \begin_inset CommandInset ref
@@ -200,15 +192,11 @@ The parameters used for both MGNG-AD and HTM models are the same as in all
  previous experiments.
 \end_layout
 
-\begin_layout Standard
-The thresholds were once again selected so as to maximize each model's F1-Score.
-\end_layout
-
 \begin_layout Subsection
 Noise in Mackey-Glass Time Series
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:mixed_ts_mackey_glass_time"
+name "subsec:mixed_ts_mackey_glass_time"
 
 \end_inset
 
@@ -300,7 +288,7 @@ Figref{mixed_ts_mgng-ad_mackey_glass_time, mixed_ts_htm_mackey_glass_time}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment that marked as
+ The colored vertical span in the images mark time segment annotated as
  anomalous.
 \begin_inset Float figure
 wide false
@@ -602,6 +590,8 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
 <features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
@@ -613,6 +603,8 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Statistic
 \end_layout
 
@@ -622,6 +614,8 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MGNG-AD
 \end_layout
 
@@ -631,6 +625,8 @@ MGNG-AD
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HTM
 \end_layout
 
@@ -642,6 +638,8 @@ HTM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Total data-points 
 \end_layout
 
@@ -651,6 +649,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $150000$
 \end_inset
 
@@ -674,6 +674,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Annotated data-points
 \end_layout
 
@@ -683,6 +685,8 @@ Annotated data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1800$
 \end_inset
 
@@ -706,6 +710,8 @@ Annotated data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Threshold
 \end_layout
 
@@ -715,6 +721,8 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3059$
 \end_inset
 
@@ -727,6 +735,8 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.4093$
 \end_inset
 
@@ -741,6 +751,8 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Flagged data-points
 \end_layout
 
@@ -750,6 +762,8 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $2119$
 \end_inset
 
@@ -762,6 +776,8 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $16607$
 \end_inset
 
@@ -776,6 +792,8 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 true positives
 \end_layout
 
@@ -785,6 +803,8 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1708$
 \end_inset
 
@@ -797,6 +817,8 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1236$
 \end_inset
 
@@ -811,6 +833,8 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 false positives
 \end_layout
 
@@ -820,6 +844,8 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $411$
 \end_inset
 
@@ -832,6 +858,8 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $15371$
 \end_inset
 
@@ -846,6 +874,8 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 false negatives
 \end_layout
 
@@ -855,6 +885,8 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $92$
 \end_inset
 
@@ -867,6 +899,8 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $564$
 \end_inset
 
@@ -881,6 +915,8 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 precision
 \end_layout
 
@@ -890,6 +926,8 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.8060$
 \end_inset
 
@@ -902,6 +940,8 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0744$
 \end_inset
 
@@ -916,6 +956,8 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 recall
 \end_layout
 
@@ -925,6 +967,8 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.9489$
 \end_inset
 
@@ -937,6 +981,8 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.6867$
 \end_inset
 
@@ -951,6 +997,8 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 F1-Score
 \end_layout
 
@@ -960,6 +1008,8 @@ F1-Score
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.8717$
 \end_inset
 
@@ -972,6 +1022,8 @@ F1-Score
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1343$
 \end_inset
 
@@ -1017,7 +1069,7 @@ name "tab:mixed_ts_mackey_glass_time_stats"
 Noise in randomly generated Time Series
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:mixed_ts_random_time"
+name "subsec:mixed_ts_random_time"
 
 \end_inset
 
@@ -1109,12 +1161,12 @@ Figref{mixed_ts_mgng-ad_random_time, mixed_ts_htm_random_time}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment that marked as
+ The colored vertical span in the images mark time segment annotated as
  anomalous.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -1255,7 +1307,7 @@ name "fig:mixed_ts_mgng-ad_random_time"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -1411,6 +1463,8 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
 <features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
@@ -1422,6 +1476,8 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Statistic
 \end_layout
 
@@ -1431,6 +1487,8 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MGNG-AD
 \end_layout
 
@@ -1440,6 +1498,8 @@ MGNG-AD
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HTM
 \end_layout
 
@@ -1451,6 +1511,8 @@ HTM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Total data-points 
 \end_layout
 
@@ -1460,6 +1522,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $150000$
 \end_inset
 
@@ -1483,6 +1547,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Annotated data-points
 \end_layout
 
@@ -1492,6 +1558,8 @@ Annotated data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1800$
 \end_inset
 
@@ -1515,6 +1583,8 @@ Annotated data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Threshold
 \end_layout
 
@@ -1524,6 +1594,8 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3161$
 \end_inset
 
@@ -1536,6 +1608,8 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1718$
 \end_inset
 
@@ -1550,6 +1624,8 @@ Threshold
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Flagged data-points
 \end_layout
 
@@ -1559,6 +1635,8 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1976$
 \end_inset
 
@@ -1571,6 +1649,8 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $146075$
 \end_inset
 
@@ -1585,6 +1665,8 @@ Flagged data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 true positives
 \end_layout
 
@@ -1594,6 +1676,8 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1657$
 \end_inset
 
@@ -1606,6 +1690,8 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $1769$
 \end_inset
 
@@ -1620,6 +1706,8 @@ true positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 false positives
 \end_layout
 
@@ -1629,6 +1717,8 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $319$
 \end_inset
 
@@ -1641,6 +1731,8 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $144306$
 \end_inset
 
@@ -1655,6 +1747,8 @@ false positives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 false negatives
 \end_layout
 
@@ -1664,6 +1758,8 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $143$
 \end_inset
 
@@ -1676,6 +1772,8 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $31$
 \end_inset
 
@@ -1690,6 +1788,8 @@ false negatives
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 precision
 \end_layout
 
@@ -1699,6 +1799,8 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.8386$
 \end_inset
 
@@ -1711,6 +1813,8 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0121$
 \end_inset
 
@@ -1725,6 +1829,8 @@ precision
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 recall
 \end_layout
 
@@ -1734,6 +1840,8 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.9206$
 \end_inset
 
@@ -1746,6 +1854,8 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.9828$
 \end_inset
 
@@ -1760,6 +1870,8 @@ recall
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 F1-Score
 \end_layout
 
@@ -1769,6 +1881,8 @@ F1-Score
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.8776$
 \end_inset
 
@@ -1781,6 +1895,8 @@ F1-Score
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0239$
 \end_inset
 
@@ -1827,7 +1943,7 @@ name "tab:mixed_ts_random_time_stats"
 Summary
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:mixed_ts_summary"
+name "subsec:mixed_ts_summary"
 
 \end_inset
 
@@ -1838,28 +1954,28 @@ name "sub:mixed_ts_summary"
 Although the MGNG-AD model performed worse in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sub:mixed_ts_mackey_glass_time"
+reference "subsec:mixed_ts_mackey_glass_time"
 
 \end_inset
 
  than in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sub:mackey-glass_time"
+reference "subsec:mackey-glass_time"
 
 \end_inset
 
 , the situation was reversed in the case of 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sub:mixed_ts_random_time"
+reference "subsec:mixed_ts_random_time"
 
 \end_inset
 
  with respect to 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sub:random_ts_time"
+reference "subsec:random_ts_time"
 
 \end_inset
 
@@ -1867,28 +1983,28 @@ reference "sub:random_ts_time"
 \end_layout
 
 \begin_layout Standard
-The HTM model, in contrast, could neither identify the noise added to 
+The HTM model, in contrast, could neither, in the experiment of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:mixed_ts_mackey_glass_time"
+
+\end_inset
+
+, come near the same high F1-Score it had achieved in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:mackey-glass_time"
+
+\end_inset
+
+, nor identify the noise added to 
 \begin_inset Formula $R1$
 \end_inset
 
  in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "sub:mixed_ts_random_time"
-
-\end_inset
-
-, nor come near the same high F1-Score it had achieved in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sub:mackey-glass_time"
-
-\end_inset
-
-, in the experiment of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sub:mixed_ts_mackey_glass_time"
+reference "subsec:mixed_ts_random_time"
 
 \end_inset
 

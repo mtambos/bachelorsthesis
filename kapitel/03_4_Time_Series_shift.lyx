@@ -115,12 +115,8 @@ In order to perform this analysis four time series of length
 \begin_inset Formula $150000$
 \end_inset
 
- were generated -- two 4-dimensional Mackey-Glass time series 
-\begin_inset Formula $MG1$
-\end_inset
-
- and 
-\begin_inset Formula $MG2$
+ were generated -- one 4-dimensional Mackey-Glass time series 
+\begin_inset Formula $MG_{1,150000;4}$
 \end_inset
 
 , according to 
@@ -130,12 +126,8 @@ reference "sec:Mackey-Glass_time_series"
 
 \end_inset
 
-, and two 4-dimensional randomly generated time series 
-\begin_inset Formula $R1$
-\end_inset
-
- and 
-\begin_inset Formula $R2$
+, and one 4-dimensional randomly generated time series 
+\begin_inset Formula $R_{1,150000;4}$
 \end_inset
 
 , according to 
@@ -147,19 +139,11 @@ reference "sec:random_ts"
 
 .
  Then the sub-sequences 
-\begin_inset Formula $SMG1_{76000,150000}\in MG1$
+\begin_inset Formula $SMG_{76000,150000}\in MG$
 \end_inset
 
-, 
-\begin_inset Formula $SMG2_{76000,150000}\in MG2$
-\end_inset
-
-, 
-\begin_inset Formula $SR1_{76000,150000}\in R1$
-\end_inset
-
- and 
-\begin_inset Formula $SR2\in R2$
+, and 
+\begin_inset Formula $SR_{76000,150000}\in R$
 \end_inset
 
  were modified according to 
@@ -174,23 +158,6 @@ reference "eq:ts_mean_shift"
 \end_inset
 
 .
- Then 
-\begin_inset Formula $MG1$
-\end_inset
-
- and 
-\begin_inset Formula $R1$
-\end_inset
-
- where used to train an MGNG-AD model, and 
-\begin_inset Formula $MG2$
-\end_inset
-
- and 
-\begin_inset Formula $R2$
-\end_inset
-
- to train an HTM model.
 \end_layout
 
 \begin_layout Standard
@@ -207,7 +174,7 @@ reference "sec:Mackey-Glass_time_series"
 \begin_layout Standard
 Such a shift is not considered an anomaly in this work, and therefore no
  F1-Scores could be established.
- Instead the means and standard deviations for selected segments of the
+ Instead, the means and standard deviations for selected segments of the
  time series were calculated.
 \end_layout
 
@@ -215,7 +182,7 @@ Such a shift is not considered an anomaly in this work, and therefore no
 Mackey-Glass Time Series
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:mackey-glass_ts_shift"
+name "subsec:mackey-glass_ts_shift"
 
 \end_inset
 
@@ -239,7 +206,7 @@ Figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -305,7 +272,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Detail of the previous plot, centered on the anomalous region.
+Detail of the previous plot, centered on the shift.
 \end_layout
 
 \end_inset
@@ -348,7 +315,7 @@ name "fig:mackey-glass_ts_mgng-ad_shift"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -415,7 +382,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Detail of the previous plot, centered on the anomalous region.
+Detail of the previous plot, centered on the shift.
 \end_layout
 
 \end_inset
@@ -472,6 +439,8 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="20" columns="3">
 <features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
@@ -483,6 +452,8 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Statistic
 \end_layout
 
@@ -492,6 +463,8 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MGNG-AD
 \end_layout
 
@@ -501,6 +474,8 @@ MGNG-AD
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HTM
 \end_layout
 
@@ -512,6 +487,8 @@ HTM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Total data-points 
 \end_layout
 
@@ -521,6 +498,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $150000$
 \end_inset
 
@@ -544,6 +523,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Shift position
 \end_layout
 
@@ -553,6 +534,8 @@ Shift position
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $74600$
 \end_inset
 
@@ -576,6 +559,8 @@ Shift position
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Shift amounts
 \end_layout
 
@@ -585,6 +570,8 @@ Shift amounts
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $\left(+5,-5,+10,-10\right)$
 \end_inset
 
@@ -608,6 +595,8 @@ Shift amounts
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean up to shift
 \end_layout
 
@@ -617,6 +606,8 @@ Mean up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1748$
 \end_inset
 
@@ -629,6 +620,8 @@ Mean up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3551$
 \end_inset
 
@@ -643,6 +636,8 @@ Mean up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  up to shift
 \end_layout
@@ -653,6 +648,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1099$
 \end_inset
 
@@ -665,6 +662,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1131$
 \end_inset
 
@@ -679,6 +678,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from shift onwards
 \end_layout
 
@@ -688,6 +689,8 @@ Mean from shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.6695$
 \end_inset
 
@@ -700,6 +703,8 @@ Mean from shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2852$
 \end_inset
 
@@ -714,6 +719,8 @@ Mean from shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from shift onwards
 \end_layout
@@ -724,6 +731,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $11.8830$
 \end_inset
 
@@ -736,6 +745,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0620$
 \end_inset
 
@@ -750,6 +761,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from 100 points after start, up to shift
 \end_layout
 
@@ -759,6 +772,8 @@ Mean from 100 points after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1750$
 \end_inset
 
@@ -771,6 +786,8 @@ Mean from 100 points after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3549$
 \end_inset
 
@@ -785,6 +802,8 @@ Mean from 100 points after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from 100 points after after start, up to shift
 \end_layout
@@ -795,6 +814,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1098$
 \end_inset
 
@@ -807,6 +828,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1130$
 \end_inset
 
@@ -821,6 +844,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from 1000 points after after start, up to shift
 \end_layout
 
@@ -830,6 +855,8 @@ Mean from 1000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1760$
 \end_inset
 
@@ -842,6 +869,8 @@ Mean from 1000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3535$
 \end_inset
 
@@ -856,6 +885,8 @@ Mean from 1000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from 1000 points after after start, up to shift
 \end_layout
@@ -866,6 +897,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1096$
 \end_inset
 
@@ -878,6 +911,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1125$
 \end_inset
 
@@ -892,6 +927,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from 10000 points after after start, up to shift
 \end_layout
 
@@ -901,6 +938,8 @@ Mean from 10000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1766$
 \end_inset
 
@@ -913,6 +952,8 @@ Mean from 10000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3354$
 \end_inset
 
@@ -927,6 +968,8 @@ Mean from 10000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from 10000 points after after start, up to shift
 \end_layout
@@ -937,6 +980,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1100$
 \end_inset
 
@@ -949,6 +994,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0907$
 \end_inset
 
@@ -963,6 +1010,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from 100 points after shift onwards
 \end_layout
 
@@ -972,6 +1021,8 @@ Mean from 100 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3936$
 \end_inset
 
@@ -984,6 +1035,8 @@ Mean from 100 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2849$
 \end_inset
 
@@ -998,6 +1051,8 @@ Mean from 100 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from 100 points after shift onwards
 \end_layout
@@ -1008,6 +1063,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $9.0087$
 \end_inset
 
@@ -1020,6 +1077,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0610$
 \end_inset
 
@@ -1034,6 +1093,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from 1000 points after shift onwards
 \end_layout
 
@@ -1043,6 +1104,8 @@ Mean from 1000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0522$
 \end_inset
 
@@ -1055,6 +1118,8 @@ Mean from 1000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2842$
 \end_inset
 
@@ -1069,6 +1134,8 @@ Mean from 1000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from 1000 points after shift onwards
 \end_layout
@@ -1079,6 +1146,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0397$
 \end_inset
 
@@ -1091,6 +1160,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0601$
 \end_inset
 
@@ -1105,6 +1176,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Mean from 10000 points after shift onwards
 \end_layout
 
@@ -1114,6 +1187,8 @@ Mean from 10000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0444$
 \end_inset
 
@@ -1126,6 +1201,8 @@ Mean from 10000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2871$
 \end_inset
 
@@ -1140,6 +1217,8 @@ Mean from 10000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Std.
  from 10000 points after shift onwards
 \end_layout
@@ -1150,6 +1229,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0188$
 \end_inset
 
@@ -1162,6 +1243,8 @@ Std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0591$
 \end_inset
 
@@ -1227,16 +1310,16 @@ figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 \end_inset
 
 , the HTM model is able to recover more quickly from the shift; nonetheless,
- their anomaly_likelihood and anomaly_score manage to come back to previous-shif
-t-levels (or better) in under 1000 time steps, as indicated by their standard
- deviations.
+ the anomaly_likelihood and anomaly_score of the models manage to come back
+ to previous-shift levels (or better) in under 1000 time steps, as indicated
+ by their standard deviations.
 \end_layout
 
 \begin_layout Subsection
 Randomly generated Time Series
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:random_ts_shift"
+name "subsec:random_ts_shift"
 
 \end_inset
 
@@ -1260,7 +1343,7 @@ Figref{random_ts_mgng-ad_shift, random_ts_htm_fix_time_noise}
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -1326,7 +1409,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Detail of the previous plot, centered on the anomalous region.
+Detail of the previous plot, centered on the shift.
 \end_layout
 
 \end_inset
@@ -1370,7 +1453,7 @@ name "fig:random_ts_mgng-ad_shift"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -1437,7 +1520,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Detail of the previous plot, centered on the anomalous region.
+Detail of the previous plot, centered on the shift.
 \end_layout
 
 \end_inset
@@ -1487,13 +1570,15 @@ reference "tab:random_ts_shift_stats"
 
 \end_inset
 
- 
+.
 \begin_inset Float table
 wide false
 sideways false
 status collapsed
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="20" columns="3">
 <features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
@@ -1505,6 +1590,8 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Statistic
 \end_layout
 
@@ -1514,6 +1601,8 @@ Statistic
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 MGNG-AD
 \end_layout
 
@@ -1523,6 +1612,8 @@ MGNG-AD
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 HTM
 \end_layout
 
@@ -1534,6 +1625,8 @@ HTM
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Total data-points 
 \end_layout
 
@@ -1543,6 +1636,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $150000$
 \end_inset
 
@@ -1566,6 +1661,8 @@ Total data-points
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Shift position
 \end_layout
 
@@ -1575,6 +1672,8 @@ Shift position
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $74600$
 \end_inset
 
@@ -1598,6 +1697,8 @@ Shift position
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Shift amounts
 \end_layout
 
@@ -1607,6 +1708,8 @@ Shift amounts
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $\left(+5,-5,+10,-10\right)$
 \end_inset
 
@@ -1630,6 +1733,8 @@ Shift amounts
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean up to shift
 \end_layout
 
@@ -1639,6 +1744,8 @@ Score mean up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.6590$
 \end_inset
 
@@ -1651,6 +1758,8 @@ Score mean up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2548$
 \end_inset
 
@@ -1665,6 +1774,8 @@ Score mean up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  up to shift
 \end_layout
@@ -1675,6 +1786,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0961$
 \end_inset
 
@@ -1687,6 +1800,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1231$
 \end_inset
 
@@ -1701,6 +1816,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from shift onwards
 \end_layout
 
@@ -1710,6 +1827,8 @@ Score mean from shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.8709$
 \end_inset
 
@@ -1722,6 +1841,8 @@ Score mean from shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3620$
 \end_inset
 
@@ -1736,6 +1857,8 @@ Score mean from shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from shift onwards
 \end_layout
@@ -1746,6 +1869,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $3.1644$
 \end_inset
 
@@ -1758,6 +1883,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1029$
 \end_inset
 
@@ -1772,6 +1899,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from 100 points after start, up to shift
 \end_layout
 
@@ -1781,6 +1910,8 @@ Score mean from 100 points after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.6599$
 \end_inset
 
@@ -1793,6 +1924,8 @@ Score mean from 100 points after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2544$
 \end_inset
 
@@ -1807,6 +1940,8 @@ Score mean from 100 points after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from 100 points after after start, up to shift
 \end_layout
@@ -1817,6 +1952,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0931$
 \end_inset
 
@@ -1829,6 +1966,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1228$
 \end_inset
 
@@ -1843,6 +1982,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from 1000 points after after start, up to shift
 \end_layout
 
@@ -1852,6 +1993,8 @@ Score mean from 1000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.6625$
 \end_inset
 
@@ -1864,6 +2007,8 @@ Score mean from 1000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2528$
 \end_inset
 
@@ -1878,6 +2023,8 @@ Score mean from 1000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from 1000 points after after start, up to shift
 \end_layout
@@ -1888,6 +2035,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0824$
 \end_inset
 
@@ -1900,6 +2049,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.2351$
 \end_inset
 
@@ -1914,6 +2065,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from 10000 points after after start, up to shift
 \end_layout
 
@@ -1923,6 +2076,8 @@ Score mean from 10000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.6714$
 \end_inset
 
@@ -1935,6 +2090,8 @@ Score mean from 10000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1026$
 \end_inset
 
@@ -1949,6 +2106,8 @@ Score mean from 10000 points after after start, up to shift
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from 10000 points after after start, up to shift
 \end_layout
@@ -1959,6 +2118,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0686$
 \end_inset
 
@@ -1971,6 +2132,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1211$
 \end_inset
 
@@ -1985,6 +2148,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from 100 points after shift onward
 \end_layout
 
@@ -1994,6 +2159,8 @@ Score mean from 100 points after shift onward
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.8235$
 \end_inset
 
@@ -2006,6 +2173,8 @@ Score mean from 100 points after shift onward
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3620$
 \end_inset
 
@@ -2020,6 +2189,8 @@ Score mean from 100 points after shift onward
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from 100 points after shift onwards
 \end_layout
@@ -2030,6 +2201,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $2.8315$
 \end_inset
 
@@ -2042,6 +2215,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1029$
 \end_inset
 
@@ -2056,6 +2231,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from 1000 points after shift onwards
 \end_layout
 
@@ -2065,6 +2242,8 @@ Score mean from 1000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.7145$
 \end_inset
 
@@ -2077,6 +2256,8 @@ Score mean from 1000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3629$
 \end_inset
 
@@ -2091,6 +2272,8 @@ Score mean from 1000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from 1000 points after shift onwards
 \end_layout
@@ -2101,6 +2284,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0518$
 \end_inset
 
@@ -2113,6 +2298,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.1028$
 \end_inset
 
@@ -2127,6 +2314,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score mean from 10000 points after shift onwards
 \end_layout
 
@@ -2136,6 +2325,8 @@ Score mean from 10000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.7208$
 \end_inset
 
@@ -2148,6 +2339,8 @@ Score mean from 10000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.3810$
 \end_inset
 
@@ -2162,6 +2355,8 @@ Score mean from 10000 points after shift onwards
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 Score std.
  from 10000 points after shift onwards
 \end_layout
@@ -2172,6 +2367,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0499$
 \end_inset
 
@@ -2184,6 +2381,8 @@ Score std.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 \begin_inset Formula $0.0936$
 \end_inset
 
@@ -2222,7 +2421,7 @@ name "tab:random_ts_shift_stats"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Standard
@@ -2237,7 +2436,7 @@ Once again both models show a strong reaction to the shift.
 Summary
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:ts_shift_summary"
+name "subsec:ts_shift_summary"
 
 \end_inset
 
