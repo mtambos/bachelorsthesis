@@ -189,9 +189,9 @@ name "sec:Future_Work"
 
 \begin_layout Standard
 Any further work with MGNG-AD could take several directions.
- The more important is an analysis of the impact different parametrizations
- of MGNG-AD have over the resulting anomaly_scores, followed closely by
- experiments with real data.
+ Perhaps the more important is a thorough analysis of the impact different
+ parametrizations of MGNG-AD have over the resulting anomaly_scores, followed
+ closely by experiments with real data.
 \end_layout
 
 \begin_layout Standard
@@ -251,8 +251,7 @@ key "cyrcamo2008mapas"
 
 \begin_layout Standard
 Finally, some concepts from HTMs could also be used to improve MGNG-AD.
- Specially swarming, for parameter selection, could prove very useful in
- practice.
+ Specially swarming, for parameter selection, could be very helpful in practice.
  The use of a layered architecture, each layer composed of a MGNG model,
  or the development of a predictive model for MGNG are also worth exploring.
 \end_layout

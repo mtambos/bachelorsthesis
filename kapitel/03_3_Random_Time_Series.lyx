@@ -261,8 +261,8 @@ Figref{random_ts_mgng-ad_time_noise, random_ts_htm_time_noise}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment annotated as
- anomalous.
+ The colored vertical span in the images mark the time segment annotated
+ as anomalous.
 \begin_inset Float figure
 wide false
 sideways false
@@ -567,10 +567,10 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -578,7 +578,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -618,7 +618,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1089,8 +1089,8 @@ Figref{random_ts_mgng-ad_fix_time_noise, random_ts_htm_fix_time_noise}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment annotated as
- anomalous.
+ The colored vertical span in the images mark the time segment annotated
+ as anomalous.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1395,10 +1395,10 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1406,7 +1406,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -1446,7 +1446,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout

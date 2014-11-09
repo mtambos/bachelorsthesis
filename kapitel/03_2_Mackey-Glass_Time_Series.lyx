@@ -115,7 +115,7 @@ where
 \begin_inset Formula $\tau$
 \end_inset
 
-, 
+ and 
 \begin_inset Formula $n$
 \end_inset
 
@@ -455,6 +455,15 @@ key "Andreakis2009"
 \end_inset
 
  were used.
+ The value chosen for 
+\begin_inset Formula $\omega$
+\end_inset
+
+ was 
+\begin_inset Formula $0.5$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -501,8 +510,8 @@ Figref{mackey-glass_mgng-ad_time_noise, mackey-glass_htm_time_noise}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment annotated as
- anomalous.
+ The colored vertical span in the images mark the time segment annotated
+ as anomalous.
 \begin_inset Float figure
 wide false
 sideways false
@@ -800,17 +809,17 @@ reference "tab:mackey-glass_time_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -818,7 +827,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -858,7 +867,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1329,8 +1338,8 @@ Figref{mackey-glass_mgng-ad_fix_time_noise, mackey-glass_htm_fix_time_noise}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment annotated as
- anomalous.
+ The colored vertical span in the images mark the time segment annotated
+ as anomalous.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1635,10 +1644,10 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1646,7 +1655,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -1686,7 +1695,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2211,8 +2220,8 @@ Figref{mackey-glass_mgng-ad_freq_noise, mackey-glass_htm_freq_noise}
 
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, and a detail of the anomalous region.
- The colored vertical span in the images mark time segment annotated as
- anomalous.
+ The colored vertical span in the images mark the time segment annotated
+ as anomalous.
 \begin_inset Float figure
 wide false
 sideways false
@@ -2510,17 +2519,17 @@ reference "tab:mackey-glass_freq_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -2528,7 +2537,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -2568,7 +2577,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2961,8 +2970,9 @@ F1-Score
 \end_inset
 
 
-\size default
+\end_layout
 
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -3009,8 +3019,9 @@ reference "subsec:mackey-glass_time"
  the HTM model managed to achieve a near perfect score, the MGNG-AD model
  was not far behind.
  In applications where anomalies of this type are present, the decision
- to apply of one or the other should rest on other concerns, such as the
- presence of other kinds of anomalies, or the time complexity of the models.
+ to apply of one or the other should perhaps rest on other concerns, such
+ as the presence of other kinds of anomalies, or the time complexity of
+ the models.
 \end_layout
 
 \begin_layout Standard

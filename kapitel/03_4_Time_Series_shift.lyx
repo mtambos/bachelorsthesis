@@ -203,6 +203,15 @@ Figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mackey-glass_ts_shift_stats"
+
+\end_inset
+
+.
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -240,8 +249,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
- with the selected threshold marked by the horizontal blue line.
+From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
 \end_layout
 
 \end_inset
@@ -349,9 +357,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
- with the selected threshold marked by the horizontal blue line, and anomaly_sco
-re plot.
+From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot
+ and anomaly_score plot.
 \end_layout
 
 \end_inset
@@ -422,30 +429,19 @@ name "fig:mackey-glass_ts_htm_shift"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mackey-glass_ts_shift_stats"
-
-\end_inset
-
- 
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="20" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
-<column alignment="center" valignment="top" width="50text%">
-<column alignment="center" valignment="top">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.6\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.2\textwidth}">
 <column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
@@ -454,7 +450,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -494,7 +490,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.4\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1283,7 +1279,7 @@ name "tab:mackey-glass_ts_shift_stats"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Standard
@@ -1340,6 +1336,14 @@ Figref{random_ts_mgng-ad_shift, random_ts_htm_fix_time_noise}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:random_ts_shift_stats"
+
+\end_inset
+
+.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1377,8 +1381,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
- with the selected threshold marked by the horizontal blue line.
+From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
 \end_layout
 
 \end_inset
@@ -1487,9 +1490,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
- with the selected threshold marked by the horizontal blue line, and anomaly_sco
-re plot.
+From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot
+ and anomaly_score plot.
 \end_layout
 
 \end_inset
@@ -1560,17 +1562,6 @@ name "fig:random_ts_htm_shift"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:random_ts_shift_stats"
-
-\end_inset
-
-.
 \begin_inset Float table
 wide false
 sideways false
@@ -1581,9 +1572,9 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="20" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
-<column alignment="center" valignment="top" width="50text%">
-<column alignment="center" valignment="top">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.6\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.2\textwidth}">
 <column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
@@ -1592,7 +1583,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -1632,7 +1623,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.4\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1735,7 +1726,7 @@ Shift amounts
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean up to shift
+Mean up to shift
 \end_layout
 
 \end_inset
@@ -1776,7 +1767,7 @@ Score mean up to shift
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  up to shift
 \end_layout
 
@@ -1818,7 +1809,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from shift onwards
+Mean from shift onwards
 \end_layout
 
 \end_inset
@@ -1859,7 +1850,7 @@ Score mean from shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from shift onwards
 \end_layout
 
@@ -1901,7 +1892,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from 100 points after start, up to shift
+Mean from 100 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -1942,7 +1933,7 @@ Score mean from 100 points after start, up to shift
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from 100 points after after start, up to shift
 \end_layout
 
@@ -1984,7 +1975,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from 1000 points after after start, up to shift
+Mean from 1000 points after after start, up to shift
 \end_layout
 
 \end_inset
@@ -2025,7 +2016,7 @@ Score mean from 1000 points after after start, up to shift
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from 1000 points after after start, up to shift
 \end_layout
 
@@ -2067,7 +2058,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from 10000 points after after start, up to shift
+Mean from 10000 points after after start, up to shift
 \end_layout
 
 \end_inset
@@ -2108,7 +2099,7 @@ Score mean from 10000 points after after start, up to shift
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from 10000 points after after start, up to shift
 \end_layout
 
@@ -2150,7 +2141,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from 100 points after shift onward
+Mean from 100 points after shift onwards
 \end_layout
 
 \end_inset
@@ -2191,7 +2182,7 @@ Score mean from 100 points after shift onward
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from 100 points after shift onwards
 \end_layout
 
@@ -2233,7 +2224,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from 1000 points after shift onwards
+Mean from 1000 points after shift onwards
 \end_layout
 
 \end_inset
@@ -2274,7 +2265,7 @@ Score mean from 1000 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from 1000 points after shift onwards
 \end_layout
 
@@ -2316,7 +2307,7 @@ Score std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Score mean from 10000 points after shift onwards
+Mean from 10000 points after shift onwards
 \end_layout
 
 \end_inset
@@ -2357,7 +2348,7 @@ Score mean from 10000 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Score std.
+Std.
  from 10000 points after shift onwards
 \end_layout
 
@@ -2426,10 +2417,8 @@ name "tab:random_ts_shift_stats"
 
 \begin_layout Standard
 Once again both models show a strong reaction to the shift.
- This time, however, the HTM model seems have some difficulties to fully
- capture the stochastic behavior of the time series, as evidenced by its
- higher mean and standard deviation values in comparison to the ones obtained
- by the HTM model from the previous experiment.
+ This time, however, the HTM model shows a higher mean and standard deviation
+ values in comparison to the ones obtained in the previous experiment.
 \end_layout
 
 \begin_layout Subsection

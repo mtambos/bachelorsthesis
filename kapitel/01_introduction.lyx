@@ -112,9 +112,9 @@ key "Chandola2009"
 
 \end_inset
 
-, the analysis of anomalies in time series has received considerable attention;
- there are, however, two important areas that are not very well explored:
- 
+, the analysis of anomalies in time series has received considerable attention.
+ There are, however, two important areas that are not very well explored
+ in an online setting: 
 \emph on
 contextual
 \emph default
@@ -152,10 +152,9 @@ Collective anomalies, on the other hand, refer to instances of data that
 cluster
 \emph default
  of certain characteristics.
- For example a peak of blood pressure of 180 mm-Hg that lasts a couple seconds
- may be normal (e.g.
- due to exercise), but if the same lasts for prolonged periods of time,
- then it could be caused by a medical condition.
+ For example, a peak of blood pressure of 180 mm-Hg that lasts a couple
+ seconds may be normal (e.g., due to exercise), but if the same lasts for
+ prolonged periods of time, then it could be caused by a medical condition.
  Collective anomalies can be detected with contextual anomaly detection
  methods, if said methods can be provided with a concept of context that
  reflects the properties of a normal and/or an anomalous cluster.
@@ -325,9 +324,9 @@ Makes the assumption that the input can be modeled using MGNG.
 \end_layout
 
 \begin_layout Standard
-The approach used will be experimental: instead of attempting to prove formally
- that the developed method works, experiments will be designed and executed
- that compare the method's performance with a similar method.
+The approach used will be experimental -- instead of attempting to prove
+ formally that the developed method works, experiments will be designed
+ and executed that compare the method's performance with a similar method.
 \end_layout
 
 \begin_layout Standard
@@ -347,29 +346,7 @@ key "Aggarwal2013"
 ).
  Moreover, the target use is also different -- offline models can be used
  only when all the relevant data is available, online models when it is
- important to analyze data as it comes.
-\begin_inset Note Comment
-status collapsed
-
-\begin_layout Plain Layout
-In particular, supervised methods are not deemed comparable to MGNG-AD because
- said methods are specialized in detecting certain types of anomalies, the
- ones they were trained to detect, while most unsupervised methods, MGNG-AD
- included, define abnormality only in relation to the normal behavior of
- the data (see 
-\begin_inset CommandInset citation
-LatexCommand cite
-after "p. 188"
-key "Aggarwal2013"
-
-\end_inset
-
-).
-\end_layout
-
-\end_inset
-
-
+ important to analyze data as it comes in.
 \end_layout
 
 \begin_layout Section
@@ -421,7 +398,7 @@ key "Gupta2014"
  as well as supervised, semi-supervised and unsupervised approaches.
  In this categorization, MGNG-AD is close related to the evolving prediction
  models for stream data -- MGNG-AD does evolve an internal model to account
- for temporal drift, but is not prediction based.
+ for temporal drift, but is not prediction-based.
  One of the two most similar methods to the one presented in this work found
  so far, Sequentially Discounting Auto Regression (SDAR
 \begin_inset CommandInset nomenclature
@@ -593,9 +570,9 @@ key "Wei2005a"
 \end_inset
 
  build on SAX by presenting an algorithm for online anomaly detection; a
- key idea of the present work -- the comparison of two models of the input
- data -- was inspired by their work; the method presented by them, however,
- only handles univariate time series, and hence will not be used for comparison.
+ key idea of MGNG-AD -- the comparison of two models of the input data --
+ was inspired by their work; the method presented by them, however, only
+ handles univariate time series, and hence will not be used for comparison.
  Moreover, SAX-based anomaly detectors do not preserve the input space's
  dimensionality, while the anomaly detector presented in this work does.
 \end_layout

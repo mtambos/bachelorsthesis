@@ -587,17 +587,17 @@ reference "tab:mixed_ts_mackey_glass_time_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -605,7 +605,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -645,7 +645,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1460,17 +1460,17 @@ reference "tab:mixed_ts_random_time_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1478,7 +1478,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \size footnotesize
-Statistic
+Statistics
 \end_layout
 
 \end_inset
@@ -1518,7 +1518,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="30text%" special=">{\centering}m{0.7\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
