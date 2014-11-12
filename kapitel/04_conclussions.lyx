@@ -116,6 +116,18 @@ past
 \end_layout
 
 \begin_layout Standard
+It has also been shown that the time complexity of the 
+\begin_inset Formula $time\_step$
+\end_inset
+
+ function of MGNG is 
+\begin_inset Formula $O\left(m\cdot\left|\mathcal{K}\right|+\left|\mathcal{K}\right|\cdot\log\left|\mathcal{K}\right|\right)$
+\end_inset
+
+, making it independent of its input length.
+\end_layout
+
+\begin_layout Standard
 In experiments performed with synthetic data, it also has been empirically
  shown that the method developed is able to successfully detect certain
  kinds of anomalies.
@@ -138,6 +150,7 @@ Regarding other aspects of the methods, even though the HTM model needs
  a gargantuan amount of parameters (approx.
  50 plus 6-9 more for each input column) the swarm functionality allows
  the user to set them up quite easily.
+ In contrast, MGNG-AD has 19 parameters, that need to be tuned manually.
  On the other hand the OPF does not allow the creation of a model for prediction
  of multiple variables, hence the need of training multiple HTM models for
  multidimensional time series.
