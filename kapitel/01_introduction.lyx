@@ -324,6 +324,23 @@ Makes the assumption that the input can be modeled using MGNG.
 \end_layout
 
 \begin_layout Standard
+Points 8.
+ and 9.
+ mean, among other things, that MGNG-AD is not tailored to detect any specific
+ kind of anomalies.
+ The ultimate goal of MGNG-AD is, in the words of Dunning & Friedman 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "p. 9"
+key "Dunning"
+
+\end_inset
+
+, that of true anomaly detection -- the detection of anomalies that are
+ undefined ahead of time.
+\end_layout
+
+\begin_layout Standard
 The approach used will be experimental -- instead of attempting to prove
  formally that the developed method works, experiments will be designed
  and executed that compare the method's performance with a similar method.
@@ -380,7 +397,28 @@ d, score-based detector of contextual anomalies on sequential, multivariate,
  One problem with this survey is that all time-series-related methods described
  are either offline, supervised or univariate approaches, and thus not comparabl
 e with MGNG-AD.
- 
+\end_layout
+
+\begin_layout Standard
+Dunning & Friedman 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dunning"
+
+\end_inset
+
+ give an introduction to the field of anomaly detection.
+ They also present a new method, t-digest, that is able to automatically
+ set the threshold for a threshold-based anomalies detection task.
+ A detector based directly on t-digest would not be able to detect contextual
+ anomalies, hence it is not used in this work for comparison.
+ Dunning & Friedman show how to detect anomalous heart beats in ECG, a kind
+ of contextual anomaly, by using t-digest not over the input signal, but
+ over the difference between the input signal and a database of normal signal
+ windows.
+ This approach detects anomalies in an online fashion, but the construction
+ of the database must be performed offline, and therefore it is not able
+ to evolve its internal model online.
 \end_layout
 
 \begin_layout Standard
@@ -425,8 +463,19 @@ reference "sec:Objective_statement"
 
  but, in contrast to MGNG-AD, is not able to handle multi-dimensional time
  series.
- Many other methods are presented, but they are either supervised, handle
- only categorical data, or do not handle temporal context.
+ Aggarwal 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Aggarwal2013"
+
+\end_inset
+
+ follows in his book, in the chapters of about outliers in time series and
+ sequences, an almost identical structure as Gupta et al..
+ Even though Aggarwal presents expanded information with respect to Gupta
+ et al., the methods presented, with the exception of SDAR, are either supervised
+, handle only categorical data, or do not handle temporal context.
+ 
 \end_layout
 
 \begin_layout Standard
