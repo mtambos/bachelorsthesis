@@ -3048,7 +3048,8 @@ reference "subsec:mackey-glass_freq"
  experiment, the HTM model successfully identified the anomalous sub-sequence,
  while the MGNG-AD model was totally unable to distinguish normal from abnormal.
  This inability could nonetheless be useful, e.g.
- as a noise filter.
+ in time series that are contaminated sporadically by this kind of noise,
+ but where the noise itself is not to be considered an anomaly.
 \end_layout
 
 \end_body
