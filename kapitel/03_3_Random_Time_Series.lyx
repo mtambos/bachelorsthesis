@@ -263,6 +263,14 @@ Figref{random_ts_mgng-ad_time_noise, random_ts_htm_time_noise}
  precision, recall and F1-Score curves, and a detail of the anomalous region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mixed_ts_mackey_glass_time_stats"
+
+\end_inset
+
+.
 \begin_inset Float figure
 wide false
 sideways false
@@ -546,17 +554,6 @@ name "fig:random_ts_htm_time_noise"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mixed_ts_mackey_glass_time_stats"
-
-\end_inset
-
- 
 \begin_inset Float table
 wide false
 sideways false
@@ -1035,7 +1032,7 @@ name "tab:random_ts_time_stats"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsection
@@ -1091,6 +1088,14 @@ Figref{random_ts_mgng-ad_fix_time_noise, random_ts_htm_fix_time_noise}
  precision, recall and F1-Score curves, and a detail of the anomalous region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mixed_ts_random_time_stats"
+
+\end_inset
+
+.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1374,17 +1379,6 @@ name "fig:random_ts_htm_fix_time_noise"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mixed_ts_random_time_stats"
-
-\end_inset
-
- 
 \begin_inset Float table
 wide false
 sideways false
@@ -1863,7 +1857,7 @@ name "tab:random_ts_fix_time_stats"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsection

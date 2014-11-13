@@ -512,6 +512,15 @@ Figref{mackey-glass_mgng-ad_time_noise, mackey-glass_htm_time_noise}
  precision, recall and F1-Score curves, and a detail of the anomalous region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mackey-glass_time_stats"
+
+\end_inset
+
+.
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -795,21 +804,10 @@ name "fig:mackey-glass_htm_time_noise"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mackey-glass_time_stats"
-
-\end_inset
-
- 
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1284,7 +1282,7 @@ name "tab:mackey-glass_time_stats"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsection
@@ -1340,6 +1338,15 @@ Figref{mackey-glass_mgng-ad_fix_time_noise, mackey-glass_htm_fix_time_noise}
  precision, recall and F1-Score curves, and a detail of the anomalous region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mackey-glass_fix_time_stats"
+
+\end_inset
+
+.
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -1623,17 +1630,6 @@ name "fig:mackey-glass_htm_fix_time_noise"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mackey-glass_fix_time_stats"
-
-\end_inset
-
- 
 \begin_inset Float table
 wide false
 sideways false
@@ -2112,7 +2108,7 @@ name "tab:mackey-glass_fix_time_stats"
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsection
@@ -2222,6 +2218,14 @@ Figref{mackey-glass_mgng-ad_freq_noise, mackey-glass_htm_freq_noise}
  precision, recall and F1-Score curves, and a detail of the anomalous region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mackey-glass_freq_stats"
+
+\end_inset
+
+.
 \begin_inset Float figure
 wide false
 sideways false
@@ -2505,21 +2509,10 @@ name "fig:mackey-glass_htm_freq_noise"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mackey-glass_freq_stats"
-
-\end_inset
-
- 
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
