@@ -113,22 +113,18 @@ key "Chandola2009"
 \end_inset
 
 , the analysis of anomalies in time series has received considerable attention.
- There are, however, two important areas that are not very well explored
- in an online setting: 
+ There are, however, one important area that is not very well explored in
+ an online setting -- that of the 
 \emph on
 contextual
 \emph default
- anomalies and 
-\emph on
-collective
-\emph default
- anomalies.
-
-\emph on
  
+\emph on
+anomalies
 \emph default
-Contextual anomalies refer to instances of data that are only anomalous
- with respect to their vicinity (their 
+.
+ These refer to instances of data that are only anomalous with respect to
+ their vicinity (their 
 \emph on
 context
 \emph default
@@ -141,23 +137,8 @@ reference "fig:1-1"
 \end_inset
 
  shows a contextual anomaly on a electrocardiogram.
-
-\emph on
- 
-\emph default
-Collective anomalies, on the other hand, refer to instances of data that
- are only anomalous when occurring together, i.e.
- when they form a 
-\emph on
-cluster
-\emph default
- of certain characteristics.
- For example, a peak of blood pressure of 180 mm-Hg that lasts a couple
- seconds may be normal (e.g., due to exercise), but if the same lasts for
- prolonged periods of time, then it could be caused by a medical condition.
- Contextual anomaly detection methods can be adapted to detect collective
- anomalies, if said methods can be provided with a concept of context that
- reflects the properties of a normal and/or an anomalous cluster.
+ It was due to this scantiness of research in this particular area, that
+ it was deemed useful to propose a new method applicable to it.
 \begin_inset Float figure
 wide false
 sideways false
@@ -175,7 +156,7 @@ width "100text%"
 special "none"
 height "1in"
 height_special "totalheight"
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
