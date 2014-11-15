@@ -1312,7 +1312,7 @@ figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 \end_layout
 
 \begin_layout Subsection
-Randomly generated Time Series
+Randomly Generated Time Series
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:random_ts_shift"

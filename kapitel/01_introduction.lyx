@@ -155,8 +155,8 @@ cluster
  For example, a peak of blood pressure of 180 mm-Hg that lasts a couple
  seconds may be normal (e.g., due to exercise), but if the same lasts for
  prolonged periods of time, then it could be caused by a medical condition.
- Collective anomalies can be detected with contextual anomaly detection
- methods, if said methods can be provided with a concept of context that
+ Contextual anomaly detection methods can be adapted to detect collective
+ anomalies, if said methods can be provided with a concept of context that
  reflects the properties of a normal and/or an anomalous cluster.
 \begin_inset Float figure
 wide false
@@ -291,10 +291,6 @@ Detects contextual anomalies in time series.
 \end_layout
 
 \begin_layout Enumerate
-Assigns to each point an anomaly score, not a category.
-\end_layout
-
-\begin_layout Enumerate
 Is able to handle multi-dimensional time series.
 \end_layout
 
@@ -303,15 +299,19 @@ Uses real valued vectors as inputs.
 \end_layout
 
 \begin_layout Enumerate
-Uses an unsupervised learning approach.
-\end_layout
-
-\begin_layout Enumerate
 Performs anomaly detection on data streams (online anomaly detection).
 \end_layout
 
 \begin_layout Enumerate
 Evolves its internal model constantly (online model evolution).
+\end_layout
+
+\begin_layout Enumerate
+Uses an unsupervised learning approach.
+\end_layout
+
+\begin_layout Enumerate
+Assigns to each point an anomaly score, not a category.
 \end_layout
 
 \begin_layout Enumerate
@@ -463,19 +463,23 @@ reference "sec:Objective_statement"
 
  but, in contrast to MGNG-AD, is not able to handle multi-dimensional time
  series.
- Aggarwal 
+ The methods presented, with the exception of SDAR, are either supervised,
+ handle only categorical data, or do not handle temporal context.
+\end_layout
+
+\begin_layout Standard
+Aggarwal 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Aggarwal2013"
 
 \end_inset
 
- follows in his book, in the chapters of about outliers in time series and
- sequences, an almost identical structure as Gupta et al..
- Even though Aggarwal presents expanded information with respect to Gupta
- et al., the methods presented, with the exception of SDAR, are either supervised
-, handle only categorical data, or do not handle temporal context.
- 
+ provides a comprehensive exposition of the field of outlier analysis.
+ He dedicates a whole chapter to the topic of time series and multidimensional
+ streaming outlier detection.
+ However, and similarly to Gupta et al., the methods exposed are either supervise
+d, handle only categorical data, or do not handle temporal context.
 \end_layout
 
 \begin_layout Standard
@@ -765,11 +769,20 @@ reference "chap:Fundamentals"
  MGNG-AD is presented; first, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
+reference "sec:Intro-to-Anomaly-Detection"
+
+\end_inset
+
+, a brief introduction to the field of anomaly detection is give.
+ Second, in 
+\begin_inset CommandInset ref
+LatexCommand formatted
 reference "sec:Basic_definitions"
 
 \end_inset
 
-, some concepts and terms are defined, then, in 
+, some concepts and terms are defined.
+ Then, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Method_intuition"
@@ -798,6 +811,31 @@ Secref{MGNG_for_anomaly_detection}
 \end_inset
 
  is dedicated to an in-depth explanation of MGNG-AD.
+ Subsequently, in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Overview_of_HTM"
+
+\end_inset
+
+, an overview of the HTM, CLA and OPF is provided.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Chapref{Experiment's-Methodology-and-Setup}
+\end_layout
+
+\end_inset
+
+ explains the experiments' evaluation methodology together with the common
+ setup decisions for the them.
 \end_layout
 
 \begin_layout Standard
@@ -813,23 +851,8 @@ Chapref{Experiments_with_MGNG-AD}
 
 \end_inset
 
- describes a set of experiments in which the MGNG-AD analysis results are
- compared to the HTM's.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Secref{Overview}
-\end_layout
-
-\end_inset
-
- provides an overview of the HTM, CLA and OPF, together with the common
- setup decisions for the experiment and the experiment's evaluation methodology.
+ describes a set of experiments in which the MGNG-AD's analysis results
+ are compared to the HTM's.
  
 \begin_inset ERT
 status open

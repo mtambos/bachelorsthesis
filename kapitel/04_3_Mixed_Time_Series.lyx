@@ -1063,7 +1063,7 @@ name "tab:mixed_ts_mackey_glass_time_stats"
 \end_layout
 
 \begin_layout Subsection
-Noise in randomly generated Time Series
+Noise in Randomly Generated Time Series
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:mixed_ts_random_time"

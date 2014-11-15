@@ -1,0 +1,812 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Stichwortverzeichnis
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:conclusions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Discussion
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Discussion"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possibly the best way of using MGNG-AD is under human supervision.
+ In this setting it would not be the sole responsible of raising alarms,
+ but rather it would be used to recognize potentially anomalous regions
+ in a data stream, relying its automated analysis to a human for final classific
+ation.
+ Feeding the time series to MGNG-AD after some other online process has
+ cleared it from known anomalies and noise could also prove useful.
+ Such two stages process would leave a cleaner signal, making it easier
+ for MGNG-AD to detect other kinds of anomalies.
+\end_layout
+
+\begin_layout Standard
+Regarding other aspects of the methods, even though the HTM model needs
+ a gargantuan amount of parameters (approx.
+ 50 plus 6-9 more for each input column) the swarm functionality allows
+ the user to set them up quite easily.
+ In contrast, MGNG-AD has 19 parameters, that need to be tuned manually.
+ On the other hand the OPF does not allow the creation of a model for prediction
+ of multiple variables, hence the need of training multiple HTM models for
+ multidimensional time series.
+ Moreover, HTM is a much more complex approach.
+ Its goal is not to merely detect anomalies, but to replicate part of the
+ mammalian's brain functionality.
+ Its hierarchical structure could admittedly allow it to discover certain
+ types of anomalies that are beyond the capabilities of MGNG-AD.
+ That same complexity, however, made HTM many times slower than MGNG-AD.
+ In average it took around 600 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textmu s
+\end_layout
+
+\end_inset
+
+ for the MGNG-AD model to process a 4-dimensional data-point, whereas the
+ HTM needed approximately 10 ms for the same
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+CPU: Intel(R) Core(TM) i7-3630QM @ 2.40GHz; RAM: 16GB.
+\end_layout
+
+\end_inset
+
+.
+ This means that MGNG-AD could allow the processing in real time of streams
+ with far higher sampling frequency than HTM.
+\end_layout
+
+\begin_layout Section
+Summary
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Summary"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Based on the works by Aggarwal and Chandola et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Aggarwal2013,Chandola2009"
+
+\end_inset
+
+, a brief overview of the field of anomaly detection has been given, together
+ with several forms in which anomaly detectors can be classified.
+ MGNG-AD has been then categorized according to the classification proposed.
+\end_layout
+
+\begin_layout Standard
+Basic concepts that underlie MGNG, and by extension MGNG-AD have been precisely
+ defined.
+\end_layout
+
+\begin_layout Standard
+Following the work by Andreakis et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Andreakis2009"
+
+\end_inset
+
+, an MGNG has been defined, and the MGNG algorithm has been explained.
+ It has also been shown that the time complexity of the 
+\begin_inset Formula $time\_step$
+\end_inset
+
+ function of MGNG is 
+\begin_inset Formula $O\left(m\cdot\left|\mathcal{K}\right|+\left|\mathcal{K}\right|\cdot\log\left|\mathcal{K}\right|\right)$
+\end_inset
+
+, making it independent of its input length.
+\end_layout
+
+\begin_layout Standard
+A novel method for online detection of contextual anomalies in multidimensional
+ time series has been then presented.
+ For each data point in the time series, it provides an anomaly score of
+ that data point, which is calculated as the difference between two MGNG
+ models -- a 
+\begin_inset Quotes eld
+\end_inset
+
+present
+\begin_inset Quotes erd
+\end_inset
+
+ model that is feed the most up-to-date data, and another 
+\begin_inset Quotes eld
+\end_inset
+
+past
+\begin_inset Quotes erd
+\end_inset
+
+ model, that is fed delayed data.
+ It has also been demonstrated that the time complexity of MGNG-AD's 
+\begin_inset Formula $time\_step\_ad$
+\end_inset
+
+ function is 
+\begin_inset Formula $O\left(m\cdot\left|\mathcal{K}^{P}\right|\cdot\left|\mathcal{K}^{Q}\right|+\left|\mathcal{K}^{P}\right|\cdot\log\left|\mathcal{K}^{P}\right|+\left|\mathcal{K}^{Q}\right|\cdot\log\left|\mathcal{K}^{Q}\right|\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In experiments performed with synthetic data, it has been empirically shown
+ that the method developed is able to detect gaussian noise in the time
+ domain of Mackey-Glass and randomly generated time series.
+ MGNG-AD was shown to also be able to detect incremental noise in the same
+ two types of time series.
+ It was, however, completely unable to detect gaussian noise in the frequency
+ domain of a Mackey-Glass time series.
+ In further experiments with time series with two Mackey-Glass components
+ and two randomly generated components, MGNG-AD was also able to detect
+ gaussian and incremental noise in the time domain.
+ Finally, in an experiment with time series with a mean shift, both MGNG-AD
+ and HTM models were able to adapt to the change in behavior.
+\end_layout
+
+\begin_layout Standard
+A summary of the F1-Scores obtained by the models in all experiments is
+ presented in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:f1_score_summary"
+
+\end_inset
+
+.
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<column alignment="center" valignment="top" width="20text%">
+<column alignment="center" valignment="top" width="40text%">
+<column alignment="center" valignment="top" width="13text%">
+<column alignment="center" valignment="top" width="13text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Type of time series
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Experiment
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+MGNG-AD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+HTM
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Mackey-Glass
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Gauss.
+ noise in time domain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.9246$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.9825$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Incr.
+ noise in time domain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.8345$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.3954$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Gauss.
+ noise in freq.
+ domain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.0430$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.8204$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Rand.
+ gen.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Gauss.
+ noise in time domain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.4233$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.0252$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Incr.
+ noise in time domain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.6569$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.0245$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Mixed
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Noise in Mackey-Glass time series
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.8717$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.1343$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Noise in rand.
+ gen.
+ time series
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.8776$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $0.0239$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\size default
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+F1-Scores of each model for each experiment.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:f1_score_summary"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Future Work
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Future_Work"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Any further work with MGNG-AD could take several directions.
+ Perhaps the more important is a thorough analysis of the impact different
+ parametrizations of MGNG-AD have over the resulting anomaly_scores, followed
+ closely by experiments with real data.
+\end_layout
+
+\begin_layout Standard
+Another possible direction is to modify MGNG to use the key idea behind
+ GNG with Utility Factor(GNG-U, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fritzke1997"
+
+\end_inset
+
+), namely the use of a utility factor to relocate neurons that contribute
+ little to the reduction of the error.
+ GNG-U has been shown to be able to adapt more quickly to changing distributions
+ than GNG 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Holmstroem2002"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The use of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textgamma
+\end_layout
+
+\end_inset
+
+-GNG 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "estevez2011gamma"
+
+\end_inset
+
+, a generalization of MGNG, could also prove useful, since it seems the
+ former provides lower temporal quantization errors than the latter (see
+ also 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cyrcamo2008mapas"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Finally, some concepts from HTMs could also be used to improve MGNG-AD.
+ Specially swarming, for parameter selection, could be very helpful in practice.
+ The use of a layered architecture, each layer composed of a MGNG model,
+ or the development of a predictive model for MGNG are also worth exploring.
+\end_layout
+
+\begin_layout Section
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+To Alex, Thomas, María Marta Jacob and Marco Pantalone for providing me
+ with critiques and suggestions.
+ To Jochen Kerdels for his critiques.
+ To my parents for giving me a constant hunger for knowledge.
+ Finally, to my wife Alex, for everything, all the time.
+\end_layout
+
+\end_body
+\end_document

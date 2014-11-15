@@ -224,7 +224,7 @@ The parameters used for both MGNG-AD and HTM models are the same as in the
 \end_layout
 
 \begin_layout Subsection
-Random noise in the time domain
+Random Noise in the Time Domain
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:random_ts_time"
@@ -1036,7 +1036,7 @@ name "tab:random_ts_time_stats"
 \end_layout
 
 \begin_layout Subsection
-Incremental noise in the time domain
+Incremental Noise in the Time Domain
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:random_ts_fix_time"

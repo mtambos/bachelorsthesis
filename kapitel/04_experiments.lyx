@@ -87,35 +87,28 @@ name "chap:Experiments_with_MGNG-AD"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "03_1_Overview.lyx"
+filename "04_1_Mackey-Glass_Time_Series.lyx"
 
 \end_inset
 
 
 \begin_inset CommandInset include
 LatexCommand input
-filename "03_2_Mackey-Glass_Time_Series.lyx"
+filename "04_2_Random_Time_Series.lyx"
 
 \end_inset
 
 
 \begin_inset CommandInset include
 LatexCommand input
-filename "03_3_Random_Time_Series.lyx"
+filename "04_3_Mixed_Time_Series.lyx"
 
 \end_inset
 
 
 \begin_inset CommandInset include
 LatexCommand input
-filename "03_5_Mixed_Time_Series.lyx"
-
-\end_inset
-
-
-\begin_inset CommandInset include
-LatexCommand input
-filename "03_4_Time_Series_shift.lyx"
+filename "04_4_Time_Series_shift.lyx"
 
 \end_inset
 
