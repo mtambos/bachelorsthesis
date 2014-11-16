@@ -227,19 +227,38 @@ contextual anomalies
 \emph on
 anomaly level
 \emph default
- of a sequence of data points is to be interpreted as the sequence's dissimilari
-ty with respect to previous sequences.
+ of a data point is to be interpreted as the dissimilarity between two models
+ of the time series: a 
+\begin_inset Quotes eld
+\end_inset
+
+present
+\begin_inset Quotes erd
+\end_inset
+
+ model, to which the last data point was fed, and a 
+\begin_inset Quotes eld
+\end_inset
+
+past
+\begin_inset Quotes erd
+\end_inset
+
+ model to which delayed data is fed.
  Moreover, it is desired to take into account interactions between different
  events that occur simultaneously.
- For instance, if an experiment's goal is to know whether patients are having
- a tachycardia episode by observing their heart rate and their level of
+ Consider, for instance, an experiment in which the goal is to know whether
+ patients are having a tachycardia episode.
+ The observed variables are the patients' heart rate and their level of
  physical activity (e.g.
- measured by a 3-axis accelerometer), a high heart rate when resting should
- be anomalous, a high heart rate when exercising should not.
+ measured by a 3-axis accelerometer).
+ A high heart rate when resting should be anomalous, a high heart rate when
+ exercising should not.
 \end_layout
 
 \begin_layout Standard
-The approach to be developed is based in Merge Growing Neural Gas (MGNG
+The approach to be developed is based in method for time series analysis
+ called Merge Growing Neural Gas (MGNG
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "MGNG"
@@ -889,7 +908,7 @@ reference "sec:ts_shift"
 Finally, 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "chap:4"
+reference "chap:conclusions"
 
 \end_inset
 

@@ -1872,7 +1872,7 @@ name "subsec:random_ts_summary"
 \end_layout
 
 \begin_layout Standard
-In both experiment HTM seems to be completely unable to spot the anomalies,
+In both experiments, HTM seems to be completely unable to spot the anomalies,
  as both its low F1-Scores and the seemingly random behavior of its anomaly_like
 lihood in the plots show.
 \end_layout

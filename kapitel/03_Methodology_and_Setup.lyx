@@ -84,6 +84,11 @@ name "chap:Experiment's-Methodology-and-Setup"
 
 \end_layout
 
+\begin_layout Standard
+This chapter explains the approach used to evaluate MGNG-AD's performance,
+ and describes the decisions made when setting up the experiments.
+\end_layout
+
 \begin_layout Section
 Evaluation Methodology
 \begin_inset CommandInset label
@@ -137,12 +142,22 @@ r & =\frac{\left|true\, positive\right|}{\left|true\, positive\right|+\left|fals
 
 \end_inset
 
-where a true positive indicates a data-point annotated as an anomaly and
- recognized as an anomaly by the anomaly detector, a false negative indicates
- a data-point annotated as anomaly that was not recognized as such by the
- anomaly detector, and a false positive indicates a data-point that was
- not annotated as an anomaly but that was falsely recognized as one by the
- anomaly detector.
+where a 
+\emph on
+true positive
+\emph default
+ indicates a data-point annotated as an anomaly and recognized as an anomaly
+ by the anomaly detector, a 
+\emph on
+false negative
+\emph default
+ indicates a data-point annotated as anomaly that was not recognized as
+ such by the anomaly detector, and a
+\emph on
+ false positive
+\emph default
+ indicates a data-point that was not annotated as an anomaly but that was
+ falsely recognized as one by the anomaly detector.
 \end_layout
 
 \begin_layout Standard

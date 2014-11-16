@@ -33,7 +33,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement !bph
+\float_placement !th
 \paperfontsize 11
 \spacing single
 \use_hyperref true
