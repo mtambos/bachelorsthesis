@@ -1,11 +1,13 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass book
 \begin_preamble
 % Added by lyx2lyx
 % Added by lyx2lyx
+% Added by lyx2lyx
+\usepackage{mathtools}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -16,13 +18,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -33,24 +35,15 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_package amsmath 1
-\use_package amssymb 1
-\use_package cancel 1
-\use_package esint 1
-\use_package mathdots 0
-\use_package mathtools 2
-\use_package mhchem 0
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
-\cite_engine_type default
-\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -88,7 +81,11 @@ name "sec:random_ts"
 The objective of the experiments in this section is to compare the performance
  of MGNG-AD and HTM models to detect anomalies in randomly generated time
  series.
- In each experiment two 4-dimensional time series of length 
+ In each experiment two 4-dimensional time series 
+\begin_inset Formula $R_{1,150000;4}$
+\end_inset
+
+ of length 
 \begin_inset Formula $150000$
 \end_inset
 
@@ -97,9 +94,9 @@ The objective of the experiments in this section is to compare the performance
 \begin_inset Formula 
 \begin{align*}
 r_{t,1} & \in\mathcal{N}\left(0,1\right)\\
-r_{t,2} & \in\mathcal{N}\left(-1,1\right)\\
-r_{t,3} & \in\mathcal{N}\left(2,1\right)\\
-r_{t,4} & \in\mathcal{N}\left(-2,1\right);\forall t,0<t\le150000,\left(r_{t,1},\dots,r_{t,4}\right)\in R
+r_{t,2} & \in\mathcal{N}\left(0,-1\right)\\
+r_{t,3} & \in\mathcal{N}\left(0,2\right)\\
+r_{t,4} & \in\mathcal{N}\left(0,-2\right);\forall t,0<t\le150000,\left(r_{t,1},\dots,r_{t,4}\right)\in R
 \end{align*}
 
 \end_inset
@@ -305,7 +302,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -336,7 +333,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -368,7 +365,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -390,7 +387,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 MGNG-AD model's results for a randomly generated time series with added
@@ -446,7 +443,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -477,7 +474,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -510,7 +507,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -532,7 +529,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 HTM model's results for a randomly generated time series with added random
@@ -564,7 +561,7 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle">
+<features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -1011,7 +1008,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a randomly generated time series
@@ -1130,7 +1127,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -1161,7 +1158,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -1193,7 +1190,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1215,7 +1212,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 MGNG-AD model's results for a randomly generated time series with added
@@ -1271,7 +1268,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -1302,7 +1299,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -1335,7 +1332,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1357,7 +1354,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 HTM model's results for a randomly generated time series with added incremental
@@ -1389,7 +1386,7 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features rotate="0" tabularvalignment="middle">
+<features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -1836,7 +1833,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a randomly generated time series
@@ -1878,8 +1875,8 @@ lihood in the plots show.
 \end_layout
 
 \begin_layout Standard
-The MGNG-AD mode, on the contrary, reacted strongly to the abnormal sub-sequence
-s in both experiments, as seen in 
+The MGNG-AD mode, on the contrary, reported high anomaly_scores for the
+ abnormal sub-sequences in both experiments, as seen in 
 \begin_inset ERT
 status open
 

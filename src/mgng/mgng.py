@@ -32,9 +32,9 @@ import numpy as np
 import numpy.linalg as lnp
 import numexpr as ne
 
-from numbapro import autojit
+#from numbapro import autojit
 
-@autojit(target='cpu')
+#@autojit(target='cpu')
 def distances(xt, w, c, c_t, alpha):
     r'''
     d_n(t) = (1 - \alpha) * ||x_t - w_n||^2 + \alpha||C_t - c_n||^2
@@ -44,7 +44,7 @@ def distances(xt, w, c, c_t, alpha):
     return tot
 
 
-@autojit(target='cpu')
+#@autojit(target='cpu')
 def find_winner_neurons(xt, w, c, c_t, alpha):
     r'''
     find winner r := arg min_{n \in K} d_n(t)

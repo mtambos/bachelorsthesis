@@ -1,5 +1,5 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass book
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
-\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,24 +29,15 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_package amsmath 1
-\use_package amssymb 1
-\use_package cancel 1
-\use_package esint 1
-\use_package mathdots 0
-\use_package mathtools 1
-\use_package mhchem 0
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
-\cite_engine_type default
-\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -113,7 +104,7 @@ Regarding other aspects of the methods, even though the HTM model needs
  of multiple variables, hence the need of training multiple HTM models for
  multidimensional time series.
  Moreover, HTM is a much more complex approach.
- Its goal is not to merely detect anomalies, but to replicate part of the
+ Its goal is not to merely detect anomalies, but to replicate part of a
  mammalian's brain functionality.
  Its hierarchical structure could admittedly allow it to discover certain
  types of anomalies that are beyond the capabilities of MGNG-AD.
@@ -186,7 +177,7 @@ key "Andreakis2009"
 
 \end_inset
 
-, an MGNG has been defined, and the MGNG algorithm has been explained.
+, the MGNG model has been defined, and the MGNG algorithm has been explained.
  It has also been shown that the time complexity of the 
 \begin_inset Formula $time\_step$
 \end_inset
@@ -266,7 +257,7 @@ status open
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="4">
-<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
+<features tabularvalignment="middle" tabularwidth="100text%">
 <column alignment="center" valignment="top" width="20text%">
 <column alignment="center" valignment="top" width="40text%">
 <column alignment="center" valignment="top" width="13text%">
@@ -586,6 +577,19 @@ Incr.
 
 \size footnotesize
 Mixed
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Gaussian noise in time domain of one component was used in all experiments,
+ either a Mackey-Glass or a randomly generated component.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -689,7 +693,7 @@ Noise in rand.
 
 \size default
 
-\begin_inset Caption Standard
+\begin_inset Caption
 
 \begin_layout Plain Layout
 F1-Scores of each model for each experiment.
@@ -794,18 +798,6 @@ Finally, some concepts from HTMs could also be used to improve MGNG-AD.
  Specially swarming, for parameter selection, could be very helpful in practice.
  The use of a layered architecture, each layer composed of a MGNG model,
  or the development of a predictive model for MGNG are also worth exploring.
-\end_layout
-
-\begin_layout Section
-Acknowledgments
-\end_layout
-
-\begin_layout Standard
-To Alex, Thomas, María Marta Jacob and Marco Pantalone for providing me
- with critiques and suggestions.
- To Jochen Kerdels for his critiques.
- To my parents for giving me a constant hunger for knowledge.
- Finally, to my wife Alex, for everything, all the time.
 \end_layout
 
 \end_body

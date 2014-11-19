@@ -113,7 +113,7 @@ key "Chandola2009"
 \end_inset
 
 , the analysis of anomalies in time series has received considerable attention.
- There are, however, one important area that is not very well explored in
+ There is, however, one important area that is not very well explored in
  an online setting -- that of the 
 \emph on
 contextual
@@ -138,7 +138,8 @@ reference "fig:1-1"
 
  shows a contextual anomaly on a electrocardiogram.
  It was due to this scantiness of research in this particular area, that
- it was deemed useful to propose a new method applicable to it.
+ it was considered it would be of interest to develop a new method applicable
+ to it.
 \begin_inset Float figure
 wide false
 sideways false
@@ -218,11 +219,8 @@ name "sec:Objective_statement"
 \end_layout
 
 \begin_layout Standard
-The goal of this work is to develop an approach to detecting 
-\emph on
-contextual anomalies
-\emph default
- on multi-dimensional time series.
+The goal of this work is to develop an approach to detecting contextual
+ anomalies on multi-dimensional time series.
  The 
 \emph on
 anomaly level
@@ -291,11 +289,7 @@ Detects contextual anomalies in time series.
 \end_layout
 
 \begin_layout Enumerate
-Is able to handle multi-dimensional time series.
-\end_layout
-
-\begin_layout Enumerate
-Uses real valued vectors as inputs.
+Is able to handle multi-dimensional, real valued time series.
 \end_layout
 
 \begin_layout Enumerate
@@ -324,8 +318,8 @@ Makes the assumption that the input can be modeled using MGNG.
 \end_layout
 
 \begin_layout Standard
-Points 8.
- and 9.
+Points 7.
+ and 8.
  mean, among other things, that MGNG-AD is not tailored to detect any specific
  kind of anomalies.
  The ultimate goal of MGNG-AD is, in the words of Dunning & Friedman 
@@ -347,7 +341,7 @@ The approach used will be experimental -- instead of attempting to prove
 \end_layout
 
 \begin_layout Standard
-By similar is meant another method that covers characteristics 1.-8.
+By similar is meant another method that covers characteristics 1.-7.
  of the previous list.
  In particular, offline methods are not deemed suitable for comparison,
  because such methods can make use of information not available to online
@@ -575,7 +569,7 @@ key "OPF2014"
 
 ), that can be used together with the CLA to perform anomaly detection on
  time series.
- HTM covers, in fact, characteristics 1.-8.
+ HTM covers, in fact, characteristics 1.-7.
  from 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -583,7 +577,7 @@ reference "sec:Objective_statement"
 
 \end_inset
 
-, and it is the one that shall be used for comparison.
+, and it is the one that is used for comparison.
 \end_layout
 
 \begin_layout Standard
@@ -611,7 +605,7 @@ key "Keogh2005"
 
 \end_inset
 
- to perform offline finding time series discords, i.e.
+ to find time series discords offline, i.e.
  sub-sequences of a longer time series that are maximally different to all
  the rest of the time series sub-sequences.
  Wei et al.
@@ -773,7 +767,7 @@ reference "sec:Intro-to-Anomaly-Detection"
 
 \end_inset
 
-, a brief introduction to the field of anomaly detection is give.
+, a brief introduction to the field of anomaly detection is given.
  Second, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -781,7 +775,7 @@ reference "sec:Basic_definitions"
 
 \end_inset
 
-, some concepts and terms are defined.
+, some underlying concepts and terms are defined.
  Then, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -789,14 +783,14 @@ reference "sec:Method_intuition"
 
 \end_inset
 
-, an intuition of how MGNG-AD works is given, followed by, in 
+, an intuition of how MGNG-AD works is provided, followed by, in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Merge_growing_neural_gas"
 
 \end_inset
 
-, an explanation of how the underlying method (MGNG) works.
+, an explanation of how MGNG works.
  
 \begin_inset ERT
 status open
@@ -818,7 +812,7 @@ reference "sec:Overview_of_HTM"
 
 \end_inset
 
-, an overview of the HTM, CLA and OPF is provided.
+, an overview of the HTM, CLA and OPF is presented.
 \end_layout
 
 \begin_layout Standard

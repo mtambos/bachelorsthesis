@@ -20,7 +20,7 @@ from collections import deque
 
 import bottleneck as bn
 import inspect
-from numbapro import autojit
+#from numbapro import autojit
 import numexpr as ne
 import numpy as np
 import numpy.linalg as lnp
@@ -110,7 +110,7 @@ class AMGNG:
         return ret_val, anomaly_density
 
 
-@autojit(target='cpu')
+#@autojit(target='cpu')
 def compare_models(present_model, past_model, alpha):
     tot = [0.]
     ps_w = past_model.weights
