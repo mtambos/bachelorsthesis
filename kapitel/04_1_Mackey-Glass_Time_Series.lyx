@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass book
@@ -7,7 +7,6 @@
 % Added by lyx2lyx
 % Added by lyx2lyx
 % Added by lyx2lyx
-\usepackage{mathtools}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -18,13 +17,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -35,15 +34,24 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 0
-\use_mathdots 0
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 2
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -178,7 +186,7 @@ In each experiment four Mackey-Glass time series
 \end_inset
 
  were generated.
- Then 
+ Subsequently 
 \begin_inset Formula $MG2$
 \end_inset
 
@@ -186,8 +194,7 @@ In each experiment four Mackey-Glass time series
 \begin_inset Formula $MG4$
 \end_inset
 
- were modified as follows, in order to further differentiate them from one
- another:
+ were modified as follows, to further differentiate them from one another:
 \begin_inset Formula 
 \begin{align*}
 mg2_{t} & \coloneqq-1\cdot mg2_{t};\forall mg2_{t}\in MG2\\
@@ -201,7 +208,7 @@ mg4_{t} & \coloneqq-2\cdot mg4_{t};\forall mg4_{t}\in MG4
 \end_layout
 
 \begin_layout Standard
-Finally 
+Finally, 
 \begin_inset Formula $MG1$
 \end_inset
 
@@ -230,8 +237,8 @@ Finally
 \begin_inset Formula $MG$
 \end_inset
 
- was then modified to add anomalies.
- This was done by modifying a sub-sequence 
+ was subsequently modified to add anomalies, which was achieved by modifying
+ a sub-sequence 
 \begin_inset Formula $AMG_{l,n}\subsetneq MG$
 \end_inset
 
@@ -328,18 +335,6 @@ where
 \end_inset
 
 , and 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
 \begin_inset Formula $increment\_stop$
 \end_inset
 
@@ -356,7 +351,7 @@ where
 
 \end_deeper
 \begin_layout Standard
-In each case the modified sub-sequence was annotated as anomalous.
+In each case, the modified sub-sequence was annotated as anomalous.
 \end_layout
 
 \begin_layout Standard
@@ -368,8 +363,7 @@ A
 \begin_inset Formula $150000$
 \end_inset
 
- was used in each experiment.
- In each case a sub-sequence 
+ was used in each experiment and a sub-sequence 
 \begin_inset Formula $AMG_{74600,76400}\subsetneq$
 \end_inset
 
@@ -382,7 +376,7 @@ A
 \begin_inset Formula $AMG$
 \end_inset
 
- were chosen so that it could be possible to evaluate the effect of 
+ were chosen to evaluate the effect of 
 \begin_inset Formula $AMG$
 \end_inset
 
@@ -431,7 +425,7 @@ key "Andreakis2009"
 
 \end_inset
 
-, but, instead of using 
+, although instead of using 
 \begin_inset Formula $\epsilon_{w}=0.05$
 \end_inset
 
@@ -461,8 +455,8 @@ key "Andreakis2009"
 
 \begin_layout Standard
 In the HTM model's case, in each experiment its parameters were swarmed
- with 400 data points from the start of the series, and then all data points
- feed to the HTM model proper.
+ with 400 data points from the start of the series, before feeding all data
+ points to the HTM model proper.
 \end_layout
 
 \begin_layout Subsection
@@ -477,7 +471,7 @@ name "subsec:mackey-glass_time"
 \end_layout
 
 \begin_layout Standard
-For this experiment the sub-sequence 
+For this experiment, the sub-sequence 
 \begin_inset Formula $AMG_{74601,76400}\subsetneq$
 \end_inset
 
@@ -502,7 +496,8 @@ Figref{mackey-glass_mgng-ad_time_noise, mackey-glass_htm_time_noise}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively, together with the
- precision, recall and F1-Score curves, and a detail of the anomalous region.
+ precision, recall and F1-Score curves, as well as a detail of the anomalous
+ region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
  The statistics of the experiment are shown in 
@@ -548,7 +543,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -579,7 +574,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -611,7 +606,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -633,7 +628,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for the Mackey-Glass time series with added random
@@ -689,7 +684,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -720,7 +715,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -753,7 +748,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -775,7 +770,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for the Mackey-Glass time series with added random noise
@@ -800,14 +795,14 @@ name "fig:mackey-glass_htm_time_noise"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -1254,7 +1249,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in the Mackey-Glass time series
@@ -1290,7 +1285,7 @@ name "subsec:mackey-glass_fix_time"
 \end_layout
 
 \begin_layout Standard
-For this experiment the sub-sequence 
+For this experiment, the sub-sequence 
 \begin_inset Formula $AMG_{74600,76400}\subsetneq$
 \end_inset
 
@@ -1328,7 +1323,8 @@ Figref{mackey-glass_mgng-ad_fix_time_noise, mackey-glass_htm_fix_time_noise}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively, together with the
- precision, recall and F1-Score curves, and a detail of the anomalous region.
+ precision, recall and F1-Score curves, as well as a detail of the anomalous
+ region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
  The statistics of the experiment are shown in 
@@ -1374,7 +1370,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -1405,7 +1401,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -1437,7 +1433,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1459,7 +1455,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for the Mackey-Glass time series with added incremental
@@ -1515,7 +1511,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -1546,7 +1542,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -1579,7 +1575,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1601,7 +1597,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for the Mackey-Glass time series with added incremental
@@ -1633,7 +1629,7 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -2080,7 +2076,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in the Mackey-Glass time series
@@ -2116,7 +2112,7 @@ name "subsec:mackey-glass_freq"
 \end_layout
 
 \begin_layout Standard
-For this experiment the sub-sequence 
+For this experiment, the sub-sequence 
 \begin_inset Formula $AMG_{74601,76400}\subsetneq$
 \end_inset
 
@@ -2124,9 +2120,9 @@ For this experiment the sub-sequence
 \begin_inset Formula $MG_{1,150000}$
 \end_inset
 
- was modified in its frequency domain as explained previously.
- A detail of the result, compared to the original, for one of the component
- time series can be seen in 
+ was modified in its frequency domain, as previously explained.
+ A detail of the result for one of the component time series compared to
+ an unmodified part of the same component can be seen in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "fig:freq_noise_detail"
@@ -2166,7 +2162,7 @@ status open
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the clean part of a Mackey-Glass time series (top), and of the
@@ -2208,7 +2204,8 @@ Figref{mackey-glass_mgng-ad_freq_noise, mackey-glass_htm_freq_noise}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively, together with the
- precision, recall and F1-Score curves, and a detail of the anomalous region.
+ precision, recall and F1-Score curves, as well as a detail of the anomalous
+ region.
  The colored vertical span in the images mark the time segment annotated
  as anomalous.
  The statistics of the experiment are shown in 
@@ -2253,7 +2250,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -2284,7 +2281,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -2316,7 +2313,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -2338,7 +2335,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for the Mackey-Glass time series with added random
@@ -2394,7 +2391,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -2425,7 +2422,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -2458,7 +2455,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -2480,7 +2477,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for the Mackey-Glass time series with added random noise
@@ -2512,7 +2509,7 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -2959,7 +2956,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in the Mackey-Glass time series
@@ -3002,8 +2999,8 @@ reference "subsec:mackey-glass_time"
 
 \end_inset
 
- both HTM and MGNG-AD managed to achieve very high F1-Scores, although HTM
- was the better.
+, both HTM and MGNG-AD managed to achieve very high F1-Scores, although
+ HTM performed better.
  
 \end_layout
 
@@ -3016,7 +3013,7 @@ reference "subsec:mackey-glass_fix_time"
 \end_inset
 
 , the MGNG-AD model clearly outperformed the HTM one, although the HTM model's
- performance would be certainly improved by ignoring the first anomaly_likelihoo
+ performance would certainly be improved by ignoring the first anomaly_likelihoo
 ds from the series.
 \end_layout
 
@@ -3028,12 +3025,13 @@ reference "subsec:mackey-glass_freq"
 
 \end_inset
 
- experiment, the HTM model successfully identified the anomalous sub-sequence,
- while the MGNG-AD model was totally unable to distinguish normal from abnormal,
- from the perspective of the F1-Scores obtained.
- This MGNG-AD's inability could nonetheless be useful, e.g.
- in time series that are contaminated sporadically by this kind of noise,
- but where the noise itself is not to be considered an anomaly.
+ experiment, the HTM model obtained a high F1-Score successfully identified
+ the anomalous sub-sequence, while the MGNG-AD model was entirely unable
+ to distinguish normal from abnormal, from the perspective of the F1-Scores
+ obtained.
+ Nonetheless, this MGNG-AD's inability could be useful, e.g.
+ in time series that are contaminated sporadically by this kind of noise
+ yet where the noise itself is not considered an anomaly.
 \end_layout
 
 \end_body

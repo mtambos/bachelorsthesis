@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass book
@@ -7,7 +7,6 @@
 % Added by lyx2lyx
 % Added by lyx2lyx
 % Added by lyx2lyx
-\usepackage{mathtools}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -18,13 +17,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -35,15 +34,24 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 0
-\use_mathdots 0
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 2
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -78,9 +86,9 @@ name "sec:mixed_ts"
 \end_layout
 
 \begin_layout Standard
-These experiment's objective is to evaluate the performance of the models
- in the presence of multivariate time series where the behavior of some
- of the components differ from the others.
+The objective of these experiments is to evaluate the performance of the
+ models in the presence of multivariate time series where the behavior of
+ some components differs from the others.
  In order to test this, two one-dimensional Mackey-Glass time series 
 \begin_inset Formula $MG1_{1,150000;1}$
 \end_inset
@@ -121,7 +129,7 @@ mg2_{t} & \coloneqq-2\cdot mg2_{t};\forall mg2_{t}\in MG2
 \end_layout
 
 \begin_layout Standard
-Then, two one-dimensional time series 
+Subsequently, two one-dimensional time series 
 \begin_inset Formula $R1_{1,150000;1}$
 \end_inset
 
@@ -157,7 +165,7 @@ r2_{t} & \in\mathcal{N}\left(0,-2\right);\forall r2_{t}\in R2
 \begin_inset Formula $R2$
 \end_inset
 
- were then combined in a 4-dimensional time series 
+ were subsequently combined in a 4-dimensional time series 
 \begin_inset Formula $S_{1,150000;4}$
 \end_inset
 
@@ -175,7 +183,7 @@ r2_{t} & \in\mathcal{N}\left(0,-2\right);\forall r2_{t}\in R2
 \end_layout
 
 \begin_layout Standard
-In each experiment a sub-sequence 
+In each experiment, a sub-sequence 
 \begin_inset Formula $AS$
 \end_inset
 
@@ -183,34 +191,10 @@ In each experiment a sub-sequence
 \begin_inset Formula $MG1$
 \end_inset
 
- 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-or 
+ or 
 \begin_inset Formula $R1$
 \end_inset
 
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
 ) was modified by adding random noise to its time domain, as explained in
  
 \begin_inset CommandInset ref
@@ -221,8 +205,8 @@ reference "sec:Mackey-Glass_time_series"
 
 .
  As always, the modified sub-sequence was annotated as anomalous.
- This form of noise was chosen because was the only case where both models
- obtained high F1-Scores in 
+ This form of noise was chosen because it was the only case in which both
+ models obtained high F1-Scores in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:Mackey-Glass_time_series"
@@ -233,8 +217,8 @@ reference "sec:Mackey-Glass_time_series"
 \end_layout
 
 \begin_layout Standard
-The parameters used for both MGNG-AD and HTM models are the same as in all
- previous experiments.
+The parameters used for both MGNG-AD and HTM models were the same as in
+ all previous experiments.
 \end_layout
 
 \begin_layout Subsection
@@ -249,11 +233,11 @@ name "subsec:mixed_ts_mackey_glass_time"
 \end_layout
 
 \begin_layout Standard
-For this experiment a sub-sequence 
+For this experiment, a sub-sequence 
 \begin_inset Formula $AS_{74601,76400;1}\subsetneq MG1_{1,150000;1}$
 \end_inset
 
- was modified in its time domain by adding random noise.
+ was modified in its time domain by adding random noise to its time domain.
  The resulting time series can be seen in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -294,7 +278,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Mixed multivariate time series with added random noise in the time domain
@@ -332,7 +316,8 @@ Figref{mixed_ts_mgng-ad_mackey_glass_time, mixed_ts_htm_mackey_glass_time}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively, together with the
- precision, recall and F1-Score curves, and a detail of the anomalous region.
+ precision, recall and F1-Score curves, as well as a detail of the anomalous
+ region.
  The colored vertical span in the images mark time segment annotated as
  anomalous.
  The statistics of the experiment are shown in 
@@ -377,7 +362,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -408,7 +393,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -440,7 +425,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -462,7 +447,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for a mixed multivariate time series with added
@@ -518,7 +503,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -549,7 +534,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -582,7 +567,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -604,7 +589,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for a mixed multivariate time series with added random
@@ -629,14 +614,14 @@ name "fig:mixed_ts_htm_mackey_glass_time"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -1083,7 +1068,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a mixed multivariate time series
@@ -1119,11 +1104,11 @@ name "subsec:mixed_ts_random_time"
 \end_layout
 
 \begin_layout Standard
-For this experiment a sub-sequence 
+For this experiment, a sub-sequence 
 \begin_inset Formula $AS_{74601,76400;1}\subsetneq R1_{1,150000;1}$
 \end_inset
 
- was modified in its time domain by adding random noise.
+ was modified in its time domain by adding random noise to its time domain.
  The resulting time series can be seen in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1164,7 +1149,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Mixed multivariate time series with added random noise in the time domain
@@ -1202,7 +1187,8 @@ Figref{mixed_ts_mgng-ad_random_time, mixed_ts_htm_random_time}
 \end_inset
 
  show the MGNG-AD and HTM model's results respectively, together with the
- precision, recall and F1-Score curves, and a detail of the anomalous region.
+ precision, recall and F1-Score curves, as well as a detail of the anomalous
+ region.
  The colored vertical span in the images mark time segment annotated as
  anomalous.
  The statistics of the experiment are shown in 
@@ -1216,7 +1202,7 @@ reference "tab:mixed_ts_random_time_stats"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Box Boxed
@@ -1247,7 +1233,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -1278,7 +1264,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot and anomaly_score plot,
@@ -1310,7 +1296,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1332,7 +1318,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 MGNG-AD model's results for a mixed multivariate time series with added
@@ -1388,7 +1374,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Score, precision and recall curves relative to the threshold selected.
@@ -1419,7 +1405,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot,
@@ -1452,7 +1438,7 @@ status collapsed
 \end_inset
 
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Detail of the previous plot, centered on the anomalous region.
@@ -1474,7 +1460,7 @@ Detail of the previous plot, centered on the anomalous region.
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 HTM model's results for a mixed multivariate time series with added random
@@ -1506,7 +1492,7 @@ status collapsed
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
-<features tabularvalignment="middle">
+<features rotate="0" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="15text%" special=">{\centering}m{0.35\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
@@ -1953,7 +1939,7 @@ F1-Score
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Statistics for the MGNG-AD and HTM models in a mixed multivariate time series
@@ -1990,7 +1976,7 @@ name "subsec:mixed_ts_summary"
 \end_layout
 
 \begin_layout Standard
-From the point of view of the F1-Score, although the MGNG-AD model performed
+From the perspective of the F1-Score, although the MGNG-AD model performed
  worse in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -2033,7 +2019,7 @@ subsecref{mixed_ts_mackey_glass_time,mixed_ts_random_time}
 
 \end_inset
 
-, as was with the experiments in 
+, as with the experiments in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "sec:random_ts"
@@ -2041,28 +2027,28 @@ reference "sec:random_ts"
 \end_inset
 
 , the plots show that the MGNG-AD models reported high anomaly_scores in
- the anomalous region, and the F1-Score could be improved by allowing a
- learning period, i.e.
- ignoring a subsequence from the start of the series.
+ the anomalous region, while the F1-Score could be improved by allowing
+ a learning period, i.e.
+ ignoring a sub-sequence from the start of the series.
 \end_layout
 
 \begin_layout Standard
-Again, in terms of the F1-Score, the HTM model, in contrast, could neither,
- in the experiment of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:mixed_ts_mackey_glass_time"
-
-\end_inset
-
-, come near the same high score it had achieved in 
+Again, in terms of the F1-Score, the HTM model, in contrast, could neither
+ come near the same high score it had achieved in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:mackey-glass_time"
 
 \end_inset
 
-, nor identify the noise added to 
+, in the experiment of 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:mixed_ts_mackey_glass_time"
+
+\end_inset
+
+, nor could it identify the noise added to 
 \begin_inset Formula $R1$
 \end_inset
 

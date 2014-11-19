@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass book
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,15 +29,24 @@
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 0
-\use_mathdots 0
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Stichwortverzeichnis
 \shortcut idx
@@ -84,32 +93,31 @@ name "sec:Discussion"
 
 \begin_layout Standard
 Possibly the best way of using MGNG-AD is under human supervision.
- In this setting it would not be the sole responsible of raising alarms,
- but rather it would be used to recognize potentially anomalous regions
- in a data stream, relying its automated analysis to a human for final classific
-ation.
+ In this setting, it would solely responsible for raising alarms, but rather
+ it would be used to recognize potentially anomalous regions in a data stream,
+ relying its automated analysis to a human for final classification.
  Feeding the time series to MGNG-AD after some other online process has
  cleared it from known anomalies and noise could also prove useful.
- Such two stages process would leave a cleaner signal, making it easier
+ Such a two-stage process would leave a cleaner signal, making it easier
  for MGNG-AD to detect other kinds of anomalies.
 \end_layout
 
 \begin_layout Standard
-Regarding other aspects of the methods, even though the HTM model needs
- a gargantuan amount of parameters (approx.
- 50 plus 6-9 more for each input column) the swarm functionality allows
+Regarding other aspects of the methods, although the HTM model needs a gargantua
+n amount of parameters (approx.
+ 50 plus 6-9 more for each input column), the swarm functionality allows
  the user to set them up quite easily.
- In contrast, MGNG-AD has 19 parameters, that need to be tuned manually.
- On the other hand the OPF does not allow the creation of a model for prediction
- of multiple variables, hence the need of training multiple HTM models for
- multidimensional time series.
- Moreover, HTM is a much more complex approach.
- Its goal is not to merely detect anomalies, but to replicate part of a
- mammalian's brain functionality.
+ By contrast, MGNG-AD has 19 parameters that need to be tuned manually.
+ On the other hand, the OPF does not allow the creation of a model for predictio
+n of multiple variables, thus prompting the need to train multiple HTM models
+ for multi-dimensional time series.
+ Moreover, HTM is a much more complex approach, given that its goal is not
+ to merely detect anomalies, but rather to replicate part of a mammalian's
+ brain functionality.
  Its hierarchical structure could admittedly allow it to discover certain
  types of anomalies that are beyond the capabilities of MGNG-AD.
- That same complexity, however, made HTM many times slower than MGNG-AD.
- In average it took around 600 
+ However, this same complexity made HTM many times slower than MGNG-AD in
+ the experiments: on average it took around 600 
 \begin_inset ERT
 status open
 
@@ -122,7 +130,7 @@ textmu s
 
 \end_inset
 
- for the MGNG-AD model to process a 4-dimensional data-point, whereas the
+ for the MGNG-AD model to process a 4-dimensional data point, whereas the
  HTM needed approximately 10 ms for the same
 \begin_inset Foot
 status collapsed
@@ -135,7 +143,7 @@ CPU: Intel(R) Core(TM) i7-3630QM @ 2.40GHz; RAM: 16GB.
 
 .
  This means that MGNG-AD could allow the processing in real time of streams
- with far higher sampling frequency than HTM.
+ with much higher sampling frequency than HTM.
 \end_layout
 
 \begin_layout Section
@@ -150,7 +158,7 @@ name "sec:Summary"
 \end_layout
 
 \begin_layout Standard
-Based on the works by Aggarwal and Chandola et al.
+Based upon the works by Aggarwal and Chandola et al.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -164,7 +172,7 @@ key "Aggarwal2013,Chandola2009"
 \end_layout
 
 \begin_layout Standard
-Basic concepts that underlie MGNG, and by extension MGNG-AD have been precisely
+Basic concepts that underlie MGNG, and by extension MGNG-AD, have been precisely
  defined.
 \end_layout
 
@@ -177,7 +185,7 @@ key "Andreakis2009"
 
 \end_inset
 
-, the MGNG model has been defined, and the MGNG algorithm has been explained.
+, the MGNG model has been defined and the MGNG algorithm has been explained.
  It has also been shown that the time complexity of the 
 \begin_inset Formula $time\_step$
 \end_inset
@@ -190,11 +198,10 @@ key "Andreakis2009"
 \end_layout
 
 \begin_layout Standard
-A novel method for online detection of contextual anomalies in multidimensional
- time series has been then presented.
- For each data point in the time series, it provides an anomaly score of
- that data point, which is calculated as the difference between two MGNG
- models -- a 
+A novel method for online detection of contextual anomalies in multi-dimensional
+ time series has subsequently been presented.
+ It provides an anomaly score of for each data point in the time series
+ calculated as the difference between two MGNG models: a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -210,7 +217,7 @@ past
 \begin_inset Quotes erd
 \end_inset
 
- model, that is fed delayed data.
+ model, which is fed delayed data.
  It has also been demonstrated that the time complexity of MGNG-AD's 
 \begin_inset Formula $time\_step\_ad$
 \end_inset
@@ -226,9 +233,9 @@ past
 In experiments performed with synthetic data, it has been empirically shown
  that the method developed is able to detect gaussian noise in the time
  domain of Mackey-Glass and randomly generated time series.
- MGNG-AD was shown to also be able to detect incremental noise in the same
+ MGNG-AD was also proven capable of detecting incremental noise in the same
  two types of time series.
- It was, however, completely unable to detect gaussian noise in the frequency
+ However, it was entirely unable to detect gaussian noise in the frequency
  domain of a Mackey-Glass time series.
  In further experiments with time series with two Mackey-Glass components
  and two randomly generated components, MGNG-AD was also able to detect
@@ -250,14 +257,14 @@ reference "tab:f1_score_summary"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="4">
-<features tabularvalignment="middle" tabularwidth="100text%">
+<features rotate="0" tabularvalignment="middle" tabularwidth="100text%">
 <column alignment="center" valignment="top" width="20text%">
 <column alignment="center" valignment="top" width="40text%">
 <column alignment="center" valignment="top" width="13text%">
@@ -693,7 +700,7 @@ Noise in rand.
 
 \size default
 
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 F1-Scores of each model for each experiment.
@@ -733,9 +740,9 @@ name "sec:Future_Work"
 
 \begin_layout Standard
 Any further work with MGNG-AD could take several directions.
- Perhaps the more important is a thorough analysis of the impact different
- parametrizations of MGNG-AD have over the resulting anomaly_scores, followed
- closely by experiments with real data.
+ Perhaps the more important would involve a thorough analysis of the impact
+ different parametrizations of MGNG-AD have over the resulting anomaly_scores,
+ followed closely by experiments with real data.
 \end_layout
 
 \begin_layout Standard
@@ -749,8 +756,8 @@ key "Fritzke1997"
 
 ), namely the use of a utility factor to relocate neurons that contribute
  little to the reduction of the error.
- GNG-U has been shown to be able to adapt more quickly to changing distributions
- than GNG 
+ In experiments, GNG-U has been proven capable of adapting more quickly
+ to changing distributions than GNG 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Holmstroem2002"
@@ -781,9 +788,9 @@ key "estevez2011gamma"
 
 \end_inset
 
-, a generalization of MGNG, could also prove useful, since it seems the
- former provides lower temporal quantization errors than the latter (see
- also 
+, a generalization of MGNG, could also prove useful, since it seems that
+ the former provides lower temporal quantization errors than the latter
+ (see also 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cyrcamo2008mapas"
@@ -795,9 +802,11 @@ key "cyrcamo2008mapas"
 
 \begin_layout Standard
 Finally, some concepts from HTMs could also be used to improve MGNG-AD.
- Specially swarming, for parameter selection, could be very helpful in practice.
- The use of a layered architecture, each layer composed of a MGNG model,
- or the development of a predictive model for MGNG are also worth exploring.
+ In particular, swarming could be very helpful in practice, for parameter
+ selection.
+ The use of a layered architecture, whereby each layer comprises a MGNG
+ model, or the development of a predictive model for MGNG, are also worth
+ exploring.
 \end_layout
 
 \end_body

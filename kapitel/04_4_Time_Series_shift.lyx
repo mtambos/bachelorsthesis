@@ -87,7 +87,7 @@ name "sec:ts_shift"
 \begin_layout Standard
 The objective of the experiments in this section is to analyze the behavior
  of the models in the event of a shift in the time series' mean.
- Such a shift happens when a sub-sequence 
+ Such a shift occurs when a sub-sequence 
 \begin_inset Formula $SS_{q,n;m}$
 \end_inset
 
@@ -138,7 +138,7 @@ reference "sec:random_ts"
 \end_inset
 
 .
- Then the sub-sequences 
+ Subsequently, the sub-sequences 
 \begin_inset Formula $SMG_{76000,150000}\in MG$
 \end_inset
 
@@ -172,10 +172,9 @@ reference "sec:Mackey-Glass_time_series"
 \end_layout
 
 \begin_layout Standard
-Such a shift is not considered an anomaly in this work, and therefore no
- F1-Scores could be established.
- Instead, the means and standard deviations for selected segments of the
- time series were calculated.
+Such a shift is not considered an anomaly in this work, and thus no F1-Scores
+ could be established; instead, the means and standard deviations for selected
+ segments of the time series were calculated.
 \end_layout
 
 \begin_layout Subsection
@@ -190,6 +189,16 @@ name "subsec:mackey-glass_ts_shift"
 \end_layout
 
 \begin_layout Standard
+In this experiment, a four-dimensional Mackey-Glass time series 
+\begin_inset Formula $MG_{1,150000;4}$
+\end_inset
+
+ was generated and a sub-sequence 
+\begin_inset Formula $SMG_{76000,150000}\in MG$
+\end_inset
+
+ modified as previously explained.
+ 
 \begin_inset ERT
 status open
 
@@ -202,7 +211,7 @@ Figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 
 \end_inset
 
- show the MGNG-AD and HTM model's results respectively.
+ show the MGNG-AD and HTM model's results, respectively.
  The statistics of the experiment are shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -432,7 +441,7 @@ name "fig:mackey-glass_ts_htm_shift"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -801,7 +810,7 @@ Mean from 100 points after start, up to shift
 
 \size footnotesize
 Std.
- from 100 points after after start, up to shift
+ from 100 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -842,7 +851,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 1000 points after after start, up to shift
+Mean from 1000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -884,7 +893,7 @@ Mean from 1000 points after after start, up to shift
 
 \size footnotesize
 Std.
- from 1000 points after after start, up to shift
+ from 1000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -925,7 +934,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 10000 points after after start, up to shift
+Mean from 10000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -967,7 +976,7 @@ Mean from 10000 points after after start, up to shift
 
 \size footnotesize
 Std.
- from 10000 points after after start, up to shift
+ from 10000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -1323,6 +1332,16 @@ name "subsec:random_ts_shift"
 \end_layout
 
 \begin_layout Standard
+In this experiment, a four-dimensional, randomly generated time series 
+\begin_inset Formula $R_{1,150000;4}$
+\end_inset
+
+ was generated and a sub-sequence 
+\begin_inset Formula $SR_{76000,150000}\in MG$
+\end_inset
+
+ modified as previously explained.
+ 
 \begin_inset ERT
 status open
 
@@ -1335,7 +1354,7 @@ Figref{random_ts_mgng-ad_shift, random_ts_htm_fix_time_noise}
 
 \end_inset
 
- show the MGNG-AD and HTM model's results respectively.
+ show the MGNG-AD and HTM model's results, respectively.
  The statistics of the experiment are shown in 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1565,7 +1584,7 @@ name "fig:random_ts_htm_shift"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1934,7 +1953,7 @@ Mean from 100 points after start, up to shift
 
 \size footnotesize
 Std.
- from 100 points after after start, up to shift
+ from 100 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -1975,7 +1994,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 1000 points after after start, up to shift
+Mean from 1000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -2017,7 +2036,7 @@ Mean from 1000 points after after start, up to shift
 
 \size footnotesize
 Std.
- from 1000 points after after start, up to shift
+ from 1000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -2058,7 +2077,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 10000 points after after start, up to shift
+Mean from 10000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -2100,7 +2119,7 @@ Mean from 10000 points after after start, up to shift
 
 \size footnotesize
 Std.
- from 10000 points after after start, up to shift
+ from 10000 points after start, up to shift
 \end_layout
 
 \end_inset
@@ -2416,9 +2435,9 @@ name "tab:random_ts_shift_stats"
 \end_layout
 
 \begin_layout Standard
-Once again both models show a strong reaction to the shift.
- This time, however, the HTM model shows a higher mean and standard deviation
- values in comparison to the ones obtained in the previous experiment.
+Once again, both models show a strong reaction to the shift.
+ However, this time, the HTM model shows a higher mean and standard deviation
+ values in comparison to those obtained in the previous experiment.
 \end_layout
 
 \begin_layout Subsection
