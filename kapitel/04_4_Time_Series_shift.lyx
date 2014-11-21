@@ -139,11 +139,11 @@ reference "sec:random_ts"
 
 .
  Subsequently, the sub-sequences 
-\begin_inset Formula $SMG_{76000,150000}\in MG$
+\begin_inset Formula $SMG_{76001,150000}\in MG$
 \end_inset
 
 , and 
-\begin_inset Formula $SR_{76000,150000}\in R$
+\begin_inset Formula $SR_{76001,150000}\in R$
 \end_inset
 
  were modified according to 
@@ -173,8 +173,9 @@ reference "sec:Mackey-Glass_time_series"
 
 \begin_layout Standard
 Such a shift is not considered an anomaly in this work, and thus no F1-Scores
- could be established; instead, the means and standard deviations for selected
- segments of the time series were calculated.
+ could be established.
+ Instead, only the means and standard deviations for the selected segments
+ of the time series were calculated.
 \end_layout
 
 \begin_layout Subsection
@@ -194,7 +195,7 @@ In this experiment, a four-dimensional Mackey-Glass time series
 \end_inset
 
  was generated and a sub-sequence 
-\begin_inset Formula $SMG_{76000,150000}\in MG$
+\begin_inset Formula $SMG_{76001,150000}\in MG$
 \end_inset
 
  modified as previously explained.
@@ -447,11 +448,11 @@ status collapsed
 
 \size footnotesize
 \begin_inset Tabular
-<lyxtabular version="3" rows="20" columns="3">
+<lyxtabular version="3" rows="12" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.6\textwidth}">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.2\textwidth}">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -499,7 +500,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.4\textwidth}">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.38\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -541,7 +542,7 @@ Shift position
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $74600$
+\begin_inset Formula $74601$
 \end_inset
 
 
@@ -602,48 +603,9 @@ Shift amounts
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.1748$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3551$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  up to shift
 \end_layout
 
@@ -655,7 +617,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1099$
+\begin_inset Formula $\left(0.1748,0.1099\right)$
 \end_inset
 
 
@@ -669,7 +631,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1131$
+\begin_inset Formula $\left(0.3551,0.1131\right)$
 \end_inset
 
 
@@ -685,131 +647,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.6695$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.2852$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
- from shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $11.8830$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.0620$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Mean from 100 points after start, up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.1750$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3549$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 100 points after start, up to shift
 \end_layout
 
@@ -821,7 +661,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1098$
+\begin_inset Formula $\left(0.1750,0.1098\right)$
 \end_inset
 
 
@@ -835,7 +675,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1130$
+\begin_inset Formula $\left(0.3549,0.1130\right)$
 \end_inset
 
 
@@ -851,48 +691,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 1000 points after start, up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.1760$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3535$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 1000 points after start, up to shift
 \end_layout
 
@@ -904,7 +705,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1096$
+\begin_inset Formula $\left(0.1760,0.1096\right)$
 \end_inset
 
 
@@ -918,7 +719,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1125$
+\begin_inset Formula $\left(0.3535,0.1125\right)$
 \end_inset
 
 
@@ -934,48 +735,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 10000 points after start, up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.1766$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3354$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 10000 points after start, up to shift
 \end_layout
 
@@ -987,7 +749,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1100$
+\begin_inset Formula $\left(0.1766,0.1100\right)$
 \end_inset
 
 
@@ -1001,7 +763,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0907$
+\begin_inset Formula $\left(0.3354,0.0907\right)$
 \end_inset
 
 
@@ -1017,7 +779,10 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 100 points after shift onwards
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from shift onwards
 \end_layout
 
 \end_inset
@@ -1028,7 +793,7 @@ Mean from 100 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.3936$
+\begin_inset Formula $\left(0.6695,11.8830\right)$
 \end_inset
 
 
@@ -1042,7 +807,7 @@ Mean from 100 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.2849$
+\begin_inset Formula $\left(0.2852,0.0620\right)$
 \end_inset
 
 
@@ -1058,7 +823,9 @@ Mean from 100 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Std.
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
  from 100 points after shift onwards
 \end_layout
 
@@ -1070,7 +837,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $9.0087$
+\begin_inset Formula $\left(0.3936,9.0087\right)$
 \end_inset
 
 
@@ -1084,7 +851,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0610$
+\begin_inset Formula $\left(0.2849,0.0610\right)$
 \end_inset
 
 
@@ -1100,48 +867,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 1000 points after shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.0522$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.2842$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 1000 points after shift onwards
 \end_layout
 
@@ -1153,7 +881,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0397$
+\begin_inset Formula $\left(0.0522,0.0397\right)$
 \end_inset
 
 
@@ -1167,48 +895,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0601$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Mean from 10000 points after shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.0444$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.2871$
+\begin_inset Formula $\left(0.2842,0.0601\right)$
 \end_inset
 
 
@@ -1224,7 +911,9 @@ Mean from 10000 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Std.
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
  from 10000 points after shift onwards
 \end_layout
 
@@ -1236,7 +925,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0188$
+\begin_inset Formula $\left(0.0444,0.0188\right)$
 \end_inset
 
 
@@ -1250,7 +939,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0591$
+\begin_inset Formula $\left(0.2871,0.0591\right)$
 \end_inset
 
 
@@ -1270,8 +959,16 @@ Std.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Statistics for the MGNG-AD and HTM models in a Mackey-Glass time series
- with shifted mean.
+Sample means 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $s$
+\end_inset
+
+ for the MGNG-AD and HTM models in a Mackey-Glass time series with shifted
+ mean.
 \end_layout
 
 \end_inset
@@ -1337,7 +1034,7 @@ In this experiment, a four-dimensional, randomly generated time series
 \end_inset
 
  was generated and a sub-sequence 
-\begin_inset Formula $SR_{76000,150000}\in MG$
+\begin_inset Formula $SR_{76001,150000}\in MG$
 \end_inset
 
  modified as previously explained.
@@ -1584,17 +1281,17 @@ name "fig:random_ts_htm_shift"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \size footnotesize
 \begin_inset Tabular
-<lyxtabular version="3" rows="20" columns="3">
+<lyxtabular version="3" rows="12" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.6\textwidth}">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.2\textwidth}">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1642,7 +1339,7 @@ Total data-points
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.4\textwidth}">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.38\textwidth}">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1684,7 +1381,7 @@ Shift position
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $74600$
+\begin_inset Formula $74601$
 \end_inset
 
 
@@ -1745,48 +1442,9 @@ Shift amounts
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.6590$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.2548$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  up to shift
 \end_layout
 
@@ -1798,7 +1456,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0961$
+\begin_inset Formula $\left(0.6590,0.0961\right)$
 \end_inset
 
 
@@ -1812,7 +1470,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1231$
+\begin_inset Formula $\left(0.2548,0.1231\right)$
 \end_inset
 
 
@@ -1828,131 +1486,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.8709$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3620$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
- from shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $3.1644$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.1029$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Mean from 100 points after start, up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.6599$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.2544$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 100 points after start, up to shift
 \end_layout
 
@@ -1964,7 +1500,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0931$
+\begin_inset Formula $\left(0.6599,0.0931\right)$
 \end_inset
 
 
@@ -1978,7 +1514,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1228$
+\begin_inset Formula $\left(0.2544,0.1228\right)$
 \end_inset
 
 
@@ -1994,48 +1530,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 1000 points after start, up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.6625$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.2528$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 1000 points after start, up to shift
 \end_layout
 
@@ -2047,7 +1544,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0824$
+\begin_inset Formula $\left(0.6625,0.0824\right)$
 \end_inset
 
 
@@ -2061,7 +1558,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.2351$
+\begin_inset Formula $\left(0.2528,0.2351\right)$
 \end_inset
 
 
@@ -2077,48 +1574,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 10000 points after start, up to shift
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.6714$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.1026$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 10000 points after start, up to shift
 \end_layout
 
@@ -2130,7 +1588,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0686$
+\begin_inset Formula $\left(0.6714,0.0686\right)$
 \end_inset
 
 
@@ -2144,7 +1602,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1211$
+\begin_inset Formula $\left(0.1026,0.1211\right)$
 \end_inset
 
 
@@ -2160,7 +1618,10 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 100 points after shift onwards
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from shift onwards
 \end_layout
 
 \end_inset
@@ -2171,7 +1632,7 @@ Mean from 100 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.8235$
+\begin_inset Formula $\left(0.8709,3.1644\right)$
 \end_inset
 
 
@@ -2185,7 +1646,7 @@ Mean from 100 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.3620$
+\begin_inset Formula $\left(0.3620,0.1029\right)$
 \end_inset
 
 
@@ -2201,7 +1662,9 @@ Mean from 100 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Std.
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
  from 100 points after shift onwards
 \end_layout
 
@@ -2213,7 +1676,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $2.8315$
+\begin_inset Formula $\left(0.8235,2.8315\right)$
 \end_inset
 
 
@@ -2227,7 +1690,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1029$
+\begin_inset Formula $\left(0.3620,0.1029\right)$
 \end_inset
 
 
@@ -2243,48 +1706,9 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-Mean from 1000 points after shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.7145$
+\begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3629$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Std.
  from 1000 points after shift onwards
 \end_layout
 
@@ -2296,7 +1720,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0518$
+\begin_inset Formula $\left(0.7145,0.0518\right)$
 \end_inset
 
 
@@ -2310,48 +1734,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.1028$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-Mean from 10000 points after shift onwards
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.7208$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size footnotesize
-\begin_inset Formula $0.3810$
+\begin_inset Formula $\left(0.3629,0.1028\right)$
 \end_inset
 
 
@@ -2367,7 +1750,9 @@ Mean from 10000 points after shift onwards
 \begin_layout Plain Layout
 
 \size footnotesize
-Std.
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
  from 10000 points after shift onwards
 \end_layout
 
@@ -2379,7 +1764,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0499$
+\begin_inset Formula $\left(0.7208,0.0499\right)$
 \end_inset
 
 
@@ -2393,7 +1778,7 @@ Std.
 \begin_layout Plain Layout
 
 \size footnotesize
-\begin_inset Formula $0.0936$
+\begin_inset Formula $\left(0.3810,0.0936\right)$
 \end_inset
 
 
@@ -2413,8 +1798,16 @@ Std.
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Statistics for the MGNG-AD and HTM models in a randomly generated time series
- with shifted mean.
+Sample means 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $s$
+\end_inset
+
+ for the MGNG-AD and HTM models in a randomly generated time series with
+ shifted mean.
 \end_layout
 
 \end_inset
@@ -2436,24 +1829,9 @@ name "tab:random_ts_shift_stats"
 
 \begin_layout Standard
 Once again, both models show a strong reaction to the shift.
- However, this time, the HTM model shows a higher mean and standard deviation
- values in comparison to those obtained in the previous experiment.
-\end_layout
-
-\begin_layout Subsection
-Summary
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:ts_shift_summary"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In both experiments, both HTM and MGNG-AD models were able to cope with
- a shift in mean of the input time series.
+ Although, this time the HTM model shows a higher mean and standard deviation
+ values in comparison to those obtained in the previous experiment, both
+ models could adapt also in this experiment to the mean shift.
 \end_layout
 
 \end_body

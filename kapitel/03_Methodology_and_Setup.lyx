@@ -104,6 +104,11 @@ name "sec:Evaluation_methodology"
 \begin_layout Standard
 In order to evaluate the performance of MGNG-AD and HTM-based anomaly detection,
  synthetic time series were generated.
+ In three of the four experiments, a sub-sequence of 
+\begin_inset Formula $S$
+\end_inset
+
+ was modified to add anomalies.
 \end_layout
 
 \begin_layout Standard
@@ -212,12 +217,77 @@ A threshold was set to determine whether a data point was classified as
 \end_layout
 
 \begin_layout Standard
-When presenting results, precision, recall, F1-Score and the threshold used
- were rounded to four decimal places.
+Furthermore, the sample standard deviation of the anomaly_likelihood, in
+ the HTM case, and anomaly_score, in the MGNG-AD case, were also calculated
+ and reported over the following sub-sequences:
+\end_layout
+
+\begin_layout Itemize
+From the start of the series up to the start of the anomalous sub-sequence.
+\end_layout
+
+\begin_layout Itemize
+From 100 time steps after the start of the series up to the start of the
+ anomalous sub-sequence.
+\end_layout
+
+\begin_layout Itemize
+From 1000 time steps after the start of the series up to the start of the
+ anomalous sub-sequence.
+\end_layout
+
+\begin_layout Itemize
+From 1000 time steps after the start of the series up to the start of the
+ anomalous sub-sequence.
+\end_layout
+
+\begin_layout Itemize
+From the start of the anomalous sub-sequence up to the end of the anomalous
+ sub-sequence.
+\end_layout
+
+\begin_layout Itemize
+From the end of the anomalous sub-sequence up to the end of the series.
+\end_layout
+
+\begin_layout Itemize
+From 100 time steps after the end of the anomalous sub-sequence up to the
+ end of the series.
+\end_layout
+
+\begin_layout Itemize
+From 1000 time steps after the end of the anomalous sub-sequence up to the
+ end of the series.
+\end_layout
+
+\begin_layout Itemize
+From 1000 time steps after the end of the anomalous sub-sequence up to the
+ end of the series.
 \end_layout
 
 \begin_layout Standard
-It is worth noting that this methodology presents several problems.
+This was undertaken to provide an estimate of the stability of the reported
+ anomaly_likelihood and anomaly_score.
+ A low standard deviations is desirable in normal subsequences, given that
+ it indicates that the models have learned a good representation of the
+ input.
+ The subsequences were selected to assess approximately how many time steps
+ a model needs to obtain a low standard deviation.
+ Moreover, the sample means of the same two variables, over the same sub-sequenc
+es were also reported to determine whether the models reacted to the anomalous
+ sub-sequences.
+ Indeed, a mean higher in the anomalous region than in the surounding sub-sequen
+ces indicates that model perceived the change in behavior, even in cases
+ where a low F1-Score were obtained.
+\end_layout
+
+\begin_layout Standard
+When presenting results, the precision, recall, F1-Score, sample mean, sample
+ standard deviation and threshold used were rounded to four decimal places.
+\end_layout
+
+\begin_layout Standard
+It is worth noting that the use of the F1-Score presents several problems.
  First, the F1-Score was developed to evaluate binary classificators.
  In this case, HTM as well as MGNG-AD do not provide an anomaly class for
  each point but rather a degree of abnormality, thus prompting the need
@@ -455,6 +525,79 @@ s for the HTM, before subsequently starting to feed the optimized model
  The results of the swarming process, namely the parameters for the OPF,
  were treated as internal parameters of the entire HTM experiment, and thus
  they are not shown.
+\end_layout
+
+\begin_layout Standard
+The OPF uses a configuration parameter called 
+\emph on
+predictedField 
+\emph default
+to determine which input variabled to watch for anomalies.
+ This presents a problem when working with multi-dimensional time series,
+ given that the OPF cannot be set to predict more than a single field.
+ This differs from the one-dimensional scenario in that the OPF uses all
+ the input's variables to build its spatial and temporal patterns.
+ It is with those patterns that the OPF determines the anomaly_score of
+ the current predictedField's value.
+ To circumvent this limitation, one HTM model was swarmed and trained for
+ each dimension of the input time series.
+ The anomaly_scores and anomaly_likelihoods of those models were subsequently
+ averaged accross dimensions to obtain the final anomaly_score and anomaly_likel
+ihood for the time series.
+ Formally, for a time series 
+\begin_inset Formula $S_{l,n;m}=\left(\mathbf{s}_{l},\dots,\mathbf{s}_{n}\right)$
+\end_inset
+
+ with data points 
+\begin_inset Formula $\mathbf{s}_{t}=\left(s_{t,1},\dots,s_{t,m}\right)$
+\end_inset
+
+ of dimensionality 
+\begin_inset Formula $m$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+anomaly\_score_{t} & \coloneqq\frac{1}{m}\sum_{i=1}^{m}anomaly\_score_{t,i}\\
+anomaly\_likelihood_{t} & \coloneqq\frac{1}{m}\sum_{i=1}^{m}anomaly\_likelihood_{t,i}\\
+ & \quad\;\forall t\in\left[l,n\right]
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $anomaly\_score_{t,i}$
+\end_inset
+
+ as well as 
+\begin_inset Formula $anomaly\_likelihood_{t,i}$
+\end_inset
+
+ are the score and likelihood, respectively, assigned by a HTM model to
+ each 
+\begin_inset Formula $s_{t,i}$
+\end_inset
+
+, and 
+\begin_inset Formula $anomaly\_score_{t}$
+\end_inset
+
+ as well as 
+\begin_inset Formula $anomaly\_likelihood_{t}$
+\end_inset
+
+ are the score and likelihood, respectively, assigned to each 
+\begin_inset Formula $\mathbf{s}_{t}$
+\end_inset
+
+.
+ This 
+\begin_inset Formula $anomaly\_likelihood_{t}$
+\end_inset
+
+ is what was stored in the CSV files and used in the experiments to determine
+ whether a data point was an anomaly.
 \end_layout
 
 \begin_layout Standard

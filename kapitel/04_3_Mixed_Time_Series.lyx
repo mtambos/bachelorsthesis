@@ -320,14 +320,21 @@ Figref{mixed_ts_mgng-ad_mackey_glass_time, mixed_ts_htm_mackey_glass_time}
  region.
  The colored vertical span in the images mark time segment annotated as
  anomalous.
- The statistics of the experiment are shown in 
+ The detection statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mixed_ts_mackey_glass_time_f1_stats"
+
+\end_inset
+
+, while 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:mixed_ts_mackey_glass_time_stats"
 
 \end_inset
 
-.
+ shows the sample mean and standard deviation for selected sub-sequences.
 \begin_inset Float figure
 wide false
 sideways false
@@ -523,7 +530,7 @@ F1-Score, precision and recall curves relative to the threshold selected.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1080,6 +1087,606 @@ Statistics for the MGNG-AD and HTM models in a mixed multivariate time series
 
 \begin_inset CommandInset label
 LatexCommand label
+name "tab:mixed_ts_mackey_glass_time_f1_stats"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Statistics
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+MGNG-AD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+HTM
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total data-points 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.38\textwidth}">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $150000$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Anomaly start
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $74601$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Anomaly end
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $76400$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4495,0.0788\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3043,0.1091\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 100 points after start, up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4501,0.0771\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3040,0.1089\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 1000 points after start, up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4515,0.0705\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3028,0.1081\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 10000 points after start, up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4402,0.0508\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2829,0.0861\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ during anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.7150,0.0586\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4491,0.0549\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from end of anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4297,0.0262\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2948,0.0597\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 100 points after anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4295,0.0251\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2948,0.0596\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 1000 points after end of anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4295,0.0249\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2950,0.0596\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 10000 points after end of anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4303,0.0242\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2956,0.0580\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $s$
+\end_inset
+
+ for the MGNG-AD and HTM models in a mixed multivariate time series with
+ added random noise in the time domain of a Mackey-Glass time series.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Anomaly
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the anomalous sub-sequence.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
 name "tab:mixed_ts_mackey_glass_time_stats"
 
 \end_inset
@@ -1090,6 +1697,48 @@ name "tab:mixed_ts_mackey_glass_time_stats"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+From the perspective of the F1-Score, the MGNG-AD model performed worse
+ in this experiment than in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:mackey-glass_time"
+
+\end_inset
+
+.
+ As with the experiments in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:random_ts"
+
+\end_inset
+
+, the MGNG-AD model could benefit from a learning period, this time of approxima
+tely 10000 time steps.
+\end_layout
+
+\begin_layout Standard
+In comparison, the HTM model obtained a lower F1-Score.
+ Although the mean anomaly_likelihood in the anomalous sub-sequence was
+ higher than in the surrounding sub-sequences, no better threshold was found,
+ possibly due to the high standard deviations over the sub-sequences previous
+ to the anomalous sub-sequence.
+\end_layout
+
+\begin_layout Standard
+Finally, similarly to 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:mackey-glass_time"
+
+\end_inset
+
+, the standard deviations for the anomaly_likelihoods and anomaly_scores
+ provided by the HTM and MGNG-AD models, respectively showed a decreasing
+ tendency among all normal sub-sequences.
 \end_layout
 
 \begin_layout Subsection
@@ -1189,16 +1838,21 @@ Figref{mixed_ts_mgng-ad_random_time, mixed_ts_htm_random_time}
  show the MGNG-AD and HTM model's results respectively, together with the
  precision, recall and F1-Score curves, as well as a detail of the anomalous
  region.
- The colored vertical span in the images mark time segment annotated as
- anomalous.
- The statistics of the experiment are shown in 
+ The detection statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mixed_ts_random_time_f1_stats"
+
+\end_inset
+
+, while 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "tab:mixed_ts_random_time_stats"
 
 \end_inset
 
-.
+ shows the sample mean and standard deviation for selected sub-sequences.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1952,6 +2606,606 @@ Statistics for the MGNG-AD and HTM models in a mixed multivariate time series
 
 \begin_inset CommandInset label
 LatexCommand label
+name "tab:mixed_ts_random_time_f1_stats"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Statistics
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+MGNG-AD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+HTM
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total data-points 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special=">{\centering}m{0.38\textwidth}">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $150000$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Anomaly start
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $74601$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Anomaly end
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $76400$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4495,0.0788\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3043,0.1091\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 100 points after start, up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4501,0.0771\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3040,0.1089\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 1000 points after start, up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4515,0.0705\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3028,0.1081\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 10000 points after start, up to start of anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4402,0.0508\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2829,0.0861\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ during anomaly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.6743,0.0562\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.2861,0.0635\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from end of anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4315,0.0250\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3374,0.0771\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 100 points after anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4313,0.0244\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3374,0.0771\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 1000 points after end of anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4311,0.0241\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3383,0.0769\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(\bar{x},s\right)$
+\end_inset
+
+ from 10000 points after end of anomaly onwards
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.4316,0.0236\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\left(0.3446,0.0761\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sample mean 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ and standard deviation 
+\begin_inset Formula $s$
+\end_inset
+
+ for the MGNG-AD and HTM models in a mixed multivariate time series with
+ added random noise in the time domain of a randomly generated time series.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Anomaly
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the anomalous sub-sequence.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
 name "tab:mixed_ts_random_time_stats"
 
 \end_inset
@@ -1964,41 +3218,9 @@ name "tab:mixed_ts_random_time_stats"
 
 \end_layout
 
-\begin_layout Subsection
-Summary
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:mixed_ts_summary"
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
-From the perspective of the F1-Score, although the MGNG-AD model performed
- worse in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:mixed_ts_mackey_glass_time"
-
-\end_inset
-
- than in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:mackey-glass_time"
-
-\end_inset
-
-, the situation was reversed in the case of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:mixed_ts_random_time"
-
-\end_inset
-
- with respect to 
+From the perspective of the F1-Score, the MGNG-AD model performed better
+ in this experiment with respect to 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:random_ts_time"
@@ -2006,68 +3228,31 @@ reference "subsec:random_ts_time"
 \end_inset
 
 .
- In both 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-subsecref{mixed_ts_mackey_glass_time,mixed_ts_random_time}
-\end_layout
-
-\end_inset
-
-, as with the experiments in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:random_ts"
-
-\end_inset
-
-, the plots show that the MGNG-AD models reported high anomaly_scores in
- the anomalous region, while the F1-Score could be improved by allowing
- a learning period, i.e.
- ignoring a sub-sequence from the start of the series.
+ Once more, the MGNG-AD model could benefit from a learning period, also
+ of approximately 10000 time steps.
+ The standard deviations of the anomaly_scores were also decreasing in nature,
+ as in the previous experiment.
 \end_layout
 
 \begin_layout Standard
-Again, in terms of the F1-Score, the HTM model, in contrast, could neither
- come near the same high score it had achieved in 
+In contrast, the HTM model obtained similar results to what it had achieved
+ in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "subsec:mackey-glass_time"
+reference "subsec:random_ts_time"
 
 \end_inset
 
-, in the experiment of 
+, in terms of its F1-Score.
+ Regarding the standard deviations of its anomaly_likelihoods, the HTM model
+ provided results comparable to the ones obtained in 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:mixed_ts_mackey_glass_time"
 
 \end_inset
 
-, nor could it identify the noise added to 
-\begin_inset Formula $R1$
-\end_inset
-
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:mixed_ts_random_time"
-
-\end_inset
-
 .
- In the case of 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:mackey-glass_time"
-
-\end_inset
-
-, HTM performed considerably worse than MGNG-AD.
 \end_layout
 
 \end_body

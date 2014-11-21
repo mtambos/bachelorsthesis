@@ -240,8 +240,11 @@ In experiments performed with synthetic data, it has been empirically shown
  In further experiments with time series with two Mackey-Glass components
  and two randomly generated components, MGNG-AD was also able to detect
  gaussian and incremental noise in the time domain.
- Finally, in an experiment with time series with a mean shift, both MGNG-AD
- and HTM models were able to adapt to the change in behavior.
+ In an experiment with time series with a mean shift, both MGNG-AD and HTM
+ models were able to adapt to the change in behavior.
+ Finally, the standard deviations of the anomaly_likelihoods provided by
+ the HTM model were generally higher than the standard deviations of the
+ anomaly_scores provided by the MGNG-AD model.
 \end_layout
 
 \begin_layout Standard
