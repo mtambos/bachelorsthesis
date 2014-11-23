@@ -172,8 +172,8 @@ key "Aggarwal2013,Chandola2009"
 \end_layout
 
 \begin_layout Standard
-Basic concepts that underlie MGNG, and by extension MGNG-AD, have been precisely
- defined.
+Subsequently, Basic concepts that underlie MGNG, and by extension MGNG-AD,
+ have been precisely defined.
 \end_layout
 
 \begin_layout Standard
@@ -198,8 +198,8 @@ key "Andreakis2009"
 \end_layout
 
 \begin_layout Standard
-A novel method for online detection of contextual anomalies in multi-dimensional
- time series has subsequently been presented.
+Thereafter, a novel method for online detection of contextual anomalies
+ in multi-dimensional time series has been presented.
  It provides an anomaly score of for each data point in the time series
  calculated as the difference between two MGNG models: a 
 \begin_inset Quotes eld
@@ -222,7 +222,11 @@ past
 \begin_inset Formula $time\_step\_ad$
 \end_inset
 
- function is 
+ function is
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $O\left(m\cdot\left|\mathcal{K}^{P}\right|\cdot\left|\mathcal{K}^{Q}\right|+\left|\mathcal{K}^{P}\right|\cdot\log\left|\mathcal{K}^{P}\right|+\left|\mathcal{K}^{Q}\right|\cdot\log\left|\mathcal{K}^{Q}\right|\right)$
 \end_inset
 

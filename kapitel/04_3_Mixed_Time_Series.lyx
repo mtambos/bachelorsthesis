@@ -172,7 +172,7 @@ r2_{t} & \in\mathcal{N}\left(0,-2\right);\forall r2_{t}\in R2
 , where
 \begin_inset Formula 
 \begin{align*}
-\forall\mathbf{s}_{t}\in S, & \mathbf{s}_{t}=\left(mg1_{t},mg2_{t},r1_{t},r2_{t}\right),\\
+\forall\mathbf{s}_{t}\in S, & \mathbf{s}_{t}\coloneqq\left(mg1_{t},mg2_{t},r1_{t},r2_{t}\right),\\
  & \qquad\;\: mg1_{t}\in MG1,mg2_{t}\in MG2,\\
  & \qquad\;\: r1_{t}\in R1,r2_{t}\in R2
 \end{align*}
@@ -1721,7 +1721,7 @@ tely 10000 time steps.
 \end_layout
 
 \begin_layout Standard
-In comparison, the HTM model obtained a lower F1-Score.
+In comparison, the HTM model obtained a considerably lower F1-Score.
  Although the mean anomaly_likelihood in the anomalous sub-sequence was
  higher than in the surrounding sub-sequences, no better threshold was found,
  possibly due to the high standard deviations over the sub-sequences previous
@@ -1729,16 +1729,16 @@ In comparison, the HTM model obtained a lower F1-Score.
 \end_layout
 
 \begin_layout Standard
-Finally, similarly to 
+Finally, the standard deviations for the anomaly_likelihoods and anomaly_scores
+ provided by the HTM and MGNG-AD models, respectively, showed a decreasing
+ tendency among all normal sub-sequences, similarly to 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "subsec:mackey-glass_time"
 
 \end_inset
 
-, the standard deviations for the anomaly_likelihoods and anomaly_scores
- provided by the HTM and MGNG-AD models, respectively showed a decreasing
- tendency among all normal sub-sequences.
+.
 \end_layout
 
 \begin_layout Subsection

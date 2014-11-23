@@ -139,14 +139,14 @@ This output file was subsequently processed to extract the precision
 \begin_inset Formula $r$
 \end_inset
 
- values according to the following formulas 
+ values according to the following formulas (see 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chinchor1992,sasaki2007truth"
 
 \end_inset
 
-:
+):
 \begin_inset Formula 
 \begin{align*}
 p & =\frac{\left|true\, positive\right|}{\left|true\, positive\right|+\left|false\, positive\right|}\\
@@ -159,8 +159,8 @@ where a
 \emph on
 true positive
 \emph default
- indicates a data point annotated as an anomaly and recognized as an anomaly
- by the anomaly detector, a 
+ indicates a data point annotated as an anomaly and recognized as such by
+ the anomaly detector, a 
 \emph on
 false negative
 \emph default
@@ -219,66 +219,95 @@ A threshold was set to determine whether a data point was classified as
 \begin_layout Standard
 Furthermore, the sample standard deviation of the anomaly_likelihood, in
  the HTM case, and anomaly_score, in the MGNG-AD case, were also calculated
- and reported over the following sub-sequences:
+ and reported.
+ Given a input series 
+\begin_inset Formula $S_{l,n;m}$
+\end_inset
+
+ and an anomalous sub-sequence 
+\begin_inset Formula $AS_{i,j;m}\subseteq S_{l,n;m}$
+\end_inset
+
+, this was perform over the following sub-sequences:
 \end_layout
 
 \begin_layout Itemize
-From the start of the series up to the start of the anomalous sub-sequence.
+\begin_inset Formula $SS_{l,i;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From 100 time steps after the start of the series up to the start of the
- anomalous sub-sequence.
+\begin_inset Formula $SS_{l+100,i;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From 1000 time steps after the start of the series up to the start of the
- anomalous sub-sequence.
+\begin_inset Formula $SS_{l+1000,i;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From 1000 time steps after the start of the series up to the start of the
- anomalous sub-sequence.
+\begin_inset Formula $SS_{l+10000,i;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From the start of the anomalous sub-sequence up to the end of the anomalous
- sub-sequence.
+\begin_inset Formula $SS_{i,j;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From the end of the anomalous sub-sequence up to the end of the series.
+\begin_inset Formula $SS_{j,n;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From 100 time steps after the end of the anomalous sub-sequence up to the
- end of the series.
+\begin_inset Formula $SS_{j+100,n;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From 1000 time steps after the end of the anomalous sub-sequence up to the
- end of the series.
+\begin_inset Formula $SS_{j+1000,n;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-From 1000 time steps after the end of the anomalous sub-sequence up to the
- end of the series.
+\begin_inset Formula $SS_{j+10000,n;m}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 This was undertaken to provide an estimate of the stability of the reported
  anomaly_likelihood and anomaly_score.
- A low standard deviations is desirable in normal subsequences, given that
+ A low standard deviations is desirable in normal sub-sequences, given that
  it indicates that the models have learned a good representation of the
  input.
- The subsequences were selected to assess approximately how many time steps
+ The sub-sequences were selected to assess approximately how many time steps
  a model needs to obtain a low standard deviation.
  Moreover, the sample means of the same two variables, over the same sub-sequenc
 es were also reported to determine whether the models reacted to the anomalous
  sub-sequences.
- Indeed, a mean higher in the anomalous region than in the surounding sub-sequen
-ces indicates that model perceived the change in behavior, even in cases
- where a low F1-Score were obtained.
+ Indeed, a mean higher in the anomalous region than in the surrounding sub-seque
+nces indicates that model perceived the change in behavior, even in cases
+ where low F1-Scores were obtained.
 \end_layout
 
 \begin_layout Standard
@@ -340,8 +369,8 @@ Third, the kind of anomalies that MGNG-AD or HTM are able to detect are
 status collapsed
 
 \begin_layout Plain Layout
-see for instance http://www.webmd.com/sleep-disorders/guide/understanding-obstruct
-ive-sleep-apnea-syndrome
+See, for instance, http://www.webmd.com/sleep-disorders/guide/understanding-obstru
+ctive-sleep-apnea-syndrome
 \end_layout
 
 \end_inset
@@ -379,12 +408,6 @@ h were indeed available, it could have been used to create a more effective
  Therefore, much of the research literature uses case studies in order to
  provide an intuitive and qualitative evaluation of the underlying outliers
  in unsupervised scenarios .
-\end_layout
-
-\begin_layout Standard
-In other words, although it is possible to quantitatively evaluate the performan
-ce of an unsupervised method at detecting known anomalies, it is not possible
- to perform such an evaluation for the task of detecting unknown ones.
 \end_layout
 
 \begin_layout Standard
@@ -483,7 +506,7 @@ Given the amount of parameters needed for a MGNG-AD model
 \begin_inset Formula $M^{Q}$
 \end_inset
 
- same way.
+ in the same way.
  Another reason for initializing 
 \begin_inset Formula $M^{P}$
 \end_inset
@@ -528,22 +551,30 @@ s for the HTM, before subsequently starting to feed the optimized model
 \end_layout
 
 \begin_layout Standard
+The swarming over a sub-sequence from the start of the time series was undertake
+n to simulate a real scenario: upon start, a number of the first samples
+ to come from a live data stream are used for swarming, before one starts
+ feeding the HTM model from either the start of the series or where the
+ swarming process left.
+\end_layout
+
+\begin_layout Standard
 The OPF uses a configuration parameter called 
 \emph on
 predictedField 
 \emph default
-to determine which input variabled to watch for anomalies.
+to determine which input variable to watch for anomalies.
  This presents a problem when working with multi-dimensional time series,
  given that the OPF cannot be set to predict more than a single field.
  This differs from the one-dimensional scenario in that the OPF uses all
  the input's variables to build its spatial and temporal patterns.
- It is with those patterns that the OPF determines the anomaly_score of
- the current predictedField's value.
+ It is with those patterns that the OPF determines the anomaly_score and
+ anomaly_likelihood of the current predictedField's value.
  To circumvent this limitation, one HTM model was swarmed and trained for
  each dimension of the input time series.
  The anomaly_scores and anomaly_likelihoods of those models were subsequently
- averaged accross dimensions to obtain the final anomaly_score and anomaly_likel
-ihood for the time series.
+ averaged across dimensions to obtain the final anomaly_score and anomaly_likeli
+hood for the time series.
  Formally, for a time series 
 \begin_inset Formula $S_{l,n;m}=\left(\mathbf{s}_{l},\dots,\mathbf{s}_{n}\right)$
 \end_inset
@@ -598,14 +629,6 @@ where
 
  is what was stored in the CSV files and used in the experiments to determine
  whether a data point was an anomaly.
-\end_layout
-
-\begin_layout Standard
-The swarming over a sub-sequence from the start of the time series was undertake
-n to simulate a real scenario: upon start, a number of the first samples
- to come from a live data stream are used for swarming, before one starts
- feeding the HTM model from either the start of the series or where the
- swarming process left.
 \end_layout
 
 \end_body

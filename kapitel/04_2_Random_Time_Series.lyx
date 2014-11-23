@@ -141,7 +141,7 @@ where
 \end_layout
 
 \begin_layout Itemize
-Modification of 
+modification of 
 \begin_inset Formula $AR_{l,n}$
 \end_inset
 
@@ -159,7 +159,7 @@ ar_{t,i} & \coloneqq ar_{t,i}+x;\\
 \end_layout
 
 \begin_layout Itemize
-Modification of 
+modification of 
 \begin_inset Formula $AR_{l,n}$
 \end_inset
 
@@ -229,11 +229,11 @@ name "subsec:random_ts_time"
 
 \begin_layout Standard
 For this experiment, a sub-sequence 
-\begin_inset Formula $AMG_{74601,76400}\subsetneq$
+\begin_inset Formula $AR_{74601,76400}\subsetneq$
 \end_inset
 
 
-\begin_inset Formula $MG_{1,150000}$
+\begin_inset Formula $R_{1,150000}$
 \end_inset
 
  was modified in its time domain by adding random noise.
@@ -1037,7 +1037,7 @@ name "tab:random_ts_time_f1_stats"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1705,16 +1705,16 @@ name "subsec:random_ts_fix_time"
 
 \begin_layout Standard
 For this experiment, a sub-sequence 
-\begin_inset Formula $AMG_{74600,76400}\subsetneq$
+\begin_inset Formula $AR_{74601,76400}\subsetneq$
 \end_inset
 
 
-\begin_inset Formula $MG_{0,150000}$
+\begin_inset Formula $R_{1,150000}$
 \end_inset
 
  modified in its time domain by adding incremental noise, with parameters
  
-\begin_inset Formula $increment\_stop=75400$
+\begin_inset Formula $increment\_stop=75401$
 \end_inset
 
 , 
@@ -2047,7 +2047,7 @@ name "fig:random_ts_htm_fix_time_noise"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -2526,7 +2526,7 @@ name "tab:random_ts_fix_time_f1_stats"
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 

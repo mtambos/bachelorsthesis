@@ -111,7 +111,7 @@ where
 \end_layout
 
 \begin_layout Standard
-In order to perform this analysis, four time series of length 
+In order to perform this analysis, two time series of length 
 \begin_inset Formula $150000$
 \end_inset
 
@@ -190,38 +190,6 @@ name "subsec:mackey-glass_ts_shift"
 \end_layout
 
 \begin_layout Standard
-In this experiment, a four-dimensional Mackey-Glass time series 
-\begin_inset Formula $MG_{1,150000;4}$
-\end_inset
-
- was generated and a sub-sequence 
-\begin_inset Formula $SMG_{76001,150000}\in MG$
-\end_inset
-
- modified as previously explained.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
-\end_layout
-
-\end_inset
-
- show the MGNG-AD and HTM model's results, respectively.
- The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:mackey-glass_ts_shift_stats"
-
-\end_inset
-
-.
- 
 \begin_inset Float figure
 wide false
 sideways false
@@ -245,13 +213,13 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/mackey_glass_ts_shift/amgng_whole_plot.png
 	width 100text%
-	height 25theight%
+	height 20theight%
 
 \end_inset
 
@@ -276,13 +244,13 @@ From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/mackey_glass_ts_shift/amgng_detail_plot.png
 	width 100text%
-	height 25theight%
+	height 20theight%
 
 \end_inset
 
@@ -321,115 +289,6 @@ MGNG-AD model's results for the Mackey-Glass time series with shifted mean.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:mackey-glass_ts_mgng-ad_shift"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename ../images/mackey_glass_ts_shift/cla_whole_plot.png
-	width 100text%
-	height 25theight%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot
- and anomaly_score plot.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename ../images/mackey_glass_ts_shift/cla_detail_plot.png
-	width 100text%
-	height 25theight%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Detail of the previous plot, centered on the shift.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-HTM model's results for the Mackey-Glass time series with shifted mean.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:mackey-glass_ts_htm_shift"
 
 \end_inset
 
@@ -985,12 +844,150 @@ name "tab:mackey-glass_ts_shift_stats"
 
 \end_inset
 
+In this experiment, a four-dimensional Mackey-Glass time series 
+\begin_inset Formula $MG_{1,150000;4}$
+\end_inset
 
+ was generated and a sub-sequence 
+\begin_inset Formula $SMG_{76001,150000}\in MG$
+\end_inset
+
+ modified as previously explained.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
+\end_layout
+
+\end_inset
+
+ show the MGNG-AD and HTM model's results, respectively.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mackey-glass_ts_shift_stats"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Both HTM and MGNG-AD models show a strong reaction of their anomaly_likelihood
- and anomaly_score, respectively, at the point of the mean shift.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../images/mackey_glass_ts_shift/cla_whole_plot.png
+	width 100text%
+	height 30theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot
+ and anomaly_score plot.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../images/mackey_glass_ts_shift/cla_detail_plot.png
+	width 100text%
+	height 30theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detail of the previous plot, centered on the shift.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HTM model's results for the Mackey-Glass time series with shifted mean.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:mackey-glass_ts_htm_shift"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+At the point of the mean shift, both HTM and MGNG-AD models show a strong
+ reaction of their anomaly_likelihood and anomaly_score, respectively.
  As can be seen from 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -1014,7 +1011,7 @@ figref{mackey-glass_ts_mgng-ad_shift, mackey-glass_ts_htm_shift}
 , the HTM model is able to recover more quickly from the shift; nonetheless,
  the anomaly_likelihood and anomaly_score of the models manage to come back
  to previous-shift levels (or better) in under 1000 time steps, as indicated
- by their standard deviations.
+ by their means and standard deviations.
 \end_layout
 
 \begin_layout Subsection
@@ -1029,37 +1026,6 @@ name "subsec:random_ts_shift"
 \end_layout
 
 \begin_layout Standard
-In this experiment, a four-dimensional, randomly generated time series 
-\begin_inset Formula $R_{1,150000;4}$
-\end_inset
-
- was generated and a sub-sequence 
-\begin_inset Formula $SR_{76001,150000}\in MG$
-\end_inset
-
- modified as previously explained.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-Figref{random_ts_mgng-ad_shift, random_ts_htm_fix_time_noise}
-\end_layout
-
-\end_inset
-
- show the MGNG-AD and HTM model's results, respectively.
- The statistics of the experiment are shown in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "tab:random_ts_shift_stats"
-
-\end_inset
-
-.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1083,13 +1049,13 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/random_ts_shift/amgng_whole_plot.png
 	width 100text%
-	height 25theight%
+	height 20theight%
 
 \end_inset
 
@@ -1114,13 +1080,13 @@ From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename ../images/random_ts_shift/amgng_detail_plot.png
 	width 100text%
-	height 25theight%
+	height 20theight%
 
 \end_inset
 
@@ -1160,115 +1126,6 @@ MGNG-AD model's results for randomly generated time series with shifted
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:random_ts_mgng-ad_shift"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100text%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename ../images/random_ts_shift/cla_whole_plot.png
-	width 100text%
-	height 25theight%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot
- and anomaly_score plot.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename ../images/random_ts_shift/cla_detail_plot.png
-	width 100text%
-	height 25theight%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Detail of the previous plot, centered on the shift.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-HTM model's results for randomly generated time series with shifted mean.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:random_ts_htm_shift"
 
 \end_inset
 
@@ -1824,10 +1681,148 @@ name "tab:random_ts_shift_stats"
 
 \end_inset
 
+In this experiment, a four-dimensional, randomly generated time series 
+\begin_inset Formula $R_{1,150000;4}$
+\end_inset
 
+ was generated and a sub-sequence 
+\begin_inset Formula $SR_{76001,150000}\in R$
+\end_inset
+
+ modified as previously explained.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+Figref{random_ts_mgng-ad_shift, random_ts_htm_fix_time_noise}
+\end_layout
+
+\end_inset
+
+ show the MGNG-AD and HTM model's results, respectively.
+ The statistics of the experiment are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:random_ts_shift_stats"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../images/random_ts_shift/cla_whole_plot.png
+	width 100text%
+	height 30theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From top to bottom: Mackey-Glass time series plot, anomaly_likelihood plot
+ and anomaly_score plot.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ../images/random_ts_shift/cla_detail_plot.png
+	width 100text%
+	height 30theight%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detail of the previous plot, centered on the shift.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HTM model's results for randomly generated time series with shifted mean.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:random_ts_htm_shift"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 Once again, both models show a strong reaction to the shift.
  Although, this time the HTM model shows a higher mean and standard deviation
  values in comparison to those obtained in the previous experiment, both

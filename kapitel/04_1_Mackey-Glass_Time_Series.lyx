@@ -246,7 +246,7 @@ Finally,
 \end_layout
 
 \begin_layout Itemize
-Modification of 
+modification of 
 \begin_inset Formula $AMG_{l,n}$
 \end_inset
 
@@ -264,7 +264,7 @@ amg_{t,i} & \coloneqq amg_{t,i}+x;\\
 \end_layout
 
 \begin_layout Itemize
-Modification of 
+modification of 
 \begin_inset Formula $AMG_{l,n}$
 \end_inset
 
@@ -285,7 +285,7 @@ amg_{t,i} & \coloneqq amg_{t,i}+y_{i}\frac{n-t}{decrement\_len};decrement\_start
 \end_layout
 
 \begin_layout Itemize
-Modification of 
+modification of 
 \begin_inset Formula $AMG_{l,n}$
 \end_inset
 
@@ -364,7 +364,7 @@ A
 \end_inset
 
  was used in each experiment and a sub-sequence 
-\begin_inset Formula $AMG_{74600,76400}\subsetneq$
+\begin_inset Formula $AMG_{74601,76400}\subsetneq$
 \end_inset
 
 
@@ -376,7 +376,7 @@ A
 \begin_inset Formula $AMG$
 \end_inset
 
- were chosen to evaluate the effect of 
+ was chosen to evaluate the effect of 
 \begin_inset Formula $AMG$
 \end_inset
 
@@ -1889,7 +1889,7 @@ As can be seen from the figures and tables, both HTM and MGNG-AD managed
  It is also evident from the standard deviations in 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "tab:mackey-glass_time_f1_stats"
+reference "tab:mackey-glass_time_stats"
 
 \end_inset
 
@@ -1923,16 +1923,16 @@ name "subsec:mackey-glass_fix_time"
 
 \begin_layout Standard
 For this experiment, the sub-sequence 
-\begin_inset Formula $AMG_{74600,76400}\subsetneq$
+\begin_inset Formula $AMG_{74601,76400}\subsetneq$
 \end_inset
 
 
-\begin_inset Formula $MG_{0,150000}$
+\begin_inset Formula $MG_{1,150000}$
 \end_inset
 
  was modified in its time domain by adding incremental noise, with parameters
  
-\begin_inset Formula $increment\_stop=75400$
+\begin_inset Formula $increment\_stop=75401$
 \end_inset
 
 , 
@@ -3350,7 +3350,7 @@ In terms of the F1-Scores obtained, the MGNG-AD model clearly outperformed
  The MGNG-AD model maintained very similar standard deviations over all
  normal sub-sequences, in contrast with the previous experiment.
  On the other hand, the HTM model showed a continuously decreasing standard
- deviation over all normal sub-sequences.
+ deviation over the same.
 \end_layout
 
 \begin_layout Subsection

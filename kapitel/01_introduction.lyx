@@ -413,15 +413,19 @@ key "Dunning"
 
 \end_inset
 
- give an introduction to the field of anomaly detection, as well as presenting
- a new method, t-digest, which is able to automatically set the threshold
- for a threshold-based anomaly detection task.
+ present an introduction to the field of anomaly detection, as well as presentin
+g a new method, 
+\emph on
+t-digest
+\emph default
+, which is able to automatically set the threshold for a threshold-based
+ anomaly detection task.
  Given that a detector based directly on t-digest would be unable to detect
  contextual anomalies, it is not used in this work for comparison.
  Dunning & Friedman show how to detect anomalous heart beats in ECG, a kind
  of contextual anomaly, by using t-digest not over the input signal, but
  rather over the difference between the input signal and a database of normal
- signal windows.
+ signal's windows.
  This approach detects anomalies in an online fashion, although the construction
  of the database must be performed offline and thus it is unable to evolve
  that part of its internal model online.
