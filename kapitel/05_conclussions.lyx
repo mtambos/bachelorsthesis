@@ -96,10 +96,19 @@ Possibly the best way of using MGNG-AD is under human supervision.
  In this setting, it would solely responsible for raising alarms, but rather
  it would be used to recognize potentially anomalous regions in a data stream,
  relying its automated analysis to a human for final classification.
+ This kind of interaction is also recomended in the literature 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "Ch. 6 Sec. 5"
+key "Aggarwal2013"
+
+\end_inset
+
+.
  Feeding the time series to MGNG-AD after some other online process has
  cleared it from known anomalies and noise could also prove useful.
  Such a two-stage process would leave a cleaner signal, making it easier
- for MGNG-AD to detect other kinds of anomalies.
+ for MGNG-AD to detect other kinds of anomalies .
 \end_layout
 
 \begin_layout Standard
@@ -172,8 +181,8 @@ key "Aggarwal2013,Chandola2009"
 \end_layout
 
 \begin_layout Standard
-Subsequently, Basic concepts that underlie MGNG, and by extension MGNG-AD,
- have been precisely defined.
+Subsequently, Basic concepts that underlie MGNG as well as MGNG-AD have
+ been precisely defined.
 \end_layout
 
 \begin_layout Standard
@@ -190,7 +199,7 @@ key "Andreakis2009"
 \begin_inset Formula $time\_step$
 \end_inset
 
- function of MGNG is 
+ function is 
 \begin_inset Formula $O\left(m\cdot\left|\mathcal{K}\right|+\left|\mathcal{K}\right|\cdot\log\left|\mathcal{K}\right|\right)$
 \end_inset
 
@@ -218,7 +227,7 @@ past
 \end_inset
 
  model, which is fed delayed data.
- It has also been demonstrated that the time complexity of MGNG-AD's 
+ It has also been demonstrated that the time complexity of the 
 \begin_inset Formula $time\_step\_ad$
 \end_inset
 
@@ -795,9 +804,9 @@ key "estevez2011gamma"
 
 \end_inset
 
-, a generalization of MGNG, could also prove useful, since it seems that
- the former provides lower temporal quantization errors than the latter
- (see also 
+, a more general model than MGNG in which each neuron uses multiple context
+ vectors, could also prove useful, since it seems that the former provides
+ lower temporal quantization errors than the latter (see also 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "cyrcamo2008mapas"

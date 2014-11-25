@@ -218,8 +218,8 @@ name "sec:Objective_statement"
 \end_layout
 
 \begin_layout Standard
-The goal of this work is to develop an approach to detecting contextual
- anomalies on multi-dimensional time series.
+The goal of this work is to develop an unsupervised approach to detecting
+ contextual anomalies on multi-dimensional time series.
  The 
 \emph on
 anomaly level
@@ -447,8 +447,8 @@ key "Gupta2014"
  In this categorization, MGNG-AD is closely related to the evolving prediction
  models for stream data -- while MGNG-AD evolves an internal model to account
  for temporal drift, it is not prediction-based.
- One of the two most similar methods to MGNG-AD, Sequentially Discounting
- Auto Regression (SDAR
+ One of the most similar methods to MGNG-AD found in the literature, Sequentiall
+y Discounting Auto Regression (SDAR
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "SDAR"

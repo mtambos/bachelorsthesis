@@ -1,0 +1,18 @@
+/*
+Placeholder for custom user CSS
+
+mainly to be overridden in profile/static/custom/custom.css
+
+This will always be an empty file in IPython
+*/
+/*
+default size:
+body{font-size:65%;}
+*/
+body{font-size:68%;}
+.grayed{color:gray;}
+table.noborder, th.noborder, tr.noborder, td.noborder{
+    border: 0px solid white;
+    border-collapse: collapse;
+    padding: 0px;
+}

@@ -355,11 +355,11 @@ In each case, the modified sub-sequence was annotated as anomalous.
 \end_layout
 
 \begin_layout Standard
-A 
+A time series 
 \begin_inset Formula $MG_{1,150000}$
 \end_inset
 
- time series of length 
+ of length 
 \begin_inset Formula $150000$
 \end_inset
 
@@ -480,6 +480,8 @@ For this experiment, the sub-sequence
 \end_inset
 
  was modified in its time domain by adding random noise.
+ In a real scenario, this kind of noise could simulate, for instance, the
+ disconnection of a sensor.
 \end_layout
 
 \begin_layout Standard
@@ -1280,7 +1282,7 @@ name "tab:mackey-glass_time_f1_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1288,7 +1290,7 @@ status collapsed
 \begin_inset Tabular
 <lyxtabular version="3" rows="13" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.55\textwidth}">
 <column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
 <row>
@@ -1444,7 +1446,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- up to start of anomaly
+ for 
+\begin_inset Formula $SS_{1,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1488,7 +1494,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{101,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1532,7 +1542,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{1001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1576,7 +1590,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{10001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1620,7 +1638,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- during anomaly
+ for 
+\begin_inset Formula $SS_{74601,76400}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1664,7 +1686,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from end of anomaly onwards
+for 
+\begin_inset Formula $SS_{76401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1708,7 +1734,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after anomaly onwards
+for 
+\begin_inset Formula $SS_{76501,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1752,7 +1782,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after end of anomaly onwards
+for 
+\begin_inset Formula $SS_{77401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1796,7 +1830,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after end of anomaly onwards
+for 
+\begin_inset Formula $SS_{86401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1859,7 +1897,14 @@ Anomaly
 \begin_inset Quotes erd
 \end_inset
 
- refers to the anomalous sub-sequence.
+ refers to the anomalous sub-sequence (see also 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Evaluation_methodology"
+
+\end_inset
+
+).
 \end_layout
 
 \end_inset
@@ -1944,6 +1989,79 @@ For this experiment, the sub-sequence
 \end_inset
 
 .
+ This kind of noise was chosen to simulate the oscillations that are sometimes
+ present in real scenarios, e.g.
+ in ECG data, as seen in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:incremental_noise"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100text%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename C:/Users/mtambos/Copy/Docs/Hagen/Kurse/Bachelorarbeit/Arbeit/images/incremental_noise.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Oscillations in ECG data (Source: PhysioNet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PhysioNet,chfdb"
+
+\end_inset
+
+, chfdb/chf01).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:incremental_noise"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2744,7 +2862,7 @@ name "tab:mackey-glass_fix_time_f1_stats"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -2752,7 +2870,7 @@ status collapsed
 \begin_inset Tabular
 <lyxtabular version="3" rows="13" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.55\textwidth}">
 <column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
 <row>
@@ -2908,7 +3026,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- up to start of anomaly
+ for 
+\begin_inset Formula $SS_{1,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2952,7 +3074,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{101,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2996,7 +3122,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{1001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3040,7 +3170,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{10001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3084,7 +3218,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- during anomaly
+ for 
+\begin_inset Formula $SS_{74601,76400}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3128,7 +3266,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from end of anomaly onwards
+for 
+\begin_inset Formula $SS_{76401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3172,7 +3314,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after anomaly onwards
+for 
+\begin_inset Formula $SS_{76501,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3216,7 +3362,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after end of anomaly onwards
+for 
+\begin_inset Formula $SS_{77401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3260,7 +3410,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after end of anomaly onwards
+for 
+\begin_inset Formula $SS_{86401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3323,7 +3477,14 @@ Anomaly
 \begin_inset Quotes erd
 \end_inset
 
- refers to the anomalous sub-sequence.
+ refers to the anomalous sub-sequence (see also 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Evaluation_methodology"
+
+\end_inset
+
+).
 \end_layout
 
 \end_inset
@@ -3345,8 +3506,19 @@ name "tab:mackey-glass_fix_time_stats"
 
 \begin_layout Standard
 In terms of the F1-Scores obtained, the MGNG-AD model clearly outperformed
- the HTM one, although the HTM model's performance would certainly be improved
- by ignoring the first anomaly_likelihoods from the series.
+ the HTM one, although the HTM model's performance would be improved by
+ ignoring the first 
+\begin_inset Formula $10000$
+\end_inset
+
+ anomaly_likelihoods from the series, as 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "tab:mackey-glass_fix_time_stats"
+
+\end_inset
+
+ suggests.
  The MGNG-AD model maintained very similar standard deviations over all
  normal sub-sequences, in contrast with the previous experiment.
  On the other hand, the HTM model showed a continuously decreasing standard
@@ -3382,7 +3554,10 @@ reference "fig:freq_noise_detail"
 
 \end_inset
 
-
+.
+ This kind of noise was chosen because is is present in many applications,
+ e.g.
+ through electromagnetic interference, in radio reception.
 \begin_inset Float figure
 wide false
 sideways false
@@ -4249,7 +4424,7 @@ status open
 \begin_inset Tabular
 <lyxtabular version="3" rows="13" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.55\textwidth}">
 <column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
 <row>
@@ -4405,7 +4580,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- up to start of anomaly
+ for 
+\begin_inset Formula $SS_{1,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4449,7 +4628,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{101,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4493,7 +4676,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{1001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4537,7 +4724,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after start, up to start of anomaly
+ for 
+\begin_inset Formula $SS_{10001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4581,7 +4772,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- during anomaly
+ for 
+\begin_inset Formula $SS_{74601,76400}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4625,7 +4820,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from end of anomaly onwards
+for 
+\begin_inset Formula $SS_{76401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4669,7 +4868,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after anomaly onwards
+for 
+\begin_inset Formula $SS_{76501,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4713,7 +4916,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after end of anomaly onwards
+for 
+\begin_inset Formula $SS_{77401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4757,7 +4964,11 @@ Anomaly end
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after end of anomaly onwards
+for 
+\begin_inset Formula $SS_{86401,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4820,7 +5031,14 @@ Anomaly
 \begin_inset Quotes erd
 \end_inset
 
- refers to the anomalous sub-sequence.
+ refers to the anomalous sub-sequence (see also 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Evaluation_methodology"
+
+\end_inset
+
+).
 \end_layout
 
 \end_inset

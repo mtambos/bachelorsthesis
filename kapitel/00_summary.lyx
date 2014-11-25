@@ -120,8 +120,8 @@ Abstract
 \end_layout
 
 \begin_layout Standard
-The objective of this work is to propose a novel method of detecting contextual
- anomalies in time series in an online fashion.
+The objective of this work is to propose a novel unsupervised method of
+ detecting contextual anomalies in time series in an online fashion.
  The presented method is based upon an approach to time series analysis
  called Merge Growing Neural Gas (MGNG).
  As will be shown, MGNG allows the online detection of contextual anomalies

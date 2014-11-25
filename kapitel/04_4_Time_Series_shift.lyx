@@ -139,11 +139,11 @@ reference "sec:random_ts"
 
 .
  Subsequently, the sub-sequences 
-\begin_inset Formula $SMG_{76001,150000}\in MG$
+\begin_inset Formula $SMG_{74601,150000}\in MG$
 \end_inset
 
 , and 
-\begin_inset Formula $SR_{76001,150000}\in R$
+\begin_inset Formula $SR_{74601,150000}\in R$
 \end_inset
 
  were modified according to 
@@ -174,8 +174,19 @@ reference "sec:Mackey-Glass_time_series"
 \begin_layout Standard
 Such a shift is not considered an anomaly in this work, and thus no F1-Scores
  could be established.
- Instead, only the means and standard deviations for the selected segments
- of the time series were calculated.
+ Instead, only the means and standard deviations for the sub-sequences described
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Evaluation_methodology"
+
+\end_inset
+
+ (with the exception of 
+\begin_inset Formula $SS_{i,j}$
+\end_inset
+
+) of the time series were calculated.
 \end_layout
 
 \begin_layout Subsection
@@ -301,7 +312,7 @@ name "fig:mackey-glass_ts_mgng-ad_shift"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -309,7 +320,7 @@ status collapsed
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.55\textwidth}">
 <column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
 <row>
@@ -465,7 +476,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- up to shift
+ for 
+\begin_inset Formula $SS_{1,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -509,7 +524,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after start, up to shift
+ for 
+\begin_inset Formula $SS_{101,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -553,7 +572,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after start, up to shift
+ for 
+\begin_inset Formula $SS_{1001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -597,7 +620,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after start, up to shift
+ for 
+\begin_inset Formula $SS_{10001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -641,7 +668,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from shift onwards
+for 
+\begin_inset Formula $SS_{74601,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -685,7 +716,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after shift onwards
+for 
+\begin_inset Formula $SS_{74701,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -729,7 +764,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after shift onwards
+for 
+\begin_inset Formula $SS_{75601,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -773,7 +812,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after shift onwards
+for 
+\begin_inset Formula $SS_{84601,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -827,7 +870,14 @@ Sample means
 \end_inset
 
  for the MGNG-AD and HTM models in a Mackey-Glass time series with shifted
- mean.
+ mean (see also 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Evaluation_methodology"
+
+\end_inset
+
+).
 \end_layout
 
 \end_inset
@@ -849,7 +899,7 @@ In this experiment, a four-dimensional Mackey-Glass time series
 \end_inset
 
  was generated and a sub-sequence 
-\begin_inset Formula $SMG_{76001,150000}\in MG$
+\begin_inset Formula $SMG_{74601,150000}\in MG$
 \end_inset
 
  modified as previously explained.
@@ -1049,7 +1099,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1080,7 +1130,7 @@ From top to bottom: Mackey-Glass time series plot and anomaly_score plot.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -1138,7 +1188,7 @@ name "fig:random_ts_mgng-ad_shift"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -1146,7 +1196,7 @@ status collapsed
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="3">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.62\textwidth}">
+<column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.55\textwidth}">
 <column alignment="center" valignment="top" width="0pt" special=">{\centering}m{0.19\textwidth}">
 <column alignment="center" valignment="top" width="0pt">
 <row>
@@ -1302,7 +1352,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- up to shift
+ for 
+\begin_inset Formula $SS_{1,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1346,7 +1400,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after start, up to shift
+ for 
+\begin_inset Formula $SS_{101,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1390,7 +1448,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after start, up to shift
+ for 
+\begin_inset Formula $SS_{1001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1434,7 +1496,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after start, up to shift
+ for 
+\begin_inset Formula $SS_{10001,74600}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1478,7 +1544,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from shift onwards
+for 
+\begin_inset Formula $SS_{74601,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1522,7 +1592,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 100 points after shift onwards
+for 
+\begin_inset Formula $SS_{74701,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1566,7 +1640,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 1000 points after shift onwards
+for 
+\begin_inset Formula $SS_{75601,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1610,7 +1688,11 @@ Shift amounts
 \begin_inset Formula $\left(\bar{x},s\right)$
 \end_inset
 
- from 10000 points after shift onwards
+for 
+\begin_inset Formula $SS_{84601,150000}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1664,7 +1746,14 @@ Sample means
 \end_inset
 
  for the MGNG-AD and HTM models in a randomly generated time series with
- shifted mean.
+ shifted mean (see also 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Evaluation_methodology"
+
+\end_inset
+
+).
 \end_layout
 
 \end_inset
@@ -1686,7 +1775,7 @@ In this experiment, a four-dimensional, randomly generated time series
 \end_inset
 
  was generated and a sub-sequence 
-\begin_inset Formula $SR_{76001,150000}\in R$
+\begin_inset Formula $SR_{74601,150000}\in R$
 \end_inset
 
  modified as previously explained.
@@ -1824,7 +1913,7 @@ name "fig:random_ts_htm_shift"
 \end_inset
 
 Once again, both models show a strong reaction to the shift.
- Although, this time the HTM model shows a higher mean and standard deviation
+ Although this time the HTM model shows a higher mean and standard deviation
  values in comparison to those obtained in the previous experiment, both
  models could adapt also in this experiment to the mean shift.
 \end_layout

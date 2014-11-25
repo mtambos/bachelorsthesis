@@ -231,64 +231,213 @@ Furthermore, the sample standard deviation of the anomaly_likelihood, in
 , this was perform over the following sub-sequences:
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $SS_{l,i;m}$
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Pre anomalies
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+During anomalies
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Post anomalies
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{l,i-1;m}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $SS_{l+100,i;m}$
 \end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
 
+\begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $SS_{l+1000,i;m}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $SS_{l+10000,i;m}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
+\size footnotesize
 \begin_inset Formula $SS_{i,j;m}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $SS_{j,n;m}$
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{j+1,n;m}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $SS_{j+100,n;m}$
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{l+100,i-1;m}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $SS_{j+1000,n;m}$
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{j+101,n;m}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $SS_{j+10000,n;m}$
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{l+1000,i-1;m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{j+1001,n;m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{l+10000,i-1;m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $SS_{j+10001,n;m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
 \end_inset
 
 
@@ -297,7 +446,7 @@ Furthermore, the sample standard deviation of the anomaly_likelihood, in
 \begin_layout Standard
 This was undertaken to provide an estimate of the stability of the reported
  anomaly_likelihood and anomaly_score.
- A low standard deviations is desirable in normal sub-sequences, given that
+ A low standard deviation is desirable in normal sub-sequences, given that
  it indicates that the models have learned a good representation of the
  input.
  The sub-sequences were selected to assess approximately how many time steps
@@ -366,7 +515,7 @@ Third, the kind of anomalies that MGNG-AD or HTM are able to detect are
  is caused by a respiratory phenomenon, the identification of an apnea episode
  by an expert can take into consideration other variables
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 See, for instance, http://www.webmd.com/sleep-disorders/guide/understanding-obstru
@@ -407,7 +556,7 @@ h were indeed available, it could have been used to create a more effective
  effectiveness of the underlying algorithms in a rigorous way.
  Therefore, much of the research literature uses case studies in order to
  provide an intuitive and qualitative evaluation of the underlying outliers
- in unsupervised scenarios .
+ in unsupervised scenarios.
 \end_layout
 
 \begin_layout Standard
@@ -571,9 +720,9 @@ to determine which input variable to watch for anomalies.
  It is with those patterns that the OPF determines the anomaly_score and
  anomaly_likelihood of the current predictedField's value.
  To circumvent this limitation, one HTM model was swarmed and trained for
- each dimension of the input time series.
+ each component of the input time series.
  The anomaly_scores and anomaly_likelihoods of those models were subsequently
- averaged across dimensions to obtain the final anomaly_score and anomaly_likeli
+ averaged across components to obtain the final anomaly_score and anomaly_likeli
 hood for the time series.
  Formally, for a time series 
 \begin_inset Formula $S_{l,n;m}=\left(\mathbf{s}_{l},\dots,\mathbf{s}_{n}\right)$
