@@ -9,10 +9,19 @@ This will always be an empty file in IPython
 default size:
 body{font-size:65%;}
 */
-body{font-size:68%;}
-.grayed{color:gray;}
+body{
+    font-size:120%;
+    overflow: hidden;
+}
+h1.grayed, h2.grayed, h3.grayed, h4.grayed, h5.grayed, h6.grayed,
+h7.grayed, .grayed{color:gray;}
+
 table.noborder, th.noborder, tr.noborder, td.noborder{
     border: 0px solid white;
     border-collapse: collapse;
     padding: 0px;
+}
+
+hr{
+    height: 3px;
 }
