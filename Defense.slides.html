@@ -2077,15 +2077,89 @@ div.output_prompt {
 <li>Nodes and edges are generated/adapted to approximate the input.</li>
 </ul>
 </li>
+</ul>
+</div>
+</div>
+</div><aside class="notes">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>6 points.</li>
+<li>GNG: prototype-based vector quantization method that approximates the input space topology.</li>
+</ul>
+</div>
+</div>
+</div>
+    </aside><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>Nodes have an additional <em>context</em> vector besides their weight vector.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>A so called <em>Global Temporal Context</em> (GTC) is kept.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>The winner neurons are the ones that are nearer the input <strong>and</strong> the GTC.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>Neurons are adapted by moving their weight vector towards the input and the context vector towards the GTC.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>The GTC of each step is a linear combination of the last step&#39;s winner&#39;s  weight and context vector, before adaptation.</li>
 </ul>
 </div>
 </div>
-</div></section><section>
+</div>
+    </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2142,7 +2216,7 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>4 points.</p>
+<p>3 points.</p>
 </div>
 </div>
 </div>
@@ -2576,7 +2650,20 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>4 points.</p>
+<p style="text-size: 80%">
+4 points.
+
+Mackey-Glass:
+
+Defined by a differential equation.
+
+Models physiological phenomena.
+
+
+Randomly generated:
+
+Each instance of each component taken from a normal distribution.
+</p>
 </div>
 </div>
 </div>
@@ -2626,8 +2713,8 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 class="grayed">Experiments</h4>
-<h5 class="grayed">Methodology</h4>
+<p><h4 class="grayed">Experiments</h4></p>
+<h5 class="grayed">Methodology</h5>
 
 <hr>
 <h4 id="important-to-note">Important to Note</h4>
@@ -2659,8 +2746,8 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 class="grayed">Experiments</h4>
-<h5 class="grayed">Methodology</h4>
+<p><h4 class="grayed">Experiments</h4></p>
+<h5 class="grayed">Methodology</h5>
 
 <hr>
 <ul>
@@ -2726,8 +2813,8 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 class="grayed">Experiments</h4>
-<h5 class="grayed">Methodology</h4>
+<p><h4 class="grayed">Experiments</h4></p>
+<h5 class="grayed">Methodology</h5>
 
 <hr>
 <h4 id="example-random-noise-in-time-domain">Example random noise in time domain</h4>
@@ -2741,8 +2828,8 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 class="grayed">Experiments</h4>
-<h5 class="grayed">Methodology</h4>
+<p><h4 class="grayed">Experiments</h4></p>
+<h5 class="grayed">Methodology</h5>
 
 <hr>
 <h4 id="example-incremental-noise-in-time-domain">Example incremental noise in time domain</h4>
@@ -2761,8 +2848,8 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 class="grayed">Experiments</h4>
-<h5 class="grayed">Methodology</h4>
+<p><h4 class="grayed">Experiments</h4></p>
+<h5 class="grayed">Methodology</h5>
 
 <hr>
 <h4 id="example-random-noise-in-frequency-domain">Example random noise in frequency domain</h4>
@@ -2781,10 +2868,10 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><span class="grayed"></p>
-<h4 id="experiments">Experiments</h4>
-<h5 id="methodology">Methodology</h5>
-<h2 id="-span-"></span></h2>
+<p><h4 class="grayed">Experiments</h4></p>
+<h5 class="grayed">Methodology</h5>
+
+<hr>
 <h4 id="example-mean-shift">Example mean shift</h4>
 <p><img src='images/example_shift.png' width='1200px'/></p>
 </div>
@@ -2801,11 +2888,7 @@ div.output_prompt {
 <hr>
 <h3 id="mackey-glass">Mackey-Glass</h3>
 <ul>
-<li>Std of both models decreased over normal subsequences in almost all cases.<ul>
-<li>Std of initial subsequences at around .1.</li>
-<li>Std of final subsequences at or below .08.</li>
-</ul>
-</li>
+<li>Std of both models was lower in almost all cases for longer, later normal subsequences.</li>
 </ul>
 </div>
 </div>
@@ -2817,10 +2900,6 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>4 points.</p>
-<ul>
-<li>Defined by a differential equation.</li>
-<li>Models physiological phenomena.</li>
-</ul>
 </div>
 </div>
 </div>
@@ -2962,13 +3041,13 @@ div.output_prompt {
 <hr>
 <h3 id="mixed-time-series">Mixed Time Series</h3>
 <ul>
-<li>Random noise in time domain of Mackey-Glass time series.<ul>
+<li>Random noise in time domain of Mackey-Glass component.<ul>
 <li>F1-Scores:<ul>
 <li>MGNG-AD: .62</li>
 <li>HTM: .14</li>
 </ul>
 </li>
-<li>Stds decreased over normal subsequences in both cases.</li>
+<li>Stds were lower for longer, later normal subsequences in both cases.</li>
 </ul>
 </li>
 </ul>
@@ -2982,7 +3061,7 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Random noise in time domain of randomly generated time series.<ul>
+<li>Random noise in time domain of randomly generated component.<ul>
 <li>F1-Scores:<ul>
 <li>MGNG-AD: .56</li>
 <li>HTM: .02</li>
@@ -3086,7 +3165,18 @@ div.output_prompt {
 </ul>
 </div>
 </div>
-</div><div class="fragment">
+</div><aside class="notes">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>5 points.</p>
+</div>
+</div>
+</div>
+    </aside><div class="fragment">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3098,6 +3188,32 @@ div.output_prompt {
 <li>In both it outperformed MGNG-AD.</li>
 </ul>
 </li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>The stds provided by both models were lower for longer, later normal subsequences when using Mackey-Glass components.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Only the stds provided by MGNG-AD were lower for longer, later normal subsequences when using randomly generated components.</li>
 </ul>
 </div>
 </div>
@@ -3161,7 +3277,11 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>As with other unsupervised methods, the recommended way to use MGNG-AD is under human supervision.</li>
+<li>As with other unsupervised methods, is not recommended to use MGNG-AD alone.<ul>
+<li>Under human supervision.</li>
+<li>In combination with other methods.</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -3320,7 +3440,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="classification-of-anomaly-detectors">Classification of Anomaly Detectors</h4>
+<h4 class="grayed">Classification of Anomaly Detectors</h4>
+
 <hr>
 <h3 id="by-type-of-anomaly">By Type of Anomaly</h3>
 <ul>
@@ -3339,9 +3460,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="intro-to-anomaly-detection">Intro to Anomaly Detection</h4>
-<h5 id="classification-of-anomaly-detectors">Classification of Anomaly Detectors</h5>
-<h6 id="by-type-of-anomaly">By Type of Anomaly</h6>
+<p><h4 class="grayed">Classification of Anomaly Detectors</h4></p>
+<h5 class="grayed">By Type of Anomaly</h5>
+
 <hr>
 <ul>
 <li><strong>Contextual anomalies:</strong><ul>
@@ -3364,9 +3485,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="intro-to-anomaly-detection">Intro to Anomaly Detection</h4>
-<h5 id="classification-of-anomaly-detectors">Classification of Anomaly Detectors</h5>
-<h6 id="by-type-of-anomaly">By Type of Anomaly</h6>
+<p><h4 class="grayed">Classification of Anomaly Detectors</h4></p>
+<h5 class="grayed">By Type of Anomaly</h5>
+
 <hr>
 <ul>
 <li><strong>Collective anomalies:</strong><ul>
@@ -3384,7 +3505,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="classification-of-anomaly-detectors">Classification of Anomaly Detectors</h4>
+<h4 class="grayed">Classification of Anomaly Detectors</h4>
+
 <hr>
 <h3 id="by-type-of-supervision">By Type of Supervision</h3>
 <ul>
@@ -3416,7 +3538,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="classification-of-anomaly-detectors">Classification of Anomaly Detectors</h4>
+<h4 class="grayed">Classification of Anomaly Detectors</h4>
+
 <hr>
 <h3 id="by-type-of-output">By Type of Output</h3>
 <ul>
@@ -3443,7 +3566,6 @@ Streaming Data. 2011</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="offline-vs-online-anomaly-detectors">Offline vs online Anomaly Detectors</h2>
-<hr>
 <ul>
 <li><strong>Offline detector example</strong>
 <img src='images/offline_clustering_detector.png' width='800px' alt='Offline Detector' /></li>
@@ -3457,7 +3579,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="offline-vs-online-anomaly-detectors">Offline vs online Anomaly Detectors</h4>
+<h4 class="grayed">Offline vs online Anomaly Detectors</h4>
+
 <hr>
 <ul>
 <li><strong>Online detector example</strong></li>
@@ -3484,7 +3607,6 @@ Streaming Data. 2011</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="supervised-vs-unsupervised-detectors">Supervised vs. Unsupervised Detectors</h2>
-<hr>
 <ul>
 <li><p>Example: credit card payment sequence  </p>
 <blockquote>
@@ -3535,7 +3657,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="merge-growing-neural-gas">Merge Growing Neural Gas</h4>
+<h4 class="grayed">Merge Growing Neural Gas</h4>
+
 <hr>
 <h3 id="algorithm">Algorithm</h3>
 <ol>
@@ -3557,23 +3680,51 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="merge-growing-neural-gas">Merge Growing Neural Gas</h4>
-<h5 id="algorithm">Algorithm</h5>
+<p><h4 class="grayed">Merge Growing Neural Gas</h4></p>
+<h5 class="grayed">Algorithm</h5>
+
 <hr>
 <h4 id="the-0-funciton">The $time\_step$ funciton</h4>
 <ol>
-<li>Find winner $r$ and second winner $s$ (the two closest neurons to $\mathbf{x}_t$ and $\mathbf{C}_t$):$$d_{\mathcal{X}, \mathcal{C}}(t,n) = (1 − \alpha) \cdot \|\mathbf{x}_t − \mathbf{w}_n\|^2 + \alpha \cdot \| \mathbf{C}_t − \mathbf{c}_n\|^2 (\mathbf{x}_t\in\mathcal{X}, \mathbf{C}_t\in\mathcal{C})$$</li>
-<li>$\mathbf{C}_{t+1}:=(1 − \beta) \cdot \mathbf{w}_r + \beta · \mathbf{c}_r$.</li>
-<li><p>Connect $r$ with $s$.</p>
-<p>Set $age_{(r,s)}:=0$.</p>
-</li>
-<li>Update neuron $r$ and its direct topological neighbors $n\in\mathcal{N}_r$:<ol type='A'>
-<li>Move $\mathbf{w}_r$ towards $\mathbf{x}_t$ using $\epsilon_w$.</li>
-<li>Move $\mathbf{c}_r$ towards $\mathbf{C}_t$ using $\epsilon_w$.</li>
-<li>$e_r:=e_r + 1$</li>
-<li>Move $\mathbf{w}_n$ towards $\mathbf{x}_t$ using $\epsilon_v$.</li>
-<li>Move $\mathbf{c}_n$ towards $\mathbf{C}_t$ using $\epsilon_v$.</li>
-</ol></li>
+<li>Find winner $r$ and second winner $s$ (the two closest neurons to $\mathbf{x}_t$ and $\mathbf{C}_t$):</li>
+</ol>
+<p>$d_{\mathcal{X}, \mathcal{C}}(t,n) = (1 − \alpha) \cdot \|\mathbf{x}_t − \mathbf{w}_n\|^2 + \alpha \cdot \| \mathbf{C}_t − \mathbf{c}_n\|^2 (\mathbf{x}_t\in\mathcal{X}, \mathbf{C}_t\in\mathcal{C})$</p>
+<ol type='1' start='2'>
+<li>Update GTC:</li>
+</ol>
+
+<p>$\mathbf{C}_{t+1}:=(1 − \beta) \cdot \mathbf{w}_r + \beta \cdot \mathbf{c}_r$</p>
+<ol type='1' start='3'>
+<li>Connect $r$ with $s$.</li>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp;Set $age_{(r,s)}:=0$.</p>
+</div>
+</div>
+</div></section><section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><h4 class="grayed">Merge Growing Neural Gas</h4></p>
+<h5 class="grayed">Algorithm</h5>
+
+<hr>
+<h4 id="the-0-funciton-contd-">The $time\_step$ funciton (contd.)</h4>
+<ol type='1' start='4'>
+<li>Update neuron $r$ and its direct topological neighbors $n\in\mathcal{N}_r$:</li>
+  <ol type='A'>
+    <li>Move $\mathbf{w}_r$ towards $\mathbf{x}_t$ using $\epsilon_w$.</li>
+    <li>Move $\mathbf{c}_r$ towards $\mathbf{C}_t$ using $\epsilon_w$.</li>
+    <li>$e_r:=e_r + 1$</li>
+    <li>Move $\mathbf{w}_n$ towards $\mathbf{x}_t$ using $\epsilon_v$.</li>
+    <li>Move $\mathbf{c}_n$ towards $\mathbf{C}_t$ using $\epsilon_v$.</li>
+  </ol>
+<li>Increment the age of all connections of $r$.</li>
+<li>Remove old connections ($(a,b) | age_{(a,b)} &gt; \gamma$):</li>
+<li>Delete all neurons with no connections.</li>
 </ol>
 </div>
 </div>
@@ -3584,14 +3735,12 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="merge-growing-neural-gas">Merge Growing Neural Gas</h4>
-<h5 id="algorithm">Algorithm</h5>
+<p><h4 class="grayed">Merge Growing Neural Gas</h4></p>
+<h5 class="grayed">Algorithm</h5>
+
 <hr>
 <h4 id="the-0-funciton-contd-">The $time\_step$ funciton (contd.)</h4>
-<ol type='1' start='5'>
-<li>Increment the age of all connections of $r$.</li>
-<li>Remove old connections ($(a,b) | age_{(a,b)} &gt; \gamma$):</li>
-<li>Delete all neurons with no connections.</li>
+<ol type='1' start='8'>
 <li>If $t\ mod\ \lambda \equiv 0$ and $|K| &lt; \theta$:
    <ol type='A'>
       <li>Find neuron $q$ with the greatest $e_q$.
@@ -3622,9 +3771,13 @@ Streaming Data. 2011</p>
 <li>$\omega\in[0,1]$ is a scalar parameter for the function $f$,</li>
 <li>$\mathcal{A}_{1,s;m}=(A_1,...,A_s)$ is a sequence of anomaly levels,</li>
 <li>$j$ is the delay between $M^P$ and $M^Q$,</li>
-<li>$M^P=(\mathcal{K}^P,\mathcal{E}^P,\mathcal{C}^P,\alpha^P,\beta^P,\gamma^P,\delta^P,\theta^P,\eta^P,\lambda^P,\epsilon^P_w,\epsilon^P_v)$ is a MGNG model (the “past” model) with time series input $P_{1,s−j− 1;m}\subset\mathcal{X}$ of size $s − j − 1$, and</li>
-<li>$M^Q=(\mathcal{K}^Q,\mathcal{E}^Q,\mathcal{C}^Q,\alpha^Q,\beta^Q,\gamma^Q,\delta^Q,\theta^Q,\eta^Q,\lambda^Q,\epsilon^Q_w,\epsilon^Q_v)$ is a MGNG model (the “present” model) with time series input $\mathcal{X}$.</li>
+<li>$M^P$ is a MGNG model (the “past” model) with time series input $P_{1,s−j− 1;m}\subset\mathcal{X}$ of size $s − j − 1$, where:</li>
 </ul>
+<p>$M^P=(\mathcal{K}^P,\mathcal{E}^P,\mathcal{C}^P,\alpha^P,\beta^P,\gamma^P,\delta^P,\theta^P,\eta^P,\lambda^P,\epsilon^P_w,\epsilon^P_v)$</p>
+<ul>
+<li>$M^Q$ is a MGNG model (the “present” model) with time series input $\mathcal{X}$, where:</li>
+</ul>
+<p>$M^Q=(\mathcal{K}^Q,\mathcal{E}^Q,\mathcal{C}^Q,\alpha^Q,\beta^Q,\gamma^Q,\delta^Q,\theta^Q,\eta^Q,\lambda^Q,\epsilon^Q_w,\epsilon^Q_v)$</p>
 </div>
 </div>
 </div></section>
@@ -3637,17 +3790,17 @@ Streaming Data. 2011</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="experiments-details">Experiments Details</h2>
-<hr>
 <h3 id="makey-glass-time-series">Makey-Glass Time Series</h3>
 <ul>
-<li><p>Defined by the differential equation:</p>
-<p>$\frac{dx}{dt}=\beta x\frac{x_\tau}{1 +x^n_\tau}-\gamma x; \gamma, \beta, n &gt; 0$</p>
-</li>
-<li><p>Four series $MG1$,...,$MG4$ with parameters $\beta = 0.2$, $\gamma = 0.1$, $\tau = 17$ and $n = 10$ (same as Andreakis et alii) generated.</p>
-</li>
-<li>$MG2*=-1$, $MG3*=2$, $MG4*=-2$ to further differentiate.</li>
-<li>$mg_t := (mg1_t,mg2_t,mg3_t,mg4_t)$</li>
+<li>Defined by the differential equation:</li>
 </ul>
+<p>$\frac{dx}{dt}=\beta x\frac{x_\tau}{1 +x^n_\tau}-\gamma x; \gamma, \beta, n &gt; 0$</p>
+<ul>
+<li>Four series $MG1$,...,$MG4$ with parameters $\beta = 0.2$, $\gamma = 0.1$, $\tau = 17$ and $n = 10$ (same as Andreakis et alii) generated.</li>
+<li>$MG2*=-1$, $MG3*=2$, $MG4*=-2$ to further differentiate.</li>
+<li>Each instance $mg_t \in MG$ is defined as:</li>
+</ul>
+<p>$mg_t := (mg1_t,mg2_t,mg3_t,mg4_t)$</p>
 </div>
 </div>
 </div></section><section>
@@ -3657,8 +3810,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Makey-Glass Time Series</h5>
+
 <hr>
 <h4 id="random-noise-in-time-domain-mgng-ad">Random Noise in Time Domain - MGNG-AD</h4>
 <p><img src='images/mackey_glass_150000_time_noise_wide/amgng_whole_plot.png' width='1200px'/></p>
@@ -3671,9 +3825,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
-<h6 id="random-noise-in-time-domain-mgng-ad">Random Noise in Time Domain - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Makey-Glass Time Series</h5></p>
+<h6 class="grayed">Random Noise in Time Domain - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/mackey_glass_150000_time_noise_wide/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3685,8 +3840,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Makey-Glass Time Series</h5>
+
 <hr>
 <h4 id="random-noise-in-time-domain-htm">Random Noise in Time Domain - HTM</h4>
 <p><img src='images/mackey_glass_150000_time_noise_wide/cla_whole_plot.png' width='1200px'/></p>
@@ -3699,9 +3855,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
-<h6 id="random-noise-in-time-domain-htm">Random Noise in Time Domain - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Makey-Glass Time Series</h5></p>
+<h6 class="grayed">Random Noise in Time Domain - HTM</h6>
+
 <hr>
 <p><img src='images/mackey_glass_150000_time_noise_wide/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3713,8 +3870,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Makey-Glass Time Series</h5>
+
 <hr>
 <h4 id="incremental-noise-in-time-domain-mgng-ad">Incremental Noise in Time Domain - MGNG-AD</h4>
 <p><img src='images/mackey_glass_150000_fix_time_noise/amgng_whole_plot.png' width='1200px'/></p>
@@ -3727,9 +3885,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
-<h6 id="incremental-noise-in-time-domain-mgng-ad">Incremental Noise in Time Domain - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Makey-Glass Time Series</h5></p>
+<h6 class="grayed">Incremental Noise in Time Domain - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/mackey_glass_150000_fix_time_noise/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3741,8 +3900,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Makey-Glass Time Series</h5>
+
 <hr>
 <h4 id="incremental-noise-in-time-domain-htm">Incremental Noise in Time Domain - HTM</h4>
 <p><img src='images/mackey_glass_150000_fix_time_noise/cla_whole_plot.png' width='1200px'/></p>
@@ -3755,9 +3915,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
-<h6 id="incremental-noise-in-time-domain-htm">Incremental Noise in Time Domain - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Makey-Glass Time Series</h5></p>
+<h6 class="grayed">Incremental Noise in Time Domain - HTM</h6>
+
 <hr>
 <p><img src='images/mackey_glass_150000_fix_time_noise/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3769,8 +3930,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Makey-Glass Time Series</h5>
+
 <hr>
 <h4 id="random-noise-in-frequency-domain-mgng-ad">Random Noise in Frequency Domain - MGNG-AD</h4>
 <p><img src='images/mackey_glass_150000_freq_noise/amgng_whole_plot.png' width='1200px'/></p>
@@ -3783,9 +3945,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
-<h6 id="random-noise-in-frequency-domain-mgng-ad">Random Noise in Frequency Domain - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Makey-Glass Time Series</h5></p>
+<h6 class="grayed">Random Noise in Frequency Domain - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/mackey_glass_150000_freq_noise/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3797,8 +3960,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Makey-Glass Time Series</h5>
+
 <hr>
 <h4 id="random-noise-in-frequency-domain-htm">Random Noise in Frequency Domain - HTM</h4>
 <p><img src='images/mackey_glass_150000_freq_noise/cla_whole_plot.png' width='1200px'/></p>
@@ -3811,9 +3975,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="makey-glass-time-series">Makey-Glass Time Series</h5>
-<h6 id="random-noise-in-frequency-domain-htm">Random Noise in Frequency Domain - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Makey-Glass Time Series</h5></p>
+<h6 class="grayed">Random Noise in Frequency Domain - HTM</h6>
+
 <hr>
 <p><img src='images/mackey_glass_150000_freq_noise/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3825,7 +3990,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
+<h4 class="grayed">Experiments Details</h4>
+
 <hr>
 <h3 id="randomly-generated-time-series">Randomly generated Time Series</h3>
 <ul>
@@ -3847,8 +4013,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Randomly generated Time Series</h5>
+
 <hr>
 <h4 id="random-noise-in-time-domain-mgng-ad">Random Noise in Time Domain - MGNG-AD</h4>
 <p><img src='images/random_ts_150000_time_noise/amgng_whole_plot.png' width='1200px'/></p>
@@ -3861,9 +4028,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="random-noise-in-time-domain-mgng-ad">Random Noise in Time Domain - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Randomly generated Time Series</h5></p>
+<h6 class="grayed">Random Noise in Time Domain - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/random_ts_150000_time_noise/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3874,8 +4042,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Randomly generated Time Series</h5>
+
 <hr>
 <h4 id="random-noise-in-time-domain-htm">Random Noise in Time Domain - HTM</h4>
 <p><img src='images/random_ts_150000_time_noise/cla_whole_plot.png' width='1200px'/></p>
@@ -3887,9 +4056,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="random-noise-in-time-domain-htm">Random Noise in Time Domain - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Randomly generated Time Series</h5></p>
+<h6 class="grayed">Random Noise in Time Domain - HTM</h6>
+
 <hr>
 <p><img src='images/random_ts_150000_time_noise/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3901,8 +4071,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Randomly generated Time Series</h5>
+
 <hr>
 <h4 id="incremental-noise-in-time-domain-mgng-ad">Incremental Noise in Time Domain - MGNG-AD</h4>
 <p><img src='images/random_ts_150000_fix_time_noise/amgng_whole_plot.png' width='1200px'/></p>
@@ -3915,9 +4086,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="incremental-noise-in-time-domain-mgng-ad">Incremental Noise in Time Domain - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Randomly generated Time Series</h5></p>
+<h6 class="grayed">Incremental Noise in Time Domain - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/random_ts_150000_fix_time_noise/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3929,8 +4101,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Randomly generated Time Series</h5>
+
 <hr>
 <h4 id="incremental-noise-in-time-domain-htm">Incremental Noise in Time Domain - HTM</h4>
 <p><img src='images/random_ts_150000_fix_time_noise/cla_whole_plot.png' width='1200px'/></p>
@@ -3943,9 +4116,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="incremental-noise-in-time-domain-htm">Incremental Noise in Time Domain - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Randomly generated Time Series</h5></p>
+<h6 class="grayed">Incremental Noise in Time Domain - HTM</h6>
+
 <hr>
 <p><img src='images/random_ts_150000_fix_time_noise/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -3957,7 +4131,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
+<h4 class="grayed">Experiments Details</h4>
+
 <hr>
 <h3 id="mixed-time-series">Mixed Time Series</h3>
 <ul>
@@ -3979,8 +4154,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Mixed Time Series</h5>
+
 <hr>
 <h4 id="noise-in-mackey-glass-component">Noise in Mackey-Glass Component</h4>
 <p><img src='images/mixed_ts_mackey_glass_time_noise/detail_plot.png' width='1200px'/></p>
@@ -3993,8 +4169,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Mixed Time Series</h5>
+
 <hr>
 <h4 id="noise-in-mackey-glass-component-mgng-ad">Noise in Mackey-Glass Component - MGNG-AD</h4>
 <p><img src='images/mixed_ts_mackey_glass_time_noise/amgng_whole_plot.png' width='1200px'/></p>
@@ -4007,9 +4184,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="noise-in-mackey-glass-component-mgng-ad">Noise in Mackey-Glass Component - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Mixed Time Series</h5></p>
+<h6 class="grayed">Noise in Mackey-Glass Component - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/mixed_ts_mackey_glass_time_noise/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4021,8 +4199,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Mixed Time Series</h5>
+
 <hr>
 <h4 id="noise-in-mackey-glass-component-htm">Noise in Mackey-Glass Component - HTM</h4>
 <p><img src='images/mixed_ts_mackey_glass_time_noise/cla_whole_plot.png' width='1200px'/></p>
@@ -4035,9 +4214,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="noise-in-mackey-glass-component-htm">Noise in Mackey-Glass Component - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Mixed Time Series</h5></p>
+<h6 class="grayed">Noise in Mackey-Glass Component - HTM</h6>
+
 <hr>
 <p><img src='images/mixed_ts_mackey_glass_time_noise/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4049,8 +4229,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Mixed Time Series</h5>
+
 <hr>
 <h4 id="noise-in-randomly-generated-component">Noise in Randomly Generated Component</h4>
 <p><img src='images/mixed_ts_random_time_noise/detail_plot.png' width='1200px'/></p>
@@ -4063,8 +4244,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Mixed Time Series</h5>
+
 <hr>
 <h4 id="noise-in-randomly-generated-component-mgng-ad">Noise in Randomly Generated Component - MGNG-AD</h4>
 <p><img src='images/mixed_ts_random_time_noise/amgng_whole_plot.png' width='1200px'/></p>
@@ -4077,9 +4259,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="noise-in-randomly-generated-component-mgng-ad">Noise in Randomly Generated Component - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Mixed Time Series</h5></p>
+<h6 class="grayed">Noise in Randomly Generated Component - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/mixed_ts_random_time_noise/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4091,8 +4274,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Mixed Time Series</h5>
+
 <hr>
 <h4 id="noise-in-randomly-generated-component-htm">Noise in Randomly Generated Component - HTM</h4>
 <p><img src='images/mixed_ts_random_time_noise/cla_whole_plot.png' width='1200px'/></p>
@@ -4105,9 +4289,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="randomly-generated-time-series">Randomly generated Time Series</h5>
-<h6 id="noise-in-randomly-generated-component-htm">Noise in Randomly Generated Component - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Mixed Time Series</h5></p>
+<h6 class="grayed">Noise in Randomly Generated Component - HTM</h6>
+
 <hr>
 <p><img src='images/mixed_ts_random_time_noise/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4119,7 +4304,8 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
+<h4 class="grayed">Experiments Details</h4>
+
 <hr>
 <h3 id="time-series-shift">Time Series Shift</h3>
 <ul>
@@ -4136,8 +4322,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Time Series Shift</h5>
+
 <hr>
 <h4 id="mackey-glass-time-series-mgng-ad">Mackey-Glass Time Series - MGNG-AD</h4>
 <p><img src='images/mackey_glass_ts_shift/amgng_whole_plot.png' width='1200px'/></p>
@@ -4150,9 +4337,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
-<h6 id="mackey-glass-time-series-mgng-ad">Mackey-Glass Time Series - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Time Series Shift</h5></p>
+<h6 class="grayed">Mackey-Glass Time Series - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/mackey_glass_ts_shift/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4164,8 +4352,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Time Series Shift</h5>
+
 <hr>
 <h4 id="mackey-glass-time-series-htm">Mackey-Glass Time Series - HTM</h4>
 <p><img src='images/mackey_glass_ts_shift/cla_whole_plot.png' width='1200px'/></p>
@@ -4178,9 +4367,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
-<h6 id="mackey-glass-time-series-htm">Mackey-Glass Time Series - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Time Series Shift</h5></p>
+<h6 class="grayed">Mackey-Glass Time Series - HTM</h6>
+
 <hr>
 <p><img src='images/mackey_glass_ts_shift/cla_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4192,8 +4382,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Time Series Shift</h5>
+
 <hr>
 <h4 id="randomly-generated-time-series-mgng-ad">Randomly Generated Time Series - MGNG-AD</h4>
 <p><img src='images/random_ts_shift/amgng_whole_plot.png' width='1200px'/></p>
@@ -4206,9 +4397,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
-<h6 id="randomly-generated-time-series-mgng-ad">Randomly Generated Time Series - MGNG-AD</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Time Series Shift</h5></p>
+<h6 class="grayed">Randomly Generated Time Series - MGNG-AD</h6>
+
 <hr>
 <p><img src='images/random_ts_shift/amgng_detail_plot.png' width='1200px'/></p>
 </div>
@@ -4220,8 +4412,9 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<h5 class="grayed">Time Series Shift</h5>
+
 <hr>
 <h4 id="randomly-generated-time-series-htm">Randomly Generated Time Series - HTM</h4>
 <p><img src='images/random_ts_shift/cla_whole_plot.png' width='1200px'/></p>
@@ -4234,9 +4427,10 @@ Streaming Data. 2011</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="experiments-details">Experiments Details</h4>
-<h5 id="time-series-shift">Time Series Shift</h5>
-<h6 id="randomly-generated-time-series-htm">Randomly Generated Time Series - HTM</h6>
+<p><h4 class="grayed">Experiments Details</h4></p>
+<p><h5 class="grayed">Time Series Shift</h5></p>
+<h6 class="grayed">Randomly Generated Time Series - HTM</h6>
+
 <hr>
 <p><img src='images/random_ts_shift/cla_detail_plot.png' width='1200px'/></p>
 </div>
